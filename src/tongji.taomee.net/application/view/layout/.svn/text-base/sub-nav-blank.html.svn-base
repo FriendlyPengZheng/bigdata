@@ -1,0 +1,10 @@
+<!-- 不含任何二级nav -->
+<div class="wrapper">
+    <ul class="main-sub-nav">
+        {if isset($response.admin_auth)}
+        <li class="sub-nav-li posr stat-button" title="模板管理">
+        <a href="index.php?r=admin/manage/displayPage&page_url={$response.param.r}&navi_key={$response.current.pageKey}&module_name={$response.current.pageTitle}" class="bar-manage"><i class="iconfont icon-config"></i>{TM::t('tongji', '模板管理')}</a>
+        </li>
+        {/if}
+     </ul>
+</div>

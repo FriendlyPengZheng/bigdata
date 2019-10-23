@@ -1,0 +1,58 @@
+{extends "layout/layout.html"}
+
+{block "layout.title"}{$response.application_info.name}-{TM::t('tongji', '娓告垙鍒嗘瀽')}{/block}
+{block "layout.subnav"}{include "gameanalysis/sub-nav.html"}{/block}
+{block "layout.pagecss"}
+     <link rel="stylesheet" type="text/css" href="{$response.res_server}/data/css/page/gameanalysis/conf.css?v={$response.application_info.version}">
+{/block}
+{block "layout.main"}
+<div class="main with-aside">
+    {include "gameanalysis/aside.html"}
+    <div class="content clearfix">
+        <div class="tips" id="J_timeTips" style="display: none;">
+            <a class="tips-close" href="javascript:void(0);">X</a>
+            <div class="tips-text"><span class="tit">{TM::t('tongji', '娉ㄦ剰锛�')}</span>{TM::t('tongji', '椤甸潰鍙兘鏄剧ず{1}鏃堕棿娈电殑鏁版嵁锛屼笅杞芥暟鎹椂闂存娌℃湁闄愬埗鍝︺��', ['{1}' => sprintf('<span class="tit period">%s~%s</span>', $response.param.from, $response.param.to)])}</div>
+        </div>
+        <div class="tips">
+            <a class="tips-close" href="javascript:void(0);">X</a>
+            <div class="tips-text">
+                <p>{TM::t('tongji', '鍙�氳繃浠ヤ笅涓ょ鏂瑰紡涓婁紶閬撳叿鍚嶇О锛�')}</p>
+                <p>{TM::t('tongji', '1銆佷粠鍟嗗搧绠＄悊绯荤粺涓紝鐐瑰嚮銆恵1}銆戞寜閽笅杞藉緱鍒癷tem鐨剎ml鏂囦欢锛屽啀鍦ㄦ澶勪笂浼犺鏂囦欢鍗冲彲锛�', ['{1}' => sprintf('<span class="fb">%s</span>', TM::t('tongji', '瀵煎嚭item琛�'))])}</p>
+                <p>{TM::t('tongji', '2銆佷粠鏈湴excel涓婁紶閬撳叿琛細鍏堝皢閬撳叿id銆侀亾鍏峰悕绉板鍒跺埌缁欏畾鐨剓1}涓婏紙{2}锛夛紝鍙﹀瓨涓簒ml鏂囦欢鍚庯紝閫夋嫨涓婁紶鍗冲彲銆�', ['{1}' => sprintf('<a href="doc/閬撳叿妯℃澘.xlsx" title="%s" class="fb underline">%s</a>', TM::t('tongji', '鐐瑰嚮涓嬭浇閬撳叿妯℃澘'), TM::t('tongji', '銆愭ā鐗圗xcel銆�')), '{2}' => sprintf('<span class="tit">%s</span>', TM::t('tongji', '娉ㄦ剰绗竴琛岀殑鍚嶇О涓嶈兘鏇存敼锛屼笖淇濊瘉涓ゅ垪'))])}</p>
+            </div>
+        </div>
+        <input type="hidden" id="J_r" value="{$response.param.r}" />
+        <div class="content-header clearfix">
+            <div id="J_headerTools" class="header-tools">
+                <form class="line-blk" action="index.php?r=gameanalysis/webgame/economy/importItem&ajax=1" method="post" enctype="multipart/form-data" >
+                    <input type="hidden" name="sstid" value="_coinsbuyitem_" />
+                    <input type="file"  class="file-up" name="files" id="J_file"/>
+                    <input type="hidden" id="J_paramGameId" name="game_id" value="{$response.param.game_id}" />
+                    <a href="javascript:void(0);" class="add-btn" id="J_addMb" />{TM::t('tongji', '涓婁紶閬撳叿鍚嶇О')}</a>
+                </form>
+                <a href="javascript:void(0);" class="add-btn" id="J_editMb" >{TM::t('tongji', '鎵归噺鍒嗛厤绫诲埆')}</a>
+            </div>
+        </div>
+        <div class="content-body" id="J_contentBody">
+        </div>
+    </div>
+</div>
+{/block}
+{block "layout.pagejs"}
+    <!-- here you can add some page javascript -->
+    <script src="{$response.res_server}/common/js/select.js"></script>
+    <script src="{$response.res_server}/common/js/jquery.form.js"></script>
+    <script src="{$response.res_server}/data/js/common/navigator.js?v={$response.application_info.version}"></script>
+    <script src="{$response.res_server}/common/js/datepick.js"></script>
+    <script src="{$response.res_server}/common/js/Page.js"></script>
+    <script src="{$response.res_server}/common/js/tm.tabs.js"></script>
+    <script src="{$response.res_server}/common/js/draw/highstock.js"></script>
+    <script src="{$response.res_server}/common/js/tm.draw.js"></script>
+    <script src="{$response.res_server}/common/js/tm.datatable.js"></script>
+    <script src="{$response.res_server}/data/js/common/jquery.choose.js?v={$response.application_info.version}"></script>
+    <script src="{$response.res_server}/data/js/common/common.js?v={$response.application_info.version}"></script>
+    <script src="{$response.res_server}/data/js/common/stat.table.js"></script>
+    <script src="{$response.res_server}/data/js/common/tm.module.ok.js?v={$response.application_info.version}"></script>
+    <script src="{$response.res_server}/data/js/common/usage.ok.js?v={$response.application_info.version}"></script>
+    <script src="{$response.res_server}/data/js/page/gameanalysis/mbmanage.js?v={$response.application_info.version}"></script>
+{/block}

@@ -1,0 +1,35 @@
+K 25
+svn:wc:ra_dav:version-url
+V 103
+/data-center/!svn/ver/5799/web/stat-web/trunk/application/webroot/mtj/bower_components/jquery/src/event
+END
+ajax.js
+K 25
+svn:wc:ra_dav:version-url
+V 111
+/data-center/!svn/ver/5799/web/stat-web/trunk/application/webroot/mtj/bower_components/jquery/src/event/ajax.js
+END
+trigger.js
+K 25
+svn:wc:ra_dav:version-url
+V 114
+/data-center/!svn/ver/5799/web/stat-web/trunk/application/webroot/mtj/bower_components/jquery/src/event/trigger.js
+END
+focusin.js
+K 25
+svn:wc:ra_dav:version-url
+V 114
+/data-center/!svn/ver/5799/web/stat-web/trunk/application/webroot/mtj/bower_components/jquery/src/event/focusin.js
+END
+alias.js
+K 25
+svn:wc:ra_dav:version-url
+V 112
+/data-center/!svn/ver/5799/web/stat-web/trunk/application/webroot/mtj/bower_components/jquery/src/event/alias.js
+END
+support.js
+K 25
+svn:wc:ra_dav:version-url
+V 114
+/data-center/!svn/ver/5799/web/stat-web/trunk/application/webroot/mtj/bower_components/jquery/src/event/support.js
+END

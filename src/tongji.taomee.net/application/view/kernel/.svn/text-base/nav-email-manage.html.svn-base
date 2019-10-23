@@ -1,0 +1,7 @@
+<div class="wrapper">
+    <ul class="main-sub-nav">
+        <li class="sub-nav-li posr ">
+        <a href="index.php?r={$response.param.view_r}&email_id={$response.param.email_id}" class="bar-view"><i class="iconfont icon-back"></i>返回查看</a>
+        </li>
+    </ul>
+</div>

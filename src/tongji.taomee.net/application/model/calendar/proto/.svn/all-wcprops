@@ -1,0 +1,29 @@
+K 25
+svn:wc:ra_dav:version-url
+V 78
+/data-center/!svn/ver/4161/web/stat-web/trunk/application/model/calendar/proto
+END
+Header.proto
+K 25
+svn:wc:ra_dav:version-url
+V 91
+/data-center/!svn/ver/4161/web/stat-web/trunk/application/model/calendar/proto/Header.proto
+END
+Header.php
+K 25
+svn:wc:ra_dav:version-url
+V 89
+/data-center/!svn/ver/4161/web/stat-web/trunk/application/model/calendar/proto/Header.php
+END
+EventList.proto
+K 25
+svn:wc:ra_dav:version-url
+V 94
+/data-center/!svn/ver/4161/web/stat-web/trunk/application/model/calendar/proto/EventList.proto
+END
+EventList.php
+K 25
+svn:wc:ra_dav:version-url
+V 92
+/data-center/!svn/ver/4161/web/stat-web/trunk/application/model/calendar/proto/EventList.php
+END

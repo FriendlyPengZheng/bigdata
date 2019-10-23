@@ -1,0 +1,101 @@
+K 25
+svn:wc:ra_dav:version-url
+V 82
+/data-center/!svn/ver/5198/web/stat-web/trunk/application/model/data/configuration
+END
+DistrFactory.php
+K 25
+svn:wc:ra_dav:version-url
+V 99
+/data-center/!svn/ver/4082/web/stat-web/trunk/application/model/data/configuration/DistrFactory.php
+END
+ConfigurationBuilder.php
+K 25
+svn:wc:ra_dav:version-url
+V 107
+/data-center/!svn/ver/3286/web/stat-web/trunk/application/model/data/configuration/ConfigurationBuilder.php
+END
+GpzsDistrFactory.php
+K 25
+svn:wc:ra_dav:version-url
+V 103
+/data-center/!svn/ver/3522/web/stat-web/trunk/application/model/data/configuration/GpzsDistrFactory.php
+END
+ConfigurationSet.php
+K 25
+svn:wc:ra_dav:version-url
+V 103
+/data-center/!svn/ver/3120/web/stat-web/trunk/application/model/data/configuration/ConfigurationSet.php
+END
+SstidDistrFactory.php
+K 25
+svn:wc:ra_dav:version-url
+V 104
+/data-center/!svn/ver/3129/web/stat-web/trunk/application/model/data/configuration/SstidDistrFactory.php
+END
+Distr.php
+K 25
+svn:wc:ra_dav:version-url
+V 92
+/data-center/!svn/ver/3163/web/stat-web/trunk/application/model/data/configuration/Distr.php
+END
+DataInfo.php
+K 25
+svn:wc:ra_dav:version-url
+V 95
+/data-center/!svn/ver/3129/web/stat-web/trunk/application/model/data/configuration/DataInfo.php
+END
+StatInfo.php
+K 25
+svn:wc:ra_dav:version-url
+V 95
+/data-center/!svn/ver/3129/web/stat-web/trunk/application/model/data/configuration/StatInfo.php
+END
+UndefinedConfiguration.php
+K 25
+svn:wc:ra_dav:version-url
+V 109
+/data-center/!svn/ver/2992/web/stat-web/trunk/application/model/data/configuration/UndefinedConfiguration.php
+END
+RangeDistrFactory.php
+K 25
+svn:wc:ra_dav:version-url
+V 104
+/data-center/!svn/ver/4082/web/stat-web/trunk/application/model/data/configuration/RangeDistrFactory.php
+END
+Configurable.php
+K 25
+svn:wc:ra_dav:version-url
+V 99
+/data-center/!svn/ver/2992/web/stat-web/trunk/application/model/data/configuration/Configurable.php
+END
+DataDistrFactory.php
+K 25
+svn:wc:ra_dav:version-url
+V 103
+/data-center/!svn/ver/2992/web/stat-web/trunk/application/model/data/configuration/DataDistrFactory.php
+END
+Configuration.php
+K 25
+svn:wc:ra_dav:version-url
+V 100
+/data-center/!svn/ver/5198/web/stat-web/trunk/application/model/data/configuration/Configuration.php
+END
+DistrFactoryManager.php
+K 25
+svn:wc:ra_dav:version-url
+V 106
+/data-center/!svn/ver/3129/web/stat-web/trunk/application/model/data/configuration/DistrFactoryManager.php
+END
+SortedUnion.php
+K 25
+svn:wc:ra_dav:version-url
+V 98
+/data-center/!svn/ver/2992/web/stat-web/trunk/application/model/data/configuration/SortedUnion.php
+END
+Data.php
+K 25
+svn:wc:ra_dav:version-url
+V 91
+/data-center/!svn/ver/3154/web/stat-web/trunk/application/model/data/configuration/Data.php
+END

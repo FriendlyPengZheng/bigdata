@@ -1,0 +1,16 @@
+[2019-03-21 14:38:34]
+An exception occurred while executing 'INSERT INTO t_game_info (`game_id`,`game_name`,`game_type`,`auth_id`,`manage_auth_id`,`ignore`,`status`,`func_slot`,`online_auth_id`,`game_email`) VALUES(:dbparam0,:dbparam1,:dbparam2,:dbparam3,:dbparam4,:dbparam5,:dbparam6,:dbparam7,:dbparam8,:dbparam9)' with params [99999, "\u5c0f\u6e29\u90172", "webgame", "1", "1", "20422", 0, 32, "1", "sevin@taomee.com"]:
+SQLSTATE[23000]: Integrity constraint violation: 1062 Duplicate entry '小温逗2' for key 2
+Stack trace:
+#0 /opt/home/sevin/project/tongji.taomee.net/taomee/db/TMDbCommand.php(346): TMDbException::driverExceptionDuringQuery(Object(PDOException), 'INSERT INTO t_g...', Array, Array)
+#1 /opt/home/sevin/project/tongji.taomee.net/taomee/base/TMFormModel.php(261): TMDbCommand->execute()
+#2 /opt/home/sevin/project/tongji.taomee.net/application/controller/common/Game.php(91): TMFormModel->insert()
+#3 /opt/home/sevin/project/tongji.taomee.net/taomee/web/TMController.php(154): Game->save(Array)
+#4 /opt/home/sevin/project/tongji.taomee.net/taomee/web/TMController.php(132): TMController->runAction('save')
+#5 /opt/home/sevin/project/tongji.taomee.net/taomee/web/TMController.php(107): TMController->runActionWithFilters('save', Array)
+#6 /opt/home/sevin/project/tongji.taomee.net/taomee/web/TMWebApplication.php(96): TMController->run('save', false)
+#7 /opt/home/sevin/project/tongji.taomee.net/taomee/web/TMWebApplication.php(81): TMWebApplication->runController('common/game/sav...')
+#8 /opt/home/sevin/project/tongji.taomee.net/taomee/base/Application.php(88): TMWebApplication->processRequest()
+#9 /opt/home/sevin/project/tongji.taomee.net/application/webroot/index.php(102): taomee\base\Application->run()
+#10 {main}
+REQUEST_URI=/index.php?r=common/game/save

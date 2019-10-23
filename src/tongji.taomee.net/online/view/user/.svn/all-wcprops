@@ -1,0 +1,29 @@
+K 25
+svn:wc:ra_dav:version-url
+V 62
+/data-center/!svn/ver/5528/web/stat-web/trunk/online/view/user
+END
+login.html
+K 25
+svn:wc:ra_dav:version-url
+V 73
+/data-center/!svn/ver/3378/web/stat-web/trunk/online/view/user/login.html
+END
+forbidden.html
+K 25
+svn:wc:ra_dav:version-url
+V 77
+/data-center/!svn/ver/3748/web/stat-web/trunk/online/view/user/forbidden.html
+END
+autoonline.html
+K 25
+svn:wc:ra_dav:version-url
+V 78
+/data-center/!svn/ver/5528/web/stat-web/trunk/online/view/user/autoonline.html
+END
+online.html
+K 25
+svn:wc:ra_dav:version-url
+V 74
+/data-center/!svn/ver/5524/web/stat-web/trunk/online/view/user/online.html
+END

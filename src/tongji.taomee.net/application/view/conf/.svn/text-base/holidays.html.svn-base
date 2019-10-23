@@ -1,0 +1,32 @@
+{extends "layout/layout.html"}
+
+{block "layout.title"}{$response.application_info.name}-节假日管理{/block}
+{block "layout.pagecss"}
+<link rel="stylesheet" type="text/css" href="{$response.res_server}/common/css/fullcalendar.css?v={$response.application_info.version}">
+<link rel="stylesheet" type="text/css" href="{$response.res_server}/data/css/page/conf/conf.css?v={$response.application_info.version}">
+<link rel="stylesheet" type="text/css" href="{$response.res_server}/data/css/page/conf/calendar.css?v={$response.application_info.version}">
+{/block}
+{block "layout.main"}
+<div class="main with-aside">
+    {include "layout/aside.html"}
+    <div class="content">
+        <div class="calendar-wrapper clearfix">
+            <div id="J_externalEvents" class="calendar-events">
+                <div class="calendar-events-wrapper">
+                    <h4>可添加的事件</h4>
+                    <div class="fc-event">假期</div>
+                </div>
+            </div>
+            <div id="J_calendar" class="calendar"></div>
+        </div>
+    </div>
+</div>
+{/block}
+{block "layout.pagejs"}
+<script src="{$response.res_server}/common/js/jquery.ui.mouse.js"></script>
+<script src="{$response.res_server}/common/js/jquery.ui.draggable.js"></script>
+<script src="{$response.res_server}/common/js/jquery.ui.droppable.js"></script>
+<script src="{$response.res_server}/common/js/moment.min.js"></script>
+<script src="{$response.res_server}/common/js/fullcalendar.min.js"></script>
+<script src="{$response.res_server}/data/js/page/conf/holidays.js?v={$response.application_info.version}"></script>
+{/block}

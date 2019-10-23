@@ -1,0 +1,77 @@
+10
+
+dir
+5881
+http://svn.taomee.com/data-center/web/stat-web/trunk/application/model/data
+http://svn.taomee.com/data-center
+
+
+
+2017-07-11T07:36:15.623122Z
+5765
+violet
+has-props
+
+
+
+
+
+
+
+
+
+
+
+
+
+d36378c3-2c15-4d8f-b3f4-bc6831a7de82
+
+Data.php
+file
+
+
+
+
+2017-07-11T07:36:18.802029Z
+d61a39db92b08dd38fcb6bf52b58ce3b
+2017-07-11T07:36:15.623122Z
+5765
+violet
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+28075
+
+source
+dir
+
+populator
+dir
+
+configuration
+dir
+
+calculator
+dir
+
+time
+dir
+

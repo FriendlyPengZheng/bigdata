@@ -1,0 +1,119 @@
+[2018-10-08 11:21:43]
+sf[1924]新增节点, Array
+(
+    [fields] => Array
+        (
+            [node_name] => 123test
+            [game_id] => 35
+            [parent_id] => 0
+            [is_leaf] => 2
+            [is_basic] => 0
+            [node_id] => 552593
+        )
+
+)
+
+[2018-10-08 11:22:13]
+sf[1924]新增节点, Array
+(
+    [fields] => Array
+        (
+            [node_name] => 内部test
+            [game_id] => 35
+            [parent_id] => 0
+            [is_leaf] => 2
+            [is_basic] => 0
+            [node_id] => 552594
+        )
+
+)
+
+[2018-10-08 11:22:54]
+sf[1924]更新节点, Array
+(
+    [node_id] => 552593
+    [fields] => Array
+        (
+            [is_leaf] => 0
+        )
+
+)
+
+[2018-10-08 11:22:54]
+sf[1924]更新节点, Array
+(
+    [node_id] => 552594
+    [fields] => Array
+        (
+            [parent_id] => 552593
+        )
+
+)
+
+[2018-10-08 11:22:54]
+sf[1924]更新节点, Array
+(
+    [node_id] => 552594
+    [fields] => Array
+        (
+            [display_order] => 1
+        )
+
+)
+
+[2018-10-08 11:23:26]
+sf[1924]新增节点, Array
+(
+    [fields] => Array
+        (
+            [node_name] => 外部test
+            [game_id] => 35
+            [parent_id] => 0
+            [is_leaf] => 2
+            [is_basic] => 0
+            [node_id] => 552595
+        )
+
+)
+
+[2018-10-08 11:41:45]
+是对方v[1924]新增节点, Array
+(
+    [fields] => Array
+        (
+            [node_name] => 测试配置
+            [game_id] => 5
+            [parent_id] => 0
+            [is_leaf] => 2
+            [is_basic] => 0
+            [node_id] => 552596
+        )
+
+)
+
+[2018-10-08 11:42:53]
+是对方v[1924]更新节点, Array
+(
+    [node_id] => 552596
+    [fields] => Array
+        (
+            [is_leaf] => 0
+        )
+
+)
+
+[2018-10-08 11:42:53]
+是对方v[1924]新增节点, Array
+(
+    [fields] => Array
+        (
+            [node_name] => 测试内部配置
+            [game_id] => 5
+            [parent_id] => 552596
+            [is_leaf] => 2
+            [is_basic] => 0
+            [node_id] => 552597
+        )
+
+)
+

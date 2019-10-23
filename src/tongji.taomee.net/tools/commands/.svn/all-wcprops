@@ -1,0 +1,35 @@
+K 25
+svn:wc:ra_dav:version-url
+V 60
+/data-center/!svn/ver/5770/web/stat-web/trunk/tools/commands
+END
+DailyReportCommand.php
+K 25
+svn:wc:ra_dav:version-url
+V 83
+/data-center/!svn/ver/5770/web/stat-web/trunk/tools/commands/DailyReportCommand.php
+END
+DataCheckCommand.php
+K 25
+svn:wc:ra_dav:version-url
+V 81
+/data-center/!svn/ver/4273/web/stat-web/trunk/tools/commands/DataCheckCommand.php
+END
+TimingCommand.php
+K 25
+svn:wc:ra_dav:version-url
+V 78
+/data-center/!svn/ver/4273/web/stat-web/trunk/tools/commands/TimingCommand.php
+END
+EncodeCheckCommand.php
+K 25
+svn:wc:ra_dav:version-url
+V 83
+/data-center/!svn/ver/5515/web/stat-web/trunk/tools/commands/EncodeCheckCommand.php
+END
+DataOnceCheckCommand.php
+K 25
+svn:wc:ra_dav:version-url
+V 85
+/data-center/!svn/ver/5510/web/stat-web/trunk/tools/commands/DataOnceCheckCommand.php
+END

@@ -1,0 +1,11 @@
+K 25
+svn:wc:ra_dav:version-url
+V 64
+/data-center/!svn/ver/5881/web/stat-web/trunk/application/config
+END
+install
+K 25
+svn:wc:ra_dav:version-url
+V 72
+/data-center/!svn/ver/2226/web/stat-web/trunk/application/config/install
+END

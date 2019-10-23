@@ -1,0 +1,219 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<!--<meta name="viewport" content="initial-scale=1, maximum-scale=1, minimum-scale=1, user-scalable=no">-->
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="keywords" content="">
+    <meta name="description" content="">
+    <title>淘米数据分析平台手机版</title>
+	<link rel="stylesheet" href="../css/pure/pure-min.css">
+	<link rel="stylesheet" href="../css/mtj/public.css">
+	<link rel="stylesheet" href="../css/mtj/mtj.css">
+	<link rel="stylesheet" href="../css/font-awesome/css/font-awesome.min.css">
+</head>
+<body>
+
+<div class="header-bar">
+	<div class="pure-menu pro-list-div">
+        <a href="javascript:history.go(-1)" class="pro-list-link">&nbsp;&nbsp;<i class="fa fa-chevron-left"></i></a>
+        <a href="#" id="J-menu" class="pro-list-link"><i class="fa fa-list"></i></a>
+		<ul class="pro-list-ul">
+		</ul>
+	</div>
+    <span class="big-title"></span>
+	<div class="admin-info">
+	    <span></span>,
+		<a href="#">退出</a>
+	</div>
+</div>
+
+<div class="container">
+	<div class="pure-menu pure-menu-horizontal por">
+		<ul class="pure-menu-list tab-menu">
+			<li class="pure-menu-item pure-menu-selected"><a href="#" class="pure-menu-link" id="selected-li">新增分布</a></li>
+            <li class="pure-menu-item"><a href="#" class="pure-menu-link">活跃分布</a></li>
+		</ul>
+		<ul class="filter">
+		</ul>
+		<button class="pure-button filter-button">
+			<i class="fa fa-filter"></i>
+			筛选
+		</button>
+	</div>
+
+	<div class="statictis-item">
+        <!--
+		<div class="graph">
+		    <canvas id="keyChart"></canvas>
+        </div>
+        -->
+		<ul class="filter"><li class="f-date"></li></ul>
+		<div class="data-tbl">
+		    <table id="chartTable" class="common-tbl pure-table pdt-list">
+			</table>
+		</div>
+	</div>
+</div>
+<div class="mask" id="J_mask">
+    <div class="filter-container por">
+		<div class="close-btn">
+			<i class="fa fa-times-circle"></i>
+		</div>
+		<div class="filter-items">
+			<h5>渠道/平台</h5>
+			<ul id="filter-form-channel" class="filter-ul filter-form-channel"></ul>
+		</div>
+		<div class="filter-items">
+			<h5>区服</h5>
+			<ul id="filter-form-server" class="filter-ul filter-form-server"></ul>
+		</div>
+		<div class="filter-items">
+			<h5>时段</h5>
+			<ul id="filter-form-date" class="filter-ul filter-form-date">
+				<li data="7">近7天</li>
+				<li data="15">近15天</li>
+				<li data="30">近30天</li>
+				<li data="">自定义</li>
+			</ul>
+			<ul class="filter-ul-date">
+				<li>
+					<label>开始时间</label>
+					<input type="date" name="filter-sdate" id="filter-sdate" value="" />
+					<i class="fa fa-calendar" aria-hidden="true"></i>
+				</li>
+				<li>
+					<label>结束时间</label>
+					<input type="date" name="filter-edate" id="filter-edate" value="" />
+					<i class="fa fa-calendar" aria-hidden="true"></i>
+				</li>
+			</ul>
+		</div>
+		<div class="pure-button-group" role="group" aria-label="...">
+			<button class="pure-button w50per filter-reset">重置</button>
+			<button class="pure-button pure-button-active w50per">确定</button>
+		</div>
+	</div>
+</div>
+
+<script src="../js/jquery.min.js" type="text/javascript" charset="utf-8"></script>
+<script src="../js/chart/Chart.min.js" type="text/javascript" charset="utf-8"></script>
+<script src="../js/public.js"          type="text/javascript" charset="utf-8"></script>
+<script src="../js/mtj.js"             type="text/javascript" charset="utf-8"></script>
+<script src="../js/filter.js"          type="text/javascript" charset="utf-8"></script>
+<script type="text/javascript">
+	var localUrl = window.location.search;
+    var param   = localUrl.substring(1, localUrl.length);
+    var param   = param.split('&');
+    var game    = param[0];
+    var gameId  = game.split('=')[1];
+    var gpzs    = param[1];
+    var gpzsId  = gpzs.split('=')[1];
+    var keyuri  = param[2];
+    var dataKey = decodeURI(keyuri.split('=')[1]);
+
+	if(gameId == undefined || !gameId){
+		gameId = 657;
+        gpzsId = 25555;
+        dataKey = "新增分布";
+    }
+    console.log(dataKey);
+
+    initGames();
+    $('.big-title').html(games[gameId]);
+
+	/* 初始化默认时间段 */
+	var dateArr15 = new Array();
+	for(var d=0;d<=14;d++)
+	{
+		dateArr15.push(getDateStr(d-14));
+	}
+    $('.f-date').html(dateArr15[0]+'至'+dateArr15[14]);
+
+    var dataInfo = new Array();
+    var exprs    = new Array();
+
+    getDatas(dataKey,gameId,gpzsId);
+
+    function getDatas(dataKey,gameId,gpzsId)
+    {
+        if(dataKey == "新增分布"){
+            dataInfo = [
+                {
+                    sort_type:3,distr_name:"新增用户数",dimen_name:"渠道",distr_by:1,distr_type:1,data:0,period:1,data_name:"新增用户数",
+                    type:2,task_id:14,range:"",factor:1,precision:0,unit:""
+                }
+            ];
+        }else if(dataKey == "活跃分布"){
+            dataInfo = [
+                {
+                    sort_type:3,distr_name:"活跃用户数",dimen_name:"渠道",distr_by:1,distr_type:1,data:0,period:1,data_name:"活跃用户数",
+                    type:1,stid:"_lgac_",sstid:"_lgac_",op_fields:"",op_type:"ucount",range:"",factor:1,precision:0,unit:""
+                }
+            ];
+        }else{
+        
+        }
+
+        var reqData = {            
+            r:'common/data/getDistribution',
+            qoq:0,
+            yoy:0,
+            average:0,
+            data_info:dataInfo,
+            period:1,
+            from:{0:dateArr15[0]},
+            to:{0:dateArr15[14]},
+            searchValue:'',
+            platform_id:-1,
+            zone_id:-1,
+            server_id:-1,
+            gpzs_id:gpzsId,
+            game_id:gameId
+        };
+
+        var tableHtml = "";
+        $.ajax({
+            url      : reqUrl,
+            type     : "POST",
+            dataType : 'json',
+            data     : reqData,
+            success  : function(data){
+                if(data.data == null || data.data == ""){
+                    tableHtml += '<tr><td>没有数据</td></tr>';
+                }else{
+                    var graphData = data["data"][0]["data"][0];
+                    var keyData   = data["data"][0]["key"];
+                    tableHtml += '<thead><tr><th>渠道</th><th>数量</th><th>占比</th></tr></thead><tbody>';
+                    for(var i=0;i<keyData.length;i++)
+                    {
+                        if(i%2 == 0){
+                            tableHtml += '<tr>';
+                        }else{
+                            tableHtml += '<tr class="pure-table-odd">';
+                        }   
+                        tableHtml += '<td>'+keyData[i]+'</td><td>'+graphData["data"][i]+'</td><td>'+graphData["percentage"][i]+'</td></tr>';
+                    }
+                    tableHtml +=  '</tbody>';
+                }
+                $('#chartTable').html(tableHtml);
+                $('.f-date').html(dateArr15[0]+'至'+dateArr15[14]);
+            },
+            error    : function(){
+            }
+        });
+    }
+
+
+    $('.pure-menu-link').click(function(e){
+        e.preventDefault();        
+        dataKey = $(this).html();
+        $(this).parent().removeClass('pure-menu-selected');
+        $(this).parent().siblings().addClass('pure-menu-selected');
+        getDatas(dataKey,gameId,gpzsId);
+    });
+
+</script>
+</body>
+</html>

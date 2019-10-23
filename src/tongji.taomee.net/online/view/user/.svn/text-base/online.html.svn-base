@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+        <meta name="robots" content="nofollow,noindex">
+        <title>在线统计</title>
+        <link rel="stylesheet" type="text/css" href="{$response.res_server}/common/css/online.css?ver={$response.application_info.version}">
+<!--[if lt IE 8]>
+<link rel="stylesheet" type="text/css" href="{$response.res_server}/common/css/layout.ie.css">
+<script type="text/javascript">
+function calc() {
+    document.getElementsByTagName("body")[0].style.width  = document.body.clientWidth < 1000 ? "1000px" : "auto";
+}
+onbeforeprint = function() { document.getElementsByTagName("body")[0].style.width = "100%"; }
+onafterprint = calc;
+</script>
+<![endif]-->
+        <script type="text/javascript">
+        window.responseData = {
+            userId: {$response.user.current_admin_id},
+            userName: "{$response.user.current_admin_name}",
+            isRelease: "{$response.application_info.is_release}",
+            resServer: "{$response.res_server}"
+       };
+        window.gLoading = false;
+        </script>
+        <script src="{$response.res_server}/common/js/jquery.min.js"></script>
+    </head>
+    <body>
+    <!-- header begin -->
+    <div class="header" id="J_header">
+        <select id="J_game">
+        {foreach $response.game as $key => $game}
+            {if $response.param.game_id == $game.id}
+            <option value="{$game.id}" data-id="{$game.id}" selected="true">{$game.name}</option>
+            {else}
+            <option value="{$game.id}" data-id="{$game.id}">{$game.name}</option>
+             {/if}
+        {/foreach}
+        </select>
+        <select id="J_zoneServer">
+        {if isset($response.zone_server) && !empty($response.zone_server)}
+        {foreach $response.zone_server as $zs}
+            {if $response.param.zs_id == $zs.id}
+            <option value="{$zs.id}" data-id="{$zs.id}" selected>{$zs.name}</option>
+            {else}
+            <option value="{$zs.id}" data-id="{$zs.id}">{$zs.name}</option>
+            {/if}
+        {/foreach}
+        {else}
+            <option>选择区服：</option>
+        {/if}
+        </select>
+        <ul class="clearfix change-btn-con" id="J_dateTools">
+            <li class="change-btn first disabled" data-id="1"><span>同比环比</span></li>
+            <li class="change-btn last disabled" data-id="2"><span>一周对比</span></li>
+        </ul>
+        <div class="datepicker-trigger radius5" id="J_dateCon">
+            <input type="hidden" id="J_time" value="{$response.param.time}" />
+            <i class="datepicker-icon"></i>
+            <input class="title" type="text" id="J_date" value="{$response.param.time}" />
+            <i class="datepicker-arrow"></i>
+        </div>
+        <ul class="links" >
+            <li><a href="index.php?r=online/autoIndex" target="_self">自动展示</a></li>
+            <li>|</li>
+            <li>欢迎你，{$response.user.current_admin_name}</li>
+            <li>|</li>
+            <li class="setting"><a href="index.php?r=user/logout">退出</a></li>
+        </ul>
+    </div>
+    <!-- header end -->
+    <!-- main begin -->
+    <div class="main">
+        <div class="content clearfix" id="J_content">
+        </div>
+    </div>
+    <!-- main end -->
+    <script src="{$response.res_server}/common/js/util.js?v={$response.application_info.version}"></script>
+    <!-- here you can add some page javascript -->
+    <script src="{$response.res_server}/common/js/select.js"></script>
+    <script src="{$response.res_server}/common/js/datepick.js"></script>
+    <script src="{$response.res_server}/common/js/draw/highstock.js"></script>
+    <script src="{$response.res_server}/common/js/tm.draw.js"></script>
+    <script src="{$response.res_server}/online/js/tm.module.ok.js?v={$response.application_info.version}"></script>
+    <script src="{$response.res_server}/online/js/usage.ok.js?v={$response.application_info.version}"></script>
+    <script src="{$response.res_server}/online/js/online.js?v={$response.application_info.version}"></script>
+    </body>
+</html>
+

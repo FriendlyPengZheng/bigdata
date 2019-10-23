@@ -1,0 +1,30 @@
+[2019-03-12 10:08:31]
+TMCurlHelper error [6]Couldn't resolve host 'am-server.taomee.net'
+Stack trace:
+#0 /opt/home/sevin/project/tongji.taomee.net/application/components/User.php(357): TMCurlHelper::fetch('http://am-serve...', Array, 'post', 'json')
+#1 /opt/home/sevin/project/tongji.taomee.net/application/components/User.php(926): User->_request(1006, Array)
+#2 /opt/home/sevin/project/tongji.taomee.net/application/controller/home/Collect.php(327): User->fetchAllUsers()
+#3 /opt/home/sevin/project/tongji.taomee.net/taomee/web/TMController.php(154): Collect->fetchSharedUsers(Array)
+#4 /opt/home/sevin/project/tongji.taomee.net/taomee/web/TMController.php(132): TMController->runAction('fetchSharedUser...')
+#5 /opt/home/sevin/project/tongji.taomee.net/taomee/web/TMController.php(107): TMController->runActionWithFilters('fetchSharedUser...', Array)
+#6 /opt/home/sevin/project/tongji.taomee.net/taomee/web/TMWebApplication.php(96): TMController->run('fetchSharedUser...', false)
+#7 /opt/home/sevin/project/tongji.taomee.net/taomee/web/TMWebApplication.php(81): TMWebApplication->runController('home/collect/fe...')
+#8 /opt/home/sevin/project/tongji.taomee.net/taomee/base/Application.php(88): TMWebApplication->processRequest()
+#9 /opt/home/sevin/project/tongji.taomee.net/application/webroot/index.php(102): taomee\base\Application->run()
+#10 {main}
+REQUEST_URI=/index.php?r=home/collect/fetchSharedUsers
+[2019-03-12 10:08:31]
+TMCurlHelper error [6]Couldn't resolve host 'am-server.taomee.net'
+Stack trace:
+#0 /opt/home/sevin/project/tongji.taomee.net/application/components/User.php(357): TMCurlHelper::fetch('http://am-serve...', Array, 'post', 'json')
+#1 /opt/home/sevin/project/tongji.taomee.net/application/components/User.php(926): User->_request(1006, Array)
+#2 /opt/home/sevin/project/tongji.taomee.net/application/controller/home/Collect.php(327): User->fetchAllUsers()
+#3 /opt/home/sevin/project/tongji.taomee.net/taomee/web/TMController.php(154): Collect->fetchSharedUsers(Array)
+#4 /opt/home/sevin/project/tongji.taomee.net/taomee/web/TMController.php(132): TMController->runAction('fetchSharedUser...')
+#5 /opt/home/sevin/project/tongji.taomee.net/taomee/web/TMController.php(107): TMController->runActionWithFilters('fetchSharedUser...', Array)
+#6 /opt/home/sevin/project/tongji.taomee.net/taomee/web/TMWebApplication.php(96): TMController->run('fetchSharedUser...', false)
+#7 /opt/home/sevin/project/tongji.taomee.net/taomee/web/TMWebApplication.php(81): TMWebApplication->runController('home/collect/fe...')
+#8 /opt/home/sevin/project/tongji.taomee.net/taomee/base/Application.php(88): TMWebApplication->processRequest()
+#9 /opt/home/sevin/project/tongji.taomee.net/application/webroot/index.php(102): taomee\base\Application->run()
+#10 {main}
+REQUEST_URI=/index.php?r=home/collect/fetchSharedUsers

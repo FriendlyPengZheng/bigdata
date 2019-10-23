@@ -1,0 +1,22 @@
+.flash-loading { width: 1px; height: 120px; }
+
+.mod-box .mod-text .mod-text-con { height: 221px; background-color: #FFF; }
+.mod-box .mod-text .mod-text-bottom { display: none; }
+
+.content-body .content-item { display: none; }
+.content-body .content-item .title { padding: 0 0 10px 60px; height: 60px; line-height: 60px; color: #444; font-size: 16px; font-weight: bold; background-image: url(../../../images/big_icon.png); background-repeat: no-repeat; }
+.content-body .content-item .title.new-player { background-position: 0 -292px; }
+.content-body .content-item .title.active-player { background-position: 0 -596px; }
+.content-body .content-item .title.revenue { background-position: 0 4px; }
+.content-body .content-item .title.first-pay { background-position: 0 -696px; }
+
+.board { color: #666; font-size: 14px; font-weight: bold; }
+.board li { padding-bottom: 10px; }
+.board .key { display: none; margin-left: 10px; }
+.board .data { color: #465160; font-size: 34px; }
+.board .rate.up { color: #FD7577; }
+.board .rate.down { color: #6EC560; }
+
+.board .arrow { display: inline-block; *display: inline; *zoom: 1; margin: 0 10px 0 20px; width: 12px; height: 12px; background-image: url(../../../images/arrow.png); background-repeat: no-repeat; background-position: 0 12px;}
+.board .arrow.up { background-position: 0 -48px; }
+.board .arrow.down { background-position: 0 -24px; }

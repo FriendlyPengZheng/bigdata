@@ -1,0 +1,48 @@
+{extends "layout/layout.html"}
+
+{block "layout.title"}{$response.application_info.name}-{TM::t('tongji', '专题分析')}{/block}
+{block "layout.pagecss"}
+     <link rel="stylesheet" type="text/css" href="{$response.res_server}/data/css/page/topic/topic.css?v={$response.application_info.version}">
+{/block}
+{block "layout.subnav"}{include "topic/sub-nav.html"}{/block}
+{block "layout.main"}
+<div class="main with-aside">
+    {include "layout/aside.html"}
+    <div class="content clearfix">
+        <input type="hidden" id="J_r" value="{$response.param.r}" />
+        <div class="content-header clearfix" id="J_contentHeader">
+            <div class="select-con" id="J_transGame">
+                <div class="select-title">{TM::t('tongji', '选择游戏：')}</div>
+            </div>
+            <label class="fr cstcon">
+                <input type="checkbox" class="cstchk" id="J_rlcontrast"/>
+                <span class="">{TM::t('tongji', '一周对比')}</span>
+            </label>
+            <div class="datepicker-trigger radius5-all single fr mr5" id="J_fromTime">
+                <input type="hidden" id="J_from" value="{$response.param.to}" />
+                <i class="datepicker-icon"></i>
+                <input class="title" type="text" id="J_date" value="{$response.param.to}" />
+                <i class="datepicker-arrow"></i>
+            </div>
+        </div>
+        <div class="content-body" id="J_contentBody" >
+        </div>
+    </div>
+</div>
+{/block}
+{block "layout.pagejs"}
+    <!-- here you can add some page javascript -->
+    <script src="{$response.res_server}/common/js/select.js"></script>
+    <script src="{$response.res_server}/data/js/common/navigator.js?v={$response.application_info.version}"></script>
+    <script src="{$response.res_server}/common/js/datepick.js"></script>
+    <script src="{$response.res_server}/common/js/Page.js"></script>
+    <script src="{$response.res_server}/common/js/tm.tabs.js"></script>
+    <script src="{$response.res_server}/common/js/tm.datatable.js"></script>
+    <script src="{$response.res_server}/common/js/draw/highstock.js"></script>
+    <script src="{$response.res_server}/common/js/tm.draw.js"></script>
+    <script src="{$response.res_server}/data/js/common/common.js"></script>
+    <script src="{$response.res_server}/data/js/common/stat.table.js"></script>
+    <script src="{$response.res_server}/data/js/common/tm.module.ok.js?v={$response.application_info.version}"></script>
+    <script src="{$response.res_server}/data/js/common/usage.ok.js?v={$response.application_info.version}"></script>
+    <script src="{$response.res_server}/data/js/page/topic/realtime.js?v={$response.application_info.version}"></script>
+{/block}

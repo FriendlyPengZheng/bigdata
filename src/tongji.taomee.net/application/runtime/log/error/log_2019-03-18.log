@@ -1,0 +1,112 @@
+[2019-03-18 15:10:33]
+file_put_contents(/opt/home/sevin/project/tongji.taomee.net/online/config/game.php): failed to open stream: Permission denied (/opt/home/sevin/project/tongji.taomee.net/application/controller/admin/Online.php:227)
+Stack trace:
+#0 unknown(0): TMWebApplication->handleError()
+#1 /opt/home/sevin/project/tongji.taomee.net/application/controller/admin/Online.php(227): file_put_contents()
+#2 /opt/home/sevin/project/tongji.taomee.net/application/controller/admin/Online.php(120): Online->_writeOnlineConfig()
+#3 /opt/home/sevin/project/tongji.taomee.net/taomee/web/TMController.php(154): Online->build()
+#4 /opt/home/sevin/project/tongji.taomee.net/taomee/web/TMController.php(132): Online->runAction()
+#5 /opt/home/sevin/project/tongji.taomee.net/taomee/web/TMController.php(107): Online->runActionWithFilters()
+#6 /opt/home/sevin/project/tongji.taomee.net/taomee/web/TMWebApplication.php(96): Online->run()
+#7 /opt/home/sevin/project/tongji.taomee.net/taomee/web/TMWebApplication.php(81): TMWebApplication->runController()
+#8 /opt/home/sevin/project/tongji.taomee.net/taomee/base/Application.php(88): TMWebApplication->processRequest()
+#9 /opt/home/sevin/project/tongji.taomee.net/application/webroot/index.php(102): TMWebApplication->run()
+REQUEST_URI=/index.php?r=admin/online/build
+[2019-03-18 15:10:38]
+file_put_contents(/opt/home/sevin/project/tongji.taomee.net/online/config/game.php): failed to open stream: Permission denied (/opt/home/sevin/project/tongji.taomee.net/application/controller/admin/Online.php:227)
+Stack trace:
+#0 unknown(0): TMWebApplication->handleError()
+#1 /opt/home/sevin/project/tongji.taomee.net/application/controller/admin/Online.php(227): file_put_contents()
+#2 /opt/home/sevin/project/tongji.taomee.net/application/controller/admin/Online.php(120): Online->_writeOnlineConfig()
+#3 /opt/home/sevin/project/tongji.taomee.net/taomee/web/TMController.php(154): Online->build()
+#4 /opt/home/sevin/project/tongji.taomee.net/taomee/web/TMController.php(132): Online->runAction()
+#5 /opt/home/sevin/project/tongji.taomee.net/taomee/web/TMController.php(107): Online->runActionWithFilters()
+#6 /opt/home/sevin/project/tongji.taomee.net/taomee/web/TMWebApplication.php(96): Online->run()
+#7 /opt/home/sevin/project/tongji.taomee.net/taomee/web/TMWebApplication.php(81): TMWebApplication->runController()
+#8 /opt/home/sevin/project/tongji.taomee.net/taomee/base/Application.php(88): TMWebApplication->processRequest()
+#9 /opt/home/sevin/project/tongji.taomee.net/application/webroot/index.php(102): TMWebApplication->run()
+REQUEST_URI=/index.php?r=admin/online/build
+[2019-03-18 15:10:40]
+file_put_contents(/opt/home/sevin/project/tongji.taomee.net/online/config/game.php): failed to open stream: Permission denied (/opt/home/sevin/project/tongji.taomee.net/application/controller/admin/Online.php:227)
+Stack trace:
+#0 unknown(0): TMWebApplication->handleError()
+#1 /opt/home/sevin/project/tongji.taomee.net/application/controller/admin/Online.php(227): file_put_contents()
+#2 /opt/home/sevin/project/tongji.taomee.net/application/controller/admin/Online.php(120): Online->_writeOnlineConfig()
+#3 /opt/home/sevin/project/tongji.taomee.net/taomee/web/TMController.php(154): Online->build()
+#4 /opt/home/sevin/project/tongji.taomee.net/taomee/web/TMController.php(132): Online->runAction()
+#5 /opt/home/sevin/project/tongji.taomee.net/taomee/web/TMController.php(107): Online->runActionWithFilters()
+#6 /opt/home/sevin/project/tongji.taomee.net/taomee/web/TMWebApplication.php(96): Online->run()
+#7 /opt/home/sevin/project/tongji.taomee.net/taomee/web/TMWebApplication.php(81): TMWebApplication->runController()
+#8 /opt/home/sevin/project/tongji.taomee.net/taomee/base/Application.php(88): TMWebApplication->processRequest()
+#9 /opt/home/sevin/project/tongji.taomee.net/application/webroot/index.php(102): TMWebApplication->run()
+REQUEST_URI=/index.php?r=admin/online/build
+[2019-03-18 15:10:43]
+file_put_contents(/opt/home/sevin/project/tongji.taomee.net/online/config/game.php): failed to open stream: Permission denied (/opt/home/sevin/project/tongji.taomee.net/application/controller/admin/Online.php:227)
+Stack trace:
+#0 unknown(0): TMWebApplication->handleError()
+#1 /opt/home/sevin/project/tongji.taomee.net/application/controller/admin/Online.php(227): file_put_contents()
+#2 /opt/home/sevin/project/tongji.taomee.net/application/controller/admin/Online.php(120): Online->_writeOnlineConfig()
+#3 /opt/home/sevin/project/tongji.taomee.net/taomee/web/TMController.php(154): Online->build()
+#4 /opt/home/sevin/project/tongji.taomee.net/taomee/web/TMController.php(132): Online->runAction()
+#5 /opt/home/sevin/project/tongji.taomee.net/taomee/web/TMController.php(107): Online->runActionWithFilters()
+#6 /opt/home/sevin/project/tongji.taomee.net/taomee/web/TMWebApplication.php(96): Online->run()
+#7 /opt/home/sevin/project/tongji.taomee.net/taomee/web/TMWebApplication.php(81): TMWebApplication->runController()
+#8 /opt/home/sevin/project/tongji.taomee.net/taomee/base/Application.php(88): TMWebApplication->processRequest()
+#9 /opt/home/sevin/project/tongji.taomee.net/application/webroot/index.php(102): TMWebApplication->run()
+REQUEST_URI=/index.php?r=admin/online/build
+[2019-03-18 15:10:45]
+file_put_contents(/opt/home/sevin/project/tongji.taomee.net/online/config/game.php): failed to open stream: Permission denied (/opt/home/sevin/project/tongji.taomee.net/application/controller/admin/Online.php:227)
+Stack trace:
+#0 unknown(0): TMWebApplication->handleError()
+#1 /opt/home/sevin/project/tongji.taomee.net/application/controller/admin/Online.php(227): file_put_contents()
+#2 /opt/home/sevin/project/tongji.taomee.net/application/controller/admin/Online.php(120): Online->_writeOnlineConfig()
+#3 /opt/home/sevin/project/tongji.taomee.net/taomee/web/TMController.php(154): Online->build()
+#4 /opt/home/sevin/project/tongji.taomee.net/taomee/web/TMController.php(132): Online->runAction()
+#5 /opt/home/sevin/project/tongji.taomee.net/taomee/web/TMController.php(107): Online->runActionWithFilters()
+#6 /opt/home/sevin/project/tongji.taomee.net/taomee/web/TMWebApplication.php(96): Online->run()
+#7 /opt/home/sevin/project/tongji.taomee.net/taomee/web/TMWebApplication.php(81): TMWebApplication->runController()
+#8 /opt/home/sevin/project/tongji.taomee.net/taomee/base/Application.php(88): TMWebApplication->processRequest()
+#9 /opt/home/sevin/project/tongji.taomee.net/application/webroot/index.php(102): TMWebApplication->run()
+REQUEST_URI=/index.php?r=admin/online/build
+[2019-03-18 15:10:47]
+file_put_contents(/opt/home/sevin/project/tongji.taomee.net/online/config/game.php): failed to open stream: Permission denied (/opt/home/sevin/project/tongji.taomee.net/application/controller/admin/Online.php:227)
+Stack trace:
+#0 unknown(0): TMWebApplication->handleError()
+#1 /opt/home/sevin/project/tongji.taomee.net/application/controller/admin/Online.php(227): file_put_contents()
+#2 /opt/home/sevin/project/tongji.taomee.net/application/controller/admin/Online.php(120): Online->_writeOnlineConfig()
+#3 /opt/home/sevin/project/tongji.taomee.net/taomee/web/TMController.php(154): Online->build()
+#4 /opt/home/sevin/project/tongji.taomee.net/taomee/web/TMController.php(132): Online->runAction()
+#5 /opt/home/sevin/project/tongji.taomee.net/taomee/web/TMController.php(107): Online->runActionWithFilters()
+#6 /opt/home/sevin/project/tongji.taomee.net/taomee/web/TMWebApplication.php(96): Online->run()
+#7 /opt/home/sevin/project/tongji.taomee.net/taomee/web/TMWebApplication.php(81): TMWebApplication->runController()
+#8 /opt/home/sevin/project/tongji.taomee.net/taomee/base/Application.php(88): TMWebApplication->processRequest()
+#9 /opt/home/sevin/project/tongji.taomee.net/application/webroot/index.php(102): TMWebApplication->run()
+REQUEST_URI=/index.php?r=admin/online/build
+[2019-03-18 15:10:49]
+file_put_contents(/opt/home/sevin/project/tongji.taomee.net/online/config/game.php): failed to open stream: Permission denied (/opt/home/sevin/project/tongji.taomee.net/application/controller/admin/Online.php:227)
+Stack trace:
+#0 unknown(0): TMWebApplication->handleError()
+#1 /opt/home/sevin/project/tongji.taomee.net/application/controller/admin/Online.php(227): file_put_contents()
+#2 /opt/home/sevin/project/tongji.taomee.net/application/controller/admin/Online.php(120): Online->_writeOnlineConfig()
+#3 /opt/home/sevin/project/tongji.taomee.net/taomee/web/TMController.php(154): Online->build()
+#4 /opt/home/sevin/project/tongji.taomee.net/taomee/web/TMController.php(132): Online->runAction()
+#5 /opt/home/sevin/project/tongji.taomee.net/taomee/web/TMController.php(107): Online->runActionWithFilters()
+#6 /opt/home/sevin/project/tongji.taomee.net/taomee/web/TMWebApplication.php(96): Online->run()
+#7 /opt/home/sevin/project/tongji.taomee.net/taomee/web/TMWebApplication.php(81): TMWebApplication->runController()
+#8 /opt/home/sevin/project/tongji.taomee.net/taomee/base/Application.php(88): TMWebApplication->processRequest()
+#9 /opt/home/sevin/project/tongji.taomee.net/application/webroot/index.php(102): TMWebApplication->run()
+REQUEST_URI=/index.php?r=admin/online/build
+[2019-03-18 15:10:51]
+file_put_contents(/opt/home/sevin/project/tongji.taomee.net/online/config/game.php): failed to open stream: Permission denied (/opt/home/sevin/project/tongji.taomee.net/application/controller/admin/Online.php:227)
+Stack trace:
+#0 unknown(0): TMWebApplication->handleError()
+#1 /opt/home/sevin/project/tongji.taomee.net/application/controller/admin/Online.php(227): file_put_contents()
+#2 /opt/home/sevin/project/tongji.taomee.net/application/controller/admin/Online.php(120): Online->_writeOnlineConfig()
+#3 /opt/home/sevin/project/tongji.taomee.net/taomee/web/TMController.php(154): Online->build()
+#4 /opt/home/sevin/project/tongji.taomee.net/taomee/web/TMController.php(132): Online->runAction()
+#5 /opt/home/sevin/project/tongji.taomee.net/taomee/web/TMController.php(107): Online->runActionWithFilters()
+#6 /opt/home/sevin/project/tongji.taomee.net/taomee/web/TMWebApplication.php(96): Online->run()
+#7 /opt/home/sevin/project/tongji.taomee.net/taomee/web/TMWebApplication.php(81): TMWebApplication->runController()
+#8 /opt/home/sevin/project/tongji.taomee.net/taomee/base/Application.php(88): TMWebApplication->processRequest()
+#9 /opt/home/sevin/project/tongji.taomee.net/application/webroot/index.php(102): TMWebApplication->run()
+REQUEST_URI=/index.php?r=admin/online/build

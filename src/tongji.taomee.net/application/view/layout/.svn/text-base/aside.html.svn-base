@@ -1,0 +1,65 @@
+<div class="aside" id="J_aside">
+    <ul class="bt">
+	{foreach $response.aside as $aside}
+        {if !isset($response.ignore) || !in_array($aside.navi_id, $response.ignore)}
+            {if in_array($aside.name, array())}
+            <li data-key="{$aside.key}" class="parent rel
+            {if isset($aside.current) && $aside.current}
+            cur clicked
+            {/if}
+            {if isset($aside.children) && $aside.children}
+            more-icon
+            ">
+                <a
+            {else}
+            ">
+                <a href="{$aside.url}"
+            {/if}
+                {if isset($aside.key) && $aside.key}
+                class="{$aside.key}"
+                {/if}
+                ><span>{$aside.name}</span><i class="J-new-function" style="right: 45px; top: 20px;"></i></a>
+            {else}
+            <li data-key="{$aside.key}" class="parent
+            {if isset($aside.current) && $aside.current}
+            cur clicked
+            {/if}
+            {if isset($aside.children) && $aside.children}
+            more-icon
+            ">
+                <a
+            {else}
+            ">
+                <a href="{$aside.url}"
+            {/if}
+                {if isset($aside.key) && $aside.key}
+                class="{$aside.key}"
+                {/if}
+                ><span>{$aside.name}</span></a>
+            {/if}
+                <ol>
+                    {if isset($aside.children)}
+                    {foreach $aside.children as $child}
+                        {if !isset($response.ignore) || !in_array($child.navi_id, $response.ignore)}
+                            {if in_array($child.name, array())}
+                            <li class="child rel
+                            {if isset($child.current) && $child.current}
+                            cur
+                            {/if}
+                            " data-key="{$child.key}"><a href="{$child.url}{if isset($response.param.debug)}&debug={$response.param.debug}{/if}" class="tit" style=""><span>{$child.name}</span><i class="J-new-function" style="right: 45px; top: 15px;"></i></a></li>
+                            {else}
+                            <li class="child
+                            {if isset($child.current) && $child.current}
+                            cur
+                            {/if}
+                            " data-key="{$child.key}"><a href="{$child.url}{if isset($response.param.debug)}&debug={$response.param.debug}{/if}" class="tit"><span>{$child.name}</span></a></li>
+                            {/if}
+                        {/if}
+                    {/foreach}
+                    {/if}
+                </ol>
+            </li>
+        {/if}
+    {/foreach}
+    </ul>
+</div>

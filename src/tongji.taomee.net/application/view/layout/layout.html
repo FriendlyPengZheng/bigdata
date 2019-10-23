@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+        <meta name="robots" content="nofollow,noindex">
+        <title>{block "layout.title"}{TM::t('tongji', '数据分析平台')}{/block}</title>
+        <link rel="Shortcut Icon" type="image/x-icon" href="{$response.res_server}/common/images/tongji.png">
+        <link rel="Bookmark" href="{$response.res_server}/common/images/tongji.png">
+        <link rel="stylesheet" type="text/css" href="{$response.res_server}/common/css/common.css?ver={$response.application_info.version}">
+        <link rel="stylesheet" type="text/css" href="{$response.res_server}/common/css/layout.css?ver={$response.application_info.version}">
+        <link rel="stylesheet" type="text/css" href="{$response.res_server}/data/css/common/themes/{$response.current_skin}/theme.css?ver={$response.application_info.version}">
+        <link rel="stylesheet" type="text/css" href="{$response.res_server}/data/css/common/common.css?ver={$response.application_info.version}">
+        <link rel="stylesheet" type="text/css" href="{$response.res_server}/data/fonts/iconfont.css?ver={$response.application_info.version}">
+        {block "layout.pagecss"}{/block}
+<!--[if lt IE 8]>
+<link rel="stylesheet" type="text/css" href="{$response.res_server}/common/css/layout.ie.css">
+<script type="text/javascript">
+function calc() {
+    document.getElementsByTagName("body")[0].style.width  = document.body.clientWidth < 1000 ? "1000px" : "auto";
+}
+onbeforeprint = function() { document.getElementsByTagName("body")[0].style.width = "100%"; }
+onafterprint = calc;
+</script>
+<![endif]-->
+        <script type="text/javascript">
+        window.responseData = {
+            userId: {$response.user.current_admin_id},
+            userName: "{$response.user.current_admin_name}",
+            isAdmin: {if $response.user.is_super_admin}1{else}0{/if},
+            isRelease: "{$response.application_info.is_release}",
+            locale: "{$response.application_info.locale}",
+            resServer: "{$response.res_server}",
+            skin: "{$response.current_skin}",
+            currentPage : {
+                ignore : [],
+                {if isset($response.current_page)}
+                parent : "{$response.current_page.parent}",
+                child : "{$response.current_page.child}"
+                {/if}
+            }
+        };
+        {if isset($response.ignore)}
+            {foreach $response.ignore as $d }
+                window.responseData.currentPage.ignore.push({$d});
+            {/foreach}
+        {/if}
+        window.gLoading = false;
+        </script>
+        <script src="{$response.res_server}/common/js/jquery.min.js"></script>
+    </head>
+    <body>
+    <!-- header begin -->
+    <div class="header" id="J_header">
+        <div class="wrapper">
+            <h1 class="logo"><a href="#" title="{TM::t('tongji', '数据分析平台')}" class="tit"><span class="ir">{TM::t('tongji', '数据分析平台')}</span></a></h1>
+            <!--main nav start-->
+            {if !empty($response.top_bar)}
+            <ul class="main-nav">
+                {foreach $response.top_bar as $top_bar}
+                    {if isset($top_bar.is_main) && $top_bar.is_main}
+                    {if in_array($top_bar.name, array())}
+                        <li
+                        {if isset($top_bar.current) && $top_bar.current}
+                            class="cur"
+                        {/if}
+                        data-key="{$top_bar.key}"><i class="J-new-function" style="top:12px;left:505px;"></i><a href="{$top_bar.url}">{$top_bar.name}</a></li>
+                     {else}
+                        <li
+                        {if isset($top_bar.current) && $top_bar.current}
+                            class="cur"
+                        {/if}
+                         data-key="{$top_bar.key}"><a href="{$top_bar.url}">{$top_bar.name}</a></li>
+                     {/if}
+                    {/if}
+                {/foreach}
+            </ul>
+            {/if}
+            <!--main nav end-->
+            <ul class="links">
+                <li>{TM::t('tongji', '欢迎你，')}{$response.user.current_admin_name}</li>
+                <li>|</li>
+                {if !empty($response.top_bar)}
+                    {foreach $response.top_bar as $top_bar}
+                        {if isset($top_bar.is_main) && !$top_bar.is_main}
+                        <li class="setting"><a href="{$top_bar.url}">{$top_bar.name}</a></li>
+                        <li>|</li>
+                        {/if}
+                    {/foreach}
+                {/if}
+                <li class="setting"><a href="index.php?r=user/logout">{TM::t('tongji', '退出')}</a></li>
+                {if $response.user.is_guest}
+                    <li>|</li>
+                    <li class="setting"><a href="javascript: void(0);" id="J_passwd">{TM::t('tongji', '更改密码')}</a></li>
+                {/if}
+                {if $response.application_info.localeSwitchable}
+                    {if $response.application_info.locale === 'zh_CN'}
+                        <li>|</li>
+                        <li class="setting"><a href="/en/">English</a></li>
+                    {elseif $response.application_info.locale === 'en_US'}
+                        <li>|</li>
+                        <li class="setting"><a href="/">中文</a></li>
+                    {/if}
+                {/if}
+            </ul>
+        </div>
+        {block "layout.subnav"}{include "layout/sub-nav-blank.html"}{/block}
+    </div>
+    <div id="J_webSkinSel" class="round-shape web-skin" style="display: none;">
+        <i class="arrow"></i>
+        <div class="b1"></div>
+        <div class="b2"></div>
+        <div class="b3"></div>
+        <div class="b4"></div>
+        <ul class="content">
+            {foreach $response.skins as $key => $info}
+            <li class="skin-option
+            {if $response.current_skin==$key}
+             current
+            {/if}
+            " data-value="{$key}"><i class="skin-color" style="background:url({$response.res_server}/stat/images/{$key}_skin.png);"></i></li>
+            {/foreach}
+        </ul>
+        <div class="b4"></div>
+        <div class="b3"></div>
+        <div class="b2"></div>
+        <div class="b5"></div>
+    </div>
+    <!-- header end -->
+    <!-- main begin -->
+    {block "layout.main"}{/block}
+    <!-- main end -->
+    <script src="{$response.res_server}/common/js/dlg.js?v={$response.application_info.version}"></script>
+    <script src="{$response.res_server}/common/js/util.js?v={$response.application_info.version}"></script>
+    {if 'zh_CN' !== $response.application_info.locale}
+    <script src="{$response.res_server}/data/js/lang/{$response.application_info.locale}.js?v={$response.application_info.version}"></script>
+    {/if}
+    <script src="{$response.res_server}/data/js/common/layout.js?v={$response.application_info.version}"></script>	
+    <!-- here you can add some page javascript -->
+    {block "layout.pagejs"}{/block}
+    </body>
+</html>

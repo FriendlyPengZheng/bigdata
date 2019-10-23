@@ -1,0 +1,10 @@
+[2019-03-22 15:51:44]
+Declaration of Signtransext::beforeRunAction() should be compatible with common_Base::beforeRunAction($aParameters) (/opt/home/sevin/project/tongji.taomee.net/application/controller/topic/Signtransext.php:3)
+Stack trace:
+#0 /opt/home/sevin/project/tongji.taomee.net/application/controller/topic/Signtransext.php(3): TMWebApplication->handleError()
+#1 /opt/home/sevin/project/tongji.taomee.net/taomee/web/TMWebApplication.php(139): require()
+#2 /opt/home/sevin/project/tongji.taomee.net/taomee/web/TMWebApplication.php(94): TMWebApplication->createController()
+#3 /opt/home/sevin/project/tongji.taomee.net/taomee/web/TMWebApplication.php(81): TMWebApplication->runController()
+#4 /opt/home/sevin/project/tongji.taomee.net/taomee/base/Application.php(88): TMWebApplication->processRequest()
+#5 /opt/home/sevin/project/tongji.taomee.net/application/webroot/index.php(102): TMWebApplication->run()
+REQUEST_URI=/index.php?r=topic/signtransext/getSigntransGame

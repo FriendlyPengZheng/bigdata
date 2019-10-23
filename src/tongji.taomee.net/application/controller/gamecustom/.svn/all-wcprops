@@ -1,0 +1,41 @@
+K 25
+svn:wc:ra_dav:version-url
+V 79
+/data-center/!svn/ver/5667/web/stat-web/trunk/application/controller/gamecustom
+END
+UploadFile.php
+K 25
+svn:wc:ra_dav:version-url
+V 94
+/data-center/!svn/ver/5243/web/stat-web/trunk/application/controller/gamecustom/UploadFile.php
+END
+Manage.php
+K 25
+svn:wc:ra_dav:version-url
+V 90
+/data-center/!svn/ver/4576/web/stat-web/trunk/application/controller/gamecustom/Manage.php
+END
+Content.php
+K 25
+svn:wc:ra_dav:version-url
+V 91
+/data-center/!svn/ver/5634/web/stat-web/trunk/application/controller/gamecustom/Content.php
+END
+Custom.php
+K 25
+svn:wc:ra_dav:version-url
+V 90
+/data-center/!svn/ver/5493/web/stat-web/trunk/application/controller/gamecustom/Custom.php
+END
+Item.php
+K 25
+svn:wc:ra_dav:version-url
+V 88
+/data-center/!svn/ver/5425/web/stat-web/trunk/application/controller/gamecustom/Item.php
+END
+Tree.php
+K 25
+svn:wc:ra_dav:version-url
+V 88
+/data-center/!svn/ver/5667/web/stat-web/trunk/application/controller/gamecustom/Tree.php
+END

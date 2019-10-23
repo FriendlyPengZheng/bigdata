@@ -1,0 +1,5 @@
+message backend_proto_ResponseHeader
+{
+    required uint32 protoId = 1;
+    required int8 code = 2;
+}

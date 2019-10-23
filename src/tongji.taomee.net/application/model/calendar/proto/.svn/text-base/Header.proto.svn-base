@@ -1,0 +1,7 @@
+/* 后台通信通用包头 */
+message calendar_proto_Header {
+    /* 协议号 */
+    required uint32 protoId = 1;
+    /* 状态码，0-成功，其他失败 */
+    required int8 statusCode = 2 [ default = 0 ];
+}

@@ -1,0 +1,23 @@
+K 25
+svn:wc:ra_dav:version-url
+V 81
+/data-center/!svn/ver/3942/web/stat-web/trunk/application/model/gamecustom/report
+END
+Distr.php
+K 25
+svn:wc:ra_dav:version-url
+V 91
+/data-center/!svn/ver/3942/web/stat-web/trunk/application/model/gamecustom/report/Distr.php
+END
+Base.php
+K 25
+svn:wc:ra_dav:version-url
+V 90
+/data-center/!svn/ver/3942/web/stat-web/trunk/application/model/gamecustom/report/Base.php
+END
+Item.php
+K 25
+svn:wc:ra_dav:version-url
+V 90
+/data-center/!svn/ver/3942/web/stat-web/trunk/application/model/gamecustom/report/Item.php
+END

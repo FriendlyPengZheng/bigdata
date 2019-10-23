@@ -1,0 +1,17 @@
+K 25
+svn:wc:ra_dav:version-url
+V 89
+/data-center/!svn/ver/4990/web/stat-web/trunk/application/webroot/static/common/js/jsTree
+END
+jquery.jstree.js
+K 25
+svn:wc:ra_dav:version-url
+V 106
+/data-center/!svn/ver/1407/web/stat-web/trunk/application/webroot/static/common/js/jsTree/jquery.jstree.js
+END
+jquery.jstree.min.js
+K 25
+svn:wc:ra_dav:version-url
+V 110
+/data-center/!svn/ver/4990/web/stat-web/trunk/application/webroot/static/common/js/jsTree/jquery.jstree.min.js
+END

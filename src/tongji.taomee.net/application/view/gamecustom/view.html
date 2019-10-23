@@ -1,0 +1,77 @@
+{extends "layout/layout.html"}
+
+{block "layout.title"}{TM::t('tongji', '数据分析平台')}-{TM::t('tongji', '游戏自定义数据')}{/block}
+{block "layout.subnav"}{include "gamecustom/sub-nav-view.html"}{/block}
+{block "layout.pagecss"}
+     <link rel="stylesheet" type="text/css" href="{$response.res_server}/data/css/page/gamecustom/gamecustom.css?v={$response.application_info.version}">
+	 <link rel="stylesheet" type="text/css" href="{$response.res_server}/data/css/common/jquery.cartitem.css?v={$response.application_info.version}">
+{/block}
+{block "layout.main"}
+<div class="main with-aside">
+    <div class="aside">
+        <span class="search-con" id="J_search">
+            <span class="search-tips" style="display: none;">{TM::t('tongji', '没有找到匹配项~')}</span>
+            <input type="text" class="srh-txt"><i class="search-tag">&nbsp;</i>
+        </span>
+        <div id="J_tree"></div>
+    </div>
+    <div class="content clearfix">
+      <input type="hidden" id="J_paramGameId" value="{$response.param.game_id}" />
+        <input type="hidden" id="J_r" value="{$response.param.r}" />
+        <div class="content-header clearfix" id="J_contentHeader">
+            <div class="datepicker-trigger radius5-all fl mr5" id="J_from_to" >
+                <input type="hidden" id="J_from" value="{$response.param.from}" />
+                <input type="hidden" id="J_to" value="{$response.param.to}" />
+                <i class="datepicker-icon"></i>
+                <input class="title" type="text" id="J_date" value="{$response.param.from}~{$response.param.to}" />
+                <i class="datepicker-arrow"></i>
+            </div>
+            <a class="a-link" id="J_addFavorBtn"><i class="collect rotate"></i><span>{TM::t('tongji', '添加到我的收藏')}</span></a>
+            <div class="posr">
+                <div class="select-con" id="J_zoneServer" tabindex="0">
+                    <div class="select-title">{TM::t('tongji', '请选择：')}</div>
+                </div>
+                <select id="J_platform" class="fr">
+                {if isset($response.platform) && !empty($response.platform)}
+                {foreach $response.platform as $platform}
+                    <option data-id="{$platform.platform_id}">{$platform.gpzs_name}</option>
+                {/foreach}
+                {else}
+                    <option>{TM::t('tongji', '选择平台：')}</option>
+                {/if}
+                </select>
+            </div>
+        </div>
+        <div class="content-body" id="J_content" >
+        </div>
+    </div>
+</div>
+{if isset($response.cartflag) && !empty($response.cartflag)}
+<div id="J_cart"></div>
+<input type="hidden" id="J_authchk" value="{$response.cartflag}" />
+{/if}
+{/block}
+{block "layout.pagejs"}
+    <!-- here you can add some page javascript -->
+    <script src="{$response.res_server}/common/js/select.js?v={$response.application_info.version}"></script>
+    <script src="{$response.res_server}/common/js/datepick.js?v={$response.application_info.version}"></script>
+    <script src="{$response.res_server}/common/js/jquery.cookie.js?v={$response.application_info.version}"></script>
+    <script src="{$response.res_server}/common/js/jsTree/jquery.jstree.js?v={$response.application_info.version}"></script>
+	<script src="{$response.res_server}/common/js/tm.datatable.js?v={$response.application_info.version}"></script>	
+    <script src="{$response.res_server}/common/js/Page.js?v={$response.application_info.version}"></script>
+    <script src="{$response.res_server}/common/js/tm.tabs.js?v={$response.application_info.version}"></script>
+    <script src="{$response.res_server}/common/js/draw/highstock.js?v={$response.application_info.version}"></script>
+    <script src="{$response.res_server}/common/js/tm.draw.js?v={$response.application_info.version}"></script>
+	<script src="{$response.res_server}/common/js/jquery.form.js?v={$response.application_info.version}"></script>
+	<script src="{$response.res_server}/common/js/jquery.ajaxfileupload.js?v={$response.application_info.version}"></script>
+	<script src="{$response.res_server}/data/js/common/jquery.cart.js?v={$response.application_info.version}"></script>
+	<script src="{$response.res_server}/data/js/common/jquery.cartitem.js?v={$response.application_info.version}"></script>
+	<script src="{$response.res_server}/data/js/common/navigator.js?v={$response.application_info.version}"></script>
+    <script src="{$response.res_server}/data/js/common/jquery.choose.js?v={$response.application_info.version}"></script>
+    <script src="{$response.res_server}/data/js/common/common.js?v={$response.application_info.version}"></script>
+    <script src="{$response.res_server}/data/js/common/stat.table.js?v={$response.application_info.version}"></script>
+    <script src="{$response.res_server}/data/js/common/tm.module.ok.js?v={$response.application_info.version}"></script>
+    <script src="{$response.res_server}/data/js/common/usage.ok.js?v={$response.application_info.version}"></script>
+	<script src="{$response.res_server}/data/js/common/tm.form.js?v={$response.application_info.version}"></script>
+    <script src="{$response.res_server}/data/js/page/gamecustom/view.js?v={$response.application_info.version}"></script>
+{/block}

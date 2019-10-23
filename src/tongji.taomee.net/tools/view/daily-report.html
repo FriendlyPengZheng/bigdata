@@ -1,0 +1,57 @@
+{extends "layout.html"}
+
+{block "layout.subject"}{$subject}{/block}
+{block "layout.main"}
+<table cellpadding="0" cellspacing="0" border="0">
+    <tr>
+        <td valign="top" align="center" style="padding-bottom:20px;font-size:16px;font-weight:bold;">日报时间：{$date}</td>
+    </tr>
+    <tr>
+        <td valign="top">
+            <table cellpadding="0" cellspacing="0" border="0" align="left" style="color:#333;">
+                {foreach $remarks as $remark}
+                <tr>
+                    <td valign="top" style="font-size:14px;color:#808080">注：{$remark}</td>
+                </tr>
+                {/foreach}
+            </table>
+        </td>
+    </tr>
+    {foreach $content as $val}
+    <tr>
+        <td valign="top" style="padding-bottom:20px;">
+            {if isset($val['content']) && $val['content']}
+            {$val['content']}
+            {else}
+            <table cellpadding="0" cellspacing="0" align="center" style="border:1px solid #CCC0D9;">
+                {if isset($val['graph']) && $val['graph']}
+                <tr>
+                    <td valign="top"><img src="{$mail->embedImageFromPath($val['graph'])}" alt="" /></td>
+                </tr>
+                {/if}
+                {if isset($val['table']) && $val['table']}
+                <tr>
+                    <td valign="top" style="padding-bottom:8px;background-color:#E8F8F7;font-size:16px;">{$val['table']}</td>
+                </tr>
+                {/if}
+            </table>
+            {/if}
+        </td>
+    </tr>
+    {/foreach}
+    <tr>
+        <td valign="top">
+            <table cellpadding="0" cellspacing="0" border="0" align="left" style="color:#333;">
+                <tr>
+                    <td valign="top">数据定义：</td>
+                </tr>
+                {foreach $remarkss as $remark}
+                <tr>
+                    <td valign="top" style="font-size:14px;">{$remark}</td>
+                </tr>
+                {/foreach}
+            </table>
+        </td>
+    </tr>
+</table>
+{/block}

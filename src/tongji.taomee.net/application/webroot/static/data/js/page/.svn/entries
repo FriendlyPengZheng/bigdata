@@ -1,0 +1,61 @@
+10
+
+dir
+5881
+http://svn.taomee.com/data-center/web/stat-web/trunk/application/webroot/static/data/js/page
+http://svn.taomee.com/data-center
+
+
+
+2018-04-25T04:52:51.609418Z
+5869
+violet
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+d36378c3-2c15-4d8f-b3f4-bc6831a7de82
+
+conf
+dir
+
+home
+dir
+
+account
+dir
+
+gameanalysis
+dir
+
+tool
+dir
+
+public
+dir
+
+topic
+dir
+
+user
+dir
+
+kernel
+dir
+
+recharge
+dir
+
+gamecustom
+dir
+

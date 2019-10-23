@@ -1,0 +1,53 @@
+K 25
+svn:wc:ra_dav:version-url
+V 77
+/data-center/!svn/ver/3286/web/stat-web/trunk/online/model/data/configuration
+END
+ConfigurationSet.php
+K 25
+svn:wc:ra_dav:version-url
+V 98
+/data-center/!svn/ver/3253/web/stat-web/trunk/online/model/data/configuration/ConfigurationSet.php
+END
+DataInfo.php
+K 25
+svn:wc:ra_dav:version-url
+V 90
+/data-center/!svn/ver/3253/web/stat-web/trunk/online/model/data/configuration/DataInfo.php
+END
+Configuration.php
+K 25
+svn:wc:ra_dav:version-url
+V 95
+/data-center/!svn/ver/3253/web/stat-web/trunk/online/model/data/configuration/Configuration.php
+END
+StatInfo.php
+K 25
+svn:wc:ra_dav:version-url
+V 90
+/data-center/!svn/ver/3253/web/stat-web/trunk/online/model/data/configuration/StatInfo.php
+END
+SortedUnion.php
+K 25
+svn:wc:ra_dav:version-url
+V 93
+/data-center/!svn/ver/3253/web/stat-web/trunk/online/model/data/configuration/SortedUnion.php
+END
+UndefinedConfiguration.php
+K 25
+svn:wc:ra_dav:version-url
+V 104
+/data-center/!svn/ver/3253/web/stat-web/trunk/online/model/data/configuration/UndefinedConfiguration.php
+END
+ConfigurationBuilder.php
+K 25
+svn:wc:ra_dav:version-url
+V 102
+/data-center/!svn/ver/3286/web/stat-web/trunk/online/model/data/configuration/ConfigurationBuilder.php
+END
+Configurable.php
+K 25
+svn:wc:ra_dav:version-url
+V 94
+/data-center/!svn/ver/3253/web/stat-web/trunk/online/model/data/configuration/Configurable.php
+END

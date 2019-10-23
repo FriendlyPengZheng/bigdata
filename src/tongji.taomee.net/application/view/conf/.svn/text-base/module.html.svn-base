@@ -1,0 +1,50 @@
+{extends "layout/layout.html"}
+
+{block "layout.title"}{$response.application_info.name}-游戏分析{/block}
+{block "layout.subnav"}
+<!-- 游戏分析模块-二级导航-游戏类型 -->
+<div class="wrapper">
+    <ul class="main-sub-nav">
+        <li class="sub-nav-li">
+            <a href="javascript:void(0);">{$response.param.module_name}</a>
+        </li>
+        <li class="sub-nav-li posr ">
+        <a href="{$response.param.script_name}?r={$response.param.page_url}" class="bar-view"><i class="iconfont icon-back"></i>查看模板页面</a>
+        <a href="{$response.param.script_name}?r=admin/manage/index/01" class="bar-view"><i class="iconfont icon-back"></i>返回导航列表</a>
+        </li>
+    </ul>
+</div>
+{/block}
+{block "layout.pagecss"}
+     <link rel="stylesheet" type="text/css" href="{$response.res_server}/data/css/page/conf/conf.css?v={$response.application_info.version}">
+{/block}
+{block "layout.main"}
+<div class="main">
+    <div class="content" >
+        <input type="hidden" value="{$response.param.navi_key}" id="J_gNaviKey">
+        <div class="content-header clearfix">
+            <a class="add-btn" id="J_addModuleBtn">+添加模块</a>
+            <a class="add-btn" id="J_json">生成JSON</a>
+        </div>
+        <div class="content-body" id="J_contentBody"></div>
+    </div>
+</div>
+{/block}
+{block "layout.pagejs"}
+    <!-- here you can add some page javascript -->
+    <script src="{$response.res_server}/common/js/select.js"></script>
+    <script src="{$response.res_server}/data/js/common/navigator.js?v={$response.application_info.version}"></script>
+    <script src="{$response.res_server}/common/js/datepick.js"></script>
+    <script src="{$response.res_server}/common/js/jquery.form.js"></script>
+    <script src="{$response.res_server}/common/js/Page.js"></script>
+    <script src="{$response.res_server}/common/js/tm.tabs.js"></script>
+    <script src="{$response.res_server}/common/js/Table.js"></script>
+    <script src="{$response.res_server}/common/js/draw/highstock.js"></script>
+    <script src="{$response.res_server}/common/js/Draw.js"></script>
+    <script src="{$response.res_server}/data/js/common/common.js?v={$response.application_info.version}"></script>
+    <script src="{$response.res_server}/data/js/common/jquery.choose.js?v={$response.application_info.version}"></script>
+    <script src="{$response.res_server}/data/js/page/conf/conf.module.js?v={$response.application_info.version}"></script>
+    <script src="{$response.res_server}/data/js/page/conf/conf.usage.js?v={$response.application_info.version}"></script>
+    <script src="{$response.res_server}/data/js/page/conf/fac.js?v={$response.application_info.version}"></script>
+    <script src="{$response.res_server}/data/js/page/conf/module.js?v={$response.application_info.version}"></script>
+{/block}

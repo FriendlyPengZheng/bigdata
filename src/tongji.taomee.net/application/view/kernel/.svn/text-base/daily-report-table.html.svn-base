@@ -1,0 +1,71 @@
+<table cellpadding="0" cellspacing="0" align="center" class="table">
+    {if isset($title)}
+    <tr>
+        <th valign="top" align="center" colspan="5">{$title}</th>
+    </tr>
+    {/if}
+    <tr>
+        {if isset($title)}
+        <th valign="top">项目名称</th>
+        {else}
+        <th valign="top">指标</th>
+        {/if}
+        <th valign="top">当天</th>
+        <th valign="top">较前一天</th>
+        <th valign="top">较上周同期</th>
+        <th valign="top">较上月同期</th>
+    </tr>
+    {foreach $data as $i => $d}
+    <tr>
+        <td valign="top"
+            {if $i%2}
+            style="background-color:#E8F8F7;"
+            {/if}
+        >&nbsp;{$d.0}</td>
+        <td valign="top"
+            {if $i%2}
+            style="background-color:#E8F8F7;"
+            {/if}
+        >&nbsp;{$d.1}</td>
+        {if $d.2 == 0} 
+        <td valign="top"
+            {if $i%2}
+            style="background-color:#E8F8F7;"
+            {/if}
+        >&nbsp;{$d.2}</td>
+        {else} 
+        <td valign="top"
+            {if $i%2}
+            style="background-color:#E8F8F7;"
+            {/if}
+        >&nbsp;{$d.2}（{$d.3}）</td>
+        {/if}
+        {if $d.4 == 0} 
+        <td valign="top"
+            {if $i%2}
+            style="background-color:#E8F8F7;"
+            {/if}
+        >&nbsp;{$d.4}</td>
+        {else}
+        <td valign="top"
+            {if $i%2}
+            style="background-color:#E8F8F7;"
+            {/if}
+        >&nbsp;{$d.4}（{$d.5}）</td>
+        {/if}
+        {if $d.6 == 0}
+        <td valign="top"
+            {if $i%2}
+            style="background-color:#E8F8F7;"
+            {/if}
+        >&nbsp;{$d.6}</td>
+        {else}
+        <td valign="top"
+            {if $i%2}
+            style="background-color:#E8F8F7;"
+            {/if}
+        >&nbsp;{$d.6}（{$d.7}）</td>
+        {/if}
+    </tr>
+    {/foreach}
+</table>

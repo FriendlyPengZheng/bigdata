@@ -1,0 +1,65 @@
+K 25
+svn:wc:ra_dav:version-url
+V 68
+/data-center/!svn/ver/5830/web/stat-web/trunk/application/components
+END
+MobileUser.php
+K 25
+svn:wc:ra_dav:version-url
+V 83
+/data-center/!svn/ver/5791/web/stat-web/trunk/application/components/MobileUser.php
+END
+Navigator.php
+K 25
+svn:wc:ra_dav:version-url
+V 82
+/data-center/!svn/ver/5830/web/stat-web/trunk/application/components/Navigator.php
+END
+AutoDisplay.php
+K 25
+svn:wc:ra_dav:version-url
+V 84
+/data-center/!svn/ver/5749/web/stat-web/trunk/application/components/AutoDisplay.php
+END
+User.php
+K 25
+svn:wc:ra_dav:version-url
+V 77
+/data-center/!svn/ver/5820/web/stat-web/trunk/application/components/User.php
+END
+DateMarker.php
+K 25
+svn:wc:ra_dav:version-url
+V 83
+/data-center/!svn/ver/4417/web/stat-web/trunk/application/components/DateMarker.php
+END
+Authorization.php
+K 25
+svn:wc:ra_dav:version-url
+V 86
+/data-center/!svn/ver/5422/web/stat-web/trunk/application/components/Authorization.php
+END
+Token.php
+K 25
+svn:wc:ra_dav:version-url
+V 78
+/data-center/!svn/ver/1405/web/stat-web/trunk/application/components/Token.php
+END
+NavigatorForExt.php
+K 25
+svn:wc:ra_dav:version-url
+V 88
+/data-center/!svn/ver/5808/web/stat-web/trunk/application/components/NavigatorForExt.php
+END
+PositionSorter.php
+K 25
+svn:wc:ra_dav:version-url
+V 87
+/data-center/!svn/ver/4608/web/stat-web/trunk/application/components/PositionSorter.php
+END
+CsvExporter.php
+K 25
+svn:wc:ra_dav:version-url
+V 84
+/data-center/!svn/ver/4380/web/stat-web/trunk/application/components/CsvExporter.php
+END

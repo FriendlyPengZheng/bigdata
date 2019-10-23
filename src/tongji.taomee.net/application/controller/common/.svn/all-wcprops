@@ -1,0 +1,83 @@
+K 25
+svn:wc:ra_dav:version-url
+V 75
+/data-center/!svn/ver/5706/web/stat-web/trunk/application/controller/common
+END
+Page.php
+K 25
+svn:wc:ra_dav:version-url
+V 84
+/data-center/!svn/ver/5706/web/stat-web/trunk/application/controller/common/Page.php
+END
+Partial.php
+K 25
+svn:wc:ra_dav:version-url
+V 87
+/data-center/!svn/ver/4597/web/stat-web/trunk/application/controller/common/Partial.php
+END
+Comment.php
+K 25
+svn:wc:ra_dav:version-url
+V 87
+/data-center/!svn/ver/4169/web/stat-web/trunk/application/controller/common/Comment.php
+END
+Gpzs.php
+K 25
+svn:wc:ra_dav:version-url
+V 84
+/data-center/!svn/ver/3454/web/stat-web/trunk/application/controller/common/Gpzs.php
+END
+Overall.php
+K 25
+svn:wc:ra_dav:version-url
+V 87
+/data-center/!svn/ver/4599/web/stat-web/trunk/application/controller/common/Overall.php
+END
+Datainfo.php
+K 25
+svn:wc:ra_dav:version-url
+V 88
+/data-center/!svn/ver/4943/web/stat-web/trunk/application/controller/common/Datainfo.php
+END
+Basket.php
+K 25
+svn:wc:ra_dav:version-url
+V 86
+/data-center/!svn/ver/4935/web/stat-web/trunk/application/controller/common/Basket.php
+END
+Data.php
+K 25
+svn:wc:ra_dav:version-url
+V 84
+/data-center/!svn/ver/5629/web/stat-web/trunk/application/controller/common/Data.php
+END
+Game.php
+K 25
+svn:wc:ra_dav:version-url
+V 84
+/data-center/!svn/ver/5513/web/stat-web/trunk/application/controller/common/Game.php
+END
+Base.php
+K 25
+svn:wc:ra_dav:version-url
+V 84
+/data-center/!svn/ver/5362/web/stat-web/trunk/application/controller/common/Base.php
+END
+Basicdata.php
+K 25
+svn:wc:ra_dav:version-url
+V 89
+/data-center/!svn/ver/3393/web/stat-web/trunk/application/controller/common/Basicdata.php
+END
+Report.php
+K 25
+svn:wc:ra_dav:version-url
+V 86
+/data-center/!svn/ver/4743/web/stat-web/trunk/application/controller/common/Report.php
+END
+Stat.php
+K 25
+svn:wc:ra_dav:version-url
+V 84
+/data-center/!svn/ver/4279/web/stat-web/trunk/application/controller/common/Stat.php
+END

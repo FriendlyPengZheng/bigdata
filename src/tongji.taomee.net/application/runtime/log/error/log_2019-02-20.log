@@ -1,0 +1,841 @@
+[2019-02-20 17:52:47]
+TMDbConnection failed to open the DB connection: SQLSTATE[HY000] [2013] Lost connection to MySQL server at 'reading authorization packet', system error: 0
+Stack trace:
+#0 /opt/home/sevin/project/tongji.taomee.net/taomee/db/TMDbConnection.php(244): TMDbConnection->createPdoInstance()
+#1 /opt/home/sevin/project/tongji.taomee.net/taomee/db/TMDbConnection.php(220): TMDbConnection->open()
+#2 /opt/home/sevin/project/tongji.taomee.net/taomee/db/TMDbConnection.php(185): TMDbConnection->setActive(true)
+#3 /opt/home/sevin/project/tongji.taomee.net/taomee/base/TMModule.php(165): TMDbConnection->init()
+#4 /opt/home/sevin/project/tongji.taomee.net/taomee/base/Application.php(282): TMModule->getComponent('db')
+#5 /opt/home/sevin/project/tongji.taomee.net/taomee/base/TMModel.php(95): taomee\base\Application->getDb()
+#6 /opt/home/sevin/project/tongji.taomee.net/taomee/base/TMFormModel.php(512): TMModel->getDb()
+#7 /opt/home/sevin/project/tongji.taomee.net/taomee/base/TMFormModel.php(32): TMFormMetaData->__construct(Object(common_Game))
+#8 /opt/home/sevin/project/tongji.taomee.net/taomee/base/TMFormModel.php(22): TMFormModel->getMetaData()
+#9 /opt/home/sevin/project/tongji.taomee.net/application/components/Navigator.php(16): TMFormModel->__construct()
+#10 /opt/home/sevin/project/tongji.taomee.net/taomee/base/TMModule.php(165): Navigator->init()
+#11 /opt/home/sevin/project/tongji.taomee.net/taomee/base/TMModule.php(68): TMModule->getComponent('navigator')
+#12 /opt/home/sevin/project/tongji.taomee.net/application/components/AutoDisplay.php(16): TMModule->__get('navigator')
+#13 /opt/home/sevin/project/tongji.taomee.net/taomee/web/TMController.php(220): AutoDisplay->assignListener(Object(User))
+#14 /opt/home/sevin/project/tongji.taomee.net/application/components/User.php(431): TMController->display('user/login.html')
+#15 /opt/home/sevin/project/tongji.taomee.net/taomee/web/TMController.php(154): User->index(Array)
+#16 /opt/home/sevin/project/tongji.taomee.net/taomee/web/TMController.php(132): TMController->runAction('index')
+#17 /opt/home/sevin/project/tongji.taomee.net/taomee/web/TMController.php(107): TMController->runActionWithFilters('index', Array)
+#18 /opt/home/sevin/project/tongji.taomee.net/taomee/web/TMWebApplication.php(96): TMController->run('index', false)
+#19 /opt/home/sevin/project/tongji.taomee.net/taomee/web/TMWebApplication.php(81): TMWebApplication->runController('user/index')
+#20 /opt/home/sevin/project/tongji.taomee.net/taomee/base/Application.php(88): TMWebApplication->processRequest()
+#21 /opt/home/sevin/project/tongji.taomee.net/application/webroot/index.php(102): taomee\base\Application->run()
+#22 {main}
+REQUEST_URI=/sevin-project/tongji.taomee.net/application/webroot/?r=user%2Findex
+[2019-02-20 17:52:47]
+"common_Game类设置的"数据表"t_game_info"不存在！
+Stack trace:
+#0 /opt/home/sevin/project/tongji.taomee.net/taomee/base/TMFormModel.php(32): TMFormMetaData->__construct(Object(common_Game))
+#1 /opt/home/sevin/project/tongji.taomee.net/taomee/base/TMFormModel.php(22): TMFormModel->getMetaData()
+#2 /opt/home/sevin/project/tongji.taomee.net/application/components/Navigator.php(16): TMFormModel->__construct()
+#3 /opt/home/sevin/project/tongji.taomee.net/taomee/base/TMModule.php(165): Navigator->init()
+#4 /opt/home/sevin/project/tongji.taomee.net/taomee/base/TMModule.php(68): TMModule->getComponent('navigator')
+#5 /opt/home/sevin/project/tongji.taomee.net/application/components/User.php(304): TMModule->__get('navigator')
+#6 /opt/home/sevin/project/tongji.taomee.net/application/components/Authorization.php(6): User->checkAuthority()
+#7 /opt/home/sevin/project/tongji.taomee.net/taomee/web/TMController.php(103): Authorization->check()
+#8 /opt/home/sevin/project/tongji.taomee.net/taomee/web/TMWebApplication.php(96): TMController->run('', false)
+#9 /opt/home/sevin/project/tongji.taomee.net/taomee/web/TMWebApplication.php(81): TMWebApplication->runController('')
+#10 /opt/home/sevin/project/tongji.taomee.net/taomee/base/Application.php(88): TMWebApplication->processRequest()
+#11 /opt/home/sevin/project/tongji.taomee.net/application/webroot/index.php(102): taomee\base\Application->run()
+#12 {main}
+REQUEST_URI=/sevin-project/tongji.taomee.net/application/webroot/
+[2019-02-20 17:52:47]
+TMDbConnection failed to open the DB connection: SQLSTATE[HY000] [2013] Lost connection to MySQL server at 'reading authorization packet', system error: 0
+Stack trace:
+#0 /opt/home/sevin/project/tongji.taomee.net/taomee/db/TMDbConnection.php(244): TMDbConnection->createPdoInstance()
+#1 /opt/home/sevin/project/tongji.taomee.net/taomee/db/TMDbConnection.php(220): TMDbConnection->open()
+#2 /opt/home/sevin/project/tongji.taomee.net/taomee/db/TMDbConnection.php(185): TMDbConnection->setActive(true)
+#3 /opt/home/sevin/project/tongji.taomee.net/taomee/base/TMModule.php(165): TMDbConnection->init()
+#4 /opt/home/sevin/project/tongji.taomee.net/taomee/base/Application.php(282): TMModule->getComponent('db')
+#5 /opt/home/sevin/project/tongji.taomee.net/taomee/base/TMModel.php(95): taomee\base\Application->getDb()
+#6 /opt/home/sevin/project/tongji.taomee.net/taomee/base/TMFormModel.php(512): TMModel->getDb()
+#7 /opt/home/sevin/project/tongji.taomee.net/taomee/base/TMFormModel.php(32): TMFormMetaData->__construct(Object(common_Game))
+#8 /opt/home/sevin/project/tongji.taomee.net/taomee/base/TMFormModel.php(22): TMFormModel->getMetaData()
+#9 /opt/home/sevin/project/tongji.taomee.net/application/components/Navigator.php(16): TMFormModel->__construct()
+#10 /opt/home/sevin/project/tongji.taomee.net/taomee/base/TMModule.php(165): Navigator->init()
+#11 /opt/home/sevin/project/tongji.taomee.net/taomee/base/TMModule.php(68): TMModule->getComponent('navigator')
+#12 /opt/home/sevin/project/tongji.taomee.net/application/components/AutoDisplay.php(16): TMModule->__get('navigator')
+#13 /opt/home/sevin/project/tongji.taomee.net/taomee/web/TMController.php(220): AutoDisplay->assignListener(Object(User))
+#14 /opt/home/sevin/project/tongji.taomee.net/application/components/User.php(431): TMController->display('user/login.html')
+#15 /opt/home/sevin/project/tongji.taomee.net/taomee/web/TMController.php(154): User->index(Array)
+#16 /opt/home/sevin/project/tongji.taomee.net/taomee/web/TMController.php(132): TMController->runAction('index')
+#17 /opt/home/sevin/project/tongji.taomee.net/taomee/web/TMController.php(107): TMController->runActionWithFilters('index', Array)
+#18 /opt/home/sevin/project/tongji.taomee.net/taomee/web/TMWebApplication.php(96): TMController->run('index', false)
+#19 /opt/home/sevin/project/tongji.taomee.net/taomee/web/TMWebApplication.php(81): TMWebApplication->runController('user/index')
+#20 /opt/home/sevin/project/tongji.taomee.net/taomee/base/Application.php(88): TMWebApplication->processRequest()
+#21 /opt/home/sevin/project/tongji.taomee.net/application/webroot/index.php(102): taomee\base\Application->run()
+#22 {main}
+REQUEST_URI=/sevin-project/tongji.taomee.net/application/webroot/?r=user%2Findex
+[2019-02-20 17:52:47]
+"common_Game类设置的"数据表"t_game_info"不存在！
+Stack trace:
+#0 /opt/home/sevin/project/tongji.taomee.net/taomee/base/TMFormModel.php(32): TMFormMetaData->__construct(Object(common_Game))
+#1 /opt/home/sevin/project/tongji.taomee.net/taomee/base/TMFormModel.php(22): TMFormModel->getMetaData()
+#2 /opt/home/sevin/project/tongji.taomee.net/application/components/Navigator.php(16): TMFormModel->__construct()
+#3 /opt/home/sevin/project/tongji.taomee.net/taomee/base/TMModule.php(165): Navigator->init()
+#4 /opt/home/sevin/project/tongji.taomee.net/taomee/base/TMModule.php(68): TMModule->getComponent('navigator')
+#5 /opt/home/sevin/project/tongji.taomee.net/application/components/User.php(304): TMModule->__get('navigator')
+#6 /opt/home/sevin/project/tongji.taomee.net/application/components/Authorization.php(6): User->checkAuthority()
+#7 /opt/home/sevin/project/tongji.taomee.net/taomee/web/TMController.php(103): Authorization->check()
+#8 /opt/home/sevin/project/tongji.taomee.net/taomee/web/TMWebApplication.php(96): TMController->run('', false)
+#9 /opt/home/sevin/project/tongji.taomee.net/taomee/web/TMWebApplication.php(81): TMWebApplication->runController('')
+#10 /opt/home/sevin/project/tongji.taomee.net/taomee/base/Application.php(88): TMWebApplication->processRequest()
+#11 /opt/home/sevin/project/tongji.taomee.net/application/webroot/index.php(102): taomee\base\Application->run()
+#12 {main}
+REQUEST_URI=/index.php
+[2019-02-20 17:52:47]
+TMDbConnection failed to open the DB connection: SQLSTATE[HY000] [2013] Lost connection to MySQL server at 'reading authorization packet', system error: 0
+Stack trace:
+#0 /opt/home/sevin/project/tongji.taomee.net/taomee/db/TMDbConnection.php(244): TMDbConnection->createPdoInstance()
+#1 /opt/home/sevin/project/tongji.taomee.net/taomee/db/TMDbConnection.php(220): TMDbConnection->open()
+#2 /opt/home/sevin/project/tongji.taomee.net/taomee/db/TMDbConnection.php(185): TMDbConnection->setActive(true)
+#3 /opt/home/sevin/project/tongji.taomee.net/taomee/base/TMModule.php(165): TMDbConnection->init()
+#4 /opt/home/sevin/project/tongji.taomee.net/taomee/base/Application.php(282): TMModule->getComponent('db')
+#5 /opt/home/sevin/project/tongji.taomee.net/taomee/base/TMModel.php(95): taomee\base\Application->getDb()
+#6 /opt/home/sevin/project/tongji.taomee.net/taomee/base/TMFormModel.php(512): TMModel->getDb()
+#7 /opt/home/sevin/project/tongji.taomee.net/taomee/base/TMFormModel.php(32): TMFormMetaData->__construct(Object(common_Game))
+#8 /opt/home/sevin/project/tongji.taomee.net/taomee/base/TMFormModel.php(22): TMFormModel->getMetaData()
+#9 /opt/home/sevin/project/tongji.taomee.net/application/components/Navigator.php(16): TMFormModel->__construct()
+#10 /opt/home/sevin/project/tongji.taomee.net/taomee/base/TMModule.php(165): Navigator->init()
+#11 /opt/home/sevin/project/tongji.taomee.net/taomee/base/TMModule.php(68): TMModule->getComponent('navigator')
+#12 /opt/home/sevin/project/tongji.taomee.net/application/components/AutoDisplay.php(16): TMModule->__get('navigator')
+#13 /opt/home/sevin/project/tongji.taomee.net/taomee/web/TMController.php(220): AutoDisplay->assignListener(Object(User))
+#14 /opt/home/sevin/project/tongji.taomee.net/application/components/User.php(431): TMController->display('user/login.html')
+#15 /opt/home/sevin/project/tongji.taomee.net/taomee/web/TMController.php(154): User->index(Array)
+#16 /opt/home/sevin/project/tongji.taomee.net/taomee/web/TMController.php(132): TMController->runAction('index')
+#17 /opt/home/sevin/project/tongji.taomee.net/taomee/web/TMController.php(107): TMController->runActionWithFilters('index', Array)
+#18 /opt/home/sevin/project/tongji.taomee.net/taomee/web/TMWebApplication.php(96): TMController->run('index', false)
+#19 /opt/home/sevin/project/tongji.taomee.net/taomee/web/TMWebApplication.php(81): TMWebApplication->runController('user/index')
+#20 /opt/home/sevin/project/tongji.taomee.net/taomee/base/Application.php(88): TMWebApplication->processRequest()
+#21 /opt/home/sevin/project/tongji.taomee.net/application/webroot/index.php(102): taomee\base\Application->run()
+#22 {main}
+REQUEST_URI=/sevin-project/tongji.taomee.net/application/webroot/?r=user%2Findex
+[2019-02-20 17:52:47]
+TMDbConnection failed to open the DB connection: SQLSTATE[HY000] [2013] Lost connection to MySQL server at 'reading authorization packet', system error: 0
+Stack trace:
+#0 /opt/home/sevin/project/tongji.taomee.net/taomee/db/TMDbConnection.php(244): TMDbConnection->createPdoInstance()
+#1 /opt/home/sevin/project/tongji.taomee.net/taomee/db/TMDbConnection.php(220): TMDbConnection->open()
+#2 /opt/home/sevin/project/tongji.taomee.net/taomee/db/TMDbConnection.php(185): TMDbConnection->setActive(true)
+#3 /opt/home/sevin/project/tongji.taomee.net/taomee/base/TMModule.php(165): TMDbConnection->init()
+#4 /opt/home/sevin/project/tongji.taomee.net/taomee/base/Application.php(282): TMModule->getComponent('db')
+#5 /opt/home/sevin/project/tongji.taomee.net/taomee/base/TMModel.php(95): taomee\base\Application->getDb()
+#6 /opt/home/sevin/project/tongji.taomee.net/taomee/base/TMFormModel.php(512): TMModel->getDb()
+#7 /opt/home/sevin/project/tongji.taomee.net/taomee/base/TMFormModel.php(32): TMFormMetaData->__construct(Object(common_Game))
+#8 /opt/home/sevin/project/tongji.taomee.net/taomee/base/TMFormModel.php(22): TMFormModel->getMetaData()
+#9 /opt/home/sevin/project/tongji.taomee.net/application/components/Navigator.php(16): TMFormModel->__construct()
+#10 /opt/home/sevin/project/tongji.taomee.net/taomee/base/TMModule.php(165): Navigator->init()
+#11 /opt/home/sevin/project/tongji.taomee.net/taomee/base/TMModule.php(68): TMModule->getComponent('navigator')
+#12 /opt/home/sevin/project/tongji.taomee.net/application/components/AutoDisplay.php(16): TMModule->__get('navigator')
+#13 /opt/home/sevin/project/tongji.taomee.net/taomee/web/TMController.php(220): AutoDisplay->assignListener(Object(User))
+#14 /opt/home/sevin/project/tongji.taomee.net/application/components/User.php(431): TMController->display('user/login.html')
+#15 /opt/home/sevin/project/tongji.taomee.net/taomee/web/TMController.php(154): User->index(Array)
+#16 /opt/home/sevin/project/tongji.taomee.net/taomee/web/TMController.php(132): TMController->runAction('index')
+#17 /opt/home/sevin/project/tongji.taomee.net/taomee/web/TMController.php(107): TMController->runActionWithFilters('index', Array)
+#18 /opt/home/sevin/project/tongji.taomee.net/taomee/web/TMWebApplication.php(96): TMController->run('index', false)
+#19 /opt/home/sevin/project/tongji.taomee.net/taomee/web/TMWebApplication.php(81): TMWebApplication->runController('user/index')
+#20 /opt/home/sevin/project/tongji.taomee.net/taomee/base/Application.php(88): TMWebApplication->processRequest()
+#21 /opt/home/sevin/project/tongji.taomee.net/application/webroot/index.php(102): taomee\base\Application->run()
+#22 {main}
+REQUEST_URI=/?r=user%2Findex
+[2019-02-20 17:52:47]
+"common_Game类设置的"数据表"t_game_info"不存在！
+Stack trace:
+#0 /opt/home/sevin/project/tongji.taomee.net/taomee/base/TMFormModel.php(32): TMFormMetaData->__construct(Object(common_Game))
+#1 /opt/home/sevin/project/tongji.taomee.net/taomee/base/TMFormModel.php(22): TMFormModel->getMetaData()
+#2 /opt/home/sevin/project/tongji.taomee.net/application/components/Navigator.php(16): TMFormModel->__construct()
+#3 /opt/home/sevin/project/tongji.taomee.net/taomee/base/TMModule.php(165): Navigator->init()
+#4 /opt/home/sevin/project/tongji.taomee.net/taomee/base/TMModule.php(68): TMModule->getComponent('navigator')
+#5 /opt/home/sevin/project/tongji.taomee.net/application/components/User.php(304): TMModule->__get('navigator')
+#6 /opt/home/sevin/project/tongji.taomee.net/application/components/Authorization.php(6): User->checkAuthority()
+#7 /opt/home/sevin/project/tongji.taomee.net/taomee/web/TMController.php(103): Authorization->check()
+#8 /opt/home/sevin/project/tongji.taomee.net/taomee/web/TMWebApplication.php(96): TMController->run('', false)
+#9 /opt/home/sevin/project/tongji.taomee.net/taomee/web/TMWebApplication.php(81): TMWebApplication->runController('')
+#10 /opt/home/sevin/project/tongji.taomee.net/taomee/base/Application.php(88): TMWebApplication->processRequest()
+#11 /opt/home/sevin/project/tongji.taomee.net/application/webroot/index.php(102): taomee\base\Application->run()
+#12 {main}
+REQUEST_URI=/
+[2019-02-20 17:52:47]
+"common_Game类设置的"数据表"t_game_info"不存在！
+Stack trace:
+#0 /opt/home/sevin/project/tongji.taomee.net/taomee/base/TMFormModel.php(32): TMFormMetaData->__construct(Object(common_Game))
+#1 /opt/home/sevin/project/tongji.taomee.net/taomee/base/TMFormModel.php(22): TMFormModel->getMetaData()
+#2 /opt/home/sevin/project/tongji.taomee.net/application/components/Navigator.php(16): TMFormModel->__construct()
+#3 /opt/home/sevin/project/tongji.taomee.net/taomee/base/TMModule.php(165): Navigator->init()
+#4 /opt/home/sevin/project/tongji.taomee.net/taomee/base/TMModule.php(68): TMModule->getComponent('navigator')
+#5 /opt/home/sevin/project/tongji.taomee.net/application/components/User.php(304): TMModule->__get('navigator')
+#6 /opt/home/sevin/project/tongji.taomee.net/application/components/Authorization.php(6): User->checkAuthority()
+#7 /opt/home/sevin/project/tongji.taomee.net/taomee/web/TMController.php(103): Authorization->check()
+#8 /opt/home/sevin/project/tongji.taomee.net/taomee/web/TMWebApplication.php(96): TMController->run('', false)
+#9 /opt/home/sevin/project/tongji.taomee.net/taomee/web/TMWebApplication.php(81): TMWebApplication->runController('')
+#10 /opt/home/sevin/project/tongji.taomee.net/taomee/base/Application.php(88): TMWebApplication->processRequest()
+#11 /opt/home/sevin/project/tongji.taomee.net/application/webroot/index.php(102): taomee\base\Application->run()
+#12 {main}
+REQUEST_URI=/
+[2019-02-20 17:52:47]
+"common_Game类设置的"数据表"t_game_info"不存在！
+Stack trace:
+#0 /opt/home/sevin/project/tongji.taomee.net/taomee/base/TMFormModel.php(32): TMFormMetaData->__construct(Object(common_Game))
+#1 /opt/home/sevin/project/tongji.taomee.net/taomee/base/TMFormModel.php(22): TMFormModel->getMetaData()
+#2 /opt/home/sevin/project/tongji.taomee.net/application/components/Navigator.php(16): TMFormModel->__construct()
+#3 /opt/home/sevin/project/tongji.taomee.net/taomee/base/TMModule.php(165): Navigator->init()
+#4 /opt/home/sevin/project/tongji.taomee.net/taomee/base/TMModule.php(68): TMModule->getComponent('navigator')
+#5 /opt/home/sevin/project/tongji.taomee.net/application/components/User.php(304): TMModule->__get('navigator')
+#6 /opt/home/sevin/project/tongji.taomee.net/application/components/Authorization.php(6): User->checkAuthority()
+#7 /opt/home/sevin/project/tongji.taomee.net/taomee/web/TMController.php(103): Authorization->check()
+#8 /opt/home/sevin/project/tongji.taomee.net/taomee/web/TMWebApplication.php(96): TMController->run('', false)
+#9 /opt/home/sevin/project/tongji.taomee.net/taomee/web/TMWebApplication.php(81): TMWebApplication->runController('')
+#10 /opt/home/sevin/project/tongji.taomee.net/taomee/base/Application.php(88): TMWebApplication->processRequest()
+#11 /opt/home/sevin/project/tongji.taomee.net/application/webroot/index.php(102): taomee\base\Application->run()
+#12 {main}
+REQUEST_URI=/index.php
+[2019-02-20 17:52:47]
+TMDbConnection failed to open the DB connection: SQLSTATE[HY000] [2013] Lost connection to MySQL server at 'reading authorization packet', system error: 0
+Stack trace:
+#0 /opt/home/sevin/project/tongji.taomee.net/taomee/db/TMDbConnection.php(244): TMDbConnection->createPdoInstance()
+#1 /opt/home/sevin/project/tongji.taomee.net/taomee/db/TMDbConnection.php(220): TMDbConnection->open()
+#2 /opt/home/sevin/project/tongji.taomee.net/taomee/db/TMDbConnection.php(185): TMDbConnection->setActive(true)
+#3 /opt/home/sevin/project/tongji.taomee.net/taomee/base/TMModule.php(165): TMDbConnection->init()
+#4 /opt/home/sevin/project/tongji.taomee.net/taomee/base/Application.php(282): TMModule->getComponent('db')
+#5 /opt/home/sevin/project/tongji.taomee.net/taomee/base/TMModel.php(95): taomee\base\Application->getDb()
+#6 /opt/home/sevin/project/tongji.taomee.net/taomee/base/TMFormModel.php(512): TMModel->getDb()
+#7 /opt/home/sevin/project/tongji.taomee.net/taomee/base/TMFormModel.php(32): TMFormMetaData->__construct(Object(common_Game))
+#8 /opt/home/sevin/project/tongji.taomee.net/taomee/base/TMFormModel.php(22): TMFormModel->getMetaData()
+#9 /opt/home/sevin/project/tongji.taomee.net/application/components/Navigator.php(16): TMFormModel->__construct()
+#10 /opt/home/sevin/project/tongji.taomee.net/taomee/base/TMModule.php(165): Navigator->init()
+#11 /opt/home/sevin/project/tongji.taomee.net/taomee/base/TMModule.php(68): TMModule->getComponent('navigator')
+#12 /opt/home/sevin/project/tongji.taomee.net/application/components/AutoDisplay.php(16): TMModule->__get('navigator')
+#13 /opt/home/sevin/project/tongji.taomee.net/taomee/web/TMController.php(220): AutoDisplay->assignListener(Object(User))
+#14 /opt/home/sevin/project/tongji.taomee.net/application/components/User.php(431): TMController->display('user/login.html')
+#15 /opt/home/sevin/project/tongji.taomee.net/taomee/web/TMController.php(154): User->index(Array)
+#16 /opt/home/sevin/project/tongji.taomee.net/taomee/web/TMController.php(132): TMController->runAction('index')
+#17 /opt/home/sevin/project/tongji.taomee.net/taomee/web/TMController.php(107): TMController->runActionWithFilters('index', Array)
+#18 /opt/home/sevin/project/tongji.taomee.net/taomee/web/TMWebApplication.php(96): TMController->run('index', false)
+#19 /opt/home/sevin/project/tongji.taomee.net/taomee/web/TMWebApplication.php(81): TMWebApplication->runController('user/index')
+#20 /opt/home/sevin/project/tongji.taomee.net/taomee/base/Application.php(88): TMWebApplication->processRequest()
+#21 /opt/home/sevin/project/tongji.taomee.net/application/webroot/index.php(102): taomee\base\Application->run()
+#22 {main}
+REQUEST_URI=/sevin-project/tongji.taomee.net/application/webroot/?r=user%2Findex
+[2019-02-20 17:52:47]
+"common_Game类设置的"数据表"t_game_info"不存在！
+Stack trace:
+#0 /opt/home/sevin/project/tongji.taomee.net/taomee/base/TMFormModel.php(32): TMFormMetaData->__construct(Object(common_Game))
+#1 /opt/home/sevin/project/tongji.taomee.net/taomee/base/TMFormModel.php(22): TMFormModel->getMetaData()
+#2 /opt/home/sevin/project/tongji.taomee.net/application/components/Navigator.php(16): TMFormModel->__construct()
+#3 /opt/home/sevin/project/tongji.taomee.net/taomee/base/TMModule.php(165): Navigator->init()
+#4 /opt/home/sevin/project/tongji.taomee.net/taomee/base/TMModule.php(68): TMModule->getComponent('navigator')
+#5 /opt/home/sevin/project/tongji.taomee.net/application/components/User.php(304): TMModule->__get('navigator')
+#6 /opt/home/sevin/project/tongji.taomee.net/application/components/Authorization.php(6): User->checkAuthority()
+#7 /opt/home/sevin/project/tongji.taomee.net/taomee/web/TMController.php(103): Authorization->check()
+#8 /opt/home/sevin/project/tongji.taomee.net/taomee/web/TMWebApplication.php(96): TMController->run('', false)
+#9 /opt/home/sevin/project/tongji.taomee.net/taomee/web/TMWebApplication.php(81): TMWebApplication->runController('')
+#10 /opt/home/sevin/project/tongji.taomee.net/taomee/base/Application.php(88): TMWebApplication->processRequest()
+#11 /opt/home/sevin/project/tongji.taomee.net/application/webroot/index.php(102): taomee\base\Application->run()
+#12 {main}
+REQUEST_URI=/
+[2019-02-20 17:52:47]
+TMDbConnection failed to open the DB connection: SQLSTATE[HY000] [2013] Lost connection to MySQL server at 'reading authorization packet', system error: 0
+Stack trace:
+#0 /opt/home/sevin/project/tongji.taomee.net/taomee/db/TMDbConnection.php(244): TMDbConnection->createPdoInstance()
+#1 /opt/home/sevin/project/tongji.taomee.net/taomee/db/TMDbConnection.php(220): TMDbConnection->open()
+#2 /opt/home/sevin/project/tongji.taomee.net/taomee/db/TMDbConnection.php(185): TMDbConnection->setActive(true)
+#3 /opt/home/sevin/project/tongji.taomee.net/taomee/base/TMModule.php(165): TMDbConnection->init()
+#4 /opt/home/sevin/project/tongji.taomee.net/taomee/base/Application.php(282): TMModule->getComponent('db')
+#5 /opt/home/sevin/project/tongji.taomee.net/taomee/base/TMModel.php(95): taomee\base\Application->getDb()
+#6 /opt/home/sevin/project/tongji.taomee.net/taomee/base/TMFormModel.php(512): TMModel->getDb()
+#7 /opt/home/sevin/project/tongji.taomee.net/taomee/base/TMFormModel.php(32): TMFormMetaData->__construct(Object(common_Game))
+#8 /opt/home/sevin/project/tongji.taomee.net/taomee/base/TMFormModel.php(22): TMFormModel->getMetaData()
+#9 /opt/home/sevin/project/tongji.taomee.net/application/components/Navigator.php(16): TMFormModel->__construct()
+#10 /opt/home/sevin/project/tongji.taomee.net/taomee/base/TMModule.php(165): Navigator->init()
+#11 /opt/home/sevin/project/tongji.taomee.net/taomee/base/TMModule.php(68): TMModule->getComponent('navigator')
+#12 /opt/home/sevin/project/tongji.taomee.net/application/components/AutoDisplay.php(16): TMModule->__get('navigator')
+#13 /opt/home/sevin/project/tongji.taomee.net/taomee/web/TMController.php(220): AutoDisplay->assignListener(Object(User))
+#14 /opt/home/sevin/project/tongji.taomee.net/application/components/User.php(431): TMController->display('user/login.html')
+#15 /opt/home/sevin/project/tongji.taomee.net/taomee/web/TMController.php(154): User->index(Array)
+#16 /opt/home/sevin/project/tongji.taomee.net/taomee/web/TMController.php(132): TMController->runAction('index')
+#17 /opt/home/sevin/project/tongji.taomee.net/taomee/web/TMController.php(107): TMController->runActionWithFilters('index', Array)
+#18 /opt/home/sevin/project/tongji.taomee.net/taomee/web/TMWebApplication.php(96): TMController->run('index', false)
+#19 /opt/home/sevin/project/tongji.taomee.net/taomee/web/TMWebApplication.php(81): TMWebApplication->runController('user/index')
+#20 /opt/home/sevin/project/tongji.taomee.net/taomee/base/Application.php(88): TMWebApplication->processRequest()
+#21 /opt/home/sevin/project/tongji.taomee.net/application/webroot/index.php(102): taomee\base\Application->run()
+#22 {main}
+REQUEST_URI=/sevin-project/tongji.taomee.net/application/webroot/?r=user%2Findex
+[2019-02-20 17:52:47]
+"common_Game类设置的"数据表"t_game_info"不存在！
+Stack trace:
+#0 /opt/home/sevin/project/tongji.taomee.net/taomee/base/TMFormModel.php(32): TMFormMetaData->__construct(Object(common_Game))
+#1 /opt/home/sevin/project/tongji.taomee.net/taomee/base/TMFormModel.php(22): TMFormModel->getMetaData()
+#2 /opt/home/sevin/project/tongji.taomee.net/application/components/Navigator.php(16): TMFormModel->__construct()
+#3 /opt/home/sevin/project/tongji.taomee.net/taomee/base/TMModule.php(165): Navigator->init()
+#4 /opt/home/sevin/project/tongji.taomee.net/taomee/base/TMModule.php(68): TMModule->getComponent('navigator')
+#5 /opt/home/sevin/project/tongji.taomee.net/application/components/User.php(304): TMModule->__get('navigator')
+#6 /opt/home/sevin/project/tongji.taomee.net/application/components/Authorization.php(6): User->checkAuthority()
+#7 /opt/home/sevin/project/tongji.taomee.net/taomee/web/TMController.php(103): Authorization->check()
+#8 /opt/home/sevin/project/tongji.taomee.net/taomee/web/TMWebApplication.php(96): TMController->run('', false)
+#9 /opt/home/sevin/project/tongji.taomee.net/taomee/web/TMWebApplication.php(81): TMWebApplication->runController('')
+#10 /opt/home/sevin/project/tongji.taomee.net/taomee/base/Application.php(88): TMWebApplication->processRequest()
+#11 /opt/home/sevin/project/tongji.taomee.net/application/webroot/index.php(102): taomee\base\Application->run()
+#12 {main}
+REQUEST_URI=/
+[2019-02-20 17:52:47]
+TMDbConnection failed to open the DB connection: SQLSTATE[HY000] [2013] Lost connection to MySQL server at 'reading authorization packet', system error: 0
+Stack trace:
+#0 /opt/home/sevin/project/tongji.taomee.net/taomee/db/TMDbConnection.php(244): TMDbConnection->createPdoInstance()
+#1 /opt/home/sevin/project/tongji.taomee.net/taomee/db/TMDbConnection.php(220): TMDbConnection->open()
+#2 /opt/home/sevin/project/tongji.taomee.net/taomee/db/TMDbConnection.php(185): TMDbConnection->setActive(true)
+#3 /opt/home/sevin/project/tongji.taomee.net/taomee/base/TMModule.php(165): TMDbConnection->init()
+#4 /opt/home/sevin/project/tongji.taomee.net/taomee/base/Application.php(282): TMModule->getComponent('db')
+#5 /opt/home/sevin/project/tongji.taomee.net/taomee/base/TMModel.php(95): taomee\base\Application->getDb()
+#6 /opt/home/sevin/project/tongji.taomee.net/taomee/base/TMFormModel.php(512): TMModel->getDb()
+#7 /opt/home/sevin/project/tongji.taomee.net/taomee/base/TMFormModel.php(32): TMFormMetaData->__construct(Object(common_Game))
+#8 /opt/home/sevin/project/tongji.taomee.net/taomee/base/TMFormModel.php(22): TMFormModel->getMetaData()
+#9 /opt/home/sevin/project/tongji.taomee.net/application/components/Navigator.php(16): TMFormModel->__construct()
+#10 /opt/home/sevin/project/tongji.taomee.net/taomee/base/TMModule.php(165): Navigator->init()
+#11 /opt/home/sevin/project/tongji.taomee.net/taomee/base/TMModule.php(68): TMModule->getComponent('navigator')
+#12 /opt/home/sevin/project/tongji.taomee.net/application/components/AutoDisplay.php(16): TMModule->__get('navigator')
+#13 /opt/home/sevin/project/tongji.taomee.net/taomee/web/TMController.php(220): AutoDisplay->assignListener(Object(User))
+#14 /opt/home/sevin/project/tongji.taomee.net/application/components/User.php(431): TMController->display('user/login.html')
+#15 /opt/home/sevin/project/tongji.taomee.net/taomee/web/TMController.php(154): User->index(Array)
+#16 /opt/home/sevin/project/tongji.taomee.net/taomee/web/TMController.php(132): TMController->runAction('index')
+#17 /opt/home/sevin/project/tongji.taomee.net/taomee/web/TMController.php(107): TMController->runActionWithFilters('index', Array)
+#18 /opt/home/sevin/project/tongji.taomee.net/taomee/web/TMWebApplication.php(96): TMController->run('index', false)
+#19 /opt/home/sevin/project/tongji.taomee.net/taomee/web/TMWebApplication.php(81): TMWebApplication->runController('user/index')
+#20 /opt/home/sevin/project/tongji.taomee.net/taomee/base/Application.php(88): TMWebApplication->processRequest()
+#21 /opt/home/sevin/project/tongji.taomee.net/application/webroot/index.php(102): taomee\base\Application->run()
+#22 {main}
+REQUEST_URI=/?r=user%2Findex
+[2019-02-20 17:52:47]
+TMDbConnection failed to open the DB connection: SQLSTATE[HY000] [2013] Lost connection to MySQL server at 'reading authorization packet', system error: 0
+Stack trace:
+#0 /opt/home/sevin/project/tongji.taomee.net/taomee/db/TMDbConnection.php(244): TMDbConnection->createPdoInstance()
+#1 /opt/home/sevin/project/tongji.taomee.net/taomee/db/TMDbConnection.php(220): TMDbConnection->open()
+#2 /opt/home/sevin/project/tongji.taomee.net/taomee/db/TMDbConnection.php(185): TMDbConnection->setActive(true)
+#3 /opt/home/sevin/project/tongji.taomee.net/taomee/base/TMModule.php(165): TMDbConnection->init()
+#4 /opt/home/sevin/project/tongji.taomee.net/taomee/base/Application.php(282): TMModule->getComponent('db')
+#5 /opt/home/sevin/project/tongji.taomee.net/taomee/base/TMModel.php(95): taomee\base\Application->getDb()
+#6 /opt/home/sevin/project/tongji.taomee.net/taomee/base/TMFormModel.php(512): TMModel->getDb()
+#7 /opt/home/sevin/project/tongji.taomee.net/taomee/base/TMFormModel.php(32): TMFormMetaData->__construct(Object(common_Game))
+#8 /opt/home/sevin/project/tongji.taomee.net/taomee/base/TMFormModel.php(22): TMFormModel->getMetaData()
+#9 /opt/home/sevin/project/tongji.taomee.net/application/components/Navigator.php(16): TMFormModel->__construct()
+#10 /opt/home/sevin/project/tongji.taomee.net/taomee/base/TMModule.php(165): Navigator->init()
+#11 /opt/home/sevin/project/tongji.taomee.net/taomee/base/TMModule.php(68): TMModule->getComponent('navigator')
+#12 /opt/home/sevin/project/tongji.taomee.net/application/components/User.php(304): TMModule->__get('navigator')
+#13 /opt/home/sevin/project/tongji.taomee.net/application/components/Authorization.php(6): User->checkAuthority()
+#14 /opt/home/sevin/project/tongji.taomee.net/taomee/web/TMController.php(103): Authorization->check()
+#15 /opt/home/sevin/project/tongji.taomee.net/taomee/web/TMWebApplication.php(96): TMController->run('', false)
+#16 /opt/home/sevin/project/tongji.taomee.net/taomee/web/TMWebApplication.php(81): TMWebApplication->runController('')
+#17 /opt/home/sevin/project/tongji.taomee.net/taomee/base/Application.php(88): TMWebApplication->processRequest()
+#18 /opt/home/sevin/project/tongji.taomee.net/application/webroot/index.php(102): taomee\base\Application->run()
+#19 {main}
+REQUEST_URI=/
+[2019-02-20 17:52:47]
+TMDbConnection failed to open the DB connection: SQLSTATE[HY000] [2013] Lost connection to MySQL server at 'reading authorization packet', system error: 0
+Stack trace:
+#0 /opt/home/sevin/project/tongji.taomee.net/taomee/db/TMDbConnection.php(244): TMDbConnection->createPdoInstance()
+#1 /opt/home/sevin/project/tongji.taomee.net/taomee/db/TMDbConnection.php(220): TMDbConnection->open()
+#2 /opt/home/sevin/project/tongji.taomee.net/taomee/db/TMDbConnection.php(185): TMDbConnection->setActive(true)
+#3 /opt/home/sevin/project/tongji.taomee.net/taomee/base/TMModule.php(165): TMDbConnection->init()
+#4 /opt/home/sevin/project/tongji.taomee.net/taomee/base/Application.php(282): TMModule->getComponent('db')
+#5 /opt/home/sevin/project/tongji.taomee.net/taomee/base/TMModel.php(95): taomee\base\Application->getDb()
+#6 /opt/home/sevin/project/tongji.taomee.net/taomee/base/TMFormModel.php(512): TMModel->getDb()
+#7 /opt/home/sevin/project/tongji.taomee.net/taomee/base/TMFormModel.php(32): TMFormMetaData->__construct(Object(common_Game))
+#8 /opt/home/sevin/project/tongji.taomee.net/taomee/base/TMFormModel.php(22): TMFormModel->getMetaData()
+#9 /opt/home/sevin/project/tongji.taomee.net/application/components/Navigator.php(16): TMFormModel->__construct()
+#10 /opt/home/sevin/project/tongji.taomee.net/taomee/base/TMModule.php(165): Navigator->init()
+#11 /opt/home/sevin/project/tongji.taomee.net/taomee/base/TMModule.php(68): TMModule->getComponent('navigator')
+#12 /opt/home/sevin/project/tongji.taomee.net/application/components/User.php(304): TMModule->__get('navigator')
+#13 /opt/home/sevin/project/tongji.taomee.net/application/components/Authorization.php(6): User->checkAuthority()
+#14 /opt/home/sevin/project/tongji.taomee.net/taomee/web/TMController.php(103): Authorization->check()
+#15 /opt/home/sevin/project/tongji.taomee.net/taomee/web/TMWebApplication.php(96): TMController->run('', false)
+#16 /opt/home/sevin/project/tongji.taomee.net/taomee/web/TMWebApplication.php(81): TMWebApplication->runController('')
+#17 /opt/home/sevin/project/tongji.taomee.net/taomee/base/Application.php(88): TMWebApplication->processRequest()
+#18 /opt/home/sevin/project/tongji.taomee.net/application/webroot/index.php(102): taomee\base\Application->run()
+#19 {main}
+REQUEST_URI=/
+[2019-02-20 17:52:47]
+TMDbConnection failed to open the DB connection: SQLSTATE[HY000] [2013] Lost connection to MySQL server at 'reading authorization packet', system error: 0
+Stack trace:
+#0 /opt/home/sevin/project/tongji.taomee.net/taomee/db/TMDbConnection.php(244): TMDbConnection->createPdoInstance()
+#1 /opt/home/sevin/project/tongji.taomee.net/taomee/db/TMDbConnection.php(220): TMDbConnection->open()
+#2 /opt/home/sevin/project/tongji.taomee.net/taomee/db/TMDbConnection.php(185): TMDbConnection->setActive(true)
+#3 /opt/home/sevin/project/tongji.taomee.net/taomee/base/TMModule.php(165): TMDbConnection->init()
+#4 /opt/home/sevin/project/tongji.taomee.net/taomee/base/Application.php(282): TMModule->getComponent('db')
+#5 /opt/home/sevin/project/tongji.taomee.net/taomee/base/TMModel.php(95): taomee\base\Application->getDb()
+#6 /opt/home/sevin/project/tongji.taomee.net/taomee/base/TMFormModel.php(512): TMModel->getDb()
+#7 /opt/home/sevin/project/tongji.taomee.net/taomee/base/TMFormModel.php(32): TMFormMetaData->__construct(Object(common_Game))
+#8 /opt/home/sevin/project/tongji.taomee.net/taomee/base/TMFormModel.php(22): TMFormModel->getMetaData()
+#9 /opt/home/sevin/project/tongji.taomee.net/application/components/Navigator.php(16): TMFormModel->__construct()
+#10 /opt/home/sevin/project/tongji.taomee.net/taomee/base/TMModule.php(165): Navigator->init()
+#11 /opt/home/sevin/project/tongji.taomee.net/taomee/base/TMModule.php(68): TMModule->getComponent('navigator')
+#12 /opt/home/sevin/project/tongji.taomee.net/application/components/AutoDisplay.php(16): TMModule->__get('navigator')
+#13 /opt/home/sevin/project/tongji.taomee.net/taomee/web/TMController.php(220): AutoDisplay->assignListener(Object(User))
+#14 /opt/home/sevin/project/tongji.taomee.net/application/components/User.php(431): TMController->display('user/login.html')
+#15 /opt/home/sevin/project/tongji.taomee.net/taomee/web/TMController.php(154): User->index(Array)
+#16 /opt/home/sevin/project/tongji.taomee.net/taomee/web/TMController.php(132): TMController->runAction('index')
+#17 /opt/home/sevin/project/tongji.taomee.net/taomee/web/TMController.php(107): TMController->runActionWithFilters('index', Array)
+#18 /opt/home/sevin/project/tongji.taomee.net/taomee/web/TMWebApplication.php(96): TMController->run('index', false)
+#19 /opt/home/sevin/project/tongji.taomee.net/taomee/web/TMWebApplication.php(81): TMWebApplication->runController('user/index')
+#20 /opt/home/sevin/project/tongji.taomee.net/taomee/base/Application.php(88): TMWebApplication->processRequest()
+#21 /opt/home/sevin/project/tongji.taomee.net/application/webroot/index.php(102): taomee\base\Application->run()
+#22 {main}
+REQUEST_URI=/sevin-project/tongji.taomee.net/application/webroot/?r=user%2Findex
+[2019-02-20 17:52:47]
+"common_Game类设置的"数据表"t_game_info"不存在！
+Stack trace:
+#0 /opt/home/sevin/project/tongji.taomee.net/taomee/base/TMFormModel.php(32): TMFormMetaData->__construct(Object(common_Game))
+#1 /opt/home/sevin/project/tongji.taomee.net/taomee/base/TMFormModel.php(22): TMFormModel->getMetaData()
+#2 /opt/home/sevin/project/tongji.taomee.net/application/components/Navigator.php(16): TMFormModel->__construct()
+#3 /opt/home/sevin/project/tongji.taomee.net/taomee/base/TMModule.php(165): Navigator->init()
+#4 /opt/home/sevin/project/tongji.taomee.net/taomee/base/TMModule.php(68): TMModule->getComponent('navigator')
+#5 /opt/home/sevin/project/tongji.taomee.net/application/components/User.php(304): TMModule->__get('navigator')
+#6 /opt/home/sevin/project/tongji.taomee.net/application/components/Authorization.php(6): User->checkAuthority()
+#7 /opt/home/sevin/project/tongji.taomee.net/taomee/web/TMController.php(103): Authorization->check()
+#8 /opt/home/sevin/project/tongji.taomee.net/taomee/web/TMWebApplication.php(96): TMController->run('', false)
+#9 /opt/home/sevin/project/tongji.taomee.net/taomee/web/TMWebApplication.php(81): TMWebApplication->runController('')
+#10 /opt/home/sevin/project/tongji.taomee.net/taomee/base/Application.php(88): TMWebApplication->processRequest()
+#11 /opt/home/sevin/project/tongji.taomee.net/application/webroot/index.php(102): taomee\base\Application->run()
+#12 {main}
+REQUEST_URI=/index.php
+[2019-02-20 17:52:47]
+"common_Game类设置的"数据表"t_game_info"不存在！
+Stack trace:
+#0 /opt/home/sevin/project/tongji.taomee.net/taomee/base/TMFormModel.php(32): TMFormMetaData->__construct(Object(common_Game))
+#1 /opt/home/sevin/project/tongji.taomee.net/taomee/base/TMFormModel.php(22): TMFormModel->getMetaData()
+#2 /opt/home/sevin/project/tongji.taomee.net/application/components/Navigator.php(16): TMFormModel->__construct()
+#3 /opt/home/sevin/project/tongji.taomee.net/taomee/base/TMModule.php(165): Navigator->init()
+#4 /opt/home/sevin/project/tongji.taomee.net/taomee/base/TMModule.php(68): TMModule->getComponent('navigator')
+#5 /opt/home/sevin/project/tongji.taomee.net/application/components/User.php(304): TMModule->__get('navigator')
+#6 /opt/home/sevin/project/tongji.taomee.net/application/components/Authorization.php(6): User->checkAuthority()
+#7 /opt/home/sevin/project/tongji.taomee.net/taomee/web/TMController.php(103): Authorization->check()
+#8 /opt/home/sevin/project/tongji.taomee.net/taomee/web/TMWebApplication.php(96): TMController->run('', false)
+#9 /opt/home/sevin/project/tongji.taomee.net/taomee/web/TMWebApplication.php(81): TMWebApplication->runController('')
+#10 /opt/home/sevin/project/tongji.taomee.net/taomee/base/Application.php(88): TMWebApplication->processRequest()
+#11 /opt/home/sevin/project/tongji.taomee.net/application/webroot/index.php(102): taomee\base\Application->run()
+#12 {main}
+REQUEST_URI=/index.php
+[2019-02-20 17:52:47]
+"common_Game类设置的"数据表"t_game_info"不存在！
+Stack trace:
+#0 /opt/home/sevin/project/tongji.taomee.net/taomee/base/TMFormModel.php(32): TMFormMetaData->__construct(Object(common_Game))
+#1 /opt/home/sevin/project/tongji.taomee.net/taomee/base/TMFormModel.php(22): TMFormModel->getMetaData()
+#2 /opt/home/sevin/project/tongji.taomee.net/application/components/Navigator.php(16): TMFormModel->__construct()
+#3 /opt/home/sevin/project/tongji.taomee.net/taomee/base/TMModule.php(165): Navigator->init()
+#4 /opt/home/sevin/project/tongji.taomee.net/taomee/base/TMModule.php(68): TMModule->getComponent('navigator')
+#5 /opt/home/sevin/project/tongji.taomee.net/application/components/User.php(304): TMModule->__get('navigator')
+#6 /opt/home/sevin/project/tongji.taomee.net/application/components/Authorization.php(6): User->checkAuthority()
+#7 /opt/home/sevin/project/tongji.taomee.net/taomee/web/TMController.php(103): Authorization->check()
+#8 /opt/home/sevin/project/tongji.taomee.net/taomee/web/TMWebApplication.php(96): TMController->run('', false)
+#9 /opt/home/sevin/project/tongji.taomee.net/taomee/web/TMWebApplication.php(81): TMWebApplication->runController('')
+#10 /opt/home/sevin/project/tongji.taomee.net/taomee/base/Application.php(88): TMWebApplication->processRequest()
+#11 /opt/home/sevin/project/tongji.taomee.net/application/webroot/index.php(102): taomee\base\Application->run()
+#12 {main}
+REQUEST_URI=/index.php
+[2019-02-20 17:52:47]
+"common_Game类设置的"数据表"t_game_info"不存在！
+Stack trace:
+#0 /opt/home/sevin/project/tongji.taomee.net/taomee/base/TMFormModel.php(32): TMFormMetaData->__construct(Object(common_Game))
+#1 /opt/home/sevin/project/tongji.taomee.net/taomee/base/TMFormModel.php(22): TMFormModel->getMetaData()
+#2 /opt/home/sevin/project/tongji.taomee.net/application/components/Navigator.php(16): TMFormModel->__construct()
+#3 /opt/home/sevin/project/tongji.taomee.net/taomee/base/TMModule.php(165): Navigator->init()
+#4 /opt/home/sevin/project/tongji.taomee.net/taomee/base/TMModule.php(68): TMModule->getComponent('navigator')
+#5 /opt/home/sevin/project/tongji.taomee.net/application/components/User.php(304): TMModule->__get('navigator')
+#6 /opt/home/sevin/project/tongji.taomee.net/application/components/Authorization.php(6): User->checkAuthority()
+#7 /opt/home/sevin/project/tongji.taomee.net/taomee/web/TMController.php(103): Authorization->check()
+#8 /opt/home/sevin/project/tongji.taomee.net/taomee/web/TMWebApplication.php(96): TMController->run('', false)
+#9 /opt/home/sevin/project/tongji.taomee.net/taomee/web/TMWebApplication.php(81): TMWebApplication->runController('')
+#10 /opt/home/sevin/project/tongji.taomee.net/taomee/base/Application.php(88): TMWebApplication->processRequest()
+#11 /opt/home/sevin/project/tongji.taomee.net/application/webroot/index.php(102): taomee\base\Application->run()
+#12 {main}
+REQUEST_URI=/index.php
+[2019-02-20 17:52:47]
+"common_Game类设置的"数据表"t_game_info"不存在！
+Stack trace:
+#0 /opt/home/sevin/project/tongji.taomee.net/taomee/base/TMFormModel.php(32): TMFormMetaData->__construct(Object(common_Game))
+#1 /opt/home/sevin/project/tongji.taomee.net/taomee/base/TMFormModel.php(22): TMFormModel->getMetaData()
+#2 /opt/home/sevin/project/tongji.taomee.net/application/components/Navigator.php(16): TMFormModel->__construct()
+#3 /opt/home/sevin/project/tongji.taomee.net/taomee/base/TMModule.php(165): Navigator->init()
+#4 /opt/home/sevin/project/tongji.taomee.net/taomee/base/TMModule.php(68): TMModule->getComponent('navigator')
+#5 /opt/home/sevin/project/tongji.taomee.net/application/components/User.php(304): TMModule->__get('navigator')
+#6 /opt/home/sevin/project/tongji.taomee.net/application/components/Authorization.php(6): User->checkAuthority()
+#7 /opt/home/sevin/project/tongji.taomee.net/taomee/web/TMController.php(103): Authorization->check()
+#8 /opt/home/sevin/project/tongji.taomee.net/taomee/web/TMWebApplication.php(96): TMController->run('', false)
+#9 /opt/home/sevin/project/tongji.taomee.net/taomee/web/TMWebApplication.php(81): TMWebApplication->runController('')
+#10 /opt/home/sevin/project/tongji.taomee.net/taomee/base/Application.php(88): TMWebApplication->processRequest()
+#11 /opt/home/sevin/project/tongji.taomee.net/application/webroot/index.php(102): taomee\base\Application->run()
+#12 {main}
+REQUEST_URI=/index.php
+[2019-02-20 17:52:47]
+"common_Game类设置的"数据表"t_game_info"不存在！
+Stack trace:
+#0 /opt/home/sevin/project/tongji.taomee.net/taomee/base/TMFormModel.php(32): TMFormMetaData->__construct(Object(common_Game))
+#1 /opt/home/sevin/project/tongji.taomee.net/taomee/base/TMFormModel.php(22): TMFormModel->getMetaData()
+#2 /opt/home/sevin/project/tongji.taomee.net/application/components/Navigator.php(16): TMFormModel->__construct()
+#3 /opt/home/sevin/project/tongji.taomee.net/taomee/base/TMModule.php(165): Navigator->init()
+#4 /opt/home/sevin/project/tongji.taomee.net/taomee/base/TMModule.php(68): TMModule->getComponent('navigator')
+#5 /opt/home/sevin/project/tongji.taomee.net/application/components/User.php(304): TMModule->__get('navigator')
+#6 /opt/home/sevin/project/tongji.taomee.net/application/components/Authorization.php(6): User->checkAuthority()
+#7 /opt/home/sevin/project/tongji.taomee.net/taomee/web/TMController.php(103): Authorization->check()
+#8 /opt/home/sevin/project/tongji.taomee.net/taomee/web/TMWebApplication.php(96): TMController->run('', false)
+#9 /opt/home/sevin/project/tongji.taomee.net/taomee/web/TMWebApplication.php(81): TMWebApplication->runController('')
+#10 /opt/home/sevin/project/tongji.taomee.net/taomee/base/Application.php(88): TMWebApplication->processRequest()
+#11 /opt/home/sevin/project/tongji.taomee.net/application/webroot/index.php(102): taomee\base\Application->run()
+#12 {main}
+REQUEST_URI=/index.php
+[2019-02-20 17:52:47]
+TMDbConnection failed to open the DB connection: SQLSTATE[HY000] [2013] Lost connection to MySQL server at 'reading authorization packet', system error: 0
+Stack trace:
+#0 /opt/home/sevin/project/tongji.taomee.net/taomee/db/TMDbConnection.php(244): TMDbConnection->createPdoInstance()
+#1 /opt/home/sevin/project/tongji.taomee.net/taomee/db/TMDbConnection.php(220): TMDbConnection->open()
+#2 /opt/home/sevin/project/tongji.taomee.net/taomee/db/TMDbConnection.php(185): TMDbConnection->setActive(true)
+#3 /opt/home/sevin/project/tongji.taomee.net/taomee/base/TMModule.php(165): TMDbConnection->init()
+#4 /opt/home/sevin/project/tongji.taomee.net/taomee/base/Application.php(282): TMModule->getComponent('db')
+#5 /opt/home/sevin/project/tongji.taomee.net/taomee/base/TMModel.php(95): taomee\base\Application->getDb()
+#6 /opt/home/sevin/project/tongji.taomee.net/taomee/base/TMFormModel.php(512): TMModel->getDb()
+#7 /opt/home/sevin/project/tongji.taomee.net/taomee/base/TMFormModel.php(32): TMFormMetaData->__construct(Object(common_Game))
+#8 /opt/home/sevin/project/tongji.taomee.net/taomee/base/TMFormModel.php(22): TMFormModel->getMetaData()
+#9 /opt/home/sevin/project/tongji.taomee.net/application/components/Navigator.php(16): TMFormModel->__construct()
+#10 /opt/home/sevin/project/tongji.taomee.net/taomee/base/TMModule.php(165): Navigator->init()
+#11 /opt/home/sevin/project/tongji.taomee.net/taomee/base/TMModule.php(68): TMModule->getComponent('navigator')
+#12 /opt/home/sevin/project/tongji.taomee.net/application/components/AutoDisplay.php(16): TMModule->__get('navigator')
+#13 /opt/home/sevin/project/tongji.taomee.net/taomee/web/TMController.php(220): AutoDisplay->assignListener(Object(User))
+#14 /opt/home/sevin/project/tongji.taomee.net/application/components/User.php(431): TMController->display('user/login.html')
+#15 /opt/home/sevin/project/tongji.taomee.net/taomee/web/TMController.php(154): User->index(Array)
+#16 /opt/home/sevin/project/tongji.taomee.net/taomee/web/TMController.php(132): TMController->runAction('index')
+#17 /opt/home/sevin/project/tongji.taomee.net/taomee/web/TMController.php(107): TMController->runActionWithFilters('index', Array)
+#18 /opt/home/sevin/project/tongji.taomee.net/taomee/web/TMWebApplication.php(96): TMController->run('index', false)
+#19 /opt/home/sevin/project/tongji.taomee.net/taomee/web/TMWebApplication.php(81): TMWebApplication->runController('user/index')
+#20 /opt/home/sevin/project/tongji.taomee.net/taomee/base/Application.php(88): TMWebApplication->processRequest()
+#21 /opt/home/sevin/project/tongji.taomee.net/application/webroot/index.php(102): taomee\base\Application->run()
+#22 {main}
+REQUEST_URI=/sevin-project/tongji.taomee.net/application/webroot/?r=user%2Findex
+[2019-02-20 17:52:47]
+"common_Game类设置的"数据表"t_game_info"不存在！
+Stack trace:
+#0 /opt/home/sevin/project/tongji.taomee.net/taomee/base/TMFormModel.php(32): TMFormMetaData->__construct(Object(common_Game))
+#1 /opt/home/sevin/project/tongji.taomee.net/taomee/base/TMFormModel.php(22): TMFormModel->getMetaData()
+#2 /opt/home/sevin/project/tongji.taomee.net/application/components/Navigator.php(16): TMFormModel->__construct()
+#3 /opt/home/sevin/project/tongji.taomee.net/taomee/base/TMModule.php(165): Navigator->init()
+#4 /opt/home/sevin/project/tongji.taomee.net/taomee/base/TMModule.php(68): TMModule->getComponent('navigator')
+#5 /opt/home/sevin/project/tongji.taomee.net/application/components/User.php(304): TMModule->__get('navigator')
+#6 /opt/home/sevin/project/tongji.taomee.net/application/components/Authorization.php(6): User->checkAuthority()
+#7 /opt/home/sevin/project/tongji.taomee.net/taomee/web/TMController.php(103): Authorization->check()
+#8 /opt/home/sevin/project/tongji.taomee.net/taomee/web/TMWebApplication.php(96): TMController->run('', false)
+#9 /opt/home/sevin/project/tongji.taomee.net/taomee/web/TMWebApplication.php(81): TMWebApplication->runController('')
+#10 /opt/home/sevin/project/tongji.taomee.net/taomee/base/Application.php(88): TMWebApplication->processRequest()
+#11 /opt/home/sevin/project/tongji.taomee.net/application/webroot/index.php(102): taomee\base\Application->run()
+#12 {main}
+REQUEST_URI=/index.php
+[2019-02-20 17:52:47]
+TMDbConnection failed to open the DB connection: SQLSTATE[HY000] [2013] Lost connection to MySQL server at 'reading authorization packet', system error: 0
+Stack trace:
+#0 /opt/home/sevin/project/tongji.taomee.net/taomee/db/TMDbConnection.php(244): TMDbConnection->createPdoInstance()
+#1 /opt/home/sevin/project/tongji.taomee.net/taomee/db/TMDbConnection.php(220): TMDbConnection->open()
+#2 /opt/home/sevin/project/tongji.taomee.net/taomee/db/TMDbConnection.php(185): TMDbConnection->setActive(true)
+#3 /opt/home/sevin/project/tongji.taomee.net/taomee/base/TMModule.php(165): TMDbConnection->init()
+#4 /opt/home/sevin/project/tongji.taomee.net/taomee/base/Application.php(282): TMModule->getComponent('db')
+#5 /opt/home/sevin/project/tongji.taomee.net/taomee/base/TMModel.php(95): taomee\base\Application->getDb()
+#6 /opt/home/sevin/project/tongji.taomee.net/taomee/base/TMFormModel.php(512): TMModel->getDb()
+#7 /opt/home/sevin/project/tongji.taomee.net/taomee/base/TMFormModel.php(32): TMFormMetaData->__construct(Object(common_Game))
+#8 /opt/home/sevin/project/tongji.taomee.net/taomee/base/TMFormModel.php(22): TMFormModel->getMetaData()
+#9 /opt/home/sevin/project/tongji.taomee.net/application/components/Navigator.php(16): TMFormModel->__construct()
+#10 /opt/home/sevin/project/tongji.taomee.net/taomee/base/TMModule.php(165): Navigator->init()
+#11 /opt/home/sevin/project/tongji.taomee.net/taomee/base/TMModule.php(68): TMModule->getComponent('navigator')
+#12 /opt/home/sevin/project/tongji.taomee.net/application/components/User.php(304): TMModule->__get('navigator')
+#13 /opt/home/sevin/project/tongji.taomee.net/application/components/Authorization.php(6): User->checkAuthority()
+#14 /opt/home/sevin/project/tongji.taomee.net/taomee/web/TMController.php(103): Authorization->check()
+#15 /opt/home/sevin/project/tongji.taomee.net/taomee/web/TMWebApplication.php(96): TMController->run('', false)
+#16 /opt/home/sevin/project/tongji.taomee.net/taomee/web/TMWebApplication.php(81): TMWebApplication->runController('')
+#17 /opt/home/sevin/project/tongji.taomee.net/taomee/base/Application.php(88): TMWebApplication->processRequest()
+#18 /opt/home/sevin/project/tongji.taomee.net/application/webroot/index.php(102): taomee\base\Application->run()
+#19 {main}
+REQUEST_URI=/
+[2019-02-20 17:52:47]
+"common_Game类设置的"数据表"t_game_info"不存在！
+Stack trace:
+#0 /opt/home/sevin/project/tongji.taomee.net/taomee/base/TMFormModel.php(32): TMFormMetaData->__construct(Object(common_Game))
+#1 /opt/home/sevin/project/tongji.taomee.net/taomee/base/TMFormModel.php(22): TMFormModel->getMetaData()
+#2 /opt/home/sevin/project/tongji.taomee.net/application/components/Navigator.php(16): TMFormModel->__construct()
+#3 /opt/home/sevin/project/tongji.taomee.net/taomee/base/TMModule.php(165): Navigator->init()
+#4 /opt/home/sevin/project/tongji.taomee.net/taomee/base/TMModule.php(68): TMModule->getComponent('navigator')
+#5 /opt/home/sevin/project/tongji.taomee.net/application/components/User.php(304): TMModule->__get('navigator')
+#6 /opt/home/sevin/project/tongji.taomee.net/application/components/Authorization.php(6): User->checkAuthority()
+#7 /opt/home/sevin/project/tongji.taomee.net/taomee/web/TMController.php(103): Authorization->check()
+#8 /opt/home/sevin/project/tongji.taomee.net/taomee/web/TMWebApplication.php(96): TMController->run('', false)
+#9 /opt/home/sevin/project/tongji.taomee.net/taomee/web/TMWebApplication.php(81): TMWebApplication->runController('')
+#10 /opt/home/sevin/project/tongji.taomee.net/taomee/base/Application.php(88): TMWebApplication->processRequest()
+#11 /opt/home/sevin/project/tongji.taomee.net/application/webroot/index.php(102): taomee\base\Application->run()
+#12 {main}
+REQUEST_URI=/
+[2019-02-20 17:52:47]
+"common_Game类设置的"数据表"t_game_info"不存在！
+Stack trace:
+#0 /opt/home/sevin/project/tongji.taomee.net/taomee/base/TMFormModel.php(32): TMFormMetaData->__construct(Object(common_Game))
+#1 /opt/home/sevin/project/tongji.taomee.net/taomee/base/TMFormModel.php(22): TMFormModel->getMetaData()
+#2 /opt/home/sevin/project/tongji.taomee.net/application/components/Navigator.php(16): TMFormModel->__construct()
+#3 /opt/home/sevin/project/tongji.taomee.net/taomee/base/TMModule.php(165): Navigator->init()
+#4 /opt/home/sevin/project/tongji.taomee.net/taomee/base/TMModule.php(68): TMModule->getComponent('navigator')
+#5 /opt/home/sevin/project/tongji.taomee.net/application/components/User.php(304): TMModule->__get('navigator')
+#6 /opt/home/sevin/project/tongji.taomee.net/application/components/Authorization.php(6): User->checkAuthority()
+#7 /opt/home/sevin/project/tongji.taomee.net/taomee/web/TMController.php(103): Authorization->check()
+#8 /opt/home/sevin/project/tongji.taomee.net/taomee/web/TMWebApplication.php(96): TMController->run('', false)
+#9 /opt/home/sevin/project/tongji.taomee.net/taomee/web/TMWebApplication.php(81): TMWebApplication->runController('')
+#10 /opt/home/sevin/project/tongji.taomee.net/taomee/base/Application.php(88): TMWebApplication->processRequest()
+#11 /opt/home/sevin/project/tongji.taomee.net/application/webroot/index.php(102): taomee\base\Application->run()
+#12 {main}
+REQUEST_URI=/
+[2019-02-20 17:52:47]
+TMDbConnection failed to open the DB connection: SQLSTATE[HY000] [2013] Lost connection to MySQL server at 'reading authorization packet', system error: 0
+Stack trace:
+#0 /opt/home/sevin/project/tongji.taomee.net/taomee/db/TMDbConnection.php(244): TMDbConnection->createPdoInstance()
+#1 /opt/home/sevin/project/tongji.taomee.net/taomee/db/TMDbConnection.php(220): TMDbConnection->open()
+#2 /opt/home/sevin/project/tongji.taomee.net/taomee/db/TMDbConnection.php(185): TMDbConnection->setActive(true)
+#3 /opt/home/sevin/project/tongji.taomee.net/taomee/base/TMModule.php(165): TMDbConnection->init()
+#4 /opt/home/sevin/project/tongji.taomee.net/taomee/base/Application.php(282): TMModule->getComponent('db')
+#5 /opt/home/sevin/project/tongji.taomee.net/taomee/base/TMModel.php(95): taomee\base\Application->getDb()
+#6 /opt/home/sevin/project/tongji.taomee.net/taomee/base/TMFormModel.php(512): TMModel->getDb()
+#7 /opt/home/sevin/project/tongji.taomee.net/taomee/base/TMFormModel.php(32): TMFormMetaData->__construct(Object(common_Game))
+#8 /opt/home/sevin/project/tongji.taomee.net/taomee/base/TMFormModel.php(22): TMFormModel->getMetaData()
+#9 /opt/home/sevin/project/tongji.taomee.net/application/components/Navigator.php(16): TMFormModel->__construct()
+#10 /opt/home/sevin/project/tongji.taomee.net/taomee/base/TMModule.php(165): Navigator->init()
+#11 /opt/home/sevin/project/tongji.taomee.net/taomee/base/TMModule.php(68): TMModule->getComponent('navigator')
+#12 /opt/home/sevin/project/tongji.taomee.net/application/components/AutoDisplay.php(16): TMModule->__get('navigator')
+#13 /opt/home/sevin/project/tongji.taomee.net/taomee/web/TMController.php(220): AutoDisplay->assignListener(Object(User))
+#14 /opt/home/sevin/project/tongji.taomee.net/application/components/User.php(431): TMController->display('user/login.html')
+#15 /opt/home/sevin/project/tongji.taomee.net/taomee/web/TMController.php(154): User->index(Array)
+#16 /opt/home/sevin/project/tongji.taomee.net/taomee/web/TMController.php(132): TMController->runAction('index')
+#17 /opt/home/sevin/project/tongji.taomee.net/taomee/web/TMController.php(107): TMController->runActionWithFilters('index', Array)
+#18 /opt/home/sevin/project/tongji.taomee.net/taomee/web/TMWebApplication.php(96): TMController->run('index', false)
+#19 /opt/home/sevin/project/tongji.taomee.net/taomee/web/TMWebApplication.php(81): TMWebApplication->runController('user/index')
+#20 /opt/home/sevin/project/tongji.taomee.net/taomee/base/Application.php(88): TMWebApplication->processRequest()
+#21 /opt/home/sevin/project/tongji.taomee.net/application/webroot/index.php(102): taomee\base\Application->run()
+#22 {main}
+REQUEST_URI=/sevin-project/tongji.taomee.net/application/webroot/?r=user%2Findex
+[2019-02-20 17:52:47]
+TMDbConnection failed to open the DB connection: SQLSTATE[HY000] [2013] Lost connection to MySQL server at 'reading authorization packet', system error: 0
+Stack trace:
+#0 /opt/home/sevin/project/tongji.taomee.net/taomee/db/TMDbConnection.php(244): TMDbConnection->createPdoInstance()
+#1 /opt/home/sevin/project/tongji.taomee.net/taomee/db/TMDbConnection.php(220): TMDbConnection->open()
+#2 /opt/home/sevin/project/tongji.taomee.net/taomee/db/TMDbConnection.php(185): TMDbConnection->setActive(true)
+#3 /opt/home/sevin/project/tongji.taomee.net/taomee/base/TMModule.php(165): TMDbConnection->init()
+#4 /opt/home/sevin/project/tongji.taomee.net/taomee/base/Application.php(282): TMModule->getComponent('db')
+#5 /opt/home/sevin/project/tongji.taomee.net/taomee/base/TMModel.php(95): taomee\base\Application->getDb()
+#6 /opt/home/sevin/project/tongji.taomee.net/taomee/base/TMFormModel.php(512): TMModel->getDb()
+#7 /opt/home/sevin/project/tongji.taomee.net/taomee/base/TMFormModel.php(32): TMFormMetaData->__construct(Object(common_Game))
+#8 /opt/home/sevin/project/tongji.taomee.net/taomee/base/TMFormModel.php(22): TMFormModel->getMetaData()
+#9 /opt/home/sevin/project/tongji.taomee.net/application/components/Navigator.php(16): TMFormModel->__construct()
+#10 /opt/home/sevin/project/tongji.taomee.net/taomee/base/TMModule.php(165): Navigator->init()
+#11 /opt/home/sevin/project/tongji.taomee.net/taomee/base/TMModule.php(68): TMModule->getComponent('navigator')
+#12 /opt/home/sevin/project/tongji.taomee.net/application/components/AutoDisplay.php(16): TMModule->__get('navigator')
+#13 /opt/home/sevin/project/tongji.taomee.net/taomee/web/TMController.php(220): AutoDisplay->assignListener(Object(User))
+#14 /opt/home/sevin/project/tongji.taomee.net/application/components/User.php(431): TMController->display('user/login.html')
+#15 /opt/home/sevin/project/tongji.taomee.net/taomee/web/TMController.php(154): User->index(Array)
+#16 /opt/home/sevin/project/tongji.taomee.net/taomee/web/TMController.php(132): TMController->runAction('index')
+#17 /opt/home/sevin/project/tongji.taomee.net/taomee/web/TMController.php(107): TMController->runActionWithFilters('index', Array)
+#18 /opt/home/sevin/project/tongji.taomee.net/taomee/web/TMWebApplication.php(96): TMController->run('index', false)
+#19 /opt/home/sevin/project/tongji.taomee.net/taomee/web/TMWebApplication.php(81): TMWebApplication->runController('user/index')
+#20 /opt/home/sevin/project/tongji.taomee.net/taomee/base/Application.php(88): TMWebApplication->processRequest()
+#21 /opt/home/sevin/project/tongji.taomee.net/application/webroot/index.php(102): taomee\base\Application->run()
+#22 {main}
+REQUEST_URI=/sevin-project/tongji.taomee.net/application/webroot/?r=user%2Findex
+[2019-02-20 17:52:47]
+"common_Game类设置的"数据表"t_game_info"不存在！
+Stack trace:
+#0 /opt/home/sevin/project/tongji.taomee.net/taomee/base/TMFormModel.php(32): TMFormMetaData->__construct(Object(common_Game))
+#1 /opt/home/sevin/project/tongji.taomee.net/taomee/base/TMFormModel.php(22): TMFormModel->getMetaData()
+#2 /opt/home/sevin/project/tongji.taomee.net/application/components/Navigator.php(16): TMFormModel->__construct()
+#3 /opt/home/sevin/project/tongji.taomee.net/taomee/base/TMModule.php(165): Navigator->init()
+#4 /opt/home/sevin/project/tongji.taomee.net/taomee/base/TMModule.php(68): TMModule->getComponent('navigator')
+#5 /opt/home/sevin/project/tongji.taomee.net/application/components/User.php(304): TMModule->__get('navigator')
+#6 /opt/home/sevin/project/tongji.taomee.net/application/components/Authorization.php(6): User->checkAuthority()
+#7 /opt/home/sevin/project/tongji.taomee.net/taomee/web/TMController.php(103): Authorization->check()
+#8 /opt/home/sevin/project/tongji.taomee.net/taomee/web/TMWebApplication.php(96): TMController->run('', false)
+#9 /opt/home/sevin/project/tongji.taomee.net/taomee/web/TMWebApplication.php(81): TMWebApplication->runController('')
+#10 /opt/home/sevin/project/tongji.taomee.net/taomee/base/Application.php(88): TMWebApplication->processRequest()
+#11 /opt/home/sevin/project/tongji.taomee.net/application/webroot/index.php(102): taomee\base\Application->run()
+#12 {main}
+REQUEST_URI=/
+[2019-02-20 17:52:47]
+TMDbConnection failed to open the DB connection: SQLSTATE[HY000] [2013] Lost connection to MySQL server at 'reading authorization packet', system error: 0
+Stack trace:
+#0 /opt/home/sevin/project/tongji.taomee.net/taomee/db/TMDbConnection.php(244): TMDbConnection->createPdoInstance()
+#1 /opt/home/sevin/project/tongji.taomee.net/taomee/db/TMDbConnection.php(220): TMDbConnection->open()
+#2 /opt/home/sevin/project/tongji.taomee.net/taomee/db/TMDbConnection.php(185): TMDbConnection->setActive(true)
+#3 /opt/home/sevin/project/tongji.taomee.net/taomee/base/TMModule.php(165): TMDbConnection->init()
+#4 /opt/home/sevin/project/tongji.taomee.net/taomee/base/Application.php(282): TMModule->getComponent('db')
+#5 /opt/home/sevin/project/tongji.taomee.net/taomee/base/TMModel.php(95): taomee\base\Application->getDb()
+#6 /opt/home/sevin/project/tongji.taomee.net/taomee/base/TMFormModel.php(512): TMModel->getDb()
+#7 /opt/home/sevin/project/tongji.taomee.net/taomee/base/TMFormModel.php(32): TMFormMetaData->__construct(Object(common_Game))
+#8 /opt/home/sevin/project/tongji.taomee.net/taomee/base/TMFormModel.php(22): TMFormModel->getMetaData()
+#9 /opt/home/sevin/project/tongji.taomee.net/application/components/Navigator.php(16): TMFormModel->__construct()
+#10 /opt/home/sevin/project/tongji.taomee.net/taomee/base/TMModule.php(165): Navigator->init()
+#11 /opt/home/sevin/project/tongji.taomee.net/taomee/base/TMModule.php(68): TMModule->getComponent('navigator')
+#12 /opt/home/sevin/project/tongji.taomee.net/application/components/AutoDisplay.php(16): TMModule->__get('navigator')
+#13 /opt/home/sevin/project/tongji.taomee.net/taomee/web/TMController.php(220): AutoDisplay->assignListener(Object(User))
+#14 /opt/home/sevin/project/tongji.taomee.net/application/components/User.php(431): TMController->display('user/login.html')
+#15 /opt/home/sevin/project/tongji.taomee.net/taomee/web/TMController.php(154): User->index(Array)
+#16 /opt/home/sevin/project/tongji.taomee.net/taomee/web/TMController.php(132): TMController->runAction('index')
+#17 /opt/home/sevin/project/tongji.taomee.net/taomee/web/TMController.php(107): TMController->runActionWithFilters('index', Array)
+#18 /opt/home/sevin/project/tongji.taomee.net/taomee/web/TMWebApplication.php(96): TMController->run('index', false)
+#19 /opt/home/sevin/project/tongji.taomee.net/taomee/web/TMWebApplication.php(81): TMWebApplication->runController('user/index')
+#20 /opt/home/sevin/project/tongji.taomee.net/taomee/base/Application.php(88): TMWebApplication->processRequest()
+#21 /opt/home/sevin/project/tongji.taomee.net/application/webroot/index.php(102): taomee\base\Application->run()
+#22 {main}
+REQUEST_URI=/sevin-project/tongji.taomee.net/application/webroot/?r=user%2Findex
+[2019-02-20 17:52:47]
+"common_Game类设置的"数据表"t_game_info"不存在！
+Stack trace:
+#0 /opt/home/sevin/project/tongji.taomee.net/taomee/base/TMFormModel.php(32): TMFormMetaData->__construct(Object(common_Game))
+#1 /opt/home/sevin/project/tongji.taomee.net/taomee/base/TMFormModel.php(22): TMFormModel->getMetaData()
+#2 /opt/home/sevin/project/tongji.taomee.net/application/components/Navigator.php(16): TMFormModel->__construct()
+#3 /opt/home/sevin/project/tongji.taomee.net/taomee/base/TMModule.php(165): Navigator->init()
+#4 /opt/home/sevin/project/tongji.taomee.net/taomee/base/TMModule.php(68): TMModule->getComponent('navigator')
+#5 /opt/home/sevin/project/tongji.taomee.net/application/components/User.php(304): TMModule->__get('navigator')
+#6 /opt/home/sevin/project/tongji.taomee.net/application/components/Authorization.php(6): User->checkAuthority()
+#7 /opt/home/sevin/project/tongji.taomee.net/taomee/web/TMController.php(103): Authorization->check()
+#8 /opt/home/sevin/project/tongji.taomee.net/taomee/web/TMWebApplication.php(96): TMController->run('', false)
+#9 /opt/home/sevin/project/tongji.taomee.net/taomee/web/TMWebApplication.php(81): TMWebApplication->runController('')
+#10 /opt/home/sevin/project/tongji.taomee.net/taomee/base/Application.php(88): TMWebApplication->processRequest()
+#11 /opt/home/sevin/project/tongji.taomee.net/application/webroot/index.php(102): taomee\base\Application->run()
+#12 {main}
+REQUEST_URI=/index.php
+[2019-02-20 17:52:47]
+TMDbConnection failed to open the DB connection: SQLSTATE[HY000] [2013] Lost connection to MySQL server at 'reading authorization packet', system error: 0
+Stack trace:
+#0 /opt/home/sevin/project/tongji.taomee.net/taomee/db/TMDbConnection.php(244): TMDbConnection->createPdoInstance()
+#1 /opt/home/sevin/project/tongji.taomee.net/taomee/db/TMDbConnection.php(220): TMDbConnection->open()
+#2 /opt/home/sevin/project/tongji.taomee.net/taomee/db/TMDbConnection.php(185): TMDbConnection->setActive(true)
+#3 /opt/home/sevin/project/tongji.taomee.net/taomee/base/TMModule.php(165): TMDbConnection->init()
+#4 /opt/home/sevin/project/tongji.taomee.net/taomee/base/Application.php(282): TMModule->getComponent('db')
+#5 /opt/home/sevin/project/tongji.taomee.net/taomee/base/TMModel.php(95): taomee\base\Application->getDb()
+#6 /opt/home/sevin/project/tongji.taomee.net/taomee/base/TMFormModel.php(512): TMModel->getDb()
+#7 /opt/home/sevin/project/tongji.taomee.net/taomee/base/TMFormModel.php(32): TMFormMetaData->__construct(Object(common_Game))
+#8 /opt/home/sevin/project/tongji.taomee.net/taomee/base/TMFormModel.php(22): TMFormModel->getMetaData()
+#9 /opt/home/sevin/project/tongji.taomee.net/application/components/Navigator.php(16): TMFormModel->__construct()
+#10 /opt/home/sevin/project/tongji.taomee.net/taomee/base/TMModule.php(165): Navigator->init()
+#11 /opt/home/sevin/project/tongji.taomee.net/taomee/base/TMModule.php(68): TMModule->getComponent('navigator')
+#12 /opt/home/sevin/project/tongji.taomee.net/application/components/AutoDisplay.php(16): TMModule->__get('navigator')
+#13 /opt/home/sevin/project/tongji.taomee.net/taomee/web/TMController.php(220): AutoDisplay->assignListener(Object(User))
+#14 /opt/home/sevin/project/tongji.taomee.net/application/components/User.php(431): TMController->display('user/login.html')
+#15 /opt/home/sevin/project/tongji.taomee.net/taomee/web/TMController.php(154): User->index(Array)
+#16 /opt/home/sevin/project/tongji.taomee.net/taomee/web/TMController.php(132): TMController->runAction('index')
+#17 /opt/home/sevin/project/tongji.taomee.net/taomee/web/TMController.php(107): TMController->runActionWithFilters('index', Array)
+#18 /opt/home/sevin/project/tongji.taomee.net/taomee/web/TMWebApplication.php(96): TMController->run('index', false)
+#19 /opt/home/sevin/project/tongji.taomee.net/taomee/web/TMWebApplication.php(81): TMWebApplication->runController('user/index')
+#20 /opt/home/sevin/project/tongji.taomee.net/taomee/base/Application.php(88): TMWebApplication->processRequest()
+#21 /opt/home/sevin/project/tongji.taomee.net/application/webroot/index.php(102): taomee\base\Application->run()
+#22 {main}
+REQUEST_URI=/sevin-project/tongji.taomee.net/application/webroot/?r=user%2Findex
+[2019-02-20 17:52:47]
+"common_Game类设置的"数据表"t_game_info"不存在！
+Stack trace:
+#0 /opt/home/sevin/project/tongji.taomee.net/taomee/base/TMFormModel.php(32): TMFormMetaData->__construct(Object(common_Game))
+#1 /opt/home/sevin/project/tongji.taomee.net/taomee/base/TMFormModel.php(22): TMFormModel->getMetaData()
+#2 /opt/home/sevin/project/tongji.taomee.net/application/components/Navigator.php(16): TMFormModel->__construct()
+#3 /opt/home/sevin/project/tongji.taomee.net/taomee/base/TMModule.php(165): Navigator->init()
+#4 /opt/home/sevin/project/tongji.taomee.net/taomee/base/TMModule.php(68): TMModule->getComponent('navigator')
+#5 /opt/home/sevin/project/tongji.taomee.net/application/components/User.php(304): TMModule->__get('navigator')
+#6 /opt/home/sevin/project/tongji.taomee.net/application/components/Authorization.php(6): User->checkAuthority()
+#7 /opt/home/sevin/project/tongji.taomee.net/taomee/web/TMController.php(103): Authorization->check()
+#8 /opt/home/sevin/project/tongji.taomee.net/taomee/web/TMWebApplication.php(96): TMController->run('', false)
+#9 /opt/home/sevin/project/tongji.taomee.net/taomee/web/TMWebApplication.php(81): TMWebApplication->runController('')
+#10 /opt/home/sevin/project/tongji.taomee.net/taomee/base/Application.php(88): TMWebApplication->processRequest()
+#11 /opt/home/sevin/project/tongji.taomee.net/application/webroot/index.php(102): taomee\base\Application->run()
+#12 {main}
+REQUEST_URI=/index.php
+[2019-02-20 17:52:47]
+"common_Game类设置的"数据表"t_game_info"不存在！
+Stack trace:
+#0 /opt/home/sevin/project/tongji.taomee.net/taomee/base/TMFormModel.php(32): TMFormMetaData->__construct(Object(common_Game))
+#1 /opt/home/sevin/project/tongji.taomee.net/taomee/base/TMFormModel.php(22): TMFormModel->getMetaData()
+#2 /opt/home/sevin/project/tongji.taomee.net/application/components/Navigator.php(16): TMFormModel->__construct()
+#3 /opt/home/sevin/project/tongji.taomee.net/taomee/base/TMModule.php(165): Navigator->init()
+#4 /opt/home/sevin/project/tongji.taomee.net/taomee/base/TMModule.php(68): TMModule->getComponent('navigator')
+#5 /opt/home/sevin/project/tongji.taomee.net/application/components/User.php(304): TMModule->__get('navigator')
+#6 /opt/home/sevin/project/tongji.taomee.net/application/components/Authorization.php(6): User->checkAuthority()
+#7 /opt/home/sevin/project/tongji.taomee.net/taomee/web/TMController.php(103): Authorization->check()
+#8 /opt/home/sevin/project/tongji.taomee.net/taomee/web/TMWebApplication.php(96): TMController->run('', false)
+#9 /opt/home/sevin/project/tongji.taomee.net/taomee/web/TMWebApplication.php(81): TMWebApplication->runController('')
+#10 /opt/home/sevin/project/tongji.taomee.net/taomee/base/Application.php(88): TMWebApplication->processRequest()
+#11 /opt/home/sevin/project/tongji.taomee.net/application/webroot/index.php(102): taomee\base\Application->run()
+#12 {main}
+REQUEST_URI=/
+[2019-02-20 17:52:47]
+TMDbConnection failed to open the DB connection: SQLSTATE[HY000] [2013] Lost connection to MySQL server at 'reading authorization packet', system error: 0
+Stack trace:
+#0 /opt/home/sevin/project/tongji.taomee.net/taomee/db/TMDbConnection.php(244): TMDbConnection->createPdoInstance()
+#1 /opt/home/sevin/project/tongji.taomee.net/taomee/db/TMDbConnection.php(220): TMDbConnection->open()
+#2 /opt/home/sevin/project/tongji.taomee.net/taomee/db/TMDbConnection.php(185): TMDbConnection->setActive(true)
+#3 /opt/home/sevin/project/tongji.taomee.net/taomee/base/TMModule.php(165): TMDbConnection->init()
+#4 /opt/home/sevin/project/tongji.taomee.net/taomee/base/Application.php(282): TMModule->getComponent('db')
+#5 /opt/home/sevin/project/tongji.taomee.net/taomee/base/TMModel.php(95): taomee\base\Application->getDb()
+#6 /opt/home/sevin/project/tongji.taomee.net/taomee/base/TMFormModel.php(512): TMModel->getDb()
+#7 /opt/home/sevin/project/tongji.taomee.net/taomee/base/TMFormModel.php(32): TMFormMetaData->__construct(Object(common_Game))
+#8 /opt/home/sevin/project/tongji.taomee.net/taomee/base/TMFormModel.php(22): TMFormModel->getMetaData()
+#9 /opt/home/sevin/project/tongji.taomee.net/application/components/Navigator.php(16): TMFormModel->__construct()
+#10 /opt/home/sevin/project/tongji.taomee.net/taomee/base/TMModule.php(165): Navigator->init()
+#11 /opt/home/sevin/project/tongji.taomee.net/taomee/base/TMModule.php(68): TMModule->getComponent('navigator')
+#12 /opt/home/sevin/project/tongji.taomee.net/application/components/AutoDisplay.php(16): TMModule->__get('navigator')
+#13 /opt/home/sevin/project/tongji.taomee.net/taomee/web/TMController.php(220): AutoDisplay->assignListener(Object(User))
+#14 /opt/home/sevin/project/tongji.taomee.net/application/components/User.php(431): TMController->display('user/login.html')
+#15 /opt/home/sevin/project/tongji.taomee.net/taomee/web/TMController.php(154): User->index(Array)
+#16 /opt/home/sevin/project/tongji.taomee.net/taomee/web/TMController.php(132): TMController->runAction('index')
+#17 /opt/home/sevin/project/tongji.taomee.net/taomee/web/TMController.php(107): TMController->runActionWithFilters('index', Array)
+#18 /opt/home/sevin/project/tongji.taomee.net/taomee/web/TMWebApplication.php(96): TMController->run('index', false)
+#19 /opt/home/sevin/project/tongji.taomee.net/taomee/web/TMWebApplication.php(81): TMWebApplication->runController('user/index')
+#20 /opt/home/sevin/project/tongji.taomee.net/taomee/base/Application.php(88): TMWebApplication->processRequest()
+#21 /opt/home/sevin/project/tongji.taomee.net/application/webroot/index.php(102): taomee\base\Application->run()
+#22 {main}
+REQUEST_URI=/sevin-project/tongji.taomee.net/application/webroot/?r=user%2Findex
+[2019-02-20 17:52:47]
+"common_Game类设置的"数据表"t_game_info"不存在！
+Stack trace:
+#0 /opt/home/sevin/project/tongji.taomee.net/taomee/base/TMFormModel.php(32): TMFormMetaData->__construct(Object(common_Game))
+#1 /opt/home/sevin/project/tongji.taomee.net/taomee/base/TMFormModel.php(22): TMFormModel->getMetaData()
+#2 /opt/home/sevin/project/tongji.taomee.net/application/components/Navigator.php(16): TMFormModel->__construct()
+#3 /opt/home/sevin/project/tongji.taomee.net/taomee/base/TMModule.php(165): Navigator->init()
+#4 /opt/home/sevin/project/tongji.taomee.net/taomee/base/TMModule.php(68): TMModule->getComponent('navigator')
+#5 /opt/home/sevin/project/tongji.taomee.net/application/components/User.php(304): TMModule->__get('navigator')
+#6 /opt/home/sevin/project/tongji.taomee.net/application/components/Authorization.php(6): User->checkAuthority()
+#7 /opt/home/sevin/project/tongji.taomee.net/taomee/web/TMController.php(103): Authorization->check()
+#8 /opt/home/sevin/project/tongji.taomee.net/taomee/web/TMWebApplication.php(96): TMController->run('', false)
+#9 /opt/home/sevin/project/tongji.taomee.net/taomee/web/TMWebApplication.php(81): TMWebApplication->runController('')
+#10 /opt/home/sevin/project/tongji.taomee.net/taomee/base/Application.php(88): TMWebApplication->processRequest()
+#11 /opt/home/sevin/project/tongji.taomee.net/application/webroot/index.php(102): taomee\base\Application->run()
+#12 {main}
+REQUEST_URI=/sevin-project/tongji.taomee.net/application/webroot/index.php
+[2019-02-20 17:52:48]
+"common_Game类设置的"数据表"t_game_info"不存在！
+Stack trace:
+#0 /opt/home/sevin/project/tongji.taomee.net/taomee/base/TMFormModel.php(32): TMFormMetaData->__construct(Object(common_Game))
+#1 /opt/home/sevin/project/tongji.taomee.net/taomee/base/TMFormModel.php(22): TMFormModel->getMetaData()
+#2 /opt/home/sevin/project/tongji.taomee.net/application/components/Navigator.php(16): TMFormModel->__construct()
+#3 /opt/home/sevin/project/tongji.taomee.net/taomee/base/TMModule.php(165): Navigator->init()
+#4 /opt/home/sevin/project/tongji.taomee.net/taomee/base/TMModule.php(68): TMModule->getComponent('navigator')
+#5 /opt/home/sevin/project/tongji.taomee.net/application/components/User.php(304): TMModule->__get('navigator')
+#6 /opt/home/sevin/project/tongji.taomee.net/application/components/Authorization.php(6): User->checkAuthority()
+#7 /opt/home/sevin/project/tongji.taomee.net/taomee/web/TMController.php(103): Authorization->check()
+#8 /opt/home/sevin/project/tongji.taomee.net/taomee/web/TMWebApplication.php(96): TMController->run('', false)
+#9 /opt/home/sevin/project/tongji.taomee.net/taomee/web/TMWebApplication.php(81): TMWebApplication->runController('')
+#10 /opt/home/sevin/project/tongji.taomee.net/taomee/base/Application.php(88): TMWebApplication->processRequest()
+#11 /opt/home/sevin/project/tongji.taomee.net/application/webroot/index.php(102): taomee\base\Application->run()
+#12 {main}
+REQUEST_URI=/index.php
+[2019-02-20 17:52:48]
+"common_Game类设置的"数据表"t_game_info"不存在！
+Stack trace:
+#0 /opt/home/sevin/project/tongji.taomee.net/taomee/base/TMFormModel.php(32): TMFormMetaData->__construct(Object(common_Game))
+#1 /opt/home/sevin/project/tongji.taomee.net/taomee/base/TMFormModel.php(22): TMFormModel->getMetaData()
+#2 /opt/home/sevin/project/tongji.taomee.net/application/components/Navigator.php(16): TMFormModel->__construct()
+#3 /opt/home/sevin/project/tongji.taomee.net/taomee/base/TMModule.php(165): Navigator->init()
+#4 /opt/home/sevin/project/tongji.taomee.net/taomee/base/TMModule.php(68): TMModule->getComponent('navigator')
+#5 /opt/home/sevin/project/tongji.taomee.net/application/components/User.php(304): TMModule->__get('navigator')
+#6 /opt/home/sevin/project/tongji.taomee.net/application/components/Authorization.php(6): User->checkAuthority()
+#7 /opt/home/sevin/project/tongji.taomee.net/taomee/web/TMController.php(103): Authorization->check()
+#8 /opt/home/sevin/project/tongji.taomee.net/taomee/web/TMWebApplication.php(96): TMController->run('', false)
+#9 /opt/home/sevin/project/tongji.taomee.net/taomee/web/TMWebApplication.php(81): TMWebApplication->runController('')
+#10 /opt/home/sevin/project/tongji.taomee.net/taomee/base/Application.php(88): TMWebApplication->processRequest()
+#11 /opt/home/sevin/project/tongji.taomee.net/application/webroot/index.php(102): taomee\base\Application->run()
+#12 {main}
+REQUEST_URI=/

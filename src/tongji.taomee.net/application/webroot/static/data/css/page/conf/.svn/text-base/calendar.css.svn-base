@@ -1,0 +1,8 @@
+.calendar-wrapper .calendar-events { float: left; width: 15%; }
+.calendar-wrapper .calendar-events .calendar-events-wrapper { border: 1px solid #C0C0C0; margin-right: 10px; padding: 10px; background: #F5FFFF; }
+.calendar-wrapper .calendar-events .calendar-events-wrapper h4 { margin-bottom: 20px; }
+.calendar-wrapper .calendar { float: left; width: 85%; }
+
+/* calendar */
+.fc-event { background: #F3B248; border-color: #F3B248; line-height: 1.5; }
+.fc-event .del-btn { color: #726658; position: absolute; right: 2px; top: -3px; font-size: 1.5em; cursor: pointer; }

@@ -1,0 +1,67 @@
+<div class="aside" id="J_aside">
+    <ul class="bt">
+    {foreach $response.aside as $aside}
+        {if !isset($response.ignore) || !in_array($aside.navi_id, $response.ignore)}
+            {if in_array($aside.name, array())}
+                <li data-key="{$aside.key}" class="parent rel
+                {if isset($aside.current) && $aside.current}
+                    cur clicked
+                {/if}
+                {if isset($aside.children) && $aside.children}
+                    more-icon
+                    ">
+                    <a
+                {else}
+                    stat-module" common="游戏分析" stid="{$aside.name}" sstid="{$aside.name}">
+                    <a href="{$aside.url}&game_id={$response.param.game_id}"
+                {/if}
+                >
+                {if isset($aside.key) && $aside.key}
+                    <i class="iconfont icon-{$aside.key}"></i>
+                {/if}
+                <span>{$aside.name}</span><i class="J-new-function" style="right: 66px; top: 22px;"></i></a>
+            {else}
+            <li data-key="{$aside.key}" class="parent
+            {if isset($aside.current) && $aside.current}
+            cur clicked
+            {/if}
+            {if isset($aside.children) && $aside.children}
+            more-icon
+            ">
+                <a
+            {else}
+            stat-module" common="游戏分析" stid="{$aside.name}" sstid="{$aside.name}">
+                <a href="{$aside.url}&game_id={$response.param.game_id}"
+            {/if}
+                >
+                {if isset($aside.key) && $aside.key}
+                    <i class="iconfont icon-{$aside.key}"></i>
+                {/if}
+                <span>{$aside.name}</span></a>
+            {/if}
+                <ol>
+                    {if isset($aside.children)}
+                    {foreach $aside.children as $child}
+                        {if !isset($response.ignore) || !in_array($child.navi_id, $response.ignore)}
+                            {if in_array($child.name, array())}
+                            <li class="child rel stat-module
+                            {if isset($child.current) && $child.current}
+                            cur
+                            {/if}
+                            " data-key="{$child.key}" common="游戏分析" stid="{$aside.name}" sstid="{$child.name}"><a href="{$child.url}&game_id={$response.param.game_id}{if isset($response.param.debug)}&debug={$response.param.debug}{/if}" class="tit" style=""><span>{$child.name}</span><i class="J-new-function" style="right: 45px; top: 15px;"></i></a></li>
+                            {else}
+                            <li class="child stat-module
+                            {if isset($child.current) && $child.current}
+                            cur
+                            {/if}
+                            " data-key="{$child.key}" common="游戏分析" stid="{$aside.name}" sstid="{$child.name}"><a href="{$child.url}&game_id={$response.param.game_id}{if isset($response.param.debug)}&debug={$response.param.debug}{/if}" class="tit"><span>{$child.name}</span></a></li>
+                            {/if}
+                        {/if}
+                    {/foreach}
+                    {/if}
+                </ol>
+            </li>
+        {/if}
+    {/foreach}
+    </ul>
+</div>

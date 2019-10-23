@@ -1,0 +1,47 @@
+K 25
+svn:wc:ra_dav:version-url
+V 91
+/data-center/!svn/ver/5019/web/stat-web/trunk/application/webroot/static/data/js/page/topic
+END
+selfservice.js
+K 25
+svn:wc:ra_dav:version-url
+V 106
+/data-center/!svn/ver/4639/web/stat-web/trunk/application/webroot/static/data/js/page/topic/selfservice.js
+END
+multiple.js
+K 25
+svn:wc:ra_dav:version-url
+V 103
+/data-center/!svn/ver/4206/web/stat-web/trunk/application/webroot/static/data/js/page/topic/multiple.js
+END
+daytraffic.js
+K 25
+svn:wc:ra_dav:version-url
+V 105
+/data-center/!svn/ver/4177/web/stat-web/trunk/application/webroot/static/data/js/page/topic/daytraffic.js
+END
+single.js
+K 25
+svn:wc:ra_dav:version-url
+V 101
+/data-center/!svn/ver/5019/web/stat-web/trunk/application/webroot/static/data/js/page/topic/single.js
+END
+realtime.js
+K 25
+svn:wc:ra_dav:version-url
+V 103
+/data-center/!svn/ver/4956/web/stat-web/trunk/application/webroot/static/data/js/page/topic/realtime.js
+END
+kpi.js
+K 25
+svn:wc:ra_dav:version-url
+V 98
+/data-center/!svn/ver/4177/web/stat-web/trunk/application/webroot/static/data/js/page/topic/kpi.js
+END
+rttraffic.js
+K 25
+svn:wc:ra_dav:version-url
+V 104
+/data-center/!svn/ver/4177/web/stat-web/trunk/application/webroot/static/data/js/page/topic/rttraffic.js
+END

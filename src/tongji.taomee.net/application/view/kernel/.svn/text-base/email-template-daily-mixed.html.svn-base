@@ -1,0 +1,43 @@
+<table cellpadding="0" cellspacing="0" align="center" style="border:1px solid #CCC0D9;">
+    {foreach $graphs as $val}
+    <tr>
+        <td valign="top">
+            <img src="{$mail->embedImageFromPath($val)}" alt="" />
+        </td>
+    </tr>
+    {/foreach}
+    {foreach $datas as $val}
+    <tr>
+        <td valign="top" style="padding-bottom:8px;background-color:#E8F8F7;font-size:16px;">
+            【<span class="fb">{$val['name']}</span>】<span class="fb">{$val['today']}</span>；
+            <span class="fb">
+            较前一天（<span class="fb">{$val['yesterday']}</span>）
+            {if $val['yesterday_rate'] < -5}<span class="decrease">下降
+            {elseif $val['yesterday_rate'] < 0}<span>下降
+            {elseif $val['yesterday_rate'] == 0}<span>持平
+            {elseif $val['yesterday_rate'] > 10}<span class="increase">上升
+            {else}<span>上升
+            {/if}{abs($val['yesterday_rate'])}%</span>
+            </span>；
+            较上周同期（<span class="fb">{$val['weekly']}</span>）
+            <span class="fb">
+            {if $val['weekly_rate'] < -5}<span class="decrease">下降
+            {elseif $val['weekly_rate'] < 0}<span>下降
+            {elseif $val['weekly_rate'] == 0}<span>持平
+            {elseif $val['weekly_rate'] > 10}<span class="increase">上升
+            {else}<span>上升
+            {/if}{abs($val['weekly_rate'])}%</span>
+            </span>；
+            较上月同期（<span class="fb">{$val['monthly']}</span>）
+            <span class="fb">
+            {if $val['monthly_rate'] < -5}<span class="decrease">下降
+            {elseif $val['monthly_rate'] < 0}<span>下降
+            {elseif $val['monthly_rate'] == 0}<span>持平
+            {elseif $val['monthly_rate'] > 10}<span class="increase">上升
+            {else}<span>上升
+            {/if}{abs($val['monthly_rate'])}%</span>
+            </span>；
+        </td>
+    </tr>
+    {/foreach}
+</table>

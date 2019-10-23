@@ -1,0 +1,79 @@
+{extends "layout/layout.html"}
+
+{block "layout.title"}{$response.application_info.name}-{TM::t('tongji', '游戏分析')}{/block}
+{block "layout.subnav"}{include "gameanalysis/sub-nav.html"}{/block}
+{block "layout.pagecss"}
+<link rel="stylesheet" type="text/css" href="{$response.res_server}/data/css/page/gameanalysis/board.css?ver={$response.application_info.version}">
+{/block}
+{block "layout.main"}
+<div class="main with-aside">
+    {include "gameanalysis/aside.html"}
+    <div class="content clearfix">
+        <input type="hidden" id="J_paramGameId" value="{$response.param.game_id}" />
+        <input type="hidden" id="J_paramPlatformId" value="{$response.param.platform_id}" />
+        <input type="hidden" id="J_paramZoneId" value="{$response.param.zone_id}" />
+        <input type="hidden" id="J_paramServerId" value="{$response.param.server_id}" />
+        <input type="hidden" id="J_r" value="{$response.param.r}" />
+        <div class="content-header clearfix" id="J_contentHeader">
+            <div class="select-con" id="J_zoneServer" tabindex="0">
+                <div class="select-title">{TM::t('tongji', '请选择：')}</div>
+            </div>
+            <select id="J_platform" class="r">
+            {if isset($response.platform) && !empty($response.platform)}
+            {foreach $response.platform as $platform}
+                {if $response.param.platform_id == $platform.platform_id}
+                <option data-id="{$platform.platform_id}" selected>{$platform.gpzs_name}</option>
+                {else}
+                <option data-id="{$platform.platform_id}">{$platform.gpzs_name}</option>
+                {/if}
+            {/foreach}
+            {else}
+                <option>{TM::t('tongji', '选择平台：')}</option>
+            {/if}
+            </select>
+            <div class="datepicker-trigger radius5-all single fr mr5" id="J_toTime">
+                <input type="hidden" id="J_to" value="{$response.param.to}" />
+                <i class="datepicker-icon"></i>
+                <input class="title" type="text" id="J_date" value="{$response.param.to}" />
+                <i class="datepicker-arrow"></i>
+            </div>
+        </div>
+        <div class="content-body" id="J_contentBody">
+            <div class="content-item">
+                <h2 class="title new-player">{TM::t('tongji', '新玩家')}</h2>
+                <div class="container clearfix" id="J_contentNewPlayer"></div>
+            </div>
+            <div class="content-item">
+                <h2 class="title active-player">{TM::t('tongji', '活跃玩家')}</h2>
+                <div class="container clearfix" id="J_contentActivePlayer"></div>
+            </div>
+            <div class="content-item">
+                <h2 class="title revenue">{TM::t('tongji', '收入')}</h2>
+                <div class="container clearfix" id="J_contentRevenue"></div>
+            </div>
+            <div class="content-item">
+                <h2 class="title first-pay">{TM::t('tongji', '首次付费')}</h2>
+                <div class="container clearfix" id="J_contentFirstPay"></div>
+            </div>
+        </div>
+    </div>
+</div>
+{/block}
+{block "layout.pagejs"}
+    <!-- here you can add some page javascript -->
+    <script src="{$response.res_server}/common/js/select.js"></script>
+    <script src="{$response.res_server}/data/js/common/navigator.js?v={$response.application_info.version}"></script>
+    <script src="{$response.res_server}/common/js/datepick.js"></script>
+    <script src="{$response.res_server}/common/js/Page.js"></script>
+    <script src="{$response.res_server}/common/js/tm.tabs.js"></script>
+    <script src="{$response.res_server}/common/js/draw/highstock.js"></script>
+    <script src="{$response.res_server}/common/js/tm.draw.js"></script>
+    <script src="{$response.res_server}/data/js/common/jquery.choose.js?v={$response.application_info.version}"></script>
+    <script src="{$response.res_server}/common/js/tm.datatable.js"></script>
+    <script src="{$response.res_server}/data/js/common/common.js?v={$response.application_info.version}"></script>
+    <script src="{$response.res_server}/data/js/common/stat.table.js"></script>
+    <script src="{$response.res_server}/data/js/page/gameanalysis/addtofavor.js?v={$response.application_info.version}"></script>
+    <script src="{$response.res_server}/data/js/common/tm.module.ok.js?v={$response.application_info.version}"></script>
+    <script src="{$response.res_server}/data/js/common/usage.ok.js?v={$response.application_info.version}"></script>
+    <script src="{$response.res_server}/data/js/page/gameanalysis/board.js?v={$response.application_info.version}"></script>
+{/block}

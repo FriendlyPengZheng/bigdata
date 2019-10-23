@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+        <title>{block "layout.title"}在线统计{/block}</title>
+        <link rel="stylesheet" type="text/css" href="{$response.res_server}/common/css/online.css?ver={$response.application_info.version}">
+    </head>
+    <body>
+    <!-- header begin -->
+    <div class="header" id="J_header">
+        <div class="wrapper">
+            <h1 class="logo"><a href="#" title="在线统计" class="tit"><span class="ir">在线统计</span></a></h1>
+            <!--main nav end-->
+            <ul class="links">
+                <li>欢迎你，{$response.user.current_admin_name}</li>
+                <li>|</li>
+                {if !empty($response.top_bar)}
+                    {foreach $response.top_bar as $top_bar}
+                        {if isset($top_bar.is_main) && !$top_bar.is_main}
+                        <li class="setting"><a href="{$top_bar.url}">{$top_bar.name}</a></li>
+                        <li>|</li>
+                        {/if}
+                    {/foreach}
+                {/if}
+                <li class="setting"><a href="index.php?r=user/logout">退出</a></li>
+            </ul>
+        </div>
+    </div>
+    <!-- header end -->
+    <!-- main begin -->
+    <div class="wrapper error-wrapper">
+        <div class="error-main">
+        </div>
+    </div>
+    </body>
+</html>
+

@@ -1,0 +1,9 @@
+/******help******/
+.single-help{ color: #333; font-size: 12px; float: right;}
+.help{ cursor: pointer; vertical-align: text-top; width: 16px; height: 16px; display: inline-block; zoom: 1; *display: inline; background: url(../../images/help.png) no-repeat 2px 0; }
+.help:hover{ cursor: pointer;}
+.help-container{ z-index: 1001; position: absolute; width: 205px;}
+.help-wrapper{ white-space: pre-line; line-height: 18px; text-align: left; border-radius: 3px; position: absolute; left: 0px; padding: 10px; font-size: 12px; color: #333; z-index: 1001; width: 200px; background-color: #ecf8fb; border: 1px solid #13a7d9; }
+.help-der{ top: -14px; left: 20px; z-index: 1000; border-width: 7px; border-style: solid; border-color: transparent; position: absolute; display: inline-block; width: 0px; height: 0px;}
+.help-der-up{ border-color: transparent transparent #13a7d9 transparent;}
+.help-der-down{border-color: #13a7d9 transparent transparent transparent;}

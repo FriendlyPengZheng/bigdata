@@ -1,0 +1,59 @@
+{extends "layout/layout.html"}
+{block "layout.title"}{$response.application_info.name}-{TM::t('tongji', '我的下载')}{/block}
+{block "layout.pagecss"}
+     <link rel="stylesheet" type="text/css" href="{$response.res_server}/data/css/page/tool/file.css?v={$response.application_info.version}">
+{/block}
+{block "layout.main"}
+<div class="main">
+    <div class="content clearfix">
+        {if isset($response.file_list) && !empty($response.file_list)}
+        <table class="table file-list">
+            <thead>
+                <tr class="tr">
+                    <th class="th">{TM::t('tongji', '文件名')}</th>
+                    <th class="th">{TM::t('tongji', '状态')}</th>
+                    <th class="th">{TM::t('tongji', '进度')}</th>
+                    <th class="th">{TM::t('tongji', '创建时间')}</th>
+                    <th class="th">{TM::t('tongji', '操作')}</th>
+                </tr>
+            </thead>
+            <tbody>
+                {foreach $response.file_list as $file}
+                <tr class="tr" file-id="{$file.file_id}" file-source="{$file.file_source}">
+                    <td class="td ct">{$file.file_name}</td>
+                    <td id="J_file{$file.file_id}" class="td ct
+                        {if $file.status == 0}
+                        refresh"><span class="exporting">{TM::t('tongji', '排队中')}</span>
+                        {elseif $file.status == 1}
+                        refresh"><span class="exporting">{TM::t('tongji', '处理中')}</span>
+                        {elseif $file.status == 2}
+                        "><span class="c-ok">{TM::t('tongji', '已完成')}</span>
+                        {else}
+                        "><span class="c-err">{TM::t('tongji', '出错了！')}{$file.message}</span>
+                        {/if}
+                    </td>
+                    <td class="td ct">{$file.progress}%</td>
+                    <td class="td ct">{$file.add_time}</td>
+                    <td class="td ct">
+                        {if $file.status == 2}
+                        <span class="btn-dft btn-down">{TM::t('tongji', '下载')}</span>
+                        {/if}
+                        <span class="btn-dft btn-del">{TM::t('tongji', '删除')}</span>
+                    </td>
+                </tr>
+                {/foreach}
+            </tbody>
+        </table>
+        {else}
+        <div class="empty-file-list clearfix">
+            <div class="empty-pic"></div>
+            <div class="empty-tip">{TM::t('tongji', '您还没有下载的文件哦！')}</div>
+        </div>
+        {/if}
+    </div>
+</div>
+{/block}
+{block "layout.pagejs"}
+    <!-- here you can add some page javascript -->
+    <script src="{$response.res_server}/data/js/page/tool/file.js?v={$response.application_info.version}"></script>
+{/block}

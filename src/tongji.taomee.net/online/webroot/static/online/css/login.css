@@ -1,0 +1,40 @@
+html { font-size: 100%; -webkit-text-size-adjust: 100%; -ms-text-size-adjust: 100%; }
+/* 提示 */
+.dropdown-menu{ position: absolute; top: -42px; left: 45px; z-index: 1000; float: left; min-width: 160px; padding: 4px 0; margin: 1px 0 0; list-style: none; background-color: #ffffff; border: 1px solid #ccc; border: 1px solid #dd4814; -webkit-border-radius: 5px; -moz-border-radius: 5px; border-radius: 5px; -webkit-box-shadow: 0 -5px 10px rgba(0, 0, 0, 0.2); -moz-box-shadow: 0 -5px 10px rgba(0, 0, 0, 0.2); box-shadow: 0 -5px 10px rgba(0, 0, 0, 0.2); -webkit-background-clip: padding-box; -moz-background-clip: padding; background-clip: padding-box; display:none; }
+.dropdown-menu span { display: block; padding: 3px 15px; clear: both; font-weight: normal; line-height: 18px; color: #dd4814; white-space: nowrap; }
+.dropdown-menu:before { content: ''; display: inline-block; border-left: 7px solid transparent; border-right: 7px solid transparent; border-top: 7px solid #ccc; border-top-color: #dd4814; position: absolute; top: 32px; left: 9px; }
+.dropdown-menu:after { content: ''; display: inline-block; border-left: 6px solid transparent; border-right: 6px solid transparent; border-top: 6px solid #ffffff; position: absolute; top: 31px; left: 10px; }
+
+.wrapper { width: 1000px; margin: 0 auto; position: relative; }
+
+.banner { background-image: url(../images/login/bg_login.png); background-repeat: no-repeat; background-position: center 0; height: 750px; }
+
+.logo { position: absolute; top: 55px; left: 157px; }
+
+.login-container { position: absolute; top: 0; right: 90px; width: 342px; height: 280px; padding-top: 200px; background-color: #1AA6FD; }
+.login-form { width: 300px; margin: 0 auto; position: relative; }
+.frm .frm-ln { height: 35px; position: relative; padding: 5px 0; line-height: 35px; }
+.frm .frm-txt-dft { position: absolute; width: 288px; height: 36px; padding: 0 7px; line-height: 36px; font-size: 14px; color: #8B9096; background: #FFF; }
+.frm .frm-name .frm-txt-dft{ padding: 0px 7px 0px 27px; width: 270px; background: #FFF url(../images/login/login.png) no-repeat 3px -112px; }
+.frm .frm-pwd .frm-txt-dft{ padding: 0px 7px 0px 27px; width: 270px; background: #FFF url(../images/login/login.png) no-repeat 3px -146px; }
+.frm .frm-txt { position: relative; width: 290px; height: 35px; line-height: 35px; padding: 0 5px; border: 1px solid #CCC; background: rgba(0, 0, 0, 0); outline: none; }
+.frm .frm-name .frm-txt, .frm .frm-pwd .frm-txt { padding: 0px 5px 0 0;  width: 269px; margin-left: 30px; border: none; }
+@media screen and (-webkit-min-device-pixel-ratio: 0).frm .frm-txt { line-height: normal; }
+.frm .vericode-input .frm-txt-dft { width: 122px; }
+.frm .vericode-input .frm-txt { width: 125px; }
+.vericode-input { position: relative; float: left; }
+.vericode-img { float: right; }
+.login-btn { display: block; width: 300px; height: 42px; background-image: url(../images/login/login.png?v=20140218); background-position: 0px -21px; cursor: pointer; line-height: 42px; text-align: center; color: #FFF; font-size: 20px; font-weight: bold; text-shadow: 0 0 1px #000; border: 0; }
+.login-btn:hover { background-position: 0px -68px;}
+
+.horizon { height: 17px; width: 100%; background-image: url(../images/login/login.png); background-repeat: repeat-x; }
+
+.footer { padding: 20px 0; font-size: 12px; color: #999; line-height: 2; }
+.footer a { color: #666; text-decoration: none; }
+.footer .ft-logo, .footer .ft-netpolice { position: absolute; left: 10px; top: 30px; width: 155px; height: 26px; line-height: 100; overflow: hidden; background: url(../images/login/sprite_bottom.png?v=20140218) no-repeat 0 -31px; }
+.footer .ft-remark { margin-left: 210px; }
+.footer .ft-link .divide { margin: 0 5px; font-style: normal; }
+.footer .ft-netpolice { width: 75px; height: 31px; left: auto; right: 40px; top: 30px; background-position: 0 0; }
+
+.dropdown-notice { position: absolute; top: -35px; left: 0px; padding: 0 10px 0 30px; line-height: 30px; font-size: 12px; color: #666; height: 30px; box-shadow: 0 0 2px #666; -webkit-box-shadow: 0 0 2px #666; -moz-box-shadow: 0 0 2px #666; background: #FFF url(../images/login/login.png) no-repeat 5px -190px; }
+.dropdown-notice:after { content: ''; display: inline-block; border-left: 6px solid transparent; border-right: 6px solid transparent; border-top: 6px solid #ffffff; position: absolute; top: 30px; left: 10px; }

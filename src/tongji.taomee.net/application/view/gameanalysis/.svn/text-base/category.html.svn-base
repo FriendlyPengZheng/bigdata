@@ -1,0 +1,34 @@
+{extends "layout/layout.html"}
+
+{block "layout.title"}{$response.application_info.name}-{TM::t('tongji', '游戏分析')}{/block}
+{block "layout.subnav"}{include "gameanalysis/sub-nav.html"}{/block}
+{block "layout.pagecss"}
+     <link rel="stylesheet" type="text/css" href="{$response.res_server}/data/css/page/gameanalysis/conf.css?v={$response.application_info.version}">
+{/block}
+{block "layout.main"}
+<div class="main with-aside">
+    {include "gameanalysis/aside.html"}
+    <div class="content" id="J_tableContainer">
+        <input type="hidden" id="J_paramGameId" value="{$response.param.game_id}" />
+        <div class="content-header clearfix">
+            <a class="add-btn" id="J_addBtn">{TM::t('tongji', '+添加类别')}</a>
+            <div id="J_tableSearchContainer" class="search-wrapper"></div>
+        </div>
+        <div id="J_contentBody"></div>
+    </div>
+</div>
+{/block}
+{block "layout.pagejs"}
+<!-- here you can add some page javascript -->
+<script src="{$response.res_server}/common/js/select.js"></script>
+<script src="{$response.res_server}/data/js/common/navigator.js?v={$response.application_info.version}"></script>
+<script src="{$response.res_server}/common/js/jquery.form.js"></script>
+<script src="{$response.res_server}/common/js/Page.js"></script>
+    <script src="{$response.res_server}/data/js/common/jquery.choose.js?v={$response.application_info.version}"></script>
+<script src="{$response.res_server}/common/js/tm.datatable.js"></script>
+<script src="{$response.res_server}/data/js/common/common.js?v={$response.application_info.version}"></script>
+<script src="{$response.res_server}/data/js/common/tm.module.ok.js?v={$response.application_info.version}"></script>
+<script src="{$response.res_server}/data/js/common/usage.ok.js?v={$response.application_info.version}"></script>
+<script src="{$response.res_server}/data/js/common/tm.form.js"></script>
+<script src="{$response.res_server}/data/js/page/gameanalysis/category.js?v={$response.application_info.version}"></script>
+{/block}
