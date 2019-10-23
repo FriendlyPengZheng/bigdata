@@ -1,0 +1,55 @@
+<table style='font-size:14px' width='100%' cellpadding='0' cellspacing='0' align='center'
+	rules='all' border='1'>
+    {if isset($title)}
+    <tr>
+        <th valign='top' align='center' colspan='5'
+			style='background-color:#4BACC6;font-weight:bold;color:#FFF;'>{$title}</th>
+    </tr>
+    {/if}
+    <tr>
+        {if isset($title)}
+		<th width='20%' valign='top'
+			style='background-color:#4BACC6;font-weight:bold;color:#FFF;'>项目</th>
+        {else}
+		<th width='20%' valign='top'
+			style='background-color:#4BACC6;font-weight:bold;color:#FFF;'>指标</th>
+        {/if}
+        <th width='20%' valign='top'
+			style='background-color:#4BACC6;font-weight:bold;color:#FFF;'>当天</th>
+		<th width='20%' valign='top'
+			style='background-color:#4BACC6;font-weight:bold;color:#FFF;'>较前天</th>
+		<th width='20%' valign='top'
+			style='background-color:#4BACC6;font-weight:bold;color:#FFF;'>较上周</th>
+		<th width='20%' valign='top'
+			style='background-color:#4BACC6;font-weight:bold;color:#FFF;'>较上月</th>
+    </tr>
+    {foreach $data as $i => $d}
+    <tr>
+        <td width='20%' valign='middle' align='center'
+            {if $i%2}
+            style='background-color:#E8F8F7;'
+            {/if}
+        >{$d.0}</td>
+        <td width='20%' valign='middle' align='center' 
+            {if $i%2}
+            style='background-color:#E8F8F7;'
+            {/if}
+        >{$d.1}</td>
+        <td width='20%' valign='top' align='center'
+            {if $i%2}
+            style='background-color:#E8F8F7;'
+            {/if}
+        >{$d.2}<br>{$d.3}</td>
+        <td width='20%' valign='top' align='center'
+            {if $i%2}
+            style='background-color:#E8F8F7;'
+            {/if}
+        >{$d.4}<br>{$d.5}</td>
+        <td width='20%' valign='top' align='center'
+            {if $i%2}
+            style='background-color:#E8F8F7;'
+            {/if}
+        >{$d.6}<br>{$d.7}</td>
+    </tr>
+    {/foreach}
+</table>

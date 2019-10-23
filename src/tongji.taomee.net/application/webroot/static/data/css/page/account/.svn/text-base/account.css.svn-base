@@ -1,0 +1,2 @@
+.select-con { width: 170px; float: left; margin-left: 5px; }
+.origin-sel { width: 240px; }

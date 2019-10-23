@@ -1,0 +1,57 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>{block "layout.subject"}{/block}</title>
+    <style type="text/css">
+        {block "layout.css"}
+        body { font-family:arial,simsun; }
+        {/block}
+
+        body { font-size:14px; }
+        .fb { font-weight:bold; }
+        .increase { color:red; }
+        .decrease { color:green; }
+
+        /* Client-specific Styles */
+        #outlook a { padding:0; } /* Force Outlook to provide a "view in browser" menu link. */
+        #backgroundTable { margin:0; padding:0; width:1002px !important; line-height: 100% !important; }
+        /* End reset */
+
+        /* Some sensible defaults for images
+        Bring inline: Yes. */
+        img { outline:none; text-decoration:none; -ms-interpolation-mode: bicubic; }
+        a img { border:none; }
+        .image_fix { display:block; }
+
+        /* Outlook 07, 10 Padding issue fix
+        Bring inline: No.*/
+        table td { border-collapse: collapse; }
+
+        /* Remove spacing around Outlook 07, 10 tables
+        Bring inline: Yes */
+        table { border-collapse:collapse; mso-table-lspace:0pt; mso-table-rspace:0pt; }
+
+        .table { width:1000px; border-top:1px solid #000; border-left:1px solid #000; text-align:center; }
+        .table th { padding-top:8px; padding-bottom:8px; border-right:1px solid #000; border-bottom:1px solid #000; vertical-align:middle; font-weight:bold; background-color:#4BACC6; color:#FFF; }
+        .table td { padding-top:8px; padding-bottom:8px; border-right:1px solid #000; border-bottom:1px solid #000; vertical-align:middle; }
+    </style>
+
+    <!--[if gte mso 9]>
+        <style>
+        /* Target Outlook 2007 and 2010 */
+        </style>
+    <![endif]-->
+</head>
+<body>
+<table cellpadding="0" cellspacing="0" border="0" align="center" id="backgroundTable">
+    <tr>
+        <td valign="top">{block "layout.main"}{/block}</td>
+    </tr>
+    <tr>
+        <td valign="top">{block "layout.signature"}{include "signature.html"}{/block}</td>
+    </tr>
+</table>
+</body>
+</html>

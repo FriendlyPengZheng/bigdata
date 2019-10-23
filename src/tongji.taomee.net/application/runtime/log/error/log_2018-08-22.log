@@ -1,0 +1,104 @@
+[2018-08-22 10:23:09]
+TMDbConnection failed to open the DB connection: SQLSTATE[HY000] [2013] Lost connection to MySQL server at 'reading authorization packet', system error: 0
+Stack trace:
+#0 /opt/home/sevin/project/tongji.taomee.net/taomee/db/TMDbConnection.php(244): TMDbConnection->createPdoInstance()
+#1 /opt/home/sevin/project/tongji.taomee.net/taomee/db/TMDbConnection.php(220): TMDbConnection->open()
+#2 /opt/home/sevin/project/tongji.taomee.net/taomee/db/TMDbConnection.php(185): TMDbConnection->setActive(true)
+#3 /opt/home/sevin/project/tongji.taomee.net/taomee/base/TMModule.php(165): TMDbConnection->init()
+#4 /opt/home/sevin/project/tongji.taomee.net/taomee/base/Application.php(282): TMModule->getComponent('db')
+#5 /opt/home/sevin/project/tongji.taomee.net/taomee/base/TMModel.php(95): taomee\base\Application->getDb()
+#6 /opt/home/sevin/project/tongji.taomee.net/taomee/base/TMFormModel.php(512): TMModel->getDb()
+#7 /opt/home/sevin/project/tongji.taomee.net/taomee/base/TMFormModel.php(32): TMFormMetaData->__construct(Object(common_Game))
+#8 /opt/home/sevin/project/tongji.taomee.net/taomee/base/TMFormModel.php(22): TMFormModel->getMetaData()
+#9 /opt/home/sevin/project/tongji.taomee.net/application/components/Navigator.php(16): TMFormModel->__construct()
+#10 /opt/home/sevin/project/tongji.taomee.net/taomee/base/TMModule.php(165): Navigator->init()
+#11 /opt/home/sevin/project/tongji.taomee.net/taomee/base/TMModule.php(68): TMModule->getComponent('navigator')
+#12 /opt/home/sevin/project/tongji.taomee.net/application/components/User.php(304): TMModule->__get('navigator')
+#13 /opt/home/sevin/project/tongji.taomee.net/application/components/Authorization.php(6): User->checkAuthority()
+#14 /opt/home/sevin/project/tongji.taomee.net/taomee/web/TMController.php(103): Authorization->check()
+#15 /opt/home/sevin/project/tongji.taomee.net/taomee/web/TMWebApplication.php(96): TMController->run('', false)
+#16 /opt/home/sevin/project/tongji.taomee.net/taomee/web/TMWebApplication.php(81): TMWebApplication->runController('')
+#17 /opt/home/sevin/project/tongji.taomee.net/taomee/base/Application.php(88): TMWebApplication->processRequest()
+#18 /opt/home/sevin/project/tongji.taomee.net/application/webroot/index.php(102): taomee\base\Application->run()
+#19 {main}
+REQUEST_URI=/
+[2018-08-22 10:27:35]
+Declaration of Signtransext::beforeRunAction() should be compatible with common_Base::beforeRunAction($aParameters) (/opt/home/sevin/project/tongji.taomee.net/application/controller/topic/Signtransext.php:3)
+Stack trace:
+#0 /opt/home/sevin/project/tongji.taomee.net/application/controller/topic/Signtransext.php(3): TMWebApplication->handleError()
+#1 /opt/home/sevin/project/tongji.taomee.net/taomee/web/TMWebApplication.php(139): require()
+#2 /opt/home/sevin/project/tongji.taomee.net/taomee/web/TMWebApplication.php(94): TMWebApplication->createController()
+#3 /opt/home/sevin/project/tongji.taomee.net/taomee/web/TMWebApplication.php(81): TMWebApplication->runController()
+#4 /opt/home/sevin/project/tongji.taomee.net/taomee/base/Application.php(88): TMWebApplication->processRequest()
+#5 /opt/home/sevin/project/tongji.taomee.net/application/webroot/index.php(102): TMWebApplication->run()
+REQUEST_URI=/index.php?r=topic/signtransext/getSigntransGame
+[2018-08-22 10:37:00]
+TMCurlHelper error [6]Couldn't resolve host 'am-server.taomee.net'
+Stack trace:
+#0 /opt/home/sevin/project/tongji.taomee.net/application/components/User.php(357): TMCurlHelper::fetch('http://am-serve...', Array, 'post', 'json')
+#1 /opt/home/sevin/project/tongji.taomee.net/application/components/User.php(876): User->_request(1006, Array)
+#2 /opt/home/sevin/project/tongji.taomee.net/application/controller/home/Collect.php(327): User->fetchAllUsers()
+#3 /opt/home/sevin/project/tongji.taomee.net/taomee/web/TMController.php(154): Collect->fetchSharedUsers(Array)
+#4 /opt/home/sevin/project/tongji.taomee.net/taomee/web/TMController.php(132): TMController->runAction('fetchSharedUser...')
+#5 /opt/home/sevin/project/tongji.taomee.net/taomee/web/TMController.php(107): TMController->runActionWithFilters('fetchSharedUser...', Array)
+#6 /opt/home/sevin/project/tongji.taomee.net/taomee/web/TMWebApplication.php(96): TMController->run('fetchSharedUser...', false)
+#7 /opt/home/sevin/project/tongji.taomee.net/taomee/web/TMWebApplication.php(81): TMWebApplication->runController('home/collect/fe...')
+#8 /opt/home/sevin/project/tongji.taomee.net/taomee/base/Application.php(88): TMWebApplication->processRequest()
+#9 /opt/home/sevin/project/tongji.taomee.net/application/webroot/index.php(102): taomee\base\Application->run()
+#10 {main}
+REQUEST_URI=/index.php?r=home/collect/fetchSharedUsers
+[2018-08-22 10:37:00]
+TMCurlHelper error [6]Couldn't resolve host 'am-server.taomee.net'
+Stack trace:
+#0 /opt/home/sevin/project/tongji.taomee.net/application/components/User.php(357): TMCurlHelper::fetch('http://am-serve...', Array, 'post', 'json')
+#1 /opt/home/sevin/project/tongji.taomee.net/application/components/User.php(876): User->_request(1006, Array)
+#2 /opt/home/sevin/project/tongji.taomee.net/application/controller/home/Collect.php(327): User->fetchAllUsers()
+#3 /opt/home/sevin/project/tongji.taomee.net/taomee/web/TMController.php(154): Collect->fetchSharedUsers(Array)
+#4 /opt/home/sevin/project/tongji.taomee.net/taomee/web/TMController.php(132): TMController->runAction('fetchSharedUser...')
+#5 /opt/home/sevin/project/tongji.taomee.net/taomee/web/TMController.php(107): TMController->runActionWithFilters('fetchSharedUser...', Array)
+#6 /opt/home/sevin/project/tongji.taomee.net/taomee/web/TMWebApplication.php(96): TMController->run('fetchSharedUser...', false)
+#7 /opt/home/sevin/project/tongji.taomee.net/taomee/web/TMWebApplication.php(81): TMWebApplication->runController('home/collect/fe...')
+#8 /opt/home/sevin/project/tongji.taomee.net/taomee/base/Application.php(88): TMWebApplication->processRequest()
+#9 /opt/home/sevin/project/tongji.taomee.net/application/webroot/index.php(102): taomee\base\Application->run()
+#10 {main}
+REQUEST_URI=/index.php?r=home/collect/fetchSharedUsers
+[2018-08-22 10:38:18]
+Declaration of Signtransext::beforeRunAction() should be compatible with common_Base::beforeRunAction($aParameters) (/opt/home/sevin/project/tongji.taomee.net/application/controller/topic/Signtransext.php:3)
+Stack trace:
+#0 /opt/home/sevin/project/tongji.taomee.net/application/controller/topic/Signtransext.php(3): TMWebApplication->handleError()
+#1 /opt/home/sevin/project/tongji.taomee.net/taomee/web/TMWebApplication.php(139): require()
+#2 /opt/home/sevin/project/tongji.taomee.net/taomee/web/TMWebApplication.php(94): TMWebApplication->createController()
+#3 /opt/home/sevin/project/tongji.taomee.net/taomee/web/TMWebApplication.php(81): TMWebApplication->runController()
+#4 /opt/home/sevin/project/tongji.taomee.net/taomee/base/Application.php(88): TMWebApplication->processRequest()
+#5 /opt/home/sevin/project/tongji.taomee.net/application/webroot/index.php(102): TMWebApplication->run()
+REQUEST_URI=/index.php?r=topic/signtransext/getSigntransGame
+[2018-08-22 12:12:14]
+TMCurlHelper error [6]Couldn't resolve host 'am-server.taomee.net'
+Stack trace:
+#0 /opt/home/sevin/project/tongji.taomee.net/application/components/User.php(357): TMCurlHelper::fetch('http://am-serve...', Array, 'post', 'json')
+#1 /opt/home/sevin/project/tongji.taomee.net/application/components/User.php(876): User->_request(1006, Array)
+#2 /opt/home/sevin/project/tongji.taomee.net/application/controller/home/Collect.php(327): User->fetchAllUsers()
+#3 /opt/home/sevin/project/tongji.taomee.net/taomee/web/TMController.php(154): Collect->fetchSharedUsers(Array)
+#4 /opt/home/sevin/project/tongji.taomee.net/taomee/web/TMController.php(132): TMController->runAction('fetchSharedUser...')
+#5 /opt/home/sevin/project/tongji.taomee.net/taomee/web/TMController.php(107): TMController->runActionWithFilters('fetchSharedUser...', Array)
+#6 /opt/home/sevin/project/tongji.taomee.net/taomee/web/TMWebApplication.php(96): TMController->run('fetchSharedUser...', false)
+#7 /opt/home/sevin/project/tongji.taomee.net/taomee/web/TMWebApplication.php(81): TMWebApplication->runController('home/collect/fe...')
+#8 /opt/home/sevin/project/tongji.taomee.net/taomee/base/Application.php(88): TMWebApplication->processRequest()
+#9 /opt/home/sevin/project/tongji.taomee.net/application/webroot/index.php(102): taomee\base\Application->run()
+#10 {main}
+REQUEST_URI=/index.php?r=home/collect/fetchSharedUsers
+[2018-08-22 12:12:15]
+TMCurlHelper error [6]Couldn't resolve host 'am-server.taomee.net'
+Stack trace:
+#0 /opt/home/sevin/project/tongji.taomee.net/application/components/User.php(357): TMCurlHelper::fetch('http://am-serve...', Array, 'post', 'json')
+#1 /opt/home/sevin/project/tongji.taomee.net/application/components/User.php(876): User->_request(1006, Array)
+#2 /opt/home/sevin/project/tongji.taomee.net/application/controller/home/Collect.php(327): User->fetchAllUsers()
+#3 /opt/home/sevin/project/tongji.taomee.net/taomee/web/TMController.php(154): Collect->fetchSharedUsers(Array)
+#4 /opt/home/sevin/project/tongji.taomee.net/taomee/web/TMController.php(132): TMController->runAction('fetchSharedUser...')
+#5 /opt/home/sevin/project/tongji.taomee.net/taomee/web/TMController.php(107): TMController->runActionWithFilters('fetchSharedUser...', Array)
+#6 /opt/home/sevin/project/tongji.taomee.net/taomee/web/TMWebApplication.php(96): TMController->run('fetchSharedUser...', false)
+#7 /opt/home/sevin/project/tongji.taomee.net/taomee/web/TMWebApplication.php(81): TMWebApplication->runController('home/collect/fe...')
+#8 /opt/home/sevin/project/tongji.taomee.net/taomee/base/Application.php(88): TMWebApplication->processRequest()
+#9 /opt/home/sevin/project/tongji.taomee.net/application/webroot/index.php(102): taomee\base\Application->run()
+#10 {main}
+REQUEST_URI=/index.php?r=home/collect/fetchSharedUsers

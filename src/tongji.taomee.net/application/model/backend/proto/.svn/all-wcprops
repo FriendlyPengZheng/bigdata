@@ -1,0 +1,125 @@
+K 25
+svn:wc:ra_dav:version-url
+V 77
+/data-center/!svn/ver/4164/web/stat-web/trunk/application/model/backend/proto
+END
+DbConfigServer.php
+K 25
+svn:wc:ra_dav:version-url
+V 96
+/data-center/!svn/ver/4164/web/stat-web/trunk/application/model/backend/proto/DbConfigServer.php
+END
+StatClientData.php
+K 25
+svn:wc:ra_dav:version-url
+V 96
+/data-center/!svn/ver/4164/web/stat-web/trunk/application/model/backend/proto/StatClientData.php
+END
+GetHeader.proto
+K 25
+svn:wc:ra_dav:version-url
+V 93
+/data-center/!svn/ver/3855/web/stat-web/trunk/application/model/backend/proto/GetHeader.proto
+END
+ResponseHeader.php
+K 25
+svn:wc:ra_dav:version-url
+V 96
+/data-center/!svn/ver/4164/web/stat-web/trunk/application/model/backend/proto/ResponseHeader.php
+END
+forbidAlarmHeader.proto
+K 25
+svn:wc:ra_dav:version-url
+V 101
+/data-center/!svn/ver/3855/web/stat-web/trunk/application/model/backend/proto/forbidAlarmHeader.proto
+END
+StatTaskTracker.php
+K 25
+svn:wc:ra_dav:version-url
+V 97
+/data-center/!svn/ver/4164/web/stat-web/trunk/application/model/backend/proto/StatTaskTracker.php
+END
+StatDataNode.php
+K 25
+svn:wc:ra_dav:version-url
+V 94
+/data-center/!svn/ver/4164/web/stat-web/trunk/application/model/backend/proto/StatDataNode.php
+END
+DbConfigServer.proto
+K 25
+svn:wc:ra_dav:version-url
+V 98
+/data-center/!svn/ver/4164/web/stat-web/trunk/application/model/backend/proto/DbConfigServer.proto
+END
+StatClientData.proto
+K 25
+svn:wc:ra_dav:version-url
+V 98
+/data-center/!svn/ver/3855/web/stat-web/trunk/application/model/backend/proto/StatClientData.proto
+END
+StatNameNode.php
+K 25
+svn:wc:ra_dav:version-url
+V 94
+/data-center/!svn/ver/4164/web/stat-web/trunk/application/model/backend/proto/StatNameNode.php
+END
+StatJobTracker.php
+K 25
+svn:wc:ra_dav:version-url
+V 96
+/data-center/!svn/ver/4164/web/stat-web/trunk/application/model/backend/proto/StatJobTracker.php
+END
+ResponseHeader.proto
+K 25
+svn:wc:ra_dav:version-url
+V 98
+/data-center/!svn/ver/3855/web/stat-web/trunk/application/model/backend/proto/ResponseHeader.proto
+END
+DeleteMonitorHeader.php
+K 25
+svn:wc:ra_dav:version-url
+V 101
+/data-center/!svn/ver/4164/web/stat-web/trunk/application/model/backend/proto/DeleteMonitorHeader.php
+END
+StatTaskTracker.proto
+K 25
+svn:wc:ra_dav:version-url
+V 99
+/data-center/!svn/ver/3990/web/stat-web/trunk/application/model/backend/proto/StatTaskTracker.proto
+END
+StatDataNode.proto
+K 25
+svn:wc:ra_dav:version-url
+V 96
+/data-center/!svn/ver/4031/web/stat-web/trunk/application/model/backend/proto/StatDataNode.proto
+END
+GetHeader.php
+K 25
+svn:wc:ra_dav:version-url
+V 91
+/data-center/!svn/ver/4164/web/stat-web/trunk/application/model/backend/proto/GetHeader.php
+END
+forbidAlarmHeader.php
+K 25
+svn:wc:ra_dav:version-url
+V 99
+/data-center/!svn/ver/4164/web/stat-web/trunk/application/model/backend/proto/forbidAlarmHeader.php
+END
+StatNameNode.proto
+K 25
+svn:wc:ra_dav:version-url
+V 96
+/data-center/!svn/ver/4164/web/stat-web/trunk/application/model/backend/proto/StatNameNode.proto
+END
+StatJobTracker.proto
+K 25
+svn:wc:ra_dav:version-url
+V 98
+/data-center/!svn/ver/3855/web/stat-web/trunk/application/model/backend/proto/StatJobTracker.proto
+END
+DeleteMonitorHeader.proto
+K 25
+svn:wc:ra_dav:version-url
+V 103
+/data-center/!svn/ver/3855/web/stat-web/trunk/application/model/backend/proto/DeleteMonitorHeader.proto
+END

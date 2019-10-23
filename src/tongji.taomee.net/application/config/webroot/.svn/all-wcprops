@@ -1,0 +1,17 @@
+K 25
+svn:wc:ra_dav:version-url
+V 72
+/data-center/!svn/ver/4744/web/stat-web/trunk/application/config/webroot
+END
+release-index.php
+K 25
+svn:wc:ra_dav:version-url
+V 90
+/data-center/!svn/ver/4744/web/stat-web/trunk/application/config/webroot/release-index.php
+END
+develop-index.php
+K 25
+svn:wc:ra_dav:version-url
+V 90
+/data-center/!svn/ver/4744/web/stat-web/trunk/application/config/webroot/develop-index.php
+END

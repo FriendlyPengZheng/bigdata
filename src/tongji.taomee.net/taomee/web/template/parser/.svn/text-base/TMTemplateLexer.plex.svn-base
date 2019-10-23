@@ -1,0 +1,758 @@
+<?php
+/**
+ * TMTemplateLexer
+ */
+class TMTemplateLexer
+{
+    public $data;
+    public $counter;
+    public $token;
+    public $value;
+    public $line;
+
+    public $compiler;
+    public $template;
+
+    public $ldel;
+    public $ldelLength;
+    public $rdel;
+    public $rdelLength;
+
+    public $tokenNames = array (
+        'IDENTITY'        => '===',
+        'NONEIDENTITY'    => '!==',
+        'EQUALS'          => '==',
+        'NOTEQUALS'       => '!=',
+        'GREATEREQUAL'    => '(>=,ge)',
+        'LESSEQUAL'       => '(<=,le)',
+        'GREATERTHAN'     => '(>,gt)',
+        'LESSTHAN'        => '(<,lt)',
+        'MOD'             => '(%,mod)',
+        'NOT'             => '(!,not)',
+        'LAND'            => '(&&,and)',
+        'LOR'             => '(||,or)',
+        'LXOR'            => 'xor',
+        'OPENP'           => '(',
+        'CLOSEP'          => ')',
+        'OPENB'           => '[',
+        'CLOSEB'          => ']',
+        'PTR'             => '->',
+        'APTR'            => '=>',
+        'EQUAL'           => '=',
+        'NUMBER'          => 'number',
+        'UNIMATH'         => '+" , "-',
+        'MATH'            => '*" , "/" , "%',
+        'INCDEC'          => '++" , "--',
+        'SPACE'           => ' ',
+        'DOLLAR'          => '$',
+        'SEMICOLON'       => ';',
+        'COLON'           => ':',
+        'DOUBLECOLON'     => '::',
+        'AT'              => '@',
+        'QUOTE'           => '"',
+        'BACKTICK'        => '`',
+        'VERT'            => '|',
+        'DOT'             => '.',
+        'COMMA'           => '","',
+        'ANDSYM'          => '"&"',
+        'QMARK'           => '"?"',
+        'ID'              => 'identifier',
+        'TEXT'            => 'text',
+        'FAKEPHPSTARTTAG' => 'Fake PHP start tag',
+        'PHPSTARTTAG'     => 'PHP start tag',
+        'PHPENDTAG'       => 'PHP end tag',
+        'LITERALSTART'    => 'Literal start',
+        'LITERALEND'      => 'Literal end',
+        'LDELSLASH'       => 'closing tag',
+        'COMMENT'         => 'comment',
+        'AS'              => 'as',
+        'TO'              => 'to'
+    );
+
+    // required by LexerGenerator.
+    public $mbstring_overload;
+
+
+    function __construct($data, $compiler)
+    {
+        $this->data = $data;
+        $this->counter = 0;
+        $this->line = 1;
+        $this->compiler = $compiler;
+        $this->template = $compiler->template;
+
+        $this->ldel = preg_quote($this->template->leftDelimiter, '/');
+        $this->ldelLength = strlen($this->template->leftDelimiter);
+        $this->rdel = preg_quote($this->template->rightDelimiter, '/');
+        $this->rdelLength = strlen($this->template->rightDelimiter);
+        $this->tokenNames['LDEL'] = $this->template->leftDelimiter;
+        $this->tokenNames['RDEL'] = $this->template->rightDelimiter;
+
+        $this->mbstring_overload = ini_get('mbstring.func_overload') & 2;
+     }
+
+/*!lex2php
+%input $this->data
+%counter $this->counter
+%token $this->token
+%value $this->value
+%line $this->line
+linebreak = /[\t ]*[\r\n]+[\t ]*/
+text = /[\S\s]/
+textdoublequoted = /([^"\\]*?)((?:\\.[^"\\]*?)*?)(?=(TEMPLATEldel|\$|`\$|"))/
+dollarid = /\$[0-9]*[a-zA-Z_]\w*/
+all = /[\S\s]+/
+emptyjava = /\{\}/
+phpstarttag = /<\?(?:php\w+|=|[a-zA-Z]+)?/
+phpendtag = /\?>/
+aspstarttag = /<%/
+aspendtag = /%>/
+slash = /\//
+ldel = /TEMPLATEldel\s*/
+rdel = /\s*TEMPLATErdel/
+templateblockchildparent = /[\$]template\.block\.(child|parent)/
+integer = /\d+/
+hex =  /0[xX][0-9a-fA-F]+/
+math = /\s*(\*|\/|\%)\s*/
+comment = /\*([\S\s]*?)\*/
+incdec = /\+\+|\-\-/
+unimath = /\s*(\+|\-)\s*/
+openP = /\s*\(\s*/
+closeP = /\s*\)/
+openB = /\[\s*/
+closeB = /\s*\]/
+dollar = /\$/
+dot = /\./
+comma = /\s*\,\s*/
+doublecolon = /\:\:/
+colon = /\s*\:\s*/
+at = /@/
+semicolon = /\s*\;/
+equal = /\s*=\s*/
+space = /\s+/
+ptr = /\s*\->\s*/
+aptr = /\s*=>\s*/
+singlequotestring = /'[^'\\]*(?:\\.[^'\\]*)*'/
+backtick = /`/
+backtickdollar = /`\$/
+vert = /\|/
+andsym = /\s*\&\s*/
+qmark = /\s*\?\s*/
+constant = /([_]+[A-Z0-9][0-9A-Z_]*|[A-Z][0-9A-Z_]*)(?![0-9A-Z_]*[a-z])/
+attr = /\s+[0-9]*[a-zA-Z_][a-zA-Z0-9_\-:]*\s*=\s*/
+id = /[0-9]*[a-zA-Z_]\w*/
+literal = /literal/
+strip = /strip/
+equals = /\s*==\s*|\s+eq\s+/
+notequals = /\s*!=\s*|\s*<>\s*|\s+(ne|neq)\s+/
+greaterthan = /\s*>\s*|\s+gt\s+/
+lessthan = /\s*<\s*|\s+lt\s+/
+greaterequal = /\s*>=\s*|\s+(ge|gte)\s+/
+lessequal = /\s*<=\s*|\s+(le|lte)\s+/
+mod = /\s+mod\s+/
+identity = /\s*===\s*/
+noneidentity = /\s*!==\s*/
+isoddby = /\s+is\s+odd\s+by\s+/
+isnotoddby = /\s+is\s+not\s+odd\s+by\s+/
+isodd = /\s+is\s+odd/
+isnotodd = /\s+is\s+not\s+odd/
+isevenby = /\s+is\s+even\s+by\s+/
+isnotevenby = /\s+is\s+not\s+even\s+by\s+/
+iseven = /\s+is\s+even/
+isnoteven = /\s+is\s+not\s+even/
+isdivby = /\s+is\s+div\s+by\s+/
+isnotdivby = /\s+is\s+not\s+div\s+by\s+/
+isin = /\s+is\s+in\s+/
+as = /\s+as\s+/
+to = /\s+to\s+/
+step = /\s+step\s+/
+block = /block/
+if = /(if|elseif|else if|while)\s+/
+for = /for\s+/
+foreach = /foreach(?![^\s])/
+setfilter = /setfilter\s+/
+instanceof = /\s+instanceof\s+/
+not = /!\s*|not\s+/
+land = /\s*\&\&\s*|\s*and\s+/
+lor = /\s*\|\|\s*|\s*or\s+/
+lxor = /\s*xor\s+/
+typecast = /\((int(eger)?|bool(ean)?|float|double|real|string|binary|array|object)\)\s*/
+double_quote = /"/
+single_quote = /'/
+*/
+
+/*!lex2php
+%statename TEXT
+emptyjava {
+    $this->token = TMTemplateParser::TP_TEXT;
+}
+ldel comment rdel {
+    $this->token = TMTemplateParser::TP_COMMENT;
+}
+ldel strip rdel {
+    if ($this->template->autoLiteral && (strpos(" \n\t\r", substr($this->value, $this->ldelLength, 1)) !== false)) {
+        $this->token = TMTemplateparser::TP_TEXT;
+    } else {
+        $this->token = TMTemplateParser::TP_STRIPON;
+    }
+}
+ldel slash strip rdel {
+    if ($this->template->autoLiteral && (strpos(" \n\t\r", substr($this->value, $this->ldelLength, 1)) !== false)) {
+        $this->token = TMTemplateparser::TP_TEXT;
+    } else {
+        $this->token = TMTemplateParser::TP_STRIPOFF;
+    }
+}
+ldel literal rdel {
+    if ($this->template->autoLiteral && (strpos(" \n\t\r", substr($this->value, $this->ldelLength, 1)) !== false)) {
+        $this->token = TMTemplateparser::TP_TEXT;
+    } else {
+        $this->token = TMTemplateParser::TP_LITERALSTART;
+        $this->yypushstate(self::LITERAL);
+    }
+}
+ldel if {
+    if ($this->template->autoLiteral && (strpos(" \n\t\r", substr($this->value, $this->ldelLength, 1)) !== false)) {
+        $this->token = TMTemplateparser::TP_TEXT;
+    } else {
+        $this->token = TMTemplateParser::TP_LDELIF;
+        $this->yypushstate(self::TEMPLATE);
+    }
+}
+ldel for {
+    if ($this->template->autoLiteral && (strpos(" \n\t\r", substr($this->value, $this->ldelLength, 1)) !== false)) {
+        $this->token = TMTemplateparser::TP_TEXT;
+    } else {
+        $this->token = TMTemplateParser::TP_LDELFOR;
+        $this->yypushstate(self::TEMPLATE);
+    }
+}
+ldel foreach {
+    if ($this->template->autoLiteral && (strpos(" \n\t\r", substr($this->value, $this->ldelLength, 1)) !== false)) {
+        $this->token = TMTemplateparser::TP_TEXT;
+    } else {
+        $this->token = TMTemplateParser::TP_LDELFOREACH;
+        $this->yypushstate(self::TEMPLATE);
+    }
+}
+ldel setfilter {
+    if ($this->template->autoLiteral && (strpos(" \n\t\r", substr($this->value, $this->ldelLength, 1)) !== false)) {
+        $this->token = TMTemplateparser::TP_TEXT;
+    } else {
+        $this->token = TMTemplateParser::TP_LDELSETFILTER;
+        $this->yypushstate(self::TEMPLATE);
+    }
+}
+ldel slash {
+    if ($this->template->autoLiteral && (strpos(" \n\t\r", substr($this->value, $this->ldelLength, 1)) !== false)) {
+        $this->token = TMTemplateparser::TP_TEXT;
+    } else {
+        $this->token = TMTemplateParser::TP_LDELSLASH;
+        $this->yypushstate(self::TEMPLATE);
+    }
+}
+ldel {
+    if ($this->template->autoLiteral && (strpos(" \n\t\r", substr($this->value, $this->ldelLength, 1)) !== false)) {
+        $this->token = TMTemplateparser::TP_TEXT;
+    } else {
+        $this->token = TMTemplateParser::TP_LDEL;
+        $this->yypushstate(self::TEMPLATE);
+    }
+}
+phpstarttag {
+    if (in_array($this->value, Array('<?', '<?=', '<?php'))) {
+        $this->token = TMTemplateParser::TP_PHPSTARTTAG;
+    } elseif ($this->value == '<?xml') {
+        $this->token = TMTemplateParser::TP_XMLTAG;
+    } else {
+      $this->token = TMTemplateParser::TP_FAKEPHPSTARTTAG;
+      $this->value = substr($this->value, 0, 2);
+    }
+}
+phpendtag {
+    $this->token = TMTemplateParser::TP_PHPENDTAG;
+}
+rdel {
+    $this->token = TMTemplateParser::TP_TEXT;
+}
+aspstarttag {
+    $this->token = TMTemplateParser::TP_ASPSTARTTAG;
+}
+aspendtag {
+    $this->token = TMTemplateParser::TP_ASPENDTAG;
+}
+text {
+    if ($this->mbstring_overload) {
+        $to = mb_strlen($this->data, 'latin1');
+    } else {
+        $to = strlen($this->data);
+    }
+    preg_match("/{$this->ldel}|<\?|\?>|<%|%>/", $this->data, $match, PREG_OFFSET_CAPTURE, $this->counter);
+    if (isset($match[0][1])) {
+        $to = $match[0][1];
+    }
+    if ($this->mbstring_overload) {
+        $this->value = mb_substr($this->data, $this->counter, $to - $this->counter, 'latin1');
+    } else {
+        $this->value = substr($this->data, $this->counter, $to - $this->counter);
+    }
+    $this->token = TMTemplateParser::TP_TEXT;
+}
+
+
+*/
+/*!lex2php
+%statename TEMPLATE
+double_quote {
+    $this->token = TMTemplateParser::TP_QUOTE;
+    $this->yypushstate(self::DOUBLEQUOTEDSTRING);
+}
+singlequotestring {
+    $this->token = TMTemplateParser::TP_SINGLEQUOTESTRING;
+}
+templateblockchildparent {
+    $this->token = TMTemplateParser::TP_TEMPLATEBLOCKCHILDPARENT;
+}
+dollar {
+    $this->token = TMTemplateParser::TP_DOLLAR;
+}
+rdel {
+    $this->token = TMTemplateParser::TP_RDEL;
+    $this->yypopstate();
+}
+isin {
+    $this->token = TMTemplateParser::TP_ISIN;
+}
+as {
+    $this->token = TMTemplateParser::TP_AS;
+}
+to {
+    $this->token = TMTemplateParser::TP_TO;
+}
+step {
+    $this->token = TMTemplateParser::TP_STEP;
+}
+instanceof {
+    $this->token = TMTemplateParser::TP_INSTANCEOF;
+}
+identity {
+    $this->token = TMTemplateParser::TP_IDENTITY;
+}
+noneidentity {
+    $this->token = TMTemplateParser::TP_NONEIDENTITY;
+}
+equals {
+    $this->token = TMTemplateParser::TP_EQUALS;
+}
+notequals {
+    $this->token = TMTemplateParser::TP_NOTEQUALS;
+}
+greaterequal {
+    $this->token = TMTemplateParser::TP_GREATEREQUAL;
+}
+lessequal {
+    $this->token = TMTemplateParser::TP_LESSEQUAL;
+}
+greaterthan {
+    $this->token = TMTemplateParser::TP_GREATERTHAN;
+}
+lessthan {
+    $this->token = TMTemplateParser::TP_LESSTHAN;
+}
+mod {
+    $this->token = TMTemplateParser::TP_MOD;
+}
+not {
+    $this->token = TMTemplateParser::TP_NOT;
+}
+land {
+    $this->token = TMTemplateParser::TP_LAND;
+}
+lor {
+    $this->token = TMTemplateParser::TP_LOR;
+}
+lxor {
+    $this->token = TMTemplateParser::TP_LXOR;
+}
+isoddby {
+    $this->token = TMTemplateParser::TP_ISODDBY;
+}
+isnotoddby {
+    $this->token = TMTemplateParser::TP_ISNOTODDBY;
+}
+isodd {
+    $this->token = TMTemplateParser::TP_ISODD;
+}
+isnotodd {
+    $this->token = TMTemplateParser::TP_ISNOTODD;
+}
+isevenby {
+    $this->token = TMTemplateParser::TP_ISEVENBY;
+}
+isnotevenby {
+    $this->token = TMTemplateParser::TP_ISNOTEVENBY;
+}
+iseven {
+    $this->token = TMTemplateParser::TP_ISEVEN;
+}
+isnoteven {
+    $this->token = TMTemplateParser::TP_ISNOTEVEN;
+}
+isdivby {
+    $this->token = TMTemplateParser::TP_ISDIVBY;
+}
+isnotdivby {
+    $this->token = TMTemplateParser::TP_ISNOTDIVBY;
+}
+typecast {
+    $this->token = TMTemplateParser::TP_TYPECAST;
+}
+openP {
+    $this->token = TMTemplateParser::TP_OPENP;
+}
+closeP {
+    $this->token = TMTemplateParser::TP_CLOSEP;
+}
+openB {
+    $this->token = TMTemplateParser::TP_OPENB;
+}
+closeB {
+    $this->token = TMTemplateParser::TP_CLOSEB;
+}
+ptr {
+    $this->token = TMTemplateParser::TP_PTR;
+}
+aptr {
+    $this->token = TMTemplateParser::TP_APTR;
+}
+equal {
+    $this->token = TMTemplateParser::TP_EQUAL;
+}
+incdec {
+    $this->token = TMTemplateParser::TP_INCDEC;
+}
+unimath {
+    $this->token = TMTemplateParser::TP_UNIMATH;
+}
+math {
+    $this->token = TMTemplateParser::TP_MATH;
+}
+at {
+    $this->token = TMTemplateParser::TP_AT;
+}
+attr {
+    // resolve conflicts with shorttag and right delimiter starting with '='
+    if (substr($this->data, $this->counter + strlen($this->value) - 1, $this->rdelLength) == $this->template->rightDelimiter) {
+        preg_match("/\s+/", $this->value, $match);
+        $this->value = $match[0];
+        $this->token = TMTemplateParser::TP_SPACE;
+    } else {
+        $this->token = TMTemplateParser::TP_ATTR;
+    }
+}
+id {
+    $this->token = TMTemplateParser::TP_ID;
+}
+integer {
+    $this->token = TMTemplateParser::TP_INTEGER;
+}
+backtick {
+    $this->token = TMTemplateParser::TP_BACKTICK;
+    $this->yypopstate();
+}
+vert {
+    $this->token = TMTemplateParser::TP_VERT;
+}
+dot {
+    $this->token = TMTemplateParser::TP_DOT;
+}
+comma {
+    $this->token = TMTemplateParser::TP_COMMA;
+}
+semicolon {
+    $this->token = TMTemplateParser::TP_SEMICOLON;
+}
+doublecolon {
+    $this->token = TMTemplateParser::TP_DOUBLECOLON;
+}
+colon {
+    $this->token = TMTemplateParser::TP_COLON;
+}
+andsym {
+    $this->token = TMTemplateParser::TP_ANDSYM;
+}
+qmark {
+    $this->token = TMTemplateParser::TP_QMARK;
+}
+hex {
+    $this->token = TMTemplateParser::TP_HEX;
+}
+space {
+    $this->token = TMTemplateParser::TP_SPACE;
+}
+ldel if {
+    if ($this->template->autoLiteral && (strpos(" \n\t\r", substr($this->value, $this->ldelLength, 1)) !== false)) {
+        $this->token = TMTemplateparser::TP_TEXT;
+    } else {
+        $this->token = TMTemplateParser::TP_LDELIF;
+        $this->yypushstate(self::TEMPLATE);
+    }
+}
+ldel for {
+    if ($this->template->autoLiteral && (strpos(" \n\t\r", substr($this->value, $this->ldelLength, 1)) !== false)) {
+        $this->token = TMTemplateparser::TP_TEXT;
+    } else {
+        $this->token = TMTemplateParser::TP_LDELFOR;
+        $this->yypushstate(self::TEMPLATE);
+    }
+}
+ldel foreach {
+    if ($this->template->autoLiteral && (strpos(" \n\t\r", substr($this->value, $this->ldelLength, 1)) !== false)) {
+        $this->token = TMTemplateparser::TP_TEXT;
+    } else {
+        $this->token = TMTemplateParser::TP_LDELFOREACH;
+        $this->yypushstate(self::TEMPLATE);
+    }
+}
+ldel slash {
+    if ($this->template->autoLiteral && (strpos(" \n\t\r", substr($this->value, $this->ldelLength, 1)) !== false)) {
+        $this->token = TMTemplateparser::TP_TEXT;
+    } else {
+        $this->token = TMTemplateParser::TP_LDELSLASH;
+        $this->yypushstate(self::TEMPLATE);
+    }
+}
+ldel {
+    if ($this->template->autoLiteral && (strpos(" \n\t\r", substr($this->value, $this->ldelLength, 1)) !== false)) {
+        $this->token = TMTemplateparser::TP_TEXT;
+    } else {
+        $this->token = TMTemplateParser::TP_LDEL;
+        $this->yypushstate(self::TEMPLATE);
+    }
+}
+text {
+    $this->token = TMTemplateParser::TP_TEXT;
+}
+*/
+
+/*!lex2php
+%statename LITERAL
+ldel literal rdel {
+    if ($this->template->autoLiteral && (strpos(" \n\t\r", substr($this->value, $this->ldelLength, 1)) !== false)) {
+        $this->token = TMTemplateparser::TP_TEXT;
+    } else {
+        $this->token = TMTemplateParser::TP_LITERALSTART;
+        $this->yypushstate(self::LITERAL);
+    }
+}
+ldel slash literal rdel {
+    if ($this->template->autoLiteral && (strpos(" \n\t\r", substr($this->value, $this->ldelLength, 1)) !== false)) {
+        $this->token = TMTemplateparser::TP_TEXT;
+    } else {
+        $this->token = TMTemplateParser::TP_LITERALEND;
+        $this->yypopstate();
+    }
+}
+phpstarttag {
+    if (in_array($this->value, Array('<?', '<?=', '<?php'))) {
+        $this->token = TMTemplateParser::TP_PHPSTARTTAG;
+    } else {
+        $this->token = TMTemplateParser::TP_FAKEPHPSTARTTAG;
+        $this->value = substr($this->value, 0, 2);
+    }
+}
+phpendtag {
+    $this->token = TMTemplateParser::TP_PHPENDTAG;
+}
+aspstarttag {
+    $this->token = TMTemplateParser::TP_ASPSTARTTAG;
+}
+aspendtag {
+    $this->token = TMTemplateParser::TP_ASPENDTAG;
+}
+text {
+    if ($this->mbstring_overload) {
+        $to = mb_strlen($this->data, 'latin1');
+    } else {
+        $to = strlen($this->data);
+    }
+    preg_match("/{$this->ldel}\/?literal{$this->rdel}|<\?|<%|\?>|%>/", $this->data, $match, PREG_OFFSET_CAPTURE, $this->counter);
+    if (isset($match[0][1])) {
+        $to = $match[0][1];
+    } else {
+        $this->compiler->triggerTemplateError("Missing or misspelled literal closing tag");
+    }
+    if ($this->mbstring_overload) {
+        $this->value = mb_substr($this->data, $this->counter, $to - $this->counter, 'latin1');
+    } else {
+        $this->value = substr($this->data, $this->counter, $to - $this->counter);
+    }
+    $this->token = TMTemplateParser::TP_LITERAL;
+}
+*/
+
+/*!lex2php
+%statename DOUBLEQUOTEDSTRING
+ldel if {
+    if ($this->template->autoLiteral && (strpos(" \n\t\r", substr($this->value, $this->ldelLength, 1)) !== false)) {
+        $this->token = TMTemplateparser::TP_TEXT;
+    } else {
+        $this->token = TMTemplateParser::TP_LDELIF;
+        $this->yypushstate(self::TEMPLATE);
+    }
+}
+ldel for {
+    if ($this->template->autoLiteral && (strpos(" \n\t\r", substr($this->value, $this->ldelLength, 1)) !== false)) {
+        $this->token = TMTemplateparser::TP_TEXT;
+    } else {
+        $this->token = TMTemplateParser::TP_LDELFOR;
+        $this->yypushstate(self::TEMPLATE);
+    }
+}
+ldel foreach {
+    if ($this->template->autoLiteral && (strpos(" \n\t\r", substr($this->value, $this->ldelLength, 1)) !== false)) {
+        $this->token = TMTemplateparser::TP_TEXT;
+    } else {
+        $this->token = TMTemplateParser::TP_LDELFOREACH;
+        $this->yypushstate(self::TEMPLATE);
+    }
+}
+ldel slash {
+    if ($this->template->autoLiteral && (strpos(" \n\t\r", substr($this->value, $this->ldelLength, 1)) !== false)) {
+        $this->token = TMTemplateparser::TP_TEXT;
+    } else {
+        $this->token = TMTemplateParser::TP_LDELSLASH;
+        $this->yypushstate(self::TEMPLATE);
+    }
+}
+ldel {
+    if ($this->template->autoLiteral && (strpos(" \n\t\r", substr($this->value, $this->ldelLength, 1)) !== false)) {
+        $this->token = TMTemplateparser::TP_TEXT;
+    } else {
+        $this->token = TMTemplateParser::TP_LDEL;
+        $this->yypushstate(self::TEMPLATE);
+    }
+}
+double_quote {
+    $this->token = TMTemplateParser::TP_QUOTE;
+    $this->yypopstate();
+}
+backtickdollar {
+    $this->token = TMTemplateParser::TP_BACKTICK;
+    $this->value = substr($this->value, 0, -1);
+    $this->yypushstate(self::TEMPLATE);
+}
+dollarid {
+    $this->token = TMTemplateParser::TP_DOLLARID;
+}
+dollar {
+    $this->token = TMTemplateParser::TP_TEXT;
+}
+textdoublequoted {
+    $this->token = TMTemplateParser::TP_TEXT;
+}
+text {
+    if ($this->mbstring_overload) {
+        $to = mb_strlen($this->data, 'latin1');
+    } else {
+        $to = strlen($this->data);
+    }
+    if ($this->mbstring_overload) {
+        $this->value = mb_substr($this->data, $this->counter, $to - $this->counter, 'latin1');
+    } else {
+        $this->value = substr($this->data, $this->counter, $to - $this->counter);
+    }
+    $this->token = TMTemplateParser::TP_TEXT;
+}
+*/
+
+/*!lex2php
+%statename CHILDBODY
+ldel strip rdel {
+    if ($this->template->autoLiteral && (strpos(" \n\t\r", substr($this->value, $this->ldelLength, 1)) !== false)) {
+        return false;
+    } else {
+        $this->token = TMTemplateParser::TP_STRIPON;
+    }
+}
+ldel slash strip rdel {
+    if ($this->template->autoLiteral && (strpos(" \n\t\r", substr($this->value, $this->ldelLength, 1)) !== false)) {
+        return false;
+    } else {
+        $this->token = TMTemplateParser::TP_STRIPOFF;
+    }
+}
+ldel block  {
+    if ($this->template->autoLiteral && (strpos(" \n\t\r", substr($this->value, $this->ldelLength, 1)) !== false)) {
+        return false;
+    } else {
+        $this->yypopstate();
+        return true;
+    }
+}
+text {
+    if ($this->mbstring_overload) {
+        $to = mb_strlen($this->data, 'latin1');
+    } else {
+        $to = strlen($this->data);
+    }
+    preg_match("/TEMPLATEldel\s*((\/)?strip\s*TEMPLATErdel|block\s+)/", $this->data, $match, PREG_OFFSET_CAPTURE, $this->counter);
+    if (isset($match[0][1])) {
+        $to = $match[0][1];
+    }
+    if ($this->mbstring_overload) {
+        $this->value = mb_substr($this->data, $this->counter, $to - $this->counter, 'latin1');
+    } else {
+        $this->value = substr($this->data, $this->counter, $to - $this->counter);
+    }
+    return false;
+}
+*/
+
+/*!lex2php
+%statename CHILDBLOCK
+ldel block {
+    if ($this->template->autoLiteral && (strpos(" \n\t\r", substr($this->value, $this->ldelLength, 1)) !== false)) {
+        $this->token = TMTemplateparser::TP_BLOCKSOURCE;
+    } else {
+        $this->yypopstate();
+        return true;
+    }
+}
+ldel slash block {
+    if ($this->template->autoLiteral && (strpos(" \n\t\r", substr($this->value, $this->ldelLength, 1)) !== false)) {
+        $this->token = TMTemplateparser::TP_BLOCKSOURCE;
+    } else {
+        $this->yypopstate();
+        return true;
+    }
+}
+ldel templateblockchildparent {
+    if ($this->template->autoLiteral && (strpos(" \n\t\r", substr($this->value, $this->ldelLength, 1)) !== false)) {
+        $this->token = TMTemplateparser::TP_BLOCKSOURCE;
+    } else {
+        $this->yypopstate();
+        return true;
+    }
+}
+text {
+    if ($this->mbstring_overload) {
+        $to = mb_strlen($this->data, 'latin1');
+    } else {
+        $to = strlen($this->data);
+    }
+    preg_match("/TEMPLATEldel\s*((\/)?block(\s|TEMPLATErdel)|[\$]template\.block\.(child|parent)\s*TEMPLATErdel)/",
+        $this->data, $match, PREG_OFFSET_CAPTURE, $this->counter);
+    if (isset($match[0][1])) {
+        $to = $match[0][1];
+    }
+    if ($this->mbstring_overload) {
+        $this->value = mb_substr($this->data, $this->counter, $to - $this->counter, 'latin1');
+    } else {
+        $this->value = substr($this->data, $this->counter, $to - $this->counter);
+    }
+    $this->token = TMTemplateParser::TP_BLOCKSOURCE;
+}
+*/
+}
+?>

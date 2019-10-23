@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+        <title>{block "layout.title"}在线统计{/block}</title>
+        <link rel="stylesheet" type="text/css" href="{$response.res_server}/common/css/online.css?ver={$response.application_info.version}">
+        <link rel="stylesheet" type="text/css" href="{$response.res_server}/online/css/forbidden.css?ver={$response.application_info.version}">
+    </head>
+    <body>
+    <!-- header begin -->
+    <div class="header" id="J_header">
+        <div class="wrapper">
+            <h1 class="logo"><a href="#" title="在线统计" class="tit"><span class="ir">在线统计</span></a></h1>
+            <ul class="links">
+                <li>欢迎你，{$response.user.current_admin_name}</li>
+                <li>|</li>
+                {if !empty($response.top_bar)}
+                    {foreach $response.top_bar as $top_bar}
+                        {if isset($top_bar.is_main) && !$top_bar.is_main}
+                        <li class="setting"><a href="{$top_bar.url}">{$top_bar.name}</a></li>
+                        <li>|</li>
+                        {/if}
+                    {/foreach}
+                {/if}
+                <li class="setting"><a href="index.php?r=user/logout">退出</a></li>
+            </ul>
+        </div>
+        {if isset($response.second_bar) && !empty($response.second_bar)}
+            {block "layout.subnav"}{/block}
+        {/if}
+    </div>
+    <!-- header end -->
+    <!-- main begin -->
+    <div class="wrapper auth-wrapper">
+        <div class="auth-main">
+            <span class="title f14b">亲，你还没有数据分析平台这一模块的权限哟~~(>_<)~~</span>
+            <div class="main">
+                <ul class="auth-ul">
+                    <li>请先联系"内审组"的美眉申请相关权限。</li>
+                    <li>权限申请完毕，点击"返回"查看数据。</li>
+                </ul>
+                <a class="btn-l-dft" href="javascript:window.history.go(-1);"><span>返回</span></a>
+            </div>
+        </div>
+    </div>
+    </body>
+</html>

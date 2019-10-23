@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+        <title>{block "layout.title"}{TM::t('tongji', '数据分析平台')}{/block}</title>
+        <link rel="stylesheet" type="text/css" href="{$response.res_server}/common/css/common.css?ver={$response.application_info.version}">
+        <link rel="stylesheet" type="text/css" href="{$response.res_server}/common/css/layout.css?ver={$response.application_info.version}">
+        <link rel="stylesheet" type="text/css" href="{$response.res_server}/data/css/common/themes/{$response.current_skin}/theme.css?ver={$response.application_info.version}">
+    </head>
+    <body>
+    <!-- header begin -->
+    <div class="header" id="J_header">
+        <div class="wrapper">
+            <h1 class="logo"><a href="#" title="{TM::t('tongji', '数据分析平台')}" class="tit"><span class="ir">{TM::t('tongji', '数据分析平台')}</span></a></h1>
+            <!--main nav start-->
+            {if !empty($response.top_bar)}
+            <ul class="main-nav">
+                {foreach $response.top_bar as $top_bar}
+                    {if isset($top_bar.is_main) && $top_bar.is_main}
+                        <li
+                        {if isset($top_bar.current) && $top_bar.current}
+                            class="cur"
+                        {/if}
+                        ><a href="{$top_bar.url}">{$top_bar.name}</a></li>
+                    {/if}
+                {/foreach}
+            </ul>
+            {/if}
+            <!--main nav end-->
+            <ul class="links">
+                {if isset($response.user.current_admin_name) && !empty($response.user.current_admin_name)}
+                <li>{TM::t('tongji', '欢迎你，')}{$response.user.current_admin_name}</li>
+                <li>|</li>
+                {if !empty($response.top_bar)}
+                    {foreach $response.top_bar as $top_bar}
+                        {if isset($top_bar.is_main) && !$top_bar.is_main}
+                        <li class="setting"><a href="{$top_bar.url}">{$top_bar.name}</a></li>
+                        <li>|</li>
+                        {/if}
+                    {/foreach}
+                {/if}
+                <li class="setting"><a href="index.php?r=user/logout">{TM::t('tongji', '退出')}</a></li>
+                {else}
+                <li class="setting"><a href="index.php">{TM::t('tongji', '登录')}</a></li>
+                {/if}
+            </ul>
+        </div>
+        {if isset($response.second_bar) && !empty($response.second_bar)}
+            {block "layout.subnav"}{/block}
+        {/if}
+    </div>
+    <div id="J_webSkinSel" class="round-shape web-skin" style="display: none;">
+        <i class="arrow"></i>
+        <div class="b1"></div>
+        <div class="b2"></div>
+        <div class="b3"></div>
+        <div class="b4"></div>
+        <ul class="content">
+            {foreach $response.skins as $key => $info}
+            <li class="skin-option
+            {if $response.current_skin==$key}
+             current
+            {/if}
+            " data-value="{$key}"><i class="skin-color" style="background:url({$response.res_server}/stat/images/{$key}_skin.png);"></i></li>
+            {/foreach}
+        </ul>
+        <div class="b4"></div>
+        <div class="b3"></div>
+        <div class="b2"></div>
+        <div class="b5"></div>
+    </div>
+    <!-- header end -->
+    <!-- main begin -->
+    <div class="wrapper notfound-wrapper">
+        <div class="notfound-main">
+            <div class="notfound-bottom">
+                <a class="btn-l-dft" href="javascript:window.history.go(-1);"><span>{TM::t('tongji', '返回')}</span></a>
+            </div>
+        </div>
+    </div>
+    </body>
+</html>
+

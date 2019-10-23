@@ -1,0 +1,47 @@
+.item-ins { height: 100px; margin-bottom: 5px; padding: 0; border: 1px solid #A9A096; background-color: #F5F6FA; z-index: 100; }
+.checkbox-con { float: left; height: 100%; width: 24px; border-right: 1px solid #A9A096; z-index: 101; }
+.item-info { float: left; height: 100%; width: 232px; z-index: 101; }
+.check-item { margin-left: 6px; margin-top: 40px; z-index: 102; }
+.itemname-area { height: 61px; border-bottom: 1px solid #DDD; padding: 0; margin-left: 5px; margin-top: 6px; z-index: 101; }
+.itemgame-con { height: 20px; border-bottom: 1px solid #DDD; }
+.item-game { font-size: 12px; color: #5E5E5E; }
+.itemname-con { margin-top: 6px; margin-bottom: 10px; height: 24px; width: 100%; }
+.item-name { font-size: 14px; font-weight: bold; color: #5E5E5E; }
+.time-area { height: 30px; margin: 0 0 0 5px; z-index: 103; }
+.tag-area { height: 30px; width: 184px; float: left; }
+.add-area { height: 30px; width: 30px; float: left; }
+.time-tag { height: 22px; width: 180px; border: 1px solid #696969; color: white; border-radius: 4px; margin-top: 4px; cursor: pointer; opacity: 0.6; z-index: 101; }
+.datepick { border: 0; height: 22px; width: 154px; border-radius: 4px; background-color: #F5F6FA; margin-left: 6px; margin-top: 0px; padding: 0px; }
+.tag-con { height: 18px; width: 18px; border: 1px solid #696969; color: white; margin-left: 4px; border-radius: 4px; cursor: pointer; margin-top: 6px; opacity: 0.6; z-index: 101; padding: 0px; }
+.op-area { float: left; height: 100%; width: 24px; z-index: 102; }
+.item-close { float: right; width: 14px; height: 14px; margin-top: 4px; margin-right: 3px; /* border: 1px solid #696969; */ border-radius: 20px; cursor: pointer; z-index: 103; }
+/* add */
+.item-ins .tag-con .icon .icon-timeadd { width: 12px; height: 2px; background: #696969; position: relative; margin-left: 3px; margin-top: 8px; padding: 0; /* z-index: 10; */ }
+.item-ins .tag-con .icon .icon-timeadd:after { content: ''; position: absolute; width: 2px; height: 12px; background: #696969; left: 5px; top: -5px; padding: 0; /* z-index: 10; */ }
+.time-close { float: right; width: 14px; height: 14px; margin-top: 5px; margin-right: 3px; /* border: 1px solid #696969; */ border-radius: 20px; cursor: pointer; z-index: 103; }
+/* time close */
+.icon-close {}
+div.icon-timeclose { width: 14px; height: 1px; background: #696969; margin: 6px 0 0 0; -webkit-transform: rotate(-45deg); -moz-transform: rotate(-45deg); -ms-transform: rotate(-45deg); -o-transform: rotate(-45deg); transform: rotate(-45deg); cursor: pointer; /* z-index: 10; */ }
+div.icon-timeclose:after { content: ''; width: 14px; height: 1px; background: #696969; position: absolute; top: 0px; left: 0px; -webkit-transform: rotate(90deg); -moz-transform: rotate(90deg); -ms-transform: rotate(90deg); -o-transform: rotate(90deg); transform: rotate(90deg); cursor: pointer; /* z-index: 10; */ }
+/* item close */
+div.icon-itemclose { width: 14px; height: 1px; background: #696969; margin: 6px 0 0 0; -webkit-transform: rotate(-45deg); -moz-transform: rotate(-45deg); -ms-transform: rotate(-45deg); -o-transform: rotate(-45deg); transform: rotate(-45deg); cursor: pointer; /* z-index: 10; */ }
+div.icon-itemclose:after { content: ''; width: 14px; height: 1px; background: #696969; position: absolute; top: 0px; left: 0px; -webkit-transform: rotate(90deg); -moz-transform: rotate(90deg); -ms-transform: rotate(90deg); -o-transform: rotate(90deg); transform: rotate(90deg); cursor: pointer; /* z-index: 10; */ }
+.item-fold { float: right; width: 14px; height: 14px; margin: 62px 3px 0 0; cursor: pointer; z-index: 103; }
+.additional-panel { width: 244px; margin: -130px 10px 0 40px; height: 125px; border: 1px solid purple; }
+/* item fold */
+div.icon div.icon-itemfold { width: 10px; height: 10px; border: 1px solid #696969; border-width: 1px 1px 0 0; -webkit-transform: rotate(-45deg); -moz-transform: rotate(-45deg); -ms-transform: rotate(-45deg); -o-transform: rotate(-45deg); transform: rotate(-45deg); margin: 9px 0 0 1px; }
+
+div.icon div.icon-itemunfold { width: 10px; height: 10px; border: solid #696969; border-width: 1px 1px 0 0; -webkit-transform: rotate(135deg); -moz-transform: rotate(135deg); -ms-transform: rotate(135deg); -o-transform: rotate(135deg); transform: rotate(135deg); margin: 0px 0 0 1px; }
+/* Pointer Top */
+div.icon div.pointer-top { width: 10px; height: 10px; border: solid #F5F5F5; border-width: 4px 4px 0 0; -webkit-transform: rotate(-45deg); -moz-transform: rotate(-45deg); -ms-transform: rotate(-45deg); -o-transform: rotate(-45deg); transform: rotate(-45deg); margin: -14px 0 0 66px; }
+/* Pointer Down */
+div.icon div.pointer-down { width: 10px; height: 10px; border: solid #F5F5F5; border-width: 4px 4px 0 0; -webkit-transform: rotate(135deg); -moz-transform: rotate(135deg); -ms-transform: rotate(135deg); -o-transform: rotate(135deg); transform: rotate(135deg); margin: -19px 0 0 66px; }
+
+/* Search */
+/* Search */
+div.icon div.search { height: 11px; width: 11px; background: transparent; border-radius: 50px; -moz-border-radius: 50px; -webkit-border-radius: 50px; border: 4px solid #F5F6FA; }
+div.icon div.search:after { content: ''; width: 4px; height: 15px; background: #F5F6FA; position: absolute; bottom: 2px; -webkit-transform: rotate(-45deg); -moz-transform: rotate(-45deg); -ms-transform: rotate(-45deg); -o-transform: rotate(-45deg); transform: rotate(-45deg); right: 8px; }
+/* Search */
+div.icon div.searchB { width: 34px; height: 34px; background-color: #333; border-radius: 8px; -moz-border-radius: 8px; -webkit-border-radius: 8px; }
+div.icon div.searchB:before { position: absolute; content: ''; height: 6px; width: 6px; background: transparent; border-radius: 50px; -moz-border-radius: 50px; -webkit-border-radius: 50px; border: 4px solid #eee; margin: 7px }
+div.icon div.searchB:after { content: ''; width: 4px; height: 11px; background: #eee; position: absolute; bottom: 6px; -webkit-transform: rotate(-45deg); -moz-transform: rotate(-45deg); -ms-transform: rotate(-45deg); -o-transform: rotate(-45deg); transform: rotate(-45deg); right: 10px; }

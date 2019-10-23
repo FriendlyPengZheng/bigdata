@@ -1,0 +1,23 @@
+K 25
+svn:wc:ra_dav:version-url
+V 59
+/data-center/!svn/ver/5717/web/stat-web/trunk/online/config
+END
+install
+K 25
+svn:wc:ra_dav:version-url
+V 67
+/data-center/!svn/ver/3299/web/stat-web/trunk/online/config/install
+END
+stat_game.php
+K 25
+svn:wc:ra_dav:version-url
+V 73
+/data-center/!svn/ver/5717/web/stat-web/trunk/online/config/stat_game.php
+END
+game.php
+K 25
+svn:wc:ra_dav:version-url
+V 68
+/data-center/!svn/ver/5544/web/stat-web/trunk/online/config/game.php
+END

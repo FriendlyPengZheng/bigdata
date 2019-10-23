@@ -1,0 +1,14 @@
+<div class="wrapper">
+    <ul class="main-sub-nav">
+        <li class="sub-nav-li">
+            {if isset($response.game[$response.param.game_id])}
+            <a href="javascript:void(0);">{$response.game[$response.param.game_id].game_name}</a>
+            {/if}
+        </li>
+        {if isset($response.param.view_r)}
+            <li class="sub-nav-li posr stat-button" title="返回查看">
+            <a href="index.php?r={$response.param.view_r}&game_id={$response.param.game_id}" class="bar-view"><i class="iconfont icon-back"></i>{TM::t('tongji', '返回查看')}</a>
+			</li>
+        {/if}
+    </ul>
+</div>

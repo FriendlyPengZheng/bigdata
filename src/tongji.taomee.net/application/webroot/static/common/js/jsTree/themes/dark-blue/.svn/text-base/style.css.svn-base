@@ -1,0 +1,93 @@
+/*
+ * jsTree dark-blue theme 1.0
+ * Supported features: dots/no-dots, icons/no-icons, focused, loading
+ * Supported plugins: ui (hovered, clicked), checkbox, contextmenu, search
+ */
+
+/*.jstree-dark-blue li,
+ * .jstree-dark-blue ins { background-image:url("d.png"); background-repeat:no-repeat; background-color:transparent; } 
+ * .jstree-dark-blue li { background-position:-90px 0; background-repeat:repeat-y; }
+ * .jstree-dark-blue li.jstree-last { background:transparent; }
+ * .jstree-dark-blue .jstree-open > ins { background-position:-72px 0; }
+ * .jstree-dark-blue .jstree-closed > ins { background-position:-54px 0; }
+ * .jstree-dark-blue .jstree-leaf > ins { background-position:-36px 0; }
+ */
+.jstree-dark-blue a { color: #333; border-radius: 5px; -webkit-border-radius: 5px; -moz-border-radius: 5px; }
+.jstree-dark-blue ins { background-image:url("toolbar.png"); background-repeat:no-repeat; background-color:transparent; }
+.jstree-dark-blue a .jstree-icon { background-image:url("toolbar.png"); background-repeat:no-repeat; background-color:transparent; }
+.jstree-dark-blue .jstree-open ins { background-position: 0 -11px; }
+.jstree-dark-blue .jstree-closed ins { background-position: 0px 5px; }
+.jstree-dark-blue .jstree-leaf ins { background-position: 1000px 0; }
+
+/*
+.jstree-dark-blue .jstree-hovered { background:#e7f4f9; border:1px solid #d8f0fa; padding:0 2px 0 1px; }
+.jstree-dark-blue .jstree-clicked { background:#beebff; border:1px solid #99defd; padding:0 2px 0 1px; }
+*/
+.jstree-dark-blue .jstree-clicked { background-color: #FBBB67; }
+
+/*
+ * .jstree-dark-blue a .jstree-icon { background-position:-56px -19px; }
+ */
+.jstree-dark-blue a .jstree-icon { background-position: 0 -57px; }
+.jstree-dark-blue a.jstree-loading .jstree-icon { background:url("throbber.gif") center center no-repeat !important; }
+
+.jstree-dark-blue.jstree-focused { background: transparent; }
+
+.jstree-dark-blue .jstree-no-dots li, 
+.jstree-dark-blue .jstree-no-dots .jstree-leaf > ins { background: transparent; }
+.jstree-dark-blue .jstree-no-dots .jstree-open > ins { background-position: -18px 0; }
+.jstree-dark-blue .jstree-no-dots .jstree-closed > ins { background-position: 0 0; }
+
+.jstree-dark-blue .jstree-no-icons a .jstree-icon { display:none; }
+
+.jstree-dark-blue .jstree-search { font-style:italic; }
+
+.jstree-dark-blue .jstree-no-icons .jstree-checkbox { display:inline-block; }
+.jstree-dark-blue .jstree-no-checkboxes .jstree-checkbox { display:none !important; }
+.jstree-dark-blue .jstree-checked > a > .jstree-checkbox { background-position:-38px -19px; }
+.jstree-dark-blue .jstree-unchecked > a > .jstree-checkbox { background-position:-2px -19px; }
+.jstree-dark-blue .jstree-undetermined > a > .jstree-checkbox { background-position:-20px -19px; }
+.jstree-dark-blue .jstree-checked > a > .jstree-checkbox:hover { background-position:-38px -37px; }
+.jstree-dark-blue .jstree-unchecked > a > .jstree-checkbox:hover { background-position:-2px -37px; }
+.jstree-dark-blue .jstree-undetermined > a > .jstree-checkbox:hover { background-position:-20px -37px; }
+
+#vakata-dragged.jstree-dark-blue ins { background:transparent !important; }
+#vakata-dragged.jstree-dark-blue .jstree-ok { background:url("d.png") -2px -53px no-repeat !important; }
+#vakata-dragged.jstree-dark-blue .jstree-invalid { background:url("d.png") -18px -53px no-repeat !important; }
+#jstree-marker.jstree-dark-blue { background:url("d.png") -41px -57px no-repeat !important; text-indent:-100px; }
+
+.jstree-dark-blue a.jstree-search { color:aqua; }
+.jstree-dark-blue .jstree-locked a { color:silver; cursor:pointer; }
+
+#vakata-contextmenu.jstree-dark-blue-context, 
+#vakata-contextmenu.jstree-dark-blue-context li ul { background:#f0f0f0; border:1px solid #979797; -moz-box-shadow: 1px 1px 2px #999; -webkit-box-shadow: 1px 1px 2px #999; box-shadow: 1px 1px 2px #999; }
+#vakata-contextmenu.jstree-dark-blue-context li { }
+#vakata-contextmenu.jstree-dark-blue-context a { color:black; }
+#vakata-contextmenu.jstree-dark-blue-context a:hover, 
+#vakata-contextmenu.jstree-dark-blue-context .vakata-hover > a { padding:0 5px; background:#e8eff7; border:1px solid #aecff7; color:black; -moz-border-radius:2px; -webkit-border-radius:2px; border-radius:2px; }
+#vakata-contextmenu.jstree-dark-blue-context li.jstree-contextmenu-disabled a, 
+#vakata-contextmenu.jstree-dark-blue-context li.jstree-contextmenu-disabled a:hover { color:silver; background:transparent; border:0; padding:1px 4px; }
+#vakata-contextmenu.jstree-dark-blue-context li.vakata-separator { background:white; border-top:1px solid #e0e0e0; margin:0; }
+#vakata-contextmenu.jstree-dark-blue-context li ul { margin-left:-4px; }
+
+/* IE6 BEGIN */
+.jstree-dark-blue li, 
+.jstree-dark-blue ins,
+#vakata-dragged.jstree-dark-blue .jstree-invalid, 
+#vakata-dragged.jstree-dark-blue .jstree-ok, 
+#jstree-marker.jstree-dark-blue { _background-image:url("d.gif"); }
+.jstree-dark-blue .jstree-open ins { background-position:0px -11px; }
+.jstree-dark-blue .jstree-closed ins { background-position:0px 5px; }
+.jstree-dark-blue .jstree-leaf ins { background-position:1000px 0; }
+.jstree-dark-blue a ins.jstree-icon { background-position:0px -57px; }
+.jstree-dark-blue a ins.root { background-position:0px -32px; }
+#vakata-contextmenu.jstree-dark-blue-context ins { display:none; }
+#vakata-contextmenu.jstree-dark-blue-context li { zoom:1; }
+.jstree-dark-blue .jstree-undetermined a .jstree-checkbox { background-position:-20px -19px; }
+.jstree-dark-blue .jstree-checked a .jstree-checkbox { background-position:-38px -19px; }
+.jstree-dark-blue .jstree-unchecked a .jstree-checkbox { background-position:-2px -19px; }
+/* IE6 END */
+
+.jstree-dark-blue .jstree-open a ins { background-position:0px -129px; }
+.jstree-dark-blue .jstree-closed a ins { background-position:0px -57px; }
+.jstree-dark-blue .jstree-leaf a ins { background-position: 0px -541px; }

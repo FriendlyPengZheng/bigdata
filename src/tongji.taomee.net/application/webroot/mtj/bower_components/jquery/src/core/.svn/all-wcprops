@@ -1,0 +1,65 @@
+K 25
+svn:wc:ra_dav:version-url
+V 102
+/data-center/!svn/ver/5799/web/stat-web/trunk/application/webroot/mtj/bower_components/jquery/src/core
+END
+nodeName.js
+K 25
+svn:wc:ra_dav:version-url
+V 114
+/data-center/!svn/ver/5799/web/stat-web/trunk/application/webroot/mtj/bower_components/jquery/src/core/nodeName.js
+END
+DOMEval.js
+K 25
+svn:wc:ra_dav:version-url
+V 113
+/data-center/!svn/ver/5799/web/stat-web/trunk/application/webroot/mtj/bower_components/jquery/src/core/DOMEval.js
+END
+stripAndCollapse.js
+K 25
+svn:wc:ra_dav:version-url
+V 122
+/data-center/!svn/ver/5799/web/stat-web/trunk/application/webroot/mtj/bower_components/jquery/src/core/stripAndCollapse.js
+END
+ready-no-deferred.js
+K 25
+svn:wc:ra_dav:version-url
+V 123
+/data-center/!svn/ver/5799/web/stat-web/trunk/application/webroot/mtj/bower_components/jquery/src/core/ready-no-deferred.js
+END
+support.js
+K 25
+svn:wc:ra_dav:version-url
+V 113
+/data-center/!svn/ver/5799/web/stat-web/trunk/application/webroot/mtj/bower_components/jquery/src/core/support.js
+END
+parseHTML.js
+K 25
+svn:wc:ra_dav:version-url
+V 115
+/data-center/!svn/ver/5799/web/stat-web/trunk/application/webroot/mtj/bower_components/jquery/src/core/parseHTML.js
+END
+access.js
+K 25
+svn:wc:ra_dav:version-url
+V 112
+/data-center/!svn/ver/5799/web/stat-web/trunk/application/webroot/mtj/bower_components/jquery/src/core/access.js
+END
+init.js
+K 25
+svn:wc:ra_dav:version-url
+V 110
+/data-center/!svn/ver/5799/web/stat-web/trunk/application/webroot/mtj/bower_components/jquery/src/core/init.js
+END
+readyException.js
+K 25
+svn:wc:ra_dav:version-url
+V 120
+/data-center/!svn/ver/5799/web/stat-web/trunk/application/webroot/mtj/bower_components/jquery/src/core/readyException.js
+END
+ready.js
+K 25
+svn:wc:ra_dav:version-url
+V 111
+/data-center/!svn/ver/5799/web/stat-web/trunk/application/webroot/mtj/bower_components/jquery/src/core/ready.js
+END

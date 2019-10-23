@@ -1,0 +1,73 @@
+{extends "layout/layout.html"}
+
+{block "layout.title"}{$response.application_info.name}-{TM::t('tongji', '游戏自定义数据')}{/block}
+{block "layout.subnav"}{include "gamecustom/sub-nav-manage.html"}{/block}
+{block "layout.pagecss"}
+     <link rel="stylesheet" type="text/css" href="{$response.res_server}/data/css/page/gamecustom/gamecustom.css?v={$response.application_info.version}">
+     <link rel="stylesheet" type="text/css" href="{$response.res_server}/data/css/page/gamecustom/manage.css?v={$response.application_info.version}">
+{/block}
+{block "layout.main"}
+<div class="main with-aside">
+    <div class="aside">
+        <span class="search-con" id="J_search">
+            <span class="search-tips" style="display: none;">{TM::t('tongji', '没有找到匹配项~')}</span>
+            <input type="text" class="srh-txt"><i class="search-tag">&nbsp;</i>
+        </span>
+        <div id="J_tree"></div>
+    </div>
+    <div class="content clearfix">
+        <input type="hidden" id="J_paramGameId" value="{$response.param.game_id}" />
+        <input type="hidden" id="J_r" value="{$response.param.r}" />
+        <div class="content-body">
+            <div id="J_contentHead" class="head-tools clearfix">
+                <span class="links link-node" style="display:none;">
+                    <a class="a-link a-link-node"><i class="node">&nbsp;</i><span>{TM::t('tongji', '添加节点')}</span></a>
+                    <a class="a-link a-link-merge"><i class="merge">&nbsp;</i><span>{TM::t('tongji', '合并节点')}</span></a>
+                    <span class="fr">{TM::t('tongji', '（注：{1}重命名时，按ESC（退出键）取消。）', ['{1}' => ''])}</span>
+                </span>
+                <span class="links link-event" style="display:none;">
+                    <a class="a-link a-link-diy"><i class="node">&nbsp;</i><span>{TM::t('tongji', '添加自定义加工项')}</span></a>
+                    <span class="fr">{TM::t('tongji', '（注：{1}重命名时，按ESC（退出键）取消。）', ['{1}' =>
+                        sprintf('<a class="a-icon basic">%s</a><a class="a-icon distribute">%s</a><a class="a-icon item">%s</a><a class="a-icon diy">%s</a>%s', TM::t('tongji', '基本类型'), TM::t('tongji', '分布类型'), TM::t('tongji', 'item类型'), TM::t('tongji', '自定义类型'), TM::t('tongji', '；'))]
+                    )}</span>
+                </span>
+                <div class="batch fl" style="display:none;">
+                    <a class="a-link a-link-delete"><i class="delete">&nbsp;</i><span>{TM::t('tongji', '批量删除')}</span></a>
+                </div>
+                <div class="report-only batch fl" style="display:none;">
+                    <a class="a-link a-link-delete"><i class="delete">&nbsp;</i><span>{TM::t('tongji', '移到回收站')}</span></a>
+                </div>
+            </div>
+            <div id="J_content"></div>
+        </div>
+    </div>
+</div>
+<ul class="context-menu" id="J_rMenu" style="display:none;">
+    <li type="rename">{TM::t('tongji', '重命名')}</li>
+    <li type="look" style="display:none;">{TM::t('tongji', '子项排序及删除')}</li>
+    <li type="set" style="display:none;">{TM::t('tongji', '设置')}</li>
+    <li type="back" style="display:none;">{TM::t('tongji', '找回名称')}</li>
+    <li type="delete">{TM::t('tongji', '删除')}</li>
+</ul>
+{/block}
+{block "layout.pagejs"}
+    <!-- here you can add some page javascript -->
+    <script src="{$response.res_server}/common/js/jquery.ui.mouse.js"></script>
+    <script src="{$response.res_server}/common/js/jquery.ui.draggable.js"></script>
+    <script src="{$response.res_server}/common/js/jquery.ui.droppable.js"></script>
+    <script src="{$response.res_server}/common/js/jquery.ui.sortable.js"></script>
+    <script src="{$response.res_server}/common/js/select.js"></script>
+    <script src="{$response.res_server}/data/js/common/navigator.js?v={$response.application_info.version}"></script>
+    <script src="{$response.res_server}/common/js/datepick.js"></script>
+    <script src="{$response.res_server}/common/js/jquery.cookie.js"></script>
+    <script src="{$response.res_server}/common/js/jsTree/jquery.jstree.js"></script>
+    <script src="{$response.res_server}/data/js/common/jquery.choose.js?v={$response.application_info.version}"></script>
+    <script src="{$response.res_server}/common/js/Page.js"></script>
+    <script src="{$response.res_server}/common/js/tm.tabs.js"></script>
+    <script src="{$response.res_server}/common/js/draw/highstock.js"></script>
+    <script src="{$response.res_server}/common/js/Draw.js"></script>
+    <script src="{$response.res_server}/data/js/common/stat.table.js"></script>
+    <script src="{$response.res_server}/data/js/common/tm.module.ok.js?v={$response.application_info.version}"></script>
+    <script src="{$response.res_server}/data/js/common/usage.ok.js?v={$response.application_info.version}"></script>
+    <script src="{$response.res_server}/data/js/page/gamecustom/manage.js?v={$response.application_info.version}"></script>
+{/block}

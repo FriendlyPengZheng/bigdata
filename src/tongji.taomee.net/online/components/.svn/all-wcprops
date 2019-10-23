@@ -1,0 +1,35 @@
+K 25
+svn:wc:ra_dav:version-url
+V 63
+/data-center/!svn/ver/5599/web/stat-web/trunk/online/components
+END
+StringReader.php
+K 25
+svn:wc:ra_dav:version-url
+V 80
+/data-center/!svn/ver/3580/web/stat-web/trunk/online/components/StringReader.php
+END
+StatHttp.php
+K 25
+svn:wc:ra_dav:version-url
+V 76
+/data-center/!svn/ver/3286/web/stat-web/trunk/online/components/StatHttp.php
+END
+AutoDisplay.php
+K 25
+svn:wc:ra_dav:version-url
+V 79
+/data-center/!svn/ver/4467/web/stat-web/trunk/online/components/AutoDisplay.php
+END
+User.php
+K 25
+svn:wc:ra_dav:version-url
+V 72
+/data-center/!svn/ver/5599/web/stat-web/trunk/online/components/User.php
+END
+Authorization.php
+K 25
+svn:wc:ra_dav:version-url
+V 81
+/data-center/!svn/ver/5423/web/stat-web/trunk/online/components/Authorization.php
+END

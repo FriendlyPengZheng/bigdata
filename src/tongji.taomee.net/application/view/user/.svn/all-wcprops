@@ -1,0 +1,17 @@
+K 25
+svn:wc:ra_dav:version-url
+V 67
+/data-center/!svn/ver/4249/web/stat-web/trunk/application/view/user
+END
+login.html
+K 25
+svn:wc:ra_dav:version-url
+V 78
+/data-center/!svn/ver/4249/web/stat-web/trunk/application/view/user/login.html
+END
+forbidden.html
+K 25
+svn:wc:ra_dav:version-url
+V 82
+/data-center/!svn/ver/4187/web/stat-web/trunk/application/view/user/forbidden.html
+END

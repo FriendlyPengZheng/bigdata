@@ -1,0 +1,35 @@
+K 25
+svn:wc:ra_dav:version-url
+V 74
+/data-center/!svn/ver/5770/web/stat-web/trunk/application/controller/admin
+END
+Email.php
+K 25
+svn:wc:ra_dav:version-url
+V 84
+/data-center/!svn/ver/5770/web/stat-web/trunk/application/controller/admin/Email.php
+END
+EmailTest.php
+K 25
+svn:wc:ra_dav:version-url
+V 88
+/data-center/!svn/ver/5588/web/stat-web/trunk/application/controller/admin/EmailTest.php
+END
+Manage.php
+K 25
+svn:wc:ra_dav:version-url
+V 85
+/data-center/!svn/ver/5621/web/stat-web/trunk/application/controller/admin/Manage.php
+END
+Holiday.php
+K 25
+svn:wc:ra_dav:version-url
+V 86
+/data-center/!svn/ver/4161/web/stat-web/trunk/application/controller/admin/Holiday.php
+END
+Online.php
+K 25
+svn:wc:ra_dav:version-url
+V 85
+/data-center/!svn/ver/5598/web/stat-web/trunk/application/controller/admin/Online.php
+END

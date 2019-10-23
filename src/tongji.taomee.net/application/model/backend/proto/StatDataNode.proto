@@ -1,0 +1,19 @@
+message backend_proto_StatDataNode
+{
+    required uint16 registerTotal = 1;
+    required uint16 alarmTotal = 2;
+    repeated backend_proto_StatDataNodeInfo info = 3 [repeatType = uint16];
+}
+message backend_proto_StatDataNodeInfo
+{
+    required uint32 ip = 1;
+    required uint16 port = 2;
+    required uint8 redFlag = 3;
+    required uint8 forbiddenFlag = 4;
+    required uint64 lastHeartBeatTime = 5;
+    required int64  presentSize = 6;
+    required int64  dfsRemainingSize = 7;
+    required int64  dfsUsedSize = 8;
+    required float  dfsUsedPercent = 9;
+    required string storageInfo = 10 [lengthType = int32];
+}

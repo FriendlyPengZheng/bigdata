@@ -1,0 +1,58 @@
+{extends "layout/layout.html"}
+
+{block "layout.title"}{$response.application_info.name}-{TM::t('tongji', '游戏分析')}{/block}
+{block "layout.subnav"}{include "gameanalysis/sub-nav.html"}{/block}
+{block "layout.pagecss"}
+     <link rel="stylesheet" type="text/css" href="{$response.res_server}/data/css/page/gameanalysis/conf.css?v={$response.application_info.version}">
+{/block}
+{block "layout.main"}
+<div class="main with-aside">
+    {include "gameanalysis/aside.html"}
+    <div class="content clearfix">
+        <div class="tips" id="J_timeTips" style="display: none;">
+            <a class="tips-close" href="javascript:void(0);">X</a>
+            <div class="tips-text"><span class="tit">{TM::t('tongji', '注意：')}</span>{TM::t('tongji', '页面只能显示{1}时间段的数据，下载数据时间段没有限制哦。', ['{1}' => sprintf('<span class="tit period">%s~%s</span>', $response.param.from, $response.param.to)])}</div>
+        </div>
+        <div class="tips">
+            <a class="tips-close" href="javascript:void(0);">X</a>
+            <div class="tips-text">
+                <p>{TM::t('tongji', '可通过以下两种方式上传道具名称：')}</p>
+                <p>{TM::t('tongji', '1、从商品管理系统中，点击【{1}】按钮下载得到item的xml文件，再在此处上传该文件即可；', ['{1}' => sprintf('<span class="fb">%s</span>', TM::t('tongji', '导出item表'))])}</p>
+                <p>{TM::t('tongji', '2、从本地excel上传道具表：先将道具id、道具名称复制到给定的{1}上（{2}），另存为xml文件后，选择上传即可。', ['{1}' => sprintf('<a href="doc/道具模板.xlsx" title="%s" class="fb underline">%s</a>', TM::t('tongji', '点击下载道具模板'), TM::t('tongji', '【模版Excel】')), '{2}' => sprintf('<span class="tit">%s</span>', TM::t('tongji', '注意第一行的名称不能更改，且保证两列'))])}</p>
+            </div>
+        </div>
+        <input type="hidden" id="J_r" value="{$response.param.r}" />
+        <div class="content-header clearfix">
+            <div id="J_headerTools" class="header-tools">
+                <form class="line-blk" action="index.php?r=gameanalysis/webgame/economy/importItem&ajax=1" method="post" enctype="multipart/form-data" >
+                    <input type="hidden" name="sstid" value="_coinsbuyitem_" />
+                    <input type="file"  class="file-up" name="files" id="J_file"/>
+                    <input type="hidden" id="J_paramGameId" name="game_id" value="{$response.param.game_id}" />
+                    <a href="javascript:void(0);" class="add-btn" id="J_addMb" />{TM::t('tongji', '上传道具名称')}</a>
+                </form>
+                <a href="javascript:void(0);" class="add-btn" id="J_editMb" >{TM::t('tongji', '批量分配类别')}</a>
+            </div>
+        </div>
+        <div class="content-body" id="J_contentBody">
+        </div>
+    </div>
+</div>
+{/block}
+{block "layout.pagejs"}
+    <!-- here you can add some page javascript -->
+    <script src="{$response.res_server}/common/js/select.js"></script>
+    <script src="{$response.res_server}/common/js/jquery.form.js"></script>
+    <script src="{$response.res_server}/data/js/common/navigator.js?v={$response.application_info.version}"></script>
+    <script src="{$response.res_server}/common/js/datepick.js"></script>
+    <script src="{$response.res_server}/common/js/Page.js"></script>
+    <script src="{$response.res_server}/common/js/tm.tabs.js"></script>
+    <script src="{$response.res_server}/common/js/draw/highstock.js"></script>
+    <script src="{$response.res_server}/common/js/tm.draw.js"></script>
+    <script src="{$response.res_server}/common/js/tm.datatable.js"></script>
+    <script src="{$response.res_server}/data/js/common/jquery.choose.js?v={$response.application_info.version}"></script>
+    <script src="{$response.res_server}/data/js/common/common.js?v={$response.application_info.version}"></script>
+    <script src="{$response.res_server}/data/js/common/stat.table.js"></script>
+    <script src="{$response.res_server}/data/js/common/tm.module.ok.js?v={$response.application_info.version}"></script>
+    <script src="{$response.res_server}/data/js/common/usage.ok.js?v={$response.application_info.version}"></script>
+    <script src="{$response.res_server}/data/js/page/gameanalysis/mbmanage.js?v={$response.application_info.version}"></script>
+{/block}

@@ -1,0 +1,13 @@
+.main .aside .jstree >ul { margin-bottom: 15px; }
+.main .aside ul { border-bottom: 0px; }
+
+.inner-panel { background-color: #FFF; position: relative; }
+.inner-panel .notify-area { background-color: #FEFFEF; color: #616D73; font-size: 16px; }
+.inner-panel .notify-area .notify-txt { padding-left: 5px; }
+.inner-panel .btn-area { position: absolute; bottom: 0; width: 100%; }
+.inner-panel .item-con { background-color: #FFF; }
+.inner-panel .unfold { background-color: #337AB7; cursor: pointer; }
+
+.tag-ins { background: #FE9D1F; }
+
+.submit-btn { background: #F0AD4E; font-size: 20px; font-weight: bold; color: #FFF; }

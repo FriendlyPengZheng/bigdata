@@ -1,0 +1,65 @@
+K 25
+svn:wc:ra_dav:version-url
+V 56
+/data-center/!svn/ver/5517/web/stat-web/trunk/tools/view
+END
+daily-report.html
+K 25
+svn:wc:ra_dav:version-url
+V 74
+/data-center/!svn/ver/4891/web/stat-web/trunk/tools/view/daily-report.html
+END
+weixin-report.html
+K 25
+svn:wc:ra_dav:version-url
+V 75
+/data-center/!svn/ver/5027/web/stat-web/trunk/tools/view/weixin-report.html
+END
+layout.html
+K 25
+svn:wc:ra_dav:version-url
+V 68
+/data-center/!svn/ver/4299/web/stat-web/trunk/tools/view/layout.html
+END
+data-success.html
+K 25
+svn:wc:ra_dav:version-url
+V 74
+/data-center/!svn/ver/4299/web/stat-web/trunk/tools/view/data-success.html
+END
+daily-report-table.html
+K 25
+svn:wc:ra_dav:version-url
+V 80
+/data-center/!svn/ver/4278/web/stat-web/trunk/tools/view/daily-report-table.html
+END
+garbled.html
+K 25
+svn:wc:ra_dav:version-url
+V 69
+/data-center/!svn/ver/5517/web/stat-web/trunk/tools/view/garbled.html
+END
+signature.html
+K 25
+svn:wc:ra_dav:version-url
+V 71
+/data-center/!svn/ver/4745/web/stat-web/trunk/tools/view/signature.html
+END
+weixin-report-table.html
+K 25
+svn:wc:ra_dav:version-url
+V 81
+/data-center/!svn/ver/5028/web/stat-web/trunk/tools/view/weixin-report-table.html
+END
+daily-report-result.html
+K 25
+svn:wc:ra_dav:version-url
+V 81
+/data-center/!svn/ver/4317/web/stat-web/trunk/tools/view/daily-report-result.html
+END
+data.html
+K 25
+svn:wc:ra_dav:version-url
+V 66
+/data-center/!svn/ver/4299/web/stat-web/trunk/tools/view/data.html
+END

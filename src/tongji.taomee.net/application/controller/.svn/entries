@@ -1,0 +1,92 @@
+10
+
+dir
+5881
+http://svn.taomee.com/data-center/web/stat-web/trunk/application/controller
+http://svn.taomee.com/data-center
+
+
+
+2017-10-27T03:18:05.754702Z
+5791
+violet
+has-props
+
+
+
+
+
+
+
+
+
+
+
+
+
+d36378c3-2c15-4d8f-b3f4-bc6831a7de82
+
+account
+dir
+
+gameanalysis
+dir
+
+tool
+dir
+
+Mobile.php
+file
+
+
+
+
+2017-10-27T03:19:22.269479Z
+95c3cfcf1669f10772d76329ffa70e01
+2017-10-27T03:18:05.754702Z
+5791
+violet
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+129
+
+topic
+dir
+
+gamecustom
+dir
+
+site
+dir
+
+admin
+dir
+
+common
+dir
+
+home
+dir
+
+charge
+dir
+

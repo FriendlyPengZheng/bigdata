@@ -1,0 +1,15 @@
+[2019-03-28 15:28:12]
+file_put_contents(json/zh_CN/gameanalysis/gameanalysis-overview-board.json): failed to open stream: Permission denied (/opt/home/sevin/project/tongji.taomee.net/application/model/module/ModuleBuilder.php:191)
+Stack trace:
+#0 unknown(0): TMWebApplication->handleError()
+#1 /opt/home/sevin/project/tongji.taomee.net/application/model/module/ModuleBuilder.php(191): file_put_contents()
+#2 /opt/home/sevin/project/tongji.taomee.net/application/model/module/ModuleBuilder.php(137): module_ModuleBuilder->_writeJson()
+#3 /opt/home/sevin/project/tongji.taomee.net/application/controller/admin/Manage.php(171): module_ModuleBuilder->build()
+#4 /opt/home/sevin/project/tongji.taomee.net/taomee/web/TMController.php(154): Manage->build()
+#5 /opt/home/sevin/project/tongji.taomee.net/taomee/web/TMController.php(132): Manage->runAction()
+#6 /opt/home/sevin/project/tongji.taomee.net/taomee/web/TMController.php(107): Manage->runActionWithFilters()
+#7 /opt/home/sevin/project/tongji.taomee.net/taomee/web/TMWebApplication.php(96): Manage->run()
+#8 /opt/home/sevin/project/tongji.taomee.net/taomee/web/TMWebApplication.php(81): TMWebApplication->runController()
+#9 /opt/home/sevin/project/tongji.taomee.net/taomee/base/Application.php(88): TMWebApplication->processRequest()
+#10 /opt/home/sevin/project/tongji.taomee.net/application/webroot/index.php(102): TMWebApplication->run()
+REQUEST_URI=/index.php?r=admin/manage/build

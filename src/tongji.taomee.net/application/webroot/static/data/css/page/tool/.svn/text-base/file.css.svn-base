@@ -1,0 +1,6 @@
+.file-list {color:#333;}
+.file-list .th {font-weight:bold;}
+.file-list .exporting {display:inline-block; *display:inline; zoom:1; padding-right:18px; background:url(../../../images/loading_arrows.gif) right 0 no-repeat;}
+.empty-file-list {margin:0 auto; padding-top:40px; width:360px;}
+.empty-pic {float:left; width:187px; height:180px; background:url("../../../../common/images/emptypic.png") 0 0 no-repeat;}
+.empty-tip {float:left; height:180px; line-height:180px; vertical-align:middle; color:#333; font-weight:bold;}

@@ -1,0 +1,6 @@
+message backend_proto_DeleteMonitorHeader
+{
+    required uint32 protoId = 1;
+    required uint8 moduleType = 2;
+    required uint32 ip = 3;
+}

@@ -1,0 +1,63 @@
+<table cellpadding= "0" cellspacing= "0" align= "center" class= "table">
+    {if isset($title)}
+    <tr>
+        <th valign= "top" align= "center" colspan= "6">{$title}</th>
+    </tr>
+    {/if}
+    <tr>
+        {if isset($time)}
+        <th valign="top">{$time}</th>
+        {/if}
+        <th valign="top">本月</th>
+        <th valign="top">上月</th>
+        <th valign="top">环比变化率</th>
+        <th valign="top">去年同期</th>
+        <th valign="top">同比变化率</th>
+    </tr>
+    {foreach $data as $i => $d}
+    <tr>
+        <td valign="top"
+            {if $i%2}
+            style= "background-color:#E8F8F7;"
+            {else}
+            style= "background-color:#FFFFFF;"
+            {/if}
+        >&nbsp; {$d.0}</td>
+        <td valign="top"
+            {if $i%2}
+            style= "background-color:#E8F8F7;"
+            {else}
+            style= "background-color:#FFFFFF;"
+            {/if}
+        >&nbsp;<B>{$d.1}</B></td>
+        <td valign="top"
+            {if $i%2}
+            style= "background-color:#E8F8F7;"
+            {else}
+            style= "background-color:#FFFFFF;"
+            {/if}
+        >&nbsp; {$d.2}</td>
+        <td valign="top"
+            {if $i%2}
+            style= "background-color:#E8F8F7;"
+            {else}
+            style= "background-color:#FFFFFF;"
+            {/if}
+        >&nbsp; {$d.3}</td>
+        <td valign="top"
+            {if $i%2}
+            style= "background-color:#E8F8F7;"
+            {else}
+            style= "background-color:#FFFFFF;"
+            {/if}
+        >&nbsp; {$d.4}</td>
+        <td valign="top"
+            {if $i%2}
+            style= "background-color:#E8F8F7;"
+            {else}
+            style= "background-color:#FFFFFF;"
+            {/if}
+        >&nbsp; {$d.5}</td>
+    </tr>
+    {/foreach}
+</table>

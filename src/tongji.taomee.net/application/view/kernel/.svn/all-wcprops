@@ -1,0 +1,89 @@
+K 25
+svn:wc:ra_dav:version-url
+V 69
+/data-center/!svn/ver/5783/web/stat-web/trunk/application/view/kernel
+END
+daily-report.html
+K 25
+svn:wc:ra_dav:version-url
+V 87
+/data-center/!svn/ver/4835/web/stat-web/trunk/application/view/kernel/daily-report.html
+END
+template-daily.html
+K 25
+svn:wc:ra_dav:version-url
+V 89
+/data-center/!svn/ver/5577/web/stat-web/trunk/application/view/kernel/template-daily.html
+END
+weixin-report.html
+K 25
+svn:wc:ra_dav:version-url
+V 88
+/data-center/!svn/ver/4994/web/stat-web/trunk/application/view/kernel/weixin-report.html
+END
+email-template-monthly-table.html
+K 25
+svn:wc:ra_dav:version-url
+V 103
+/data-center/!svn/ver/5585/web/stat-web/trunk/application/view/kernel/email-template-monthly-table.html
+END
+nav-email-manage.html
+K 25
+svn:wc:ra_dav:version-url
+V 91
+/data-center/!svn/ver/5783/web/stat-web/trunk/application/view/kernel/nav-email-manage.html
+END
+daily-report-table.html
+K 25
+svn:wc:ra_dav:version-url
+V 93
+/data-center/!svn/ver/5211/web/stat-web/trunk/application/view/kernel/daily-report-table.html
+END
+sub-nav-email.html
+K 25
+svn:wc:ra_dav:version-url
+V 88
+/data-center/!svn/ver/5783/web/stat-web/trunk/application/view/kernel/sub-nav-email.html
+END
+weixin-report-table.html
+K 25
+svn:wc:ra_dav:version-url
+V 94
+/data-center/!svn/ver/4997/web/stat-web/trunk/application/view/kernel/weixin-report-table.html
+END
+monthly-report.html
+K 25
+svn:wc:ra_dav:version-url
+V 89
+/data-center/!svn/ver/5211/web/stat-web/trunk/application/view/kernel/monthly-report.html
+END
+email-template-daily-mixed.html
+K 25
+svn:wc:ra_dav:version-url
+V 101
+/data-center/!svn/ver/5586/web/stat-web/trunk/application/view/kernel/email-template-daily-mixed.html
+END
+email-template-daily-table.html
+K 25
+svn:wc:ra_dav:version-url
+V 101
+/data-center/!svn/ver/5587/web/stat-web/trunk/application/view/kernel/email-template-daily-table.html
+END
+daydata.html
+K 25
+svn:wc:ra_dav:version-url
+V 82
+/data-center/!svn/ver/5049/web/stat-web/trunk/application/view/kernel/daydata.html
+END
+manage.html
+K 25
+svn:wc:ra_dav:version-url
+V 81
+/data-center/!svn/ver/4978/web/stat-web/trunk/application/view/kernel/manage.html
+END
+monthly-report-table.html
+K 25
+svn:wc:ra_dav:version-url
+V 95
+/data-center/!svn/ver/5108/web/stat-web/trunk/application/view/kernel/monthly-report-table.html
+END

@@ -1,0 +1,63 @@
+
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+        <meta name="robots" content="nofollow,noindex">
+        <title>在线统计</title>
+        <link rel="stylesheet" type="text/css" href="{$response.res_server}/common/css/online.css?ver={$response.application_info.version}">
+<!--[if lt IE 8]>
+<link rel="stylesheet" type="text/css" href="{$response.res_server}/common/css/layout.ie.css">
+<script type="text/javascript">
+function calc() {
+    document.getElementsByTagName("body")[0].style.width  = document.body.clientWidth < 1000 ? "1000px" : "auto";
+}
+onbeforeprint = function() { document.getElementsByTagName("body")[0].style.width = "100%"; }
+onafterprint = calc;
+</script>
+<![endif]-->
+        <script type="text/javascript">
+        window.responseData = {
+            userId: {$response.user.current_admin_id},
+            userName: "{$response.user.current_admin_name}",
+            isRelease: "{$response.application_info.is_release}",
+            resServer: "{$response.res_server}"
+       };
+        window.gLoading = false;
+        </script>
+        <script src="{$response.res_server}/common/js/jquery.min.js"></script>
+    </head>
+    <body>
+    <!-- header begin -->
+    <div class="header" id="J_header">
+        <input type="hidden" id="J_time" value="2014-9-10" />
+        <a href="index.php?r=online/index" class="ml10" target="_self">&lt;返回首页</a>
+        <ul class="clearfix change-btn-con" id="J_dateTools">
+            <li class="change-btn first cur" data-id="1"><span>昨日同比</span></li>
+            <li class="change-btn last" data-id="2"><span>上周环比</span></li>
+        </ul>
+        <ul class="links" >
+            <li>欢迎你，{$response.user.current_admin_name}</li>
+            <li>|</li>
+            <li class="setting"><a href="index.php?r=user/logout">退出</a></li>
+        </ul>
+    </div>
+    <!-- header end -->
+    <!-- main begin -->
+    <div class="main">
+        <div class="content clearfix" id="J_content">
+        </div>
+    </div>
+    <!-- main end -->
+    <script src="{$response.res_server}/common/js/util.js?v={$response.application_info.version}"></script>
+    <!-- here you can add some page javascript -->
+    <script src="{$response.res_server}/common/js/select.js"></script>
+    <script src="{$response.res_server}/common/js/datepick.js"></script>
+    <script src="{$response.res_server}/common/js/draw/highstock.js"></script>
+    <script src="{$response.res_server}/common/js/tm.draw.js"></script>
+    <script src="{$response.res_server}/online/js/tm.module.ok.js?v={$response.application_info.version}"></script>
+    <script src="{$response.res_server}/online/js/usage.ok.js?v={$response.application_info.version}"></script>
+    <script src="{$response.res_server}/online/js/autoonline.js?v={$response.application_info.version}"></script>
+    </body>
+</html>
+

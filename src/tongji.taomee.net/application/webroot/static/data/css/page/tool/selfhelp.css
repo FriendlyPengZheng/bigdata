@@ -1,0 +1,84 @@
+.gameid-config { display: hidden; }
+.rules-config { display: hidden; }
+.game-panel { position: relative; z-index: 10; height: 108px; padding: 0 0 6px 0; border: 1px solid #B6BDC5; box-shadow: 1px 1px 3px #8F949A; margin: 40px 60px 20px 60px; background-color: #FAFAFA; border-radius: 5px }
+.horizontal-bar { position: relative; height: 0; padding: 0 0 10px 0; border-bottom: 1px solid #DDD; margin: -8px 60px 20px 60px; }
+.transaction-panel { position: relative; height: 196px; padding: 0 0 10px 0; border: 1px solid #B6BDC5; box-shadow: 1px 1px 3px #8F949A; margin: 20px 60px 20px 60px; background-color: #FAFAFA; border-radius: 5px; }
+.operation-zone { position: relative; /* z-index: 10; */ height: 32px; margin: 20px 80px 20px 80px; border-radius: 4px }
+.panel-close { position: relative; /* z-index: 10; */ height: 24px; width: 24px; float: right; cursor: pointer; border-radius: 4px }
+div.icon div.icon-pclose { width: 22px; height: 4px; background: #7F7F7F; margin: 12px 0 0 -2px; -webkit-transform: rotate(-45deg); -moz-transform: rotate(-45deg); -ms-transform: rotate(-45deg); -o-transform: rotate(-45deg); transform: rotate(-45deg); /* z-index: 10; */ }
+div.icon div.icon-pclose:after { content: ''; width: 22px; height: 4px; background: #7F7F7F; position: absolute; top: 0px; left: 0px; -webkit-transform: rotate(90deg); -moz-transform: rotate(90deg); -ms-transform: rotate(90deg); -o-transform: rotate(90deg); transform: rotate(90deg); /* z-index: 10; */ }
+div.icon div.icon-pclose:hover { background: #66020A; }
+div.icon div.icon-pclose:hover:after { background: #66020A; }
+.transaction-add { position: relative; /* z-index: 10; */ height: 32px; width: 160px; float: left; border-radius: 4px }
+.add-hov { border-bottom: 3px solid #D6D6D6; background-color: #EBEBEB; cursor: pointer; /* z-index: 10; */ }
+.add-hov:hover { border-bottom: 3px solid #1C86EE; background-color: #1E90FF; /* z-index: 10; */ }
+.transaction-submit { position: relative; /* z-index: 10; */ height: 32px; width: 160px; float: right; border-radius: 4px }
+.submit-hov { border-bottom: 3px solid #D6D6D6; background-color: #EBEBEB; cursor: pointer; /* z-index: 10; */ }
+.submit-hov:hover { border-bottom: 3px solid #F3B248; background-color: #F3B24A; /* z-index: 10; */ }
+.game-info { position: relative; /* z-index: 10; */ height: inherit; width: 100%; float: left }
+.sel-game { position: relative; /* z-index: 10; */ height: 75%; margin: 14px 0px 0px 0px; width: 18%; /* border: 2px solid #00BFFF; */ float: left; border-radius: 4px }
+.sel-ptfm { position: relative; /* z-index: 10; */ height: 75%; margin: 14px 0px 0px 0px; width: 18%; /* border: 2px solid #00BFFF; */ float: left; border-radius: 4px }
+.sel-znsv { position: relative; /* z-index: 10; */ height: 75%; margin: 14px 0px 0px 0px; width: 18%; /* border: 2px solid #00BFFF; */ float: left; border-radius: 4px }
+.sel-rules { position: relative; /* z-index: 10; */ height: 75%; margin: 14px 0px 0px 0px; width: 18%; /* border: 2px solid #00BFFF; */ float: left; border-radius: 4px }
+.report-ins { position: relative; /* z-index: 10; */ height: 102px; width: 90%; margin: 0 0 0 0; /* border: 2px solid #00BFFF; */ }
+.node-level { position: relative; /* z-index: 10; */ height: 75%; margin: 10px 0px 0px 0px; width: 18%; /* border: 2px solid #00BFFF; */ float: left; border-radius: 4px }
+.report-level { position: relative; /* z-index: 10; */ height: 75%; margin: 10px 0px 0px 0px; width: 18%; /* border: 2px solid #00BFFF; */ float: left; border-radius: 4px }
+.data-level { position: relative; /* z-index: 10; */ height: 75%; margin: 10px 0px 0px 0px; width: 18%; /* border: 2px solid #00BFFF; */ float: left; border-radius: 4px }
+.stid-level { position: relative; /* z-index: 10; */ height: 75%; margin: 10px 0px 0px 0px; width: 24%; /* border: 2px solid #00BFFF; */ float: left; border-radius: 4px }
+.sstid-level { position: relative; /* z-index: 10; */ height: 75%; margin: 10px 0px 0px 0px; width: 24%; /* border: 2px solid #00BFFF; */ float: left; border-radius: 4px }
+.time-ins { position: relative; /* z-index: 10; */ height: 102px; width: inherit; margin: 0 0 0 0; /* border: 2px solid #D2691E; */ }
+.time-sel { position: relative; /* z-index: 10; */ height: 78px; margin: 10px 0px 0px 0px; width: 14%; /* border: 2px solid #00BFFF; */ float: left; /* border-radius: 4px; */ }
+.time-close { position: relative; /* z-index: 10; */ height: 20px; width: 20px; float: right; border-radius: 4px }
+div.icon div.icon-tclose { width: 16px; height: 3px; background: #7F7F7F; margin: 22px 0 0 0; -webkit-transform: rotate(-45deg); -moz-transform: rotate(-45deg); -ms-transform: rotate(-45deg); -o-transform: rotate(-45deg); transform: rotate(-45deg); cursor: pointer; /* z-index: 10; */ }
+div.icon div.icon-tclose:after { content: ''; width: 16px; height: 3px; background: #7F7F7F; position: absolute; top: 0px; left: 0px; -webkit-transform: rotate(90deg); -moz-transform: rotate(90deg); -ms-transform: rotate(90deg); -o-transform: rotate(90deg); transform: rotate(90deg); cursor: pointer; /* z-index: 10; */ }
+div.icon div.icon-tclose:hover { background: #8B0000; }
+div.icon div.icon-tclose:hover:after { background: #8B0000; }
+.time-add { position: relative; /* z-index: 10; */ height: 50px; margin: 26px 0px 0px 10px; width: 50px; border-bottom: 3px solid #D6D6D6; background-color: #EBEBEB; float: left; border-radius: 4px; cursor: pointer; /* z-index: 10; */ }
+.time-add:hover { border-bottom: 3px solid #1C86EE; background-color: #1E90FF; /* z-index: 10; */ }
+// div.icon div.icon-timeadd { width: 24px; height: 4px; background: #7F7F7F; position: absolute; left: 13px; top: 22px; /* z-index: 10; */ }
+// div.icon div.icon-timeadd:after { content: ''; position: absolute; width: 4px; height: 24px; background: #7F7F7F; left: 10px; top: -10px; /* z-index: 10; */ }
+// div.icon div.icon-timeadd:hover { background: #FFFFFF; }
+// div.icon div.icon-timeadd:hover:after { background: #FFFFFF; }
+div.icon div.icon-timeaddhov { width: 24px; height: 4px; background: #FFFFFF; position: absolute; left: 13px; top: 22px; /* z-index: 10; */ }
+div.icon div.icon-timeaddhov:after { content: ''; position: absolute; width: 4px; height: 24px; background: #FFFFFF; left: 10px; top: -10px; /* z-index: 10; */ }
+div.icon div.icon-transadd { width: 22px; height: 4px; background: #7F7F7F; position: absolute; left: 40px; top: 14px; /* z-index: 10; */ }
+div.icon div.icon-transadd:after { content: ''; position: absolute; width: 4px; height: 22px; background: #7F7F7F; left: 9px; top: -9px; /* z-index: 10; */ }
+div.icon div.icon-transaddhov { width: 22px; height: 4px; background: #FFFFFF; position: absolute; left: 40px; top: 14px; /* z-index: 10; */ }
+div.icon div.icon-transaddhov:after { content: ''; position: absolute; width: 4px; height: 22px; background: #FFFFFF; left: 9px; top: -9px; /* z-index: 10; */ }
+.add-txt { font-size: 24px; float: right; color: #7F7F7F; margin: 3px 40px 0px 0px; /* z-index: 10; */ }
+div.icon div.icon-submit { width: 22px; height: 4px; background: #7F7F7F; margin: 14px 0 0 40px; -webkit-transform: rotate(-45deg); -moz-transform: rotate(-45deg); -ms-transform: rotate(-45deg); -o-transform: rotate(-45deg); transform: rotate(-45deg); /* z-index: 10; */ }
+div.icon div.icon-submit:after { content: ''; width: 12px; height: 4px; background: #7F7F7F; position: absolute; top: -4px; left: -4px; -webkit-transform: rotate(90deg); -moz-transform: rotate(90deg); -ms-transform: rotate(90deg); -o-transform: rotate(90deg); transform: rotate(90deg); /* z-index: 10; */ }
+div.icon div.icon-submithov { width: 22px; height: 4px; background: #FFFFFF; margin: 14px 0 0 40px; -webkit-transform: rotate(-45deg); -moz-transform: rotate(-45deg); -ms-transform: rotate(-45deg); -o-transform: rotate(-45deg); transform: rotate(-45deg); /* z-index: 10; */ }
+div.icon div.icon-submithov:after { content: ''; width: 12px; height: 4px; background: #FFFFFF; position: absolute; top: -4px; left: -4px; -webkit-transform: rotate(90deg); -moz-transform: rotate(90deg); -ms-transform: rotate(90deg); -o-transform: rotate(90deg); transform: rotate(90deg); /* z-index: 10; */ }
+.submit-txt { font-size: 24px; float: right; color: #7F7F7F; margin: -16px 40px 0px 0px; /* z-index: 10; */ }
+.sel-gamelist { color: #333333; font-weight: bold; font-size: 14px; display: inline-block; zoom: 1; margin: 4px 0 0 14px; z-index: 1;}
+.sel-platform { color: #333333; font-weight: bold; font-size: 14px; display: inline-block; zoom: 1; margin: 4px 0 0 14px; z-index: 1; }
+.sel-zoneserver { color: #333333; font-weight: bold; font-size: 14px; display: inline-block; zoom: 1; margin: 4px 0 0 14px; z-index: 1; }
+.sel-oprules { color: #333333; font-weight: bold; font-size: 14px; display: inline-block; zoom: 1; margin: 4px 0 0 14px; z-index: 1; }
+.sel-con { margin: 14px 0 0 14px }
+.sel-node { color: #333333; font-weight: bold; font-size: 12px; display: inline-block; zoom: 1; margin: 4px 0 0 14px; z-index: 1;}
+.sel-stid { color: #333333; font-weight: bold; font-size: 12px; display: inline-block; zoom: 1; margin: 4px 0 0 14px; z-index: 1;}
+.sel-sstid { color: #333333; font-weight: bold; font-size: 12px; display: inline-block; zoom: 1; margin: 4px 0 0 14px; z-index: 1; }
+.sel-reportid { color: #333333; font-weight: bold; font-size: 12px; display: inline-block; zoom: 1; margin: 4px 0 0 14px; z-index: 1; }
+.sel-dataid { color: #333333; font-weight: bold; font-size: 12px; display: inline-block; zoom: 1; margin: 4px 0 0 14px; z-index: 1; }
+.sel-time { color: #333333; font-weight: bold; font-size: 12px; display: inline-block; zoom: 1; margin: 0px 0 0 14px; z-index: 1; }
+.date-widget { margin: 12px 8px 0 0; }
+.time-tag { position: relative; height: 22px; width: 184px; background-color: #B09D88; color: white; /* border: 3px solid #2DBE60; */ border-radius: 8px; margin: 13px 4px 0px 0px; float: left; cursor: pointer; }
+.cur { background-color: #726658; }
+.tag-txt { padding: 3px 0px 0px 6px; }
+.tag-icon { position: relative; /* z-index: 10; */ height: 20px; width: 20px; float: right; border-radius: 4px; cursor: pointer; }
+div.icon div.icon-timetag { width: 14px; height: 2px; background: white; margin: 10px 0 0 0; -webkit-transform: rotate(-45deg); -moz-transform: rotate(-45deg); -ms-transform: rotate(-45deg); -o-transform: rotate(-45deg); transform: rotate(-45deg); cursor: pointer; /* z-index: 10; */ }
+div.icon div.icon-timetag:after { content: ''; width: 14px; height: 2px; background: white; position: absolute; top: 0px; left: 0px; -webkit-transform: rotate(90deg); -moz-transform: rotate(90deg); -ms-transform: rotate(90deg); -o-transform: rotate(90deg); transform: rotate(90deg); cursor: pointer; /* z-index: 10; */ }
+// div.icon div.icon-timetag:hover { width: 16px; height: 3px; }
+// div.icon div.icon-timetag:hover:after { width: 16px; height: 3px; }
+.time-txt { float: left; padding: 0px 0px 0px 0px; /* border: 2px solid #00BFFF; */ height: 100%; }
+.tag-panel { position: relative; /* z-index: 10; */ height: 51px; margin: 0px 0px 0px 0px; width: 100%; /* border: 2px solid #00BFFF; */ float: left; }
+.calendar { position: relative; /* z-index: 10; */ height: 51px; margin: -10px 0px 0px 0px; width: 244px; /* border: 2px solid #00BFFF; */ float: left; /* border-radius: 4px; */ }
+.calendar-widget { margin: 4px, 6px, 0, 0 }
+.txt-ins { color: #333333; font-weight: bold; font-size: 12px; display: inline-block; zoom: 1; margin: 18px 0 0 12px; z-index: 1; }
+.calendardown { position: relative; /* z-index: 10; */ height: 51px; margin: 20px 0px 0px 0px; width: 244px; /* border: 2px solid #00BFFF; */ float: left; /* border-radius: 4px; */ }
+.transaction-down { position: relative; /* z-index: 10; */ height: 196px; padding: 0 0 40px 0; border: 3px solid #B6BDC5; border-style:dashed; margin: 20px 60px 20px 60px; background-color: #FAFAFA }
+.tag-con { position: relative; height: 20px; width: 20px; background-color: #726658; color: white; /* border: 3px solid #2DBE60; */ border-radius: 20px; margin: 14px 0px 0px 2px; padding: 0px 0px 0px; float: left; }
+.tag-add { position: relative; /* z-index: 10; */ height: 20px; width: 20px; float: right; border-radius: 4px; cursor: pointer; margin: 0px -2px 0px 0px; }
+div.icon div.icon-timeadd { width: 12px; height: 2px; background: #FFFFFF; position: absolute; left: 2px; top: 9px; /* z-index: 10; */ }
+div.icon div.icon-timeadd:after { content: ''; position: absolute; width: 2px; height: 12px; background: #FFFFFF; left: 5px; top: -5px; /* z-index: 10; */ }

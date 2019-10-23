@@ -1,0 +1,67 @@
+10
+
+dir
+5881
+http://svn.taomee.com/data-center/web/stat-web/trunk/application/view
+http://svn.taomee.com/data-center
+
+
+
+2017-12-13T04:18:22.538858Z
+5834
+violet
+has-props
+
+
+
+
+
+
+
+
+
+
+
+
+
+d36378c3-2c15-4d8f-b3f4-bc6831a7de82
+
+gameanalysis
+dir
+
+layout
+dir
+
+tool
+dir
+
+public
+dir
+
+topic
+dir
+
+user
+dir
+
+kernel
+dir
+
+mail
+dir
+
+gamecustom
+dir
+
+site
+dir
+
+conf
+dir
+
+mobile
+dir
+
+home
+dir
+

@@ -1,0 +1,23 @@
+K 25
+svn:wc:ra_dav:version-url
+V 67
+/data-center/!svn/ver/4756/web/stat-web/trunk/application/view/site
+END
+error.html
+K 25
+svn:wc:ra_dav:version-url
+V 78
+/data-center/!svn/ver/4187/web/stat-web/trunk/application/view/site/error.html
+END
+notfound.html
+K 25
+svn:wc:ra_dav:version-url
+V 81
+/data-center/!svn/ver/4187/web/stat-web/trunk/application/view/site/notfound.html
+END
+maintain.html
+K 25
+svn:wc:ra_dav:version-url
+V 81
+/data-center/!svn/ver/4756/web/stat-web/trunk/application/view/site/maintain.html
+END

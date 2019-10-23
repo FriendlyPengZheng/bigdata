@@ -1,0 +1,65 @@
+{extends "layout/layout.html"}
+
+{block "layout.title"}{$response.application_info.name}-游戏管理{/block}
+{block "layout.pagecss"}
+     <link rel="stylesheet" type="text/css" href="{$response.res_server}/data/css/page/conf/conf.css?v={$response.application_info.version}">
+{/block}
+{block "layout.main"}
+<div class="main with-aside">
+    {include "layout/aside.html"}
+    <div class="content" id="J_tableContainer">
+        <div class="content-header clearfix">
+            <a class="add-btn" id="J_addGameBtn">+添加游戏</a>
+            <div id="J_tableSearchContainer" class="search-wrapper"></div>
+        </div>
+        <table class="table module-table">
+            <thead>
+                <tr>
+                    <th class="th" data-type="number">游戏ID</th>
+                    <th class="th">游戏名称</th>
+                    <th class="th">类型</th>
+                    <th class="th" data-type="number">查看权限ID</th>
+                    <th class="th" data-type="number">管理权限ID</th>
+                    <th class="th" data-type="number">online查看权限ID</th>
+                    <th class="th" data-type="string">功能标志</th>
+                    <th class="th" data-type="string">忽略项</th>
+                    <th class="th">状态</th>
+                    <th class="th" data-disabled="1">操作</th>
+                </tr>
+            </thead>
+            <tbody>
+                {foreach $response.games as $game}
+                <tr>
+                    <td class="td hd">{$game.game_id}</td>
+                    <td class="td hd">{$game.game_name}</td>
+                    <td class="td hd">{$game.game_type}</td>
+                    <td class="td hd">{$game.auth_id}</td>
+                    <td class="td hd">{$game.manage_auth_id}</td>
+                    <td class="td hd">{$game.online_auth_id}</td>
+                    <td class="td hd">{$game.func_slot}</td>
+                    <td class="td hd">{$game.ignore}</td>
+                    <td class="td hd">{$game.status_name}</td>
+                    <td class="td hd">
+                        {if $game.status==1}
+                        <a href="#" class="del-btn btn-green" data='{json_encode($game)}' title="废弃">废弃</a>
+                        {else}
+                        <a href="#" class="del-btn btn-green" data='{json_encode($game)}' title="开始使用">开始使用</a>
+                        {/if}
+                        <a href="#" class="upd-btn btn-green" data='{json_encode($game)}' title="修改游戏配置">修改</a>
+                    </td>
+                </tr>
+                {/foreach}
+            </tbody>
+        </table>
+    </div>
+</div>
+{/block}
+{block "layout.pagejs"}
+<!-- here you can add some page javascript -->
+<script src="{$response.res_server}/common/js/select.js"></script>
+<script src="{$response.res_server}/common/js/jquery.form.js"></script>
+<script src="{$response.res_server}/common/js/Page.js"></script>
+<script src="{$response.res_server}/common/js/tm.datatable.js"></script>
+<script src="{$response.res_server}/data/js/common/tm.form.js"></script>
+<script src="{$response.res_server}/data/js/page/conf/games.js?v={$response.application_info.version}"></script>
+{/block}

@@ -1,0 +1,47 @@
+{extends "layout/layout.html"}
+
+{block "layout.title"}{$response.application_info.name}-模板管理{/block}
+{block "layout.pagecss"}
+     <link rel="stylesheet" type="text/css" href="{$response.res_server}/data/css/page/conf/conf.css?v={$response.application_info.version}">
+{/block}
+{block "layout.main"}
+<div class="main with-aside">
+    {include "layout/aside.html"}
+    <div class="content" >
+        <table class="table module-table">
+            <thead>
+                <tr>
+                    <th class="th">一级导航</th>
+                    <th class="th">二级导航</th>
+                    <th class="th">三级导航</th>
+                    <th class="th">四级导航</th>
+                    <th class="th">key</th>
+                    <th class="th">操作</th>
+                </tr>
+            </thead>
+            <tbody>
+                {foreach $response.pages as $url => $page}
+                <tr>
+                    {for $i = 0; $i<4; $i++}
+                        {if $i == 3 || $i==2}
+                        <td class="td hd"><a href="{$response.param.script_name}?r=admin/manage/displayPage&navi_key={$page.key}&module_name={$page.title}&page_url={$page.url}" class="item" title="修改页面"> {if isset($page.name[$i])}{$page.name[$i]} {else} - {/if} </a></td>
+                        {else}
+                        <td class="td hd"> {if isset($page.name[$i])}{$page.name[$i]} {else} - {/if} </td>
+                        {/if}
+                    {/for}
+                    <td class="td hd">{$page.key}</a></td>
+                    <td class="td hd">
+                        <a href="{$response.param.script_name}?r={$url}&navi_key={$page.key}" class="item mr20" title="查看页面">查看</a>
+						<a href="{$response.param.script_name}?r=admin/manage/displayPage&navi_key={$page.key}&module_name={$page.title}&page_url={$page.url}" class="item mr20" title="修改页面">修改</a>
+						<a href="#" data-key="{$page.key}" class="item J-btn-build" title="生成JSON">生成JSON</a>
+                    </td>
+                </tr>
+                {/foreach}
+            </tbody>
+        </table>
+    </div>
+</div>
+{/block}
+{block "layout.pagejs"}
+<script src="{$response.res_server}/data/js/page/conf/pages.js?v={$response.application_info.version}"></script>
+{/block}

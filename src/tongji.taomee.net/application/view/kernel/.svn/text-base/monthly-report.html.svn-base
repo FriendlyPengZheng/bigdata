@@ -1,0 +1,39 @@
+{extends "mail/layout.html"}
+
+{block "layout.main"}
+<table cellpadding="0" cellspacing="0" border="0">
+    <tr>
+        <td valign="top" align="left" style="padding-bottom:20px;font-size:18px;font-weight:bold;">Dear all, 本月{$remarks[0]}的基本运营情况如下:</td>
+    </tr>
+    <tr>
+        <td valign="bottom">
+            <table cellpadding="0" cellspacing="0" border="0" align="left" style="color:#333;">
+                <tr>
+                    <td valign= "bottom" border="0" style="font-size:14px;color:#808080">{$remarkss[0]}
+                    </td>
+                </tr>
+            </table>
+        </td>
+    </tr>
+    {foreach $content as $val}
+    <tr>
+        <td valign="top">
+            {if isset($val['table']) && $val['table']}
+            <tr>
+                <td valign="top" style="padding-bottom:8px;background-color:#E8F8F7;font-size:16px;">{$val['table']}</td>
+            </tr>
+            {/if}
+        </td>
+    </tr>
+    {/foreach}
+    <tr>
+        <td valign="top">
+            <table cellpadding="0" cellspacing="0" border="0" align="left" style="color:#333;">
+                <tr>
+                    <td valign="top">详细数据请参阅附件.数据来源:数据分析平台(tongji.taomee.com)</td>
+                </tr>
+            </table>
+        </td>
+    </tr>
+</table>
+{/block}

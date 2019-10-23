@@ -1,0 +1,26 @@
+/**
+ * Taomee Fixed Proto File
+ *
+ * Basic types:
+ *     string or string [length = ?] or string [lengthType = ?]
+ *     int8, uint8, int16, uint16, int32, uint32, int64, uint64
+ *     float, double
+ *
+ * Rules:
+ *     required
+ *     repeated [repeatType = ?]
+ *
+ * Tips:
+ *     If there comes a string at the end, you can omit its length property.
+ */
+
+message Person {
+    required string name = 1 [length = 64];
+    required uint8 age = 2;
+    repeated Book book = 3 [repeatType = uint32];
+}
+
+message Book {
+    required string name = 1 [length = 64];
+    required uint32 page = 2;
+}

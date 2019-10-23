@@ -1,0 +1,281 @@
+K 25
+svn:wc:ra_dav:version-url
+V 99
+/data-center/!svn/ver/5799/web/stat-web/trunk/application/webroot/mtj/bower_components/amazeui/less
+END
+amui.less
+K 25
+svn:wc:ra_dav:version-url
+V 109
+/data-center/!svn/ver/5799/web/stat-web/trunk/application/webroot/mtj/bower_components/amazeui/less/amui.less
+END
+print.less
+K 25
+svn:wc:ra_dav:version-url
+V 110
+/data-center/!svn/ver/5799/web/stat-web/trunk/application/webroot/mtj/bower_components/amazeui/less/print.less
+END
+panel.less
+K 25
+svn:wc:ra_dav:version-url
+V 110
+/data-center/!svn/ver/5799/web/stat-web/trunk/application/webroot/mtj/bower_components/amazeui/less/panel.less
+END
+legacy.ie.less
+K 25
+svn:wc:ra_dav:version-url
+V 114
+/data-center/!svn/ver/5799/web/stat-web/trunk/application/webroot/mtj/bower_components/amazeui/less/legacy.ie.less
+END
+badge.less
+K 25
+svn:wc:ra_dav:version-url
+V 110
+/data-center/!svn/ver/5799/web/stat-web/trunk/application/webroot/mtj/bower_components/amazeui/less/badge.less
+END
+comment.less
+K 25
+svn:wc:ra_dav:version-url
+V 112
+/data-center/!svn/ver/5799/web/stat-web/trunk/application/webroot/mtj/bower_components/amazeui/less/comment.less
+END
+form.less
+K 25
+svn:wc:ra_dav:version-url
+V 109
+/data-center/!svn/ver/5799/web/stat-web/trunk/application/webroot/mtj/bower_components/amazeui/less/form.less
+END
+utility.less
+K 25
+svn:wc:ra_dav:version-url
+V 112
+/data-center/!svn/ver/5799/web/stat-web/trunk/application/webroot/mtj/bower_components/amazeui/less/utility.less
+END
+ui.tabs.less
+K 25
+svn:wc:ra_dav:version-url
+V 112
+/data-center/!svn/ver/5799/web/stat-web/trunk/application/webroot/mtj/bower_components/amazeui/less/ui.tabs.less
+END
+breadcrumb.less
+K 25
+svn:wc:ra_dav:version-url
+V 115
+/data-center/!svn/ver/5799/web/stat-web/trunk/application/webroot/mtj/bower_components/amazeui/less/breadcrumb.less
+END
+ui.popover.less
+K 25
+svn:wc:ra_dav:version-url
+V 115
+/data-center/!svn/ver/5799/web/stat-web/trunk/application/webroot/mtj/bower_components/amazeui/less/ui.popover.less
+END
+mixins.less
+K 25
+svn:wc:ra_dav:version-url
+V 111
+/data-center/!svn/ver/5799/web/stat-web/trunk/application/webroot/mtj/bower_components/amazeui/less/mixins.less
+END
+button.less
+K 25
+svn:wc:ra_dav:version-url
+V 111
+/data-center/!svn/ver/5799/web/stat-web/trunk/application/webroot/mtj/bower_components/amazeui/less/button.less
+END
+ui.flexslider.less
+K 25
+svn:wc:ra_dav:version-url
+V 118
+/data-center/!svn/ver/5799/web/stat-web/trunk/application/webroot/mtj/bower_components/amazeui/less/ui.flexslider.less
+END
+ui.component.less
+K 25
+svn:wc:ra_dav:version-url
+V 117
+/data-center/!svn/ver/5799/web/stat-web/trunk/application/webroot/mtj/bower_components/amazeui/less/ui.component.less
+END
+ui.offcanvas.less
+K 25
+svn:wc:ra_dav:version-url
+V 117
+/data-center/!svn/ver/5799/web/stat-web/trunk/application/webroot/mtj/bower_components/amazeui/less/ui.offcanvas.less
+END
+image.less
+K 25
+svn:wc:ra_dav:version-url
+V 110
+/data-center/!svn/ver/5799/web/stat-web/trunk/application/webroot/mtj/bower_components/amazeui/less/image.less
+END
+ui.pureview.less
+K 25
+svn:wc:ra_dav:version-url
+V 116
+/data-center/!svn/ver/5799/web/stat-web/trunk/application/webroot/mtj/bower_components/amazeui/less/ui.pureview.less
+END
+ui.alert.less
+K 25
+svn:wc:ra_dav:version-url
+V 113
+/data-center/!svn/ver/5799/web/stat-web/trunk/application/webroot/mtj/bower_components/amazeui/less/ui.alert.less
+END
+table.less
+K 25
+svn:wc:ra_dav:version-url
+V 110
+/data-center/!svn/ver/5799/web/stat-web/trunk/application/webroot/mtj/bower_components/amazeui/less/table.less
+END
+icon.less
+K 25
+svn:wc:ra_dav:version-url
+V 109
+/data-center/!svn/ver/5799/web/stat-web/trunk/application/webroot/mtj/bower_components/amazeui/less/icon.less
+END
+input-group.less
+K 25
+svn:wc:ra_dav:version-url
+V 116
+/data-center/!svn/ver/5799/web/stat-web/trunk/application/webroot/mtj/bower_components/amazeui/less/input-group.less
+END
+amazeui.less
+K 25
+svn:wc:ra_dav:version-url
+V 112
+/data-center/!svn/ver/5799/web/stat-web/trunk/application/webroot/mtj/bower_components/amazeui/less/amazeui.less
+END
+ui.add2home.less
+K 25
+svn:wc:ra_dav:version-url
+V 116
+/data-center/!svn/ver/5799/web/stat-web/trunk/application/webroot/mtj/bower_components/amazeui/less/ui.add2home.less
+END
+progress.less
+K 25
+svn:wc:ra_dav:version-url
+V 113
+/data-center/!svn/ver/5799/web/stat-web/trunk/application/webroot/mtj/bower_components/amazeui/less/progress.less
+END
+ui.selected.less
+K 25
+svn:wc:ra_dav:version-url
+V 116
+/data-center/!svn/ver/5799/web/stat-web/trunk/application/webroot/mtj/bower_components/amazeui/less/ui.selected.less
+END
+button-group.less
+K 25
+svn:wc:ra_dav:version-url
+V 117
+/data-center/!svn/ver/5799/web/stat-web/trunk/application/webroot/mtj/bower_components/amazeui/less/button-group.less
+END
+close.less
+K 25
+svn:wc:ra_dav:version-url
+V 110
+/data-center/!svn/ver/5799/web/stat-web/trunk/application/webroot/mtj/bower_components/amazeui/less/close.less
+END
+ui.modal.less
+K 25
+svn:wc:ra_dav:version-url
+V 113
+/data-center/!svn/ver/5799/web/stat-web/trunk/application/webroot/mtj/bower_components/amazeui/less/ui.modal.less
+END
+ui.dropdown.less
+K 25
+svn:wc:ra_dav:version-url
+V 116
+/data-center/!svn/ver/5799/web/stat-web/trunk/application/webroot/mtj/bower_components/amazeui/less/ui.dropdown.less
+END
+variables.less
+K 25
+svn:wc:ra_dav:version-url
+V 114
+/data-center/!svn/ver/5799/web/stat-web/trunk/application/webroot/mtj/bower_components/amazeui/less/variables.less
+END
+base.less
+K 25
+svn:wc:ra_dav:version-url
+V 109
+/data-center/!svn/ver/5799/web/stat-web/trunk/application/webroot/mtj/bower_components/amazeui/less/base.less
+END
+code.less
+K 25
+svn:wc:ra_dav:version-url
+V 109
+/data-center/!svn/ver/5799/web/stat-web/trunk/application/webroot/mtj/bower_components/amazeui/less/code.less
+END
+list.less
+K 25
+svn:wc:ra_dav:version-url
+V 109
+/data-center/!svn/ver/5799/web/stat-web/trunk/application/webroot/mtj/bower_components/amazeui/less/list.less
+END
+block-grid.less
+K 25
+svn:wc:ra_dav:version-url
+V 115
+/data-center/!svn/ver/5799/web/stat-web/trunk/application/webroot/mtj/bower_components/amazeui/less/block-grid.less
+END
+ui.share.less
+K 25
+svn:wc:ra_dav:version-url
+V 113
+/data-center/!svn/ver/5799/web/stat-web/trunk/application/webroot/mtj/bower_components/amazeui/less/ui.share.less
+END
+ui.ucheck.less
+K 25
+svn:wc:ra_dav:version-url
+V 114
+/data-center/!svn/ver/5799/web/stat-web/trunk/application/webroot/mtj/bower_components/amazeui/less/ui.ucheck.less
+END
+animation.less
+K 25
+svn:wc:ra_dav:version-url
+V 114
+/data-center/!svn/ver/5799/web/stat-web/trunk/application/webroot/mtj/bower_components/amazeui/less/animation.less
+END
+ui.progress.less
+K 25
+svn:wc:ra_dav:version-url
+V 116
+/data-center/!svn/ver/5799/web/stat-web/trunk/application/webroot/mtj/bower_components/amazeui/less/ui.progress.less
+END
+thumbnail.less
+K 25
+svn:wc:ra_dav:version-url
+V 114
+/data-center/!svn/ver/5799/web/stat-web/trunk/application/webroot/mtj/bower_components/amazeui/less/thumbnail.less
+END
+article.less
+K 25
+svn:wc:ra_dav:version-url
+V 112
+/data-center/!svn/ver/5799/web/stat-web/trunk/application/webroot/mtj/bower_components/amazeui/less/article.less
+END
+nav.less
+K 25
+svn:wc:ra_dav:version-url
+V 108
+/data-center/!svn/ver/5799/web/stat-web/trunk/application/webroot/mtj/bower_components/amazeui/less/nav.less
+END
+grid.less
+K 25
+svn:wc:ra_dav:version-url
+V 109
+/data-center/!svn/ver/5799/web/stat-web/trunk/application/webroot/mtj/bower_components/amazeui/less/grid.less
+END
+topbar.less
+K 25
+svn:wc:ra_dav:version-url
+V 111
+/data-center/!svn/ver/5799/web/stat-web/trunk/application/webroot/mtj/bower_components/amazeui/less/topbar.less
+END
+ui.datepicker.less
+K 25
+svn:wc:ra_dav:version-url
+V 118
+/data-center/!svn/ver/5799/web/stat-web/trunk/application/webroot/mtj/bower_components/amazeui/less/ui.datepicker.less
+END
+pagination.less
+K 25
+svn:wc:ra_dav:version-url
+V 115
+/data-center/!svn/ver/5799/web/stat-web/trunk/application/webroot/mtj/bower_components/amazeui/less/pagination.less
+END

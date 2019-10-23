@@ -1,0 +1,8 @@
+message backend_proto_forbidAlarmHeader
+{
+    required uint32 protoId    = 1;
+    required uint8  moduleType = 2;
+    required uint8  fbdFlag    = 3;
+    required uint32 ip         = 4 [default = 0];
+    required uint32 minutes    = 5 [default = 0];
+}

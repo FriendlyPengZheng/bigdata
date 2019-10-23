@@ -1,0 +1,66 @@
+{extends "layout/layout.html"}
+
+{block "layout.title"}{$response.application_info.name}-核心数据{/block}
+{block "layout.subnav"}{include "kernel/nav-email-manage.html"}{/block}
+{block "layout.pagecss"}
+     <link rel="stylesheet" type="text/css" href="{$response.res_server}/data/css/page/kernel/kernel.css?v={$response.application_info.version}">
+{/block}
+{block "layout.main"}
+<div class="main">
+    <div class="content clearfix" id="J_content">
+        <div class="head-tools clearfix">
+            <a class="add-btn" id="J_addEmailBtn">+添加Email</a>
+        </div>
+        <table class="table item-table mb10" id="J_datalist">
+            <thead>
+                <tr class="cur">
+                    <th class="th hd w50">编号</th>
+                    <th class="th hd">主题</th>
+                    <th class="th hd">收件人</th>
+                    <th class="th hd">抄送</th>
+					<th class="th hd">测试收件人</th>
+					<th class="th hd">微信收件人</th>
+					<th class="th hd">Media_Id</th>
+                    <th class="th hd w400">说明</th>
+                    <th class="th hd">依赖</th>
+                    <th class="th hd">操作</th>
+                </tr>
+            </thead>
+            <tbody>
+                {if isset($response.emaillist) && !empty($response.emaillist)}
+                {foreach $response.emaillist as $list}
+                <tr data-id="{$list.email_id}" data-status="{$list.status}">
+                    <td class="td hd">{$list.email_id}</td>
+                    <td class="td hd">{$list.subject}</td>
+                    <td class="td hd">{$list.receviers}</td>
+                    <td class="td hd">{$list.cc}</td>
+					<td class="td hd">{$list.test_receiver}</td>
+					<td class="td hd">{$list.weixin_recev}</td>
+					<td class="td hd">{$list.weixin_media_id}</td>
+                    <td class="td hd">{$list.remarks}</td>
+                    <td class="td hd">{$list.dependencies}</td>
+                    <td class="td hd">
+                        <a href="javascript: void(0);" class="email-edit mr10" title="修改">修改</a>
+                        <a href="javascript: void(0);" class="email-del mr10" title="删除">删除</a>
+                        {if $list.status === '1'}
+                        <a href="javascript: void(0);" class="email-auto" title="取消自动">取消自动</a>
+                        {else}
+                        <a href="javascript: void(0);" class="email-auto" title="设为自动">设为自动</a>
+                        {/if}
+                    </td>
+                </tr>
+                {/foreach}
+                {/if}
+            </tbody>
+        </table>
+    </div>
+</div>
+{/block}
+{block "layout.pagejs"}
+    <!-- here you can add some page javascript -->
+    <script src="{$response.res_server}/common/js/select.js"></script>
+    <script src="{$response.res_server}/data/js/common/navigator.js?v={$response.application_info.version}"></script>
+    <script src="{$response.res_server}/data/js/common/stat.table.js"></script>
+    <script src="{$response.res_server}/data/js/common/jquery.choose.js?v={$response.application_info.version}"></script>
+    <script src="{$response.res_server}/data/js/page/kernel/manage.js?v={$response.application_info.version}"></script>
+{/block}

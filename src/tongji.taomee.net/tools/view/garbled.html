@@ -1,0 +1,68 @@
+{extends "layout.html"}
+
+{block "layout.subject"}{$subject}{/block}
+{block "layout.css"}
+body { font-family:"Microsoft YaHei"; }
+{/block}
+{block "layout.main"}
+<table cellpadding="0" cellspacing="0" border="0" align="left" style="color:333;">
+    <tr>
+        <td valign="top">乱码检测备注：</td>
+    </tr>
+    <tr>
+        <td valign="top">以下均为自定义统计项中出现的乱码统计项。</td>
+    </tr>
+    <tr>
+        <td valign="top">出现乱码的原因包含：含有繁体字、含有非法字符等。繁体字可能与海外版的统计代码未屏蔽有关；非法字符的限制说明请参考如下：</td>
+    </tr>
+    <tr>
+        <td valign="top">1）stid和sstid的定义，统一用utf8编码。</td>
+    </tr>
+    <tr>
+        <td valign="top">    a）英文中不支持的字符：%、/、?、；、-1、|、=、:、,、\t，另外请尽量避免使用特殊字符</td>
+    </tr>
+    <tr>
+        <td valign="top">    b）中文中仅支持的字符：《、》、【、】</td>
+    </tr>
+    <tr>
+        <td valign="top">2）stid和sstid最大支持到64个字节，超过将会自动屏蔽。</td>
+    </tr>
+</table>
+<table cellpadding="0" cellspacing="0" border="0">
+    <tr>
+        <td valign="top" align="center" style="padding-bottom:20px;font-size:16px;font-weight:bold;">发送时间：{$time}</td>
+    </tr>
+    {foreach $content as $val}
+    <tr>
+        <td valign="top" style="padding-bottom:20px;">
+            <table cellpadding="0" cellspacing="0" align="center" class="table">
+                <tr>
+                    {foreach $val.thead as $th}
+                    <th valign="top">{$th}</th>
+                    {/foreach}
+                </tr>
+                <tr>
+                {foreach $val.garbled as $collect}
+                    {foreach $collect as $key => $value}
+                    {if $key!='count'}
+                    {if $key=='info'}
+                    {foreach $value as $info}
+                        {foreach $info as $td}
+                        <td valign="top">{$td}</td>
+                        {/foreach}
+                    </tr>
+                    <tr>
+                    {/foreach}
+                    {else}
+                    <td valign="top" rowspan="{$collect.count}">{$value}</td>
+                    {/if}
+                    {/if}
+                    {/foreach}
+                {/foreach}
+                </tr>
+            </table>
+        </td>
+    </tr>
+    {/foreach}
+</table>
+{/block}

@@ -1,0 +1,65 @@
+K 25
+svn:wc:ra_dav:version-url
+V 73
+/data-center/!svn/ver/5012/web/stat-web/trunk/application/model/data/time
+END
+PeriodSet.php
+K 25
+svn:wc:ra_dav:version-url
+V 87
+/data-center/!svn/ver/2992/web/stat-web/trunk/application/model/data/time/PeriodSet.php
+END
+Time.php
+K 25
+svn:wc:ra_dav:version-url
+V 82
+/data-center/!svn/ver/3713/web/stat-web/trunk/application/model/data/time/Time.php
+END
+WeekPeriod.php
+K 25
+svn:wc:ra_dav:version-url
+V 88
+/data-center/!svn/ver/2992/web/stat-web/trunk/application/model/data/time/WeekPeriod.php
+END
+DayPeriod.php
+K 25
+svn:wc:ra_dav:version-url
+V 87
+/data-center/!svn/ver/2992/web/stat-web/trunk/application/model/data/time/DayPeriod.php
+END
+HourPeriod.php
+K 25
+svn:wc:ra_dav:version-url
+V 88
+/data-center/!svn/ver/3451/web/stat-web/trunk/application/model/data/time/HourPeriod.php
+END
+Period.php
+K 25
+svn:wc:ra_dav:version-url
+V 84
+/data-center/!svn/ver/5012/web/stat-web/trunk/application/model/data/time/Period.php
+END
+MinutePeriod.php
+K 25
+svn:wc:ra_dav:version-url
+V 90
+/data-center/!svn/ver/2992/web/stat-web/trunk/application/model/data/time/MinutePeriod.php
+END
+MonthPeriod.php
+K 25
+svn:wc:ra_dav:version-url
+V 89
+/data-center/!svn/ver/2992/web/stat-web/trunk/application/model/data/time/MonthPeriod.php
+END
+VersionPeriod.php
+K 25
+svn:wc:ra_dav:version-url
+V 91
+/data-center/!svn/ver/4388/web/stat-web/trunk/application/model/data/time/VersionPeriod.php
+END
+PeriodFactory.php
+K 25
+svn:wc:ra_dav:version-url
+V 91
+/data-center/!svn/ver/4388/web/stat-web/trunk/application/model/data/time/PeriodFactory.php
+END

@@ -1,0 +1,171 @@
+{extends "layout/layout.html"}
+
+{block "layout.title"}{$response.application_info.name}-{$response.param.title}{/block}
+{block "layout.subnav"}
+    {if $response.aside}
+        {include "layout/sub-nav.html"}
+    {/if}
+{/block}
+{block "layout.pagecss"}
+<link rel="stylesheet" type="text/css" href="{$response.res_server}/data/css/page/public/public.css?v={$response.application_info.version}">
+<link rel="stylesheet" type="text/css" href="{$response.res_server}/data/css/page/tool/selfhelp.css?v={$response.application_info.version}">
+{/block}
+{block "layout.main"}
+{if $response.aside}
+<div class="main with-aside">
+    {include "layout/aside.html"}
+{else}
+<div class="main with-aside with-no-sub">
+    {include "public/secondbaraside.html"}
+{/if}
+    <div class="content clearfix">
+   	    <div class="gameid-config" data-id="0"></div>
+		<div class="rules-config" data-id="5"></div>
+        <input type="hidden" id="J_from" value="{$response.param.from}" />
+        <input type="hidden" id="J_to" value="{$response.param.to}" />
+	    <div class="game-panel" id="J_setGameInfo">
+		    <div class="game-info">
+			    <div class="sel-game">
+				  <div class="widget-sel" id="J_selGameList">
+					  <span class="sel-gamelist">{TM::t('tongji', '1. 选择游戏：')}</span>
+					  <div class="sel-wrapper"></div>
+				  </div>
+				</div>
+			    <div class="sel-ptfm">
+				  <div class="widget-sel" id="J_selPlatform">
+					  <span class="sel-platform">{TM::t('tongji', '2. 选择平台：')}</span>
+					  <div class="sel-wrapper"></div>
+				  </div>				  
+				</div>
+				<div class="sel-znsv">
+				  <div class="widget-sel" id="J_selZoneServer">
+					  <span class="sel-zoneserver">{TM::t('tongji', '3. 选择区服：')}</span>
+					  <div class="sel-wrapper"></div>
+				  </div>				  
+				</div>
+				<div class="sel-rules">
+				  <div class="widget-sel" id="J_selRules">
+					  <span class="sel-oprules">{TM::t('tongji', '4. 选择运算：')}</span>
+					  <div class="sel-wrapper"></div>
+				  </div>
+				</div>				
+			</div>
+	    </div>
+	    <div class="horizontal-bar" id="J_horizontalBar"></div>
+	    <div class="transaction-panel">
+	        <div class="report-conf" data-id="report"></div>
+			<div class="rId-conf" data-id="nil"></div>
+			<div class="dataId-conf" data-id="nil"></div>
+			<input type="hidden" class="time-from" value="{$response.param.from}" />
+			<input type="hidden" class="time-to" value="{$response.param.to}" />
+		    <div class="panel-close">
+			    <div class="icon">
+				    <div class="icon-pclose"></div>
+			    </div>
+			</div>
+			<div class="report-ins">
+			  <div class="node-level">
+				<div class="widget-sel" id="J_selNode">
+					 <span class="sel-node">{TM::t('tongji', '选择事件：')}</span>
+					 <div class="sel-wrapper"></div>
+				   </div>
+			  </div>
+			    <!-- <div class="stid-level"> -->
+				  <!-- <div class="widget-sel" id="J_selStid"> -->
+					<!-- <span class="sel-stid">{TM::t('tongji', '选择事件第一级：')}</span> -->
+					<!-- <div class="sel-wrapper"></div> -->
+				  <!-- </div> -->
+				<!-- </div> -->
+				<!-- <div class="sstid-level"> -->
+				  <!-- <div class="widget-sel" id="J_selSstid"> -->
+					<!-- <span class="sel-sstid">{TM::t('tongji', '选择事件第二级：')}</span> -->
+					<!-- <div class="sel-wrapper"></div> -->
+				  <!-- </div> -->
+				<!-- </div> -->
+				<!-- <div class="report-level"> -->
+				  <!-- <div class="widget-sel" id="J_selReportid"> -->
+					<!-- <span class="sel-reportid">{TM::t('tongji', '选择事件第三级：')}</span> -->
+					<!-- <div class="sel-wrapper"></div> -->
+				  <!-- </div> -->
+				<!-- </div> -->
+				<!-- <div class="data-level"> -->
+				  <!-- <div class="widget-sel" id="J_selDataid"> -->
+					<!-- <span class="sel-dataid">{TM::t('tongji', '选择事件第四级：')}</span> -->
+					<!-- <div class="sel-wrapper"></div> -->
+				  <!-- </div> -->
+				<!-- </div> -->
+			</div>
+			<div class="time-ins">
+			  <div class="tag-panel">
+				<div class="time-txt">
+				  <span class="txt-ins">{TM::t('tongji', '时间：')}</span>
+				</div>
+				<div class="time-tag cur" title="最多 5 个时间段">
+				  <div class="tag-icon">
+					<div class="icon">
+					  <div class="icon-timetag"></div>
+					</div>
+				  </div>
+				  <div class="tag-txt">
+					<span>{$response.param.from}~{$response.param.to}</span>
+				  </div>
+				</div>
+				<div class="tag-con" title="最多 5 个时间段">
+				  <div class="tag-add">
+					<div class="icon">
+					  <div class="icon-timeadd"></div>
+					</div>
+				  </div>
+				</div>
+			  </div>
+			  <div class="calendar" title="最多 5 个时间段">
+				  <div class="widget-sel">
+					  <div class="sel-wrapper">
+						<div class="datepicker-trigger radius5-all fr calendar-widget">
+						  <i class="datepicker-icon"></i>
+						  <input class="title" type="text" value="{$response.param.from}~{$response.param.to}" />
+						  <i class="datepicker-arrow"></i>
+						</div>
+					  </div>
+				  </div>
+				</div>			  				
+			</div>
+	    </div>
+		<div class="operation-zone" id="J_addOrSubmit">
+		    <div class="transaction-add add-hov" title="添加事件">
+			    <div class="icon">
+				    <div class="icon-transadd"></div>
+				</div>
+				<span class="add-txt">添加</span>
+			</div>
+		    <div class="transaction-submit submit-hov" title="提交查询">
+			    <div class="icon">
+				    <div class="icon-submit"></div>
+				</div>
+				<span class="submit-txt">提交</span>
+			</div>
+		</div>
+    </div>
+</div>
+{/block}
+{block "layout.pagejs"}
+    <!-- here you can add some page javascript -->
+    <script src="{$response.res_server}/common/js/Page.js"></script>
+    <script src="{$response.res_server}/common/js/tm.tabs.js"></script>	
+    <script src="{$response.res_server}/common/js/select.js"></script>
+    <script src="{$response.res_server}/common/js/tm.datatable.js"></script>	
+	<script src="{$response.res_server}/common/js/jquery.form.js"></script>
+	<script src="{$response.res_server}/data/js/common/navigator.js?v={$response.application_info.version}"></script>	
+    <script src="{$response.res_server}/common/js/datepick.js"></script>
+    <script src="{$response.res_server}/data/js/common/jquery.choose.js?v={$response.application_info.version}"></script>
+    <script src="{$response.res_server}/data/js/common/common.js?v={$response.application_info.version}"></script>
+    <script src="{$response.res_server}/data/js/common/stat.table.js"></script>
+    <script src="{$response.res_server}/data/js/common/tm.module.ok.js?v={$response.application_info.version}"></script>
+    <script src="{$response.res_server}/data/js/common/usage.ok.js?v={$response.application_info.version}"></script>
+	<script src="{$response.res_server}/data/js/common/tm.form.js"></script>
+	<script src="{$response.res_server}/data/js/page/tool/ajaxfactory.js?v={$response.application_info.version}"></script>
+	<script src="{$response.res_server}/data/js/page/tool/timewidget.js?v={$response.application_info.version}"></script>
+	<script src="{$response.res_server}/data/js/page/tool/trsnwidget.js?v={$response.application_info.version}"></script>
+    <script src="{$response.res_server}/data/js/page/tool/selfhelp.js?v={$response.application_info.version}"></script>
+	<script src="{$response.res_server}/data/js/page/tool/submit.js?v={$response.application_info.version}"></script>
+{/block}

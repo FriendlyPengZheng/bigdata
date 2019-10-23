@@ -1,0 +1,49 @@
+{extends "layout/layout.html"}
+
+{block "layout.title"}{$response.application_info.name}-注释管理{/block}
+{block "layout.pagecss"}
+     <link rel="stylesheet" type="text/css" href="{$response.res_server}/data/css/page/conf/conf.css?v={$response.application_info.version}">
+{/block}
+{block "layout.main"}
+<div class="main with-aside">
+    {include "layout/aside.html"}
+    <div class="content" id="J_tableContainer">
+      <div class="content-header clearfix">
+        <a class="add-btn" id="J_addCommentBtn">+添加注释</a>
+        <div id="J_tableSearchContainer" class="search-wrapper"></div>
+      </div>
+        <table class="table module-table">
+            <thead>
+                <tr>
+                    <th class="th">ID</th>
+                    <th class="th">注释名称</th>
+                    <th class="th">详情</th>
+                    <th class="th">操作</th>
+                </tr>
+            </thead>
+            <tbody>
+                {foreach $response.comments as $comment}
+                <tr>
+                    <td class="td hd">{$comment.comment_id}</td>
+                    <td class="td hd">{$comment.keyword}</td>
+                    <td class="td hd">{$comment.comment}</td>
+                    <td class="td hd">
+                        <a href="#" class="upd-btn btn-green" data='{json_encode($comment)}' title="修改注释配置">修改</a>
+                        <a href="#" class="del-btn btn-green" data='{json_encode($comment)}' title="修改注释配置">删除</a>
+                    </td>
+                </tr>
+                {/foreach}
+            </tbody>
+        </table>
+    </div>
+</div>
+{/block}
+{block "layout.pagejs"}
+<!-- here you can add some page javascript -->
+<script src="{$response.res_server}/common/js/select.js"></script>
+<script src="{$response.res_server}/common/js/jquery.form.js"></script>
+<script src="{$response.res_server}/common/js/Page.js"></script>
+<script src="{$response.res_server}/common/js/tm.datatable.js"></script>
+<script src="{$response.res_server}/data/js/common/tm.form.js"></script>
+<script src="{$response.res_server}/data/js/page/conf/comment.js?v={$response.application_info.version}"></script>
+{/block}
