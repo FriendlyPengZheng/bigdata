@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<hbase-config>
+    <zookeeper>
+        <property>
+            <clientPort>
+                2181
+            </clientPort>
+        </property>
+        <quorum>
+        	10.1.1.228,10.1.1.225,10.1.1.223
+        </quorum>
+    </zookeeper>
+</hbase-config>
+

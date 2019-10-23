@@ -1,0 +1,54 @@
+17/01/06 02:49:05 INFO client.HdfsDataFetchJob: 【com.taomee.bigdata.client.HdfsDataFetchJob is startting...】
+/bigdata/output/sum/20170105/new-keep-1/part*
+find file: /bigdata/output/sum/20170105/new-keep-1/part-00000
+find file: /bigdata/output/sum/20170105/new-keep-1/partG1-r-00000
+find file: /bigdata/output/sum/20170105/new-keep-1/partG10-r-00000
+find file: /bigdata/output/sum/20170105/new-keep-1/partG15-r-00000
+find file: /bigdata/output/sum/20170105/new-keep-1/partG16-r-00000
+find file: /bigdata/output/sum/20170105/new-keep-1/partG2-r-00000
+find file: /bigdata/output/sum/20170105/new-keep-1/partG25-r-00000
+find file: /bigdata/output/sum/20170105/new-keep-1/partG5-r-00000
+find file: /bigdata/output/sum/20170105/new-keep-1/partG6-r-00000
+find file: /bigdata/output/sum/20170105/new-keep-1/partG635-r-00000
+find file: /bigdata/output/sum/20170105/new-keep-1/partG637-r-00000
+find file: /bigdata/output/sum/20170105/new-keep-1/partG639-r-00000
+find file: /bigdata/output/sum/20170105/new-keep-1/partG643-r-00000
+find file: /bigdata/output/sum/20170105/new-keep-1/partG661-r-00000
+find file: /bigdata/output/sum/20170105/new-keep-1/partG663-r-00000
+find file: /bigdata/output/sum/20170105/new-keep-1/partGother-r-00000
+17/01/06 02:49:07 INFO client.HdfsDataFetchJob: 【com.taomee.bigdata.client.HdfsDataFetchJob start successful，Time: 2017-01-06 02:4
+9:07】
+Queue file count is: 16
+Connect to Server 192.168.71.52:19902
+/bigdata/output/sum/20170105/new-keep-1/part-00000 have finished over.
+Connect to Server 192.168.71.52:19902
+/bigdata/output/sum/20170105/new-keep-1/partG1-r-00000 have finished over.
+Connect to Server 192.168.71.20:19902
+/bigdata/output/sum/20170105/new-keep-1/partG10-r-00000 have finished over.
+Connect to Server 192.168.71.20:19902
+/bigdata/output/sum/20170105/new-keep-1/partG15-r-00000 have finished over.
+Connect to Server 192.168.71.52:19902
+/bigdata/output/sum/20170105/new-keep-1/partG16-r-00000 have finished over.
+Connect to Server 192.168.71.52:19902
+/bigdata/output/sum/20170105/new-keep-1/partG2-r-00000 have finished over.
+Connect to Server 192.168.71.52:19902
+/bigdata/output/sum/20170105/new-keep-1/partG25-r-00000 have finished over.
+Connect to Server 192.168.71.20:19902
+/bigdata/output/sum/20170105/new-keep-1/partG5-r-00000 have finished over.
+Connect to Server 192.168.71.20:19902
+/bigdata/output/sum/20170105/new-keep-1/partG6-r-00000 have finished over.
+Connect to Server 192.168.71.52:19902
+/bigdata/output/sum/20170105/new-keep-1/partG635-r-00000 have finished over.
+Connect to Server 192.168.71.52:19902
+/bigdata/output/sum/20170105/new-keep-1/partG637-r-00000 have finished over.
+Connect to Server 192.168.71.52:19902
+/bigdata/output/sum/20170105/new-keep-1/partG639-r-00000 have finished over.
+Connect to Server 192.168.71.20:19902
+/bigdata/output/sum/20170105/new-keep-1/partG643-r-00000 have finished over.
+Connect to Server 192.168.71.20:19902
+/bigdata/output/sum/20170105/new-keep-1/partG661-r-00000 have finished over.
+Connect to Server 192.168.71.52:19902
+/bigdata/output/sum/20170105/new-keep-1/partG663-r-00000 have finished over.
+Connect to Server 192.168.71.20:19902
+/bigdata/output/sum/20170105/new-keep-1/partGother-r-00000 have finished over.
+Job has finished at: 2017-01-06 02:49:45, cost(s): 37

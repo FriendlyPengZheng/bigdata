@@ -1,0 +1,248 @@
+package pages;
+import util.MiscUtil;
+
+import java.util.*;
+import java.net.URLDecoder;
+//import java.io.UnsupportedEncodingException;
+
+public class NgxLogParser
+{
+    private static String adPrefix = "/ad.txt?";
+    // url cut by some special characters
+    //private static String [] cutnotes = new String[] {"?",";"," ","=","&","\t","\r","\n","##", ".."};
+    
+    private boolean valid = true;
+
+    private StringBuilder sb = new StringBuilder();
+    private String mlogLine = null;
+
+    private String header = null;
+    private String ip = null;
+    private String time = null;
+    private String method = null;
+    private String path = null;
+    private String status = null;
+
+    private String url = null;
+    private String tad = null;
+    private String uuid = null;
+
+    public NgxLogParser() { }
+    public NgxLogParser(String log)
+        throws java.io.UnsupportedEncodingException
+    { init(log); }
+    
+    //$remote_addr [$time_iso8601][$msec] "$request" $status 
+    //$bytes_sent $request_time "$http_user_agent"
+    public void init(String logline) 
+        throws java.io.UnsupportedEncodingException
+    {
+        ip = null;
+        url = null;
+        tad = null;
+        uuid = null;
+        valid = true;
+        sb.setLength(0);
+
+        mlogLine = logline;
+        int filedIdx = 0;
+        // parse log line first 4 fields
+        for (int i = 0 ; i < mlogLine.length() && filedIdx < 4; ++i) {
+            char c = mlogLine.charAt(i);
+            switch (c)
+            {
+                case ' ' :
+                    switch (filedIdx)
+                    {
+                        case 0 : ip = sb.toString(); break;
+                        case 1 : time = sb.toString(); break;
+                        case 2 : header = sb.toString(); break;
+                        case 3: status = sb.toString(); break;
+                        default : break;
+                    }  /* end of switch */
+                    ++filedIdx ;
+                    sb.setLength(0);
+                    break;
+                case '"':
+                    for (int j = i+1 ; j < mlogLine.length() ; ++j) {
+                        char cc = mlogLine.charAt(j);
+                        if (cc != '"') {
+                            sb.append(cc);
+                        } else {
+                            i = j;
+                            break;
+                        }
+                    }
+                    break;
+                default :
+                    sb.append(c);
+                    break;
+            }  /* end of switch */
+        }
+
+        // parse header: GET path HTTP/x.x
+        String[] items = header.split(" ");
+        if (items.length < 3) { valid = false; return; }
+
+        method = items[0];
+
+        path = items[1];
+        if (!isValid()) { return; }
+
+        try { 
+            // change to lowerCase string
+            path = URLDecoder.decode(items[1], "utf-8");
+            path = URLDecoder.decode(path, "utf-8").toLowerCase();
+        } catch (Exception ex) {
+            System.err.println("error urldecode: " + logline);
+            valid = false; 
+            return; 
+        } 
+
+        if (!isValid()) { return; }
+
+        // parse needle
+        parseSnippet();
+    }
+
+    // use path to get <url/tad/uuid>
+    private void parseSnippet() {
+        String tmp = path.substring(adPrefix.length());
+        String[] items = tmp.split("&");
+        for (int i =0 ; i < items.length ; ++i) {
+            String ts = items[i];
+
+            // url should not end with "/"
+            if (ts.startsWith("url=")) {
+                if (ts.indexOf("://")  < 5 - 3) {
+                    System.err.printf("error proto schema: %s\n", ts);
+                    url = null; continue;
+                }
+
+                if (ts.endsWith("/")) {
+                    url = ts.substring(4, ts.length() - 1);
+                } else {
+                    url = ts.substring(4);
+                }
+            } 
+            else if (ts.startsWith("tad=")) {
+                tad = ts.substring(4).trim();
+                // filter : xxx
+                if (tad.equals("") || tad.equals("#") || 
+                        (tad.length() > 0 && !tad.equals("none") && tad.charAt(0) != '#' 
+                            && !MiscUtil.isNumber(tad) && tad.indexOf('.') == -1)) {
+                    tad = "unknown";
+                    continue;
+                } 
+
+                //  eg. #http://www.4399.com/xxx.html?aaf
+                //for(String note : cutnotes) {
+                    //int cutidx = ts.indexOf(note, 4);
+                    //if (cutidx > 0) {
+                        ////System.out.println("cut : " + ts + "   " + note + cutidx);
+                        //tad = ts.substring(4, cutidx);
+                        //break;
+                    //} 
+                //}
+                sb.setLength(0);
+                sb.append(tad.charAt(0));
+                boolean end = false;
+                for (int ii = 1; ii < tad.length() && !end; ++ii) {
+                    char c = tad.charAt(ii);
+                    // cut binary char, special sign(picked), extended char, non ascii char
+                    if (c <= 0x27 || c > 127) { break; }
+                    switch (c)
+                    {
+                        case '?' :
+                        case '=' :
+                        case ',' :
+                        case ';' : end = true; break;
+                        default : sb.append(c); break;
+                    }  /* end of switch */
+                }
+                int llen = sb.length();
+                while (sb.charAt(--llen) == '/') {  }
+                sb.setLength(llen+1);
+
+                tad = sb.toString();
+            } 
+            else if (ts.startsWith("uuid=")) {
+                uuid = ts.substring(5).trim();
+            } else {
+                continue;
+            }
+        }
+    }
+
+    public boolean isValid()
+    {
+        if (valid && method.equals("GET") && path.startsWith(adPrefix) 
+                && !status.equals("403")) {
+            return true;
+        }
+        return (valid = false);
+    }
+
+    public String getDay()
+    {
+        sb.setLength(0);
+        for (int i = 0 ; i < time.length() ; ++i) {
+            char c = time.charAt(i);
+            switch (c )
+            {
+            case '[' :
+            case '-' :
+                continue;
+            case 'T' :
+                return sb.toString();
+            default :
+                sb.append(c);
+                break;
+            }  /* end of switch */
+        }
+        return null;
+    }
+
+    public String getIp() {
+        return ip;
+    }
+
+    public String getUrl()
+    {
+        if (valid && url != null) {
+            return url.length() <= 255 ? url : url.substring(0,255);
+        } else {
+            return null;
+        }
+    }
+
+    public String getTad()
+    {
+        if (valid && tad != null) {
+            return tad.length() <= 128 ? tad : tad.substring(0,128);
+        } else {
+            return null;
+        }
+    }
+
+    public String getUuid()
+    {
+        if (valid) {
+            return uuid;
+        } else {
+            return null;
+        }
+    }
+
+    public void dump(){
+        System.out.printf("time: %s\n", time);
+        System.out.printf("header: %s\n", header);
+        System.out.printf("status: %s\n", status);
+        System.out.printf("method: %s\n", method);
+        System.out.printf("path: %s\n", path);
+
+        System.out.printf("tad: %s\n", tad);
+        System.out.printf("url: %s\n", url);
+        System.out.printf("uuid: %s\n", uuid);
+    }
+}

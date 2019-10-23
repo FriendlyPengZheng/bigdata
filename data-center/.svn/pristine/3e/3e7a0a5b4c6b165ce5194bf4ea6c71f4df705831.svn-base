@@ -1,0 +1,680 @@
+﻿body {
+    margin: 0px;
+}
+
+div {
+    background-repeat: no-repeat;
+}
+
+.raw_image {
+    width: 100%;
+    height: 100%;
+}
+
+.preload {
+    display: none;
+}
+#main_container {
+}
+
+.form_sketch {
+    border-color: transparent;
+    background-color: transparent;
+}
+
+.u0_normal {
+    background-image: url('../新母版_1_files/u0_normal.png');
+}
+
+.u0_container {
+    position:absolute;
+    left:5px;
+    top:3px;
+    width:1425px;
+    height:37px;
+}
+
+#u0_img {
+    position:absolute;
+    left:0px;
+    top:0px;
+    width:1425px;
+    height:37px;
+}
+
+.u1 {
+    position:absolute;
+    left:2px;
+    top:10px;
+    width:1421px;
+    height:16px;
+    ;
+    ;
+    ;
+    font-family:Arial;
+    text-align:left;
+    word-wrap:break-word;
+}
+
+.u2_normal {
+    background-image: url('../新母版_1_files/u2_normal.png');
+}
+
+.u2_container {
+    position:absolute;
+    left:5px;
+    top:50px;
+    width:157px;
+    height:40px;
+}
+
+#u2_img {
+    position:absolute;
+    left:0px;
+    top:0px;
+    width:157px;
+    height:40px;
+}
+
+.u3 {
+    position:absolute;
+    left:2px;
+    top:12px;
+    width:153px;
+    height:16px;
+    ;
+    ;
+    ;
+    font-family:Arial;
+    text-align:left;
+    word-wrap:break-word;
+}
+
+.u4_normal {
+    background-image: url('../新母版_1_files/u4_normal.png');
+}
+
+.u4_container {
+    position:absolute;
+    left:5px;
+    top:100px;
+    width:157px;
+    height:30px;
+}
+
+#u4_img {
+    position:absolute;
+    left:-3px;
+    top:-3px;
+    width:163px;
+    height:36px;
+}
+
+.u5 {
+    position:absolute;
+    left:2px;
+    top:7px;
+    width:153px;
+    height:16px;
+    ;
+    ;
+    ;
+    font-family:Arial;
+    text-align:left;
+    word-wrap:break-word;
+}
+
+.u6_normal {
+    background-image: url('../新母版_1_files/u4_normal.png');
+}
+
+.u6_container {
+    position:absolute;
+    left:5px;
+    top:134px;
+    width:157px;
+    height:30px;
+}
+
+#u6_img {
+    position:absolute;
+    left:-3px;
+    top:-3px;
+    width:163px;
+    height:36px;
+}
+
+.u7 {
+    position:absolute;
+    left:2px;
+    top:7px;
+    width:153px;
+    height:16px;
+    ;
+    ;
+    ;
+    font-family:Arial;
+    text-align:left;
+    word-wrap:break-word;
+}
+
+.u8_normal {
+    background-image: url('../新母版_1_files/u4_normal.png');
+}
+
+.u8_container {
+    position:absolute;
+    left:5px;
+    top:169px;
+    width:157px;
+    height:30px;
+}
+
+#u8_img {
+    position:absolute;
+    left:-3px;
+    top:-3px;
+    width:163px;
+    height:36px;
+}
+
+.u9 {
+    position:absolute;
+    left:2px;
+    top:7px;
+    width:153px;
+    height:16px;
+    ;
+    ;
+    ;
+    font-family:Arial;
+    text-align:left;
+    word-wrap:break-word;
+}
+
+.u11_normal {
+    background-image: url('../单游戏2_files/u11_normal.png');
+}
+
+.u11_container {
+    position:absolute;
+    left:200px;
+    top:122px;
+    width:180px;
+    height:42px;
+}
+
+#u11_img {
+    position:absolute;
+    left:-3px;
+    top:-3px;
+    width:186px;
+    height:48px;
+}
+
+.u12 {
+    position:absolute;
+    left:2px;
+    top:13px;
+    width:176px;
+    height:16px;
+    ;
+    ;
+    ;
+    font-family:Arial;
+    text-align:left;
+    word-wrap:break-word;
+}
+
+.u13_normal {
+    background-image: url('../单游戏2_files/u13_normal.png');
+}
+
+.u13_container {
+    position:absolute;
+    left:870px;
+    top:108px;
+    width:230px;
+    height:33px;
+}
+
+#u13_img {
+    position:absolute;
+    left:0px;
+    top:0px;
+    width:230px;
+    height:33px;
+}
+
+.u14 {
+    position:absolute;
+    left:2px;
+    top:8px;
+    width:226px;
+    height:16px;
+    ;
+    ;
+    ;
+    font-family:Arial;
+    text-align:left;
+    word-wrap:break-word;
+}
+
+.u16 {
+    position:absolute;
+    left:16px;
+    top:0px;
+    width:112px;
+    height:16px;
+    ;
+    ;
+    ;
+    font-family:Arial;
+    text-align:left;
+    word-wrap:break-word;
+}
+
+.u17_normal {
+    background-image: url('../单游戏2_files/u11_normal.png');
+}
+
+.u17_container {
+    position:absolute;
+    left:200px;
+    top:518px;
+    width:180px;
+    height:42px;
+}
+
+#u17_img {
+    position:absolute;
+    left:-3px;
+    top:-3px;
+    width:186px;
+    height:48px;
+}
+
+.u18 {
+    position:absolute;
+    left:2px;
+    top:13px;
+    width:176px;
+    height:16px;
+    ;
+    ;
+    ;
+    font-family:Arial;
+    text-align:left;
+    word-wrap:break-word;
+}
+
+.u19_normal {
+    background-image: url('../单游戏2_files/u19_normal.png');
+}
+
+.u19_container {
+    position:absolute;
+    left:200px;
+    top:570px;
+    width:1173px;
+    height:168px;
+}
+
+#u19_img {
+    position:absolute;
+    left:0px;
+    top:0px;
+    width:1173px;
+    height:168px;
+}
+
+.u20 {
+    position:absolute;
+    left:2px;
+    top:76px;
+    width:1169px;
+    height:16px;
+    ;
+    ;
+    ;
+    font-family:Arial;
+    text-align:left;
+    word-wrap:break-word;
+}
+
+.u21_normal {
+    background-image: url('../单游戏2_files/u11_normal.png');
+}
+
+.u21_container {
+    position:absolute;
+    left:200px;
+    top:958px;
+    width:180px;
+    height:42px;
+}
+
+#u21_img {
+    position:absolute;
+    left:-3px;
+    top:-3px;
+    width:186px;
+    height:48px;
+}
+
+.u22 {
+    position:absolute;
+    left:2px;
+    top:13px;
+    width:176px;
+    height:16px;
+    ;
+    ;
+    ;
+    font-family:Arial;
+    text-align:left;
+    word-wrap:break-word;
+}
+
+.u23_normal {
+    background-image: url('../单游戏2_files/u23_normal.png');
+}
+
+.u23_container {
+    position:absolute;
+    left:200px;
+    top:1029px;
+    width:1175px;
+    height:164px;
+}
+
+#u23_img {
+    position:absolute;
+    left:0px;
+    top:0px;
+    width:1175px;
+    height:164px;
+}
+
+.u24 {
+    position:absolute;
+    left:2px;
+    top:74px;
+    width:1171px;
+    height:16px;
+    ;
+    ;
+    ;
+    font-family:Arial;
+    text-align:left;
+    word-wrap:break-word;
+}
+
+.u25 {
+    position:absolute;
+    left:1216px;
+    top:110px;
+    width:185px;
+    height:22px;
+    ;
+    ;
+    ;
+    font-family:'Arial';
+    font-size: 13px;
+    color:#000000;
+    font-style:normal;
+    font-weight:normal;
+    text-decoration:none;
+    
+}
+
+.u25_text_sketch {
+    font-family: '应用字体';
+}
+
+.u26_normal {
+    background-image: url('../单游戏2_files/u26_normal.png');
+}
+
+.u26_container {
+    position:absolute;
+    left:200px;
+    top:170px;
+    width:924px;
+    height:296px;
+}
+
+#u26_img {
+    position:absolute;
+    left:0px;
+    top:0px;
+    width:924px;
+    height:296px;
+}
+
+.u27 {
+    position:absolute;
+    left:2px;
+    top:140px;
+    width:920px;
+    height:16px;
+    ;
+    ;
+    ;
+    font-family:Arial;
+    text-align:left;
+    word-wrap:break-word;
+}
+
+.u28_normal {
+    background-image: url('../单游戏2_files/u28_normal.png');
+}
+
+.u28_container {
+    position:absolute;
+    left:200px;
+    top:81px;
+    width:172px;
+    height:41px;
+}
+
+#u28_img {
+    position:absolute;
+    left:0px;
+    top:0px;
+    width:172px;
+    height:41px;
+}
+
+.u29 {
+    position:absolute;
+    left:2px;
+    top:12px;
+    width:168px;
+    height:16px;
+    ;
+    ;
+    ;
+    font-family:Arial;
+    text-align:left;
+    word-wrap:break-word;
+}
+
+.u30 {
+    position:absolute;
+    left:231px;
+    top:59px;
+    width:204px;
+    height:16px;
+    ;
+    ;
+    ;
+    font-family:Arial;
+    text-align:left;
+    word-wrap:break-word;
+}
+
+.u31_normal {
+    background-image: url('../单游戏2_files/u11_normal.png');
+}
+
+.u31_container {
+    position:absolute;
+    left:944px;
+    top:56px;
+    width:180px;
+    height:42px;
+}
+
+#u31_img {
+    position:absolute;
+    left:-3px;
+    top:-3px;
+    width:186px;
+    height:48px;
+}
+
+.u32 {
+    position:absolute;
+    left:2px;
+    top:5px;
+    width:176px;
+    height:32px;
+    ;
+    ;
+    ;
+    font-family:Arial;
+    text-align:left;
+    word-wrap:break-word;
+}
+
+.u33 {
+    position:absolute;
+    left:390px;
+    top:531px;
+    width:879px;
+    height:16px;
+    ;
+    ;
+    ;
+    font-family:Arial;
+    text-align:left;
+    word-wrap:break-word;
+}
+
+.u34_normal {
+    background-image: url('../单游戏2_files/u34_normal.png');
+}
+
+.u34_container {
+    position:absolute;
+    left:161px;
+    top:43px;
+    width:70px;
+    height:28px;
+}
+
+#u34_img {
+    position:absolute;
+    left:0px;
+    top:0px;
+    width:70px;
+    height:28px;
+}
+
+.u35 {
+    position:absolute;
+    left:2px;
+    top:6px;
+    width:66px;
+    height:16px;
+    ;
+    ;
+    ;
+    font-family:Arial;
+    text-align:left;
+    word-wrap:break-word;
+}
+
+.u36_normal {
+    background-image: url('../单游戏2_files/u11_normal.png');
+}
+
+.u36_container {
+    position:absolute;
+    left:200px;
+    top:763px;
+    width:180px;
+    height:42px;
+}
+
+#u36_img {
+    position:absolute;
+    left:-3px;
+    top:-3px;
+    width:186px;
+    height:48px;
+}
+
+.u37 {
+    position:absolute;
+    left:2px;
+    top:13px;
+    width:176px;
+    height:16px;
+    ;
+    ;
+    ;
+    font-family:Arial;
+    text-align:left;
+    word-wrap:break-word;
+}
+
+.u38_normal {
+    background-image: url('../单游戏2_files/u38_normal.png');
+}
+
+.u38_container {
+    position:absolute;
+    left:200px;
+    top:832px;
+    width:996px;
+    height:96px;
+}
+
+#u38_img {
+    position:absolute;
+    left:0px;
+    top:0px;
+    width:996px;
+    height:96px;
+}
+
+.u39 {
+    position:absolute;
+    left:2px;
+    top:40px;
+    width:992px;
+    height:16px;
+    ;
+    ;
+    ;
+    font-family:Arial;
+    text-align:left;
+    word-wrap:break-word;
+}
+
+.u40 {
+    position:absolute;
+    left:44px;
+    top:816px;
+    width:146px;
+    height:38px;
+    ;
+    ;
+    ;
+    font-family:Arial;
+    text-align:left;
+    word-wrap:break-word;
+}
+

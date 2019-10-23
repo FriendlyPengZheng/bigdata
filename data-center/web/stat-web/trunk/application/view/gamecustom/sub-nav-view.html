@@ -1,0 +1,30 @@
+<div class="wrapper">
+    <ul class="main-sub-nav">
+        <li class="sub-nav-li">
+            <select id="J_game">
+            {foreach $response.game as $key => $game}
+                {if $response.param.game_id == $key}
+                <option data-id="{$key}" data-href="{$game.url}" selected="true">{$game.game_name}{if $game.game_type == "webgame"}{TM::t('tongji', '【页游】')}{elseif $game.game_type == "mobilegame"}{TM::t('tongji', '【手游】')}{elseif $game.game_type == "site"}{TM::t('tongji', '【网站】')}{elseif $game.game_type == "clientgame"}{TM::t('tongji', '【端游】')}{else}{TM::t('tongji', '【测试】')}{/if}</option>
+                {else}
+                <option data-id="{$key}" data-href="{$game.url}">{$game.game_name}{if $game.game_type == "webgame"}{TM::t('tongji', '【页游】')}{elseif $game.game_type == "mobilegame"}{TM::t('tongji', '【手游】')}{elseif $game.game_type == "site"}{TM::t('tongji', '【网站】')}{elseif $game.game_type == "clientgame"}{TM::t('tongji','【端游】')}{else}{TM::t('tongji', '【测试】')}{/if}</option>
+                {/if}
+            {/foreach}
+            </select>
+        </li>
+        {if isset($response.manage_auth) && isset($response.aside) && $response.aside}
+		<li class="sub-nav-li xmlposr stat-button" title="上传XML">
+          <form action='' class='link-blk' enctype='multipart/form-data' method='post'>
+            <input name='sstid' type='hidden' value='_coinsbuyitem_'>
+            <input class='file-up' id='J_xmlUpload' name='files' type='file'>
+            <input id='J_paramGameId' name='game_id' type='hidden' value='{$response.param.game_id}'>
+            <a class='xml-upload' href='javascript:void(0)' id='J_uploadIcon'>
+              {TM::t('tongji', '上传 XML')}
+            </a>
+          </form>		  
+		</li>
+        <li class="sub-nav-li posr stat-button" title="配置管理">
+        <a href="{$response.aside[key($response.aside)].url}&game_id={$response.param.game_id}&view_r={$response.param.r}" class="bar-manage"><i class="iconfont icon-config"></i>{TM::t('tongji', '配置管理')}</a>
+		</li>
+        {/if}
+    </ul>
+</div>

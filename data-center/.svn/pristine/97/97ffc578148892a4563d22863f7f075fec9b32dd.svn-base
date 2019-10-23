@@ -1,0 +1,42 @@
+2014-06-11 Ian Guo<ianguo@taomee.com>
+version: 0.0.8
+svn trunk revision: 3195
+Changelog:
+1. 增加发送时的超时时间至5s。
+2. 重构TcpClient的close函数。
+
+2014-04-17 Ian Guo<ianguo@taomee.com>
+version: 0.0.5
+svn trunk revision: 2417
+Changelog:
+1. 如果获取的日志不包含'\n', 则添加'\n'后发送。
+2. 调整移动日志文件间隔，基础项和自定义项都是20s。
+
+2014-03-12 Ian Guo<ianguo@taomee.com>
+version: 0.0.4
+svn trunk revision: 2052
+Changelog:
+1. 重构获取本机IP函数，确保是内网地址。
+
+2014-03-12 Ian Guo<ianguo@taomee.com>
+version: 0.0.3
+svn trunk revision: 2049 
+Changelog:
+1. 实现流量监控，流量统计，落日志功能。
+2. 完善更新模块功能，在更新前先关闭所有文件描述符。
+3. update.sh增加备份release-notes.txt
+
+2014-03-10 Ian Guo<ianguo@taomee.com>
+version: 0.0.2
+svn trunk revision: 1900
+Changelog:
+1. 实现定时检查自身运行状态功能。
+2. 增加向stat-center注册，发送心跳数据功能。
+3. FIXBUG: 对sent目录打包时可能会出现判断时间失败。
+4. FIXBUG: update.sh会执行post-install脚本两次。
+
+2014-02-20 Ian Guo<ianguo@taomee.com>
+version: 0.0.1
+svn trunk revision: 1820
+Changelog:
+1. 完成自动更新功能，包括：检查更新，下载，安装。

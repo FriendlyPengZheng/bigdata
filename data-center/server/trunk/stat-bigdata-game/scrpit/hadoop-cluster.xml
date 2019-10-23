@@ -1,0 +1,69 @@
+<?xml version="1.0" ?>
+<configuration>
+	<!--    <property>
+        <name>fs.default.name</name>
+        <value>hdfs://10.1.1.65/</value>
+    </property>
+    <property>
+        <name>mapred.job.tracker</name>
+        <value>10.1.1.163:8021</value>
+	</property> -->
+<property>
+	<name>mapred.job.reuse.jvm.num.tasks</name>
+	<value>-1</value>
+</property>
+<property>
+	<name>mapred.map.tasks.speculative.execution</name>
+	<value>false</value>
+</property>
+<property>
+	<name>mapred.reduce.tasks.speculative.execution</name>
+	<value>false</value>
+</property>
+
+    <property>
+        <name>mapred.child.java.opts</name>
+        <value>-Xms2048m -Xmx2048m</value>
+    </property>
+    <property>
+        <name>mysql.url</name>
+        <value>jdbc:mysql://10.1.1.60/db_td_config?characterEncoding=utf8</value>
+    </property>
+    <property>
+        <name>mysql.user</name>
+        <value>root</value>
+    </property>
+    <property>
+        <name>mysql.passwd</name>
+        <value>pwd@60</value>
+	</property>
+
+	<property>
+        <name>io.sort.mb</name>
+        <value>500</value>
+    </property>
+
+	<!--
+	<property>
+		<name>mapred.tasktracker.tasks.maximum</name>
+		<value>8</value>
+	</property>
+
+	<property>
+		<name>mapred.tasktracker.map.tasks.maximum</name>
+		<value>6</value>
+	</property> 
+	-->
+
+	<property>
+		<name>mapred.reduce.tasks</name>
+		<value>16</value>
+	</property>
+
+	<property>
+	    <name>mysql.upload.delete.input</name>
+	    <value>0</value>
+	</property>
+
+</configuration>
+

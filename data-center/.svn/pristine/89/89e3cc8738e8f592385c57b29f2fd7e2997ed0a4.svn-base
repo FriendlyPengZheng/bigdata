@@ -1,0 +1,60 @@
+2014-09-05 tomli<tomli@taomee.com>
+version: 0.0.10
+svn trunk revision: 4180
+Changelog:
+1. add reconnect in time_event
+
+2014-08-27 tomli<tomli@taomee.com>
+version: 0.0.9
+svn trunk revision: 4123
+Changelog:
+1. add alarm_interval confiugre 
+
+2014-08-27 tomli<tomli@taomee.com>
+version: 0.0.8
+svn trunk revision: 4118
+Changelog:
+1. change '%s' to "%s" in sql to avoid the situation that ''' appear in sql
+
+2014-08-27 tomli<tomli@taomee.com>
+version: 0.0.7
+svn trunk revision: 4117
+Changelog:
+1. complete alarm funciton when insert new stat failed
+
+2014-07-03 Ping<ping@taomee.com>
+version: 0.0.6
+svn trunk revision: 3622
+Changelog:
+1.记录统计项名称中有'%'的到Info_log
+
+2014-07-03 Ian Guo<ianguo@taomee.com>
+version: 0.0.5
+svn trunk revision: 3471
+Changelog:
+1.性能优化：减少系统调用，利用分支预测，重构数据库和redis重连逻辑。
+
+2014-06-25 Ian Guo<ianguo@taomee.com>
+version: 0.0.4
+svn trunk revision: 3350
+Changelog:
+1. Fix Bug of async_server: 当网络不通或丢包严重时，客户端关闭连接，然后重连，
+但conn进程并不会关闭原连接的socket(原因是没有收到TCP FIN包)，导致连接数增加。
+解决方法：打开tcp_keepalive选项（可配置）.
+
+2014-03-13 seasondi<seasondi@taomee.com>
+version 0.0.3
+svn trunk version 2049
+ChangeLog:增加流量控制
+
+2014-03-07 seasondi<seasondi@taomee.com>
+version 0.0.2
+svn trunk version 1905
+ChangeLog:增加心跳包
+
+2014-02-24 seasondi<seasondi@taomee.com>
+version 0.0.1
+svn trunk version 1868
+ChangeLog:增加自动更新(检查,下载,更新);control增加为单独进程.
+
+

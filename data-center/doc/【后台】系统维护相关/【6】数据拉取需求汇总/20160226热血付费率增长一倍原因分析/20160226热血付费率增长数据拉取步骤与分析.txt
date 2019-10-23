@@ -1,0 +1,23 @@
+热血付费率增长的数据分析：
+
+1.30天活跃留存用户的数据拉取：(参看线上129机器目录:/opt/taomee/hadoop/bigdata 下的calc_activekeep_period.sh脚本的第一个MR的输出)
+   拉取的目录：${DAY_DIR}/$date/active-keep-period-${n}
+   例子：
+   hadoop fs -ls /bigdata/output/day/20160226/active-keep-period-30
+
+   hadoop fs -cat /bigdata/output/day/20160226/active-keep-period-30/part* |awk '{if($1==16) print $5}'|awk -F '--' '{print $1}'|sort -u >20160226_active_keep_30.log
+
+2.拉取当天的付费用户数据：
+   拉取的目录：${DAY_DIR}/${date}/msremain  参考线上日报job 47的输出：
+   例子:
+   hadoop fs -ls /bigdata/output/day/20160226/msremain
+
+   hadoop fs -cat /bigdata/output/day/20160226/msremain/partG16* | awk '{if($6=="acpay") print $5}'|awk -F '--' '{print $1}'|sort -u >20160226_acpayucount.log
+
+
+ 3.求拉取付费用户和30天活跃留存用户的交集：
+   sort 步骤1结果文件 步骤2结果文件 |uniq -d >result.log
+
+   例子:sort 20160226_active_keep_30.log 20160226_acpayucount.log |uniq -d >20160226_activekeep_acapy_30.log
+
+ 4.将相应数据拉取到excel做分析。

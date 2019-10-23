@@ -1,0 +1,297 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Copyright (C) 2012 The Android Open Source Project Licensed under the 
+	Apache License, Version 2.0 (the "License"); you may not use this file except 
+	in compliance with the License. You may obtain a copy of the License at http://www.apache.org/licenses/LICENSE-2.0 
+	Unless required by applicable law or agreed to in writing, software distributed 
+	under the License is distributed on an "AS IS" BASIS, WITHOUT WARRANTIES 
+	OR CONDITIONS OF ANY KIND, either express or implied. See the License for 
+	the specific language governing permissions and limitations under the License. -->
+
+<resources>
+
+	<!-- Styles in here can be extended for customisation in your application. 
+		Each utilises one of the Base styles. If Holo themes are available on the 
+		current platform version they will be used instead of the compat styles. -->
+
+	<style name="Widget.AppCompat.ActionBar" parent="Widget.AppCompat.Base.ActionBar">
+	</style>
+
+	<style name="Widget.AppCompat.Light.ActionBar" parent="Widget.AppCompat.Light.Base.ActionBar">
+	</style>
+
+	<style name="Widget.AppCompat.ActionBar.Solid" parent="Widget.AppCompat.Base.ActionBar.Solid">
+	</style>
+
+	<style name="Widget.AppCompat.Light.ActionBar.Solid" parent="Widget.AppCompat.Light.Base.ActionBar.Solid">
+	</style>
+
+	<style name="Widget.AppCompat.Light.ActionBar.Solid.Inverse"
+		parent="Widget.AppCompat.Light.Base.ActionBar.Solid.Inverse">
+	</style>
+
+	<style name="TextAppearance.AppCompat.Widget.ActionBar.Title"
+		parent="TextAppearance.AppCompat.Widget.Base.ActionBar.Title">
+	</style>
+
+	<style name="TextAppearance.AppCompat.Widget.ActionBar.Subtitle"
+		parent="TextAppearance.AppCompat.Widget.Base.ActionBar.Subtitle">
+	</style>
+
+	<style name="TextAppearance.AppCompat.Widget.ActionBar.Title.Inverse"
+		parent="TextAppearance.AppCompat.Widget.Base.ActionBar.Title.Inverse">
+	</style>
+
+	<style name="TextAppearance.AppCompat.Widget.ActionBar.Subtitle.Inverse"
+		parent="TextAppearance.AppCompat.Widget.Base.ActionBar.Subtitle.Inverse">
+	</style>
+
+	<style name="Widget.AppCompat.ProgressBar.Horizontal" parent="Widget.AppCompat.Base.ProgressBar.Horizontal">
+	</style>
+
+	<style name="Widget.AppCompat.ProgressBar" parent="Widget.AppCompat.Base.ProgressBar">
+	</style>
+
+	<style name="Widget.AppCompat.ActionButton" parent="Widget.AppCompat.Base.ActionButton">
+	tyle>
+
+	
+
+	 name="Widget.AppCompat.Light.ActionButton" paren=pCompat.Light.Base.ActionButton">
+	</style>
+
+	<sty
+	me="Widg
+
+	Compat.ActionButton.CloseMode" parent="Widget.AppComptonButton.CloseMode">
+	</style>
+
+	<style name="Widget.A
+	pat.Ligh
+
+	onButton.CloseMode"
+		parent="Widget.AppCompat.Light.Base.A
+		CloseMode">
+	</style>
+
+	<style name="Widget.AppCompat.Action
+	n.Overfl
+
+	rent="Widget.AppCompat.Base.ActionButton.Overflow">
+<<style name="Widget.AppCompat.Light.ActionButton.Over
+	
+		paren
+
+	get.AppCompat.Light.Base.ActionButton.Overflow">
+	</style>
+		me="Widget.AppCompat.ActionBar.TabBar" parent="Widget.AppCo
+	Base.Act
+
+	.TabBar">
+	</style>
+
+	<style name="Widget.AppCompat.Light.ActionBar.TabBar" parent="Widget.AppCo
+	Light.Ba
+
+	ionBar.TabBar">
+	</style>
+
+	<style name="Widget.AppCopctionBar.TabBar.Inverse"
+		parent="Widget.AppCompat.Li
+	ase.Acti
+
+	TabBar.Inverse"></style>
+
+	<style name="Widget.AppCompat.Acti
+		w" parent="Widget.AppCompat.Base.ActionBar.TabView">
+	</style>
+
+	<styl
+
+	="Widget.AppCompat.Light.ActionBar.TabView" paretppCompat.Light.Base.ActionBar.TabView">
+	</style>
+	tyle nam
+
+	get.AppCompat.Light.ActionBar.TabView.Inverse"
+		paren=pCompat.Light.Base.ActionBar.TabView.Inverse">
+	</style
+	style na
+
+	dget.AppCompat.ActionBar.TabText" parent="Widget.AppCompat.Bas
+		TabText">
+	</style>
+
+	<style name="Widget.AppCompat.Light.Actio
+	TabText"
+
+	t="Widget.AppCompat.Light.Base.ActionBar.TabText>
+
+	<style name="Widget.AppCompat.Light.ActionBar.
+	xt.Inver
+
+	parent="Widget.AppCompat.Light.Base.ActionBar.TabText.n/style>
+
+	<style name="TextAppearance.AppCompat.Widget.
+	nBar.Men
+
+	arent="TextAppearance.AppCompat.Widget.Base.ActionBar.Menu">
+	
+		style name="Widget.AppCompat.ActionMode" parent="Widget.AppComp
+	se.Actio
+
+	>
+	</style>
+
+	<style name="Widget.AppCompat.Light.ActionMode
+		rent="Widget.AppCompat.Light.Base.ActionMode.Inverse">
+	</sty
+		<style 
+
+	TextAppearance.AppCompat.Widget.ActionMode.Title"
+		parent="TextAppearance.AppCompat
+	et.Base.
+
+	Mode.Title">
+	</style>
+
+	<style name="TextAppearance.ApCet.ActionMode.Subtitle"
+		parent="TextAppearance.AppComp
+	dget.Bas
+
+	onMode.Subtitle">
+	</style>
+
+	<style name="TextAppearance.AppC
+		.ActionMode.Title.Inverse"
+		parent="TextAppearance.AppCompat.W
+	.Base.Ac
+
+	de.Title.Inverse">
+	</style>
+
+	<style name="TextAppearance.AppCom
+		ctionMode.Subtitle.Inverse"
+		parent="TextAppearance.AppCompat.Wid
+	ase.Acti
+
+	.Subtitle.Inverse">
+	</style>
+
+	<style name="TextAppearance.AppCompat.
+		ownItem"
+		parent="TextAppearance.AppCompat.Widget.Base.DropDownItem">
+
+	yle>
+
+	<
+
+	name="Widget.AppCompat.Spinner.DropDown.ActionBar" parent="Widget.AppComp
+		ner">
+	</style>
+
+	<style name="Widget.AppCompat.Light.Spinner.DropDown.Act
+	r"
+		par
+
+	idget.AppCompat.Light.Base.Spinner">
+	</style>
+
+	<style na
+		ppCompat.DropDownItem.Spinner" parent="Widget.AppCompat.Bas
+	pDownIte
+
+	ner">
+	</style>
+	<style name="Widget.AppCompat.Light.Droponner" parent="Widget.AppCompat.Light.Ba
+	opDownIt
+
+	nner">
+	</style>
+
+	<style name="Widget.AppCompat.ListView.DropD
+		"Widget.AppCompat.Base.ListView.DropDown">
+	<
+	e>
+
+	<st
+
+	me="Widget.AppCompat.Light.ListView.DropDown" paren=pCompat.Light.Base.ListView.DropDown">
+	</style>
+
+	<
+	 name="T
+	pearance.Widget.AppCompat.ExpandedMenu.Item"
+		parent="Tet.Widget.AppCompat.Base.ExpandedMenu.Item">
+	</style>
+
+	<st
+	ame="Wid
+
+	pCompat.ListPopupWindow" parent="Widget.AppCompa.opupWindow">
+	</style>
+
+	<style name="Widget.AppC
+	.Light.L
+	istPopupWindow" parent="Widget.AppCompat.Light.Base.ListPopupWindow">
+	</style>
+
+	<style name="W get.AppCompat. opupMenu" parent="Widget.AppCompat.Base.PopupMenu">
+	</s
+		e>
+
+	<style name="Widget.AppCompat.Light.PopupMenu" parent="Widget.AppCompat.Light.Base.PopupMenu">
+	</style>
+
+	<style name="Widget.AppCompat.ListView.Menu" parent="Widge
+	
+	t.AppC mpat.Base.ListView.Menu">
+	</style>
+
+	<style  ame="TextAppearance.AppCompat.Widget.PopupMenu.Lar "
+		parent="TextAppearance.AppCompat.Base.Widget.PopupMenu.Large">
+	</style>
+
+	<style name="TextAppearance.AppCompat.Widget.PopupMenu.Small"
+		parent="TextAppearance.AppCompat.Base.Widget.PopupMenu.Small"> </sty
+	l
+	e>
+
+	< tyle name="TextAppearance.AppCompat.Light.Widget.PopupMenu.Large"
+		parent="TextAppearance.AppCompat.Light.B e.Widge
+	t.Popu Menu.Large">
+	</style>
+
+	<style name="TextAppearance.AppComp
+		Light.Widget.PopupMenu. mall"
+		parent="TextAppearance.AppCompat.Light.Base.Widget.P
+		pMenu.Small">
+	</style>
+
+	<s
+		tyle name="TextAppearance.AppCompat.SearchResult.Title" parent="TextAppearance.AppCompat.Base.SearchResult.Title">
+	</style>
+
+	<style name="TextApp<style></style>earance.AppCompat.SearchResult.Subtitle"
+		parent="TextAppearance.AppCompat.Base.SearchResult.Subtitle">
+	</style>
+
+	<style name="TextAppearance.AppCompat.Light.SearchResult.Title"
+		parent="TextAppearance.AppCompat.Light.Base.SearchResult.Title">
+	</style>
+
+	<style name="TextAppearance.AppCompat.Light.SearchResult.Subtitle"
+		parent="TextAppearance.AppCompat.Light.Base.SearchResult.Subtitle">
+	</style>
+
+	<style name="Widget.AppCompat.AutoCompleteTextView" parent="Widget.AppCompat.Base.AutoCompleteTextView">
+	</style>
+
+	<style name="Widget.AppCompat.Light.AutoCompleteTextView" parent="Widget.AppCompat.Light.Base.AutoCompleteTextView">
+	</style>
+
+	<style name="Widget.AppCompat.ActivityChooserView" parent="Widget.AppCompat.Base.ActivityChooserView">
+	</style>
+
+	<style name="Widget.AppCompat.Light.ActivityChooserView" parent="Widget.AppCompat.Light.Base.ActivityChooserView">
+	</style>
+
+</resources>

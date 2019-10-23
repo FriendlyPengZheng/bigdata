@@ -1,0 +1,93 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.taomee.tms.mgr.dao.ComponentDao">
+	<resultMap id="ComponentMap" type="com.taomee.tms.mgr.entity.Component">
+		<id column="component_id" property="componentId" jdbcType="INTEGER" />
+		<result column="component_type" property="componentType"
+			jdbcType="VARCHAR" />
+		<result column="properties" property="properties" jdbcType="VARCHAR" />
+		<result column="parent_id" property="parentId" jdbcType="INTEGER" />
+		<result column="module_key" property="moduleKey" jdbcType="VARCHAR" />
+		<result column="display_order" property="displayOrder"
+			jdbcType="INTEGER" />
+		<result column="hidden" property="hidden" jdbcType="INTEGER" />
+		<result column="ignore_id" property="ignoreId" jdbcType="INTEGER" />
+		<result column="component_title" property="componentTitle"
+			jdbcType="VARCHAR" />
+		<result column="component_desc" property="componentDesc"
+			jdbcType="VARCHAR" />
+		<result column="game_id" property="gameId" jdbcType="INTEGER" />
+	</resultMap>
+
+	<sql id="ComponentColumnList">
+		component_id, component_type, t_web_component.properties,
+		parent_id,
+		module_key, display_order, hidden, ignore_id,
+		component_title,
+		component_desc,game_id
+	</sql>
+
+	<sql id="ComponentByIgnoredColumnList">
+		component_title, component_type, ignore_id
+	</sql>
+	
+	<select id="getComponents" resultMap="ComponentMap">
+		select
+		<include refid="ComponentColumnList" />
+		from t_web_component
+		where module_key=#{0} and parent_id=#{1} and game_id=#{2} order by
+		display_order ASC,component_id ASC
+	</select>
+
+	<insert id="insertComponentInfo" parameterType="com.taomee.tms.mgr.entity.Component"
+		useGeneratedKeys="true" keyProperty="componentId">
+		insert into t_web_component
+		(component_type, t_web_component.properties, parent_id,
+		module_key, hidden, ignore_id, component_title,
+		component_desc,game_id)
+		values
+		(#{componentType,jdbcType=VARCHAR},#{properties,jdbcType=VARCHAR},
+		#{parentId,jdbcType=INTEGER}, #{moduleKey,jdbcType=VARCHAR},
+		#{hidden,jdbcType=INTEGER},#{ignoreId,jdbcType=INTEGER},#{componentTitle,jdbcType=VARCHAR},#{componentDesc,jdbcType=VARCHAR},#{gameId,jdbcType=INTEGER})
+	</insert>
+
+	<update id="updateComponentInfo" parameterType="com.taomee.tms.mgr.entity.Component">
+		update
+		t_web_component
+		set
+		component_type=#{componentType},t_web_component.properties=#{properties},parent_id=#{parentId},
+		module_key=#{moduleKey},
+		hidden=#{hidden}, ignore_id=#{ignoreId},
+		component_title=#{componentTitle}, component_desc=#{componentDesc}, game_id=#{gameId}
+		where
+		component_id=#{componentId}
+	</update>
+
+	<delete id="deleteComponentInfoBycomponentId" parameterType="com.taomee.tms.mgr.entity.Component">
+		delete from
+		t_web_component
+		where component_id=#{componentId}
+	</delete>
+
+	<select id="getComponentInfoByComponentId" resultMap="ComponentMap">
+		select
+		<include refid="ComponentColumnList" />
+		from t_web_component
+		where component_id=#{componentId} order by component_id ASC
+	</select>
+
+	<select id="getComponentInfoByParentId" resultMap="ComponentMap">
+		select
+		<include refid="ComponentColumnList" />
+		from t_web_component
+		where parent_id=#{parentId} order by parent_id ASC
+	</select>
+	
+	<select id="getAllComponentsByIgnored" resultMap="ComponentMap">
+		select
+		<include refid="ComponentByIgnoredColumnList" />
+		from t_web_component
+		where ignore_id <![CDATA[<>]]> 0
+	</select>
+	
+</mapper>

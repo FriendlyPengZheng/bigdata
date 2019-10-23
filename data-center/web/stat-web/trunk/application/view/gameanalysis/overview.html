@@ -1,0 +1,117 @@
+{extends "layout/layout.html"}
+
+{block "layout.title"}{$response.application_info.name}-{TM::t('tongji', '游戏分析')}{/block}
+{block "layout.subnav"}{include "gameanalysis/sub-nav.html"}{/block}
+{block "layout.pagecss"}
+<link rel="stylesheet" type="text/css" href="{$response.res_server}/data/css/page/gameanalysis/overview.css?v={$response.application_info.version}">
+{/block}
+{block "layout.main"}
+<div class="main with-aside">
+    {include "gameanalysis/aside.html"}
+    <div class="tips" id="J_timeTips" style="display: none;">
+        <a class="tips-close" href="javascript:void(0);">X</a>
+        <div class="tips-text"><span class="tit">{TM::t('tongji', '注意：')}</span>{TM::t('tongji', '页面只能显示{1}时间段的数据，下载数据时间段没有限制哦。', ['{1}' => sprintf('<span class="tit period">%s~%s</span>', $response.param.from, $response.param.to)])}</div>
+    </div>
+    <div class="progress-wrap" id="J_progress">
+        <span class="progress-title">{TM::t('tongji', '数据运算进度：')}</span>
+        <span class="progress-text"></span>
+    </div>
+    <div class="content clearfix">
+        <input type="hidden" id="J_paramGameId" value="{$response.param.game_id}" />
+        <input type="hidden" id="J_paramGameType" value="{$response.param.game_type}" />
+        <input type="hidden" id="J_r" value="{$response.param.r}" />
+        <input type="hidden" id="J_gpzsId" value="{$response.gpzs_id}" />
+        <div class="content-header clearfix" id="J_contentHeader">
+            {if isset($response.datalist)}
+            <ul class="view-data" id="J_viewData">
+                {foreach $response.datalist as $k => $list}
+                <li class="view-data{$k+1}">
+                    <span class="view-txt">{$list.name}</span>
+                    {if count($list.data) == 1}
+                        <strong class="imp" style="font-size: 24px;">
+                        {if $k == 2}
+                            {number_format($list.data[0], 2, ".", ",")}
+                        {else}
+                            {number_format($list.data[0])}
+                        {/if}
+                        </strong>
+                    {else}
+                        {foreach $list.data as $kk => $data}
+                            {if $kk == 0 }
+                                <strong class="imp">
+                                {if $k == 2}
+                                    {number_format($data, 2, ".", ",")}
+                                {else}
+                                    {number_format($data)}
+                                {/if}
+                                </strong>
+                            {elseif $kk == 1 }
+                                <strong>
+                                {if $k == 2}
+                                    {number_format($data, 2, ".", ",")}
+                                {else}
+                                    {number_format($data)}
+                                {/if}
+                                </strong>
+                            {elseif $kk == 2 && $data >= 0 }
+                                <strong class="up">+{$data}%</strong>
+                            {elseif $kk == 2 && $data < 0 }
+                                <strong class="down">{$data}%</strong>
+                            {/if}
+                        {/foreach}
+                    {/if}
+                </li>
+                {/foreach}
+            </ul>
+            {/if}
+            {if isset($response.param.contrast) && $response.param.contrast == 1 }
+                <div class="datepicker-trigger single radius5-all fr mr5 mt20" id="J_single">
+            {else}
+                <div class="datepicker-trigger single radius5-all fr mr5 mt20" id="J_single" style="display: none;">
+            {/if}
+                <input type="hidden" id="J_single_from" value="{$response.param.contrast_from}" />
+                <i class="datepicker-icon"></i>
+                <input class="title" type="text" id="J_single_date" value="{$response.param.contrast_from}" />
+                <i class="datepicker-arrow"></i>
+            </div>
+            <label class="fr cstcon mt20">
+                {if isset($response.param.contrast) && $response.param.contrast == 1 }
+                    <input type="checkbox" class="cstchk mr5" id="J_contrast" checked/>
+                    <span class="csttxt" style="display: none;">{TM::t('tongji', '选择对比开始时间')}</span>
+                {else}
+                    <input type="checkbox" class="cstchk mr5" id="J_contrast"/>
+                    <span class="csttxt">{TM::t('tongji', '选择对比开始时间')}</span>
+                {/if}
+            </label>
+            <div class="datepicker-trigger radius5-all fr mr5 mt20" id="J_from_to" >
+                <input type="hidden" id="J_from" value="{$response.param.from}" />
+                <input type="hidden" id="J_to" value="{$response.param.to}" />
+                <input type="hidden" id="J_showFrom" value="{$response.param.from}" />
+                <input type="hidden" id="J_showTo" value="{$response.param.to}" />
+                <i class="datepicker-icon"></i>
+                <input class="title" type="text" id="J_date" value="{$response.param.from}~{$response.param.to}" />
+                <i class="datepicker-arrow"></i>
+            </div>
+        </div>
+        <div class="content-body" id="J_contentBody" >
+        </div>
+    </div>
+</div>
+{/block}
+{block "layout.pagejs"}
+    <!-- here you can add some page javascript -->
+    <script src="{$response.res_server}/common/js/select.js"></script>
+    <script src="{$response.res_server}/data/js/common/navigator.js?v={$response.application_info.version}"></script>
+    <script src="{$response.res_server}/common/js/datepick.js"></script>
+    <script src="{$response.res_server}/common/js/Page.js"></script>
+    <script src="{$response.res_server}/common/js/tm.tabs.js"></script>
+    <script src="{$response.res_server}/common/js/draw/highstock.js"></script>
+    <script src="{$response.res_server}/common/js/tm.draw.js"></script>
+    <script src="{$response.res_server}/data/js/common/jquery.choose.js?v={$response.application_info.version}"></script>
+    <script src="{$response.res_server}/common/js/tm.datatable.js"></script>
+    <script src="{$response.res_server}/data/js/common/common.js?v={$response.application_info.version}"></script>
+    <script src="{$response.res_server}/data/js/page/gameanalysis/addtofavor.js?v={$response.application_info.version}"></script>
+    <script src="{$response.res_server}/data/js/common/tm.module.ok.js?v={$response.application_info.version}"></script>
+    <script src="{$response.res_server}/data/js/common/usage.ok.js?v={$response.application_info.version}"></script>
+    <script src="{$response.res_server}/data/js/page/gameanalysis/overview.js?v={$response.application_info.version}"></script>
+{/block}

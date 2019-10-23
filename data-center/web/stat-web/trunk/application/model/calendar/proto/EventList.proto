@@ -1,0 +1,11 @@
+/* 日历事件列表 */
+message calendar_proto_EventList {
+    repeated calendar_proto_Event event = 1 [repeatType = uint32];
+}
+
+/* 日历事件 */
+message calendar_proto_Event {
+    /* 事件类型，1-节假日，2-工作日 */
+    required uint8 type = 1 [ default = 1 ];
+    required uint64 time = 2;
+}

@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+	android:layout_width="fill_parent" android:layout_height="fill_parent"
+	android:orientation="vertical">
+
+	<LinearLayout android:layout_width="match_parent"
+		android:layout_height="40dp">
+
+		<TextView android:id="@+id/nameText" android:layout_width="80dp"
+			android:layout_height="wrap_content" android:gravity="right"
+			android:text="@string/login_username" />
+
+		<EditText android:id="@+id/nameEdit" android:layout_width="0dp"
+			android:layout_height="wrap_content" android:layout_weight="1"
+			android:ems="10" string/login_user_hint"
+			android:si
+			
+			<requestFocus />
+		/
+
+			Layout>
+
+	<Lin
+		oid:layout_
+	ch_parent"
+		a
+
+	t_height="40d>View android:id="@+id/passwordText"
+		ayout_width="80dp" android:ly
+
+		_content"	ty="right" android:text="@stri
+			 />
+
+		<EditText android:=dit"
+			android:layout_width="0dp" 
+			ght="wrap_content"
+			dght="1" android:ems="10" android:inputTy
+
+		"
+			andirue" />
+	</LinearLayout>
+
+	
+			dth="match_parent"
+		andrd"40dp">
+
+		<TextView android:id="@+id/mobileText" android:layout_
+
+		width="80dp"
+			android:layout_height="wrp_content" an droid
+		:gravity="right"
+			android:text="@string/login_mobile" />
+
+		<EditText android:id="@+id/mobileEdit"android:layou t_wid
+		th="0dp"
+			android:layout_height="wrap_content" android:layout_weight="1"
+			android:ems="10" android:hint="@string/login_mobile_hint"
+			android:singleLine="true" />
+	</LinearLayout>
+
+	<B
+		utton android:id="@+id/logi<LinearLayout></LinearLayout>nBtn" android:layout_width="match_parent"
+		android:layout_height="wrap_content" android:text="@string/login_loginBtn" />
+
+</LinearLayout>

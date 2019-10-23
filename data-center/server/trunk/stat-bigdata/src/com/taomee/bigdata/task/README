@@ -1,0 +1,17 @@
+com.taomee.bigdata.task包下的代码用于计算基础加工项
+task_id和配置区间由配置确定
+
+online 计算 游戏天数，时长，次数的总计，平均，分布
+common 集合的交差运算(没有并集！)
+newlog 首次登陆用户，游戏天数
+nday   第n天(周/月)用户登陆，用于计算留存，流失，回流的Mapper和计数的Mapper
+keep   留存
+lost   流失
+back   回流
+pay    付费率，ARPU，ARPPU
+allpay 累计付费用户，新增付费用户
+olcnt  分电信网通的ACU,PCU
+device 新增用户设备信息
+level  活跃用户等级分布
+seer   赛尔号钻石分析
+newvalue 新玩家价值

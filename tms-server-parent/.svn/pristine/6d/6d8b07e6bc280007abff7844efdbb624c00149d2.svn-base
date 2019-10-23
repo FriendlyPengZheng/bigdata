@@ -1,0 +1,11 @@
+package com.taomee.tms.mgr.dao;
+
+import java.util.List;
+
+import com.taomee.tms.mgr.entity.WhaleUserMonthInfo;
+
+
+public interface WhaleUserMonthDao {
+	List<WhaleUserMonthInfo> getWhaleUserMonthInfosByparentId(Integer gameId, Integer parentId);
+	List<WhaleUserMonthInfo> getWhaleUserMonthInfosByserverId(Integer gameId, Integer serverId);
+}

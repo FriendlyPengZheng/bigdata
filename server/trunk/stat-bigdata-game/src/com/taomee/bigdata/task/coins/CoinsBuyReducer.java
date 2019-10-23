@@ -1,0 +1,38 @@
+package com.taomee.bigdata.task.coins;
+
+import org.apache.hadoop.mapred.*;
+import org.apache.hadoop.io.*;
+import org.apache.hadoop.mapred.lib.*;
+
+import java.io.*;
+import java.util.Iterator;
+import com.taomee.bigdata.util.GetGameinfo;
+
+public class CoinsBuyReducer extends MapReduceBase implements Reducer<Text, LongWritable, Text, LongWritable>
+{
+    private LongWritable outputValue = new LongWritable();
+    private MultipleOutputs mos = null;
+	private GetGameinfo getGameinfo  = GetGameinfo.getInstance();
+
+	public void configure(JobConf job) {
+		mos = new MultipleOutputs(job);
+		getGameinfo.config(job);
+	}
+
+	public void close() throws IOException {
+		mos.close();
+	}
+
+    public void reduce(Text key, Iterator<LongWritable> values, OutputCollector<Text, LongWritable> output, Reporter reporter) throws IOException
+    {
+        long sum = 0l;
+        String gameid = key.toString().split("\t")[0];
+		String gameinfo = getGameinfo.getValue(gameid);
+        while(values.hasNext()) {
+            sum += values.next().get();
+        }
+        outputValue.set(sum);
+        //output.collect(key, outputValue);
+		mos.getCollector("part"+gameinfo, reporter).collect(key, outputValue);
+    }
+}

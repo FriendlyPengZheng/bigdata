@@ -1,0 +1,16 @@
+package statloggercommon;
+
+message game_info_t {
+    required uint32 gameid = 1;//游戏id
+    optional int32 zoneid = 2 [default = -1];//区
+    optional int32 serverid = 3 [default = -1];//服
+}
+
+message user_id_t {
+    required uint32 uid = 1;   //米米号
+    optional int32 pid = 2 [default = -1];   //角色id
+}
+
+message return_t {
+    optional uint32 ret = 1 [default = 0];
+}

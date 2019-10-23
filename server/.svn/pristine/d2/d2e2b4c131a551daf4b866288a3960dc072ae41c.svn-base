@@ -1,0 +1,753 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 46;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		CF057C3519209CE200AFC586 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CF057C3419209CE200AFC586 /* Foundation.framework */; };
+		CF057C3719209CE200AFC586 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CF057C3619209CE200AFC586 /* CoreGraphics.framework */; };
+		CF057C3919209CE200AFC586 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CF057C3819209CE200AFC586 /* UIKit.framework */; };
+		CF057C3F19209CE200AFC586 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = CF057C3D19209CE200AFC586 /* InfoPlist.strings */; };
+		CF057C4119209CE200AFC586 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = CF057C4019209CE200AFC586 /* main.m */; };
+		CF057C4519209CE200AFC586 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = CF057C4419209CE200AFC586 /* AppDelegate.m */; };
+		CF057C4819209CE200AFC586 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = CF057C4619209CE200AFC586 /* Main.storyboard */; };
+		CF057C4B19209CE200AFC586 /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = CF057C4A19209CE200AFC586 /* ViewController.m */; };
+		CF057C4D19209CE200AFC586 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = CF057C4C19209CE200AFC586 /* Images.xcassets */; };
+		CF057C5419209CE200AFC586 /* XCTest.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CF057C5319209CE200AFC586 /* XCTest.framework */; };
+		CF057C5519209CE300AFC586 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CF057C3419209CE200AFC586 /* Foundation.framework */; };
+		CF057C5619209CE300AFC586 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CF057C3819209CE200AFC586 /* UIKit.framework */; };
+		CF057C5E19209CE300AFC586 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = CF057C5C19209CE300AFC586 /* InfoPlist.strings */; };
+		CF057C6019209CE300AFC586 /* TaomeeChatTests.m in Sources */ = {isa = PBXBuildFile; fileRef = CF057C5F19209CE300AFC586 /* TaomeeChatTests.m */; };
+		CF2A78051929B71800435225 /* libz.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = CF2A78041929B71800435225 /* libz.dylib */; };
+		CF2A972A1929F58000435225 /* libc++.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = CF2A97291929F58000435225 /* libc++.dylib */; };
+		CF2A972B1929F58900435225 /* libstdc++.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = CFA985D019245873003092B0 /* libstdc++.dylib */; };
+		CF78963C19349C630029718F /* libprotobuf.a in Frameworks */ = {isa = PBXBuildFile; fileRef = CF2A78071929BA3500435225 /* libprotobuf.a */; };
+		CF78964819349D160029718F /* Base64.m in Sources */ = {isa = PBXBuildFile; fileRef = CF78963E19349D160029718F /* Base64.m */; };
+		CF78964919349D160029718F /* GzipCompressor.m in Sources */ = {isa = PBXBuildFile; fileRef = CF78964119349D160029718F /* GzipCompressor.m */; };
+		CF78964A19349D160029718F /* JSONKit.m in Sources */ = {isa = PBXBuildFile; fileRef = CF78964319349D160029718F /* JSONKit.m */; };
+		CF78964B19349D160029718F /* OpenUDID.m in Sources */ = {isa = PBXBuildFile; fileRef = CF78964519349D160029718F /* OpenUDID.m */; };
+		CF78964C19349D160029718F /* Reachability.m in Sources */ = {isa = PBXBuildFile; fileRef = CF78964719349D160029718F /* Reachability.m */; };
+		CF78964F19349F9D0029718F /* libBPush.a in Frameworks */ = {isa = PBXBuildFile; fileRef = CF2A78061929BA3500435225 /* libBPush.a */; };
+		CF9FCBAA192B816000DE5FAF /* CoreTelephony.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CF9FCBA9192B816000DE5FAF /* CoreTelephony.framework */; };
+		CF9FCBAC192B817C00DE5FAF /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CF9FCBAB192B817C00DE5FAF /* SystemConfiguration.framework */; };
+		CFA985AB1921D0D6003092B0 /* AlarmMsgUIControllerViewController.mm in Sources */ = {isa = PBXBuildFile; fileRef = CFA985A91921D0D6003092B0 /* AlarmMsgUIControllerViewController.mm */; };
+		CFA985AC1921D0D6003092B0 /* AlarmMsgUIControllerViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = CFA985AA1921D0D6003092B0 /* AlarmMsgUIControllerViewController.xib */; };
+		CFA985B71921F0AE003092B0 /* LocalDatabaseHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = CFA985B61921F0AE003092B0 /* LocalDatabaseHelper.m */; };
+		CFA985BC1921F57E003092B0 /* AlarmMsgTable.m in Sources */ = {isa = PBXBuildFile; fileRef = CFA985BB1921F57E003092B0 /* AlarmMsgTable.m */; };
+		CFA985BF1921FC71003092B0 /* SettingTable.m in Sources */ = {isa = PBXBuildFile; fileRef = CFA985BE1921FC71003092B0 /* SettingTable.m */; };
+		CFA985C8192212C6003092B0 /* LoginViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = CFA985C6192212C6003092B0 /* LoginViewController.m */; };
+		CFA985C9192212C6003092B0 /* LoginViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = CFA985C7192212C6003092B0 /* LoginViewController.xib */; };
+		CFA985D219245915003092B0 /* libsqlite3.0.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = CFA985B81921F24D003092B0 /* libsqlite3.0.dylib */; };
+		CFA985D519245A4E003092B0 /* AlarmMsgItem.m in Sources */ = {isa = PBXBuildFile; fileRef = CFA985D419245A4E003092B0 /* AlarmMsgItem.m */; };
+		CFA985DB1924C9B0003092B0 /* AlarmNotificationTable.m in Sources */ = {isa = PBXBuildFile; fileRef = CFA985DA1924C9B0003092B0 /* AlarmNotificationTable.m */; };
+		CFAC3A7B1935CAE500630B1D /* first.png in Resources */ = {isa = PBXBuildFile; fileRef = CFAC3A7A1935CAE500630B1D /* first.png */; };
+		CFB13AD2192F173400CE1F25 /* read_0.png in Resources */ = {isa = PBXBuildFile; fileRef = CFB13ACB192F173400CE1F25 /* read_0.png */; };
+		CFB13AD3192F173400CE1F25 /* unread_0.png in Resources */ = {isa = PBXBuildFile; fileRef = CFB13ACC192F173400CE1F25 /* unread_0.png */; };
+		CFB13AD4192F173400CE1F25 /* mark_0.png in Resources */ = {isa = PBXBuildFile; fileRef = CFB13ACD192F173400CE1F25 /* mark_0.png */; };
+		CFB13AD5192F173400CE1F25 /* unmark_0.png in Resources */ = {isa = PBXBuildFile; fileRef = CFB13ACE192F173400CE1F25 /* unmark_0.png */; };
+		CFB13AD6192F173400CE1F25 /* chat_0.png in Resources */ = {isa = PBXBuildFile; fileRef = CFB13ACF192F173400CE1F25 /* chat_0.png */; };
+		CFB13AD7192F173400CE1F25 /* delete_0.png in Resources */ = {isa = PBXBuildFile; fileRef = CFB13AD0192F173400CE1F25 /* delete_0.png */; };
+		CFB13AD8192F173400CE1F25 /* Default.png in Resources */ = {isa = PBXBuildFile; fileRef = CFB13AD1192F173400CE1F25 /* Default.png */; };
+		CFF3BA0D192A0816004E7823 /* app_login_request.pb.cc in Sources */ = {isa = PBXBuildFile; fileRef = CFF3BA0B192A0816004E7823 /* app_login_request.pb.cc */; };
+		CFF3BA11192A0990004E7823 /* AlarmTcpClient.mm in Sources */ = {isa = PBXBuildFile; fileRef = CFF3BA10192A0990004E7823 /* AlarmTcpClient.mm */; };
+		CFF3BA14192A25F2004E7823 /* app_pull_msg.pb.cc in Sources */ = {isa = PBXBuildFile; fileRef = CFF3BA12192A25F2004E7823 /* app_pull_msg.pb.cc */; };
+		CFF3BD98192B46C7004E7823 /* BPushConfig.plist in Resources */ = {isa = PBXBuildFile; fileRef = CFF3BD97192B46C7004E7823 /* BPushConfig.plist */; };
+		CFF4E595192CC6960059456D /* Toast.m in Sources */ = {isa = PBXBuildFile; fileRef = CFF4E594192CC6960059456D /* Toast.m */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		CF057C5719209CE300AFC586 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = CF057C2919209CE200AFC586 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = CF057C3019209CE200AFC586;
+			remoteInfo = TaomeeChat;
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXFileReference section */
+		CF057C3119209CE200AFC586 /* ichat.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ichat.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		CF057C3419209CE200AFC586 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
+		CF057C3619209CE200AFC586 /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
+		CF057C3819209CE200AFC586 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
+		CF057C3C19209CE200AFC586 /* iChat-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "iChat-Info.plist"; sourceTree = "<group>"; };
+		CF057C3E19209CE200AFC586 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
+		CF057C4019209CE200AFC586 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
+		CF057C4219209CE200AFC586 /* iChat-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "iChat-Prefix.pch"; sourceTree = "<group>"; };
+		CF057C4319209CE200AFC586 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
+		CF057C4419209CE200AFC586 /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
+		CF057C4719209CE200AFC586 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
+		CF057C4919209CE200AFC586 /* ViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ViewController.h; sourceTree = "<group>"; };
+		CF057C4A19209CE200AFC586 /* ViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ViewController.m; sourceTree = "<group>"; };
+		CF057C4C19209CE200AFC586 /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
+		CF057C5219209CE200AFC586 /* iChat.temp_caseinsensitive_rename.temp_caseinsensitive_renameTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = iChat.temp_caseinsensitive_rename.temp_caseinsensitive_renameTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		CF057C5319209CE200AFC586 /* XCTest.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = XCTest.framework; path = Library/Frameworks/XCTest.framework; sourceTree = DEVELOPER_DIR; };
+		CF057C5B19209CE300AFC586 /* iChat.temp_caseinsensitive_rename.temp_caseinsensitive_renameTests-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "iChat.temp_caseinsensitive_rename.temp_caseinsensitive_renameTests-Info.plist"; sourceTree = "<group>"; };
+		CF057C5D19209CE300AFC586 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
+		CF057C5F19209CE300AFC586 /* TaomeeChatTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = TaomeeChatTests.m; sourceTree = "<group>"; };
+		CF2A78041929B71800435225 /* libz.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libz.dylib; path = usr/lib/libz.dylib; sourceTree = SDKROOT; };
+		CF2A78061929BA3500435225 /* libBPush.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libBPush.a; path = TaomeeChat/lib/libBPush.a; sourceTree = "<group>"; };
+		CF2A78071929BA3500435225 /* libprotobuf.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libprotobuf.a; path = TaomeeChat/lib/libprotobuf.a; sourceTree = "<group>"; };
+		CF2A97291929F58000435225 /* libc++.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = "libc++.dylib"; path = "usr/lib/libc++.dylib"; sourceTree = SDKROOT; };
+		CF78963D19349D160029718F /* Base64.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Base64.h; path = lib/Base64.h; sourceTree = "<group>"; };
+		CF78963E19349D160029718F /* Base64.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = Base64.m; path = lib/Base64.m; sourceTree = "<group>"; };
+		CF78963F19349D160029718F /* Base64Defines.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Base64Defines.h; path = lib/Base64Defines.h; sourceTree = "<group>"; };
+		CF78964019349D160029718F /* GzipCompressor.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = GzipCompressor.h; path = lib/GzipCompressor.h; sourceTree = "<group>"; };
+		CF78964119349D160029718F /* GzipCompressor.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = GzipCompressor.m; path = lib/GzipCompressor.m; sourceTree = "<group>"; };
+		CF78964219349D160029718F /* JSONKit.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = JSONKit.h; path = lib/JSONKit.h; sourceTree = "<group>"; };
+		CF78964319349D160029718F /* JSONKit.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = JSONKit.m; path = lib/JSONKit.m; sourceTree = "<group>"; };
+		CF78964419349D160029718F /* OpenUDID.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = OpenUDID.h; path = lib/OpenUDID.h; sourceTree = "<group>"; };
+		CF78964519349D160029718F /* OpenUDID.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = OpenUDID.m; path = lib/OpenUDID.m; sourceTree = "<group>"; };
+		CF78964619349D160029718F /* Reachability.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Reachability.h; path = lib/Reachability.h; sourceTree = "<group>"; };
+		CF78964719349D160029718F /* Reachability.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = Reachability.m; path = lib/Reachability.m; sourceTree = "<group>"; };
+		CF78964D19349E650029718F /* BPush.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = BPush.h; path = lib/BPush.h; sourceTree = "<group>"; };
+		CF9FCBA9192B816000DE5FAF /* CoreTelephony.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreTelephony.framework; path = System/Library/Frameworks/CoreTelephony.framework; sourceTree = SDKROOT; };
+		CF9FCBAB192B817C00DE5FAF /* SystemConfiguration.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SystemConfiguration.framework; path = System/Library/Frameworks/SystemConfiguration.framework; sourceTree = SDKROOT; };
+		CFA985A81921D0D6003092B0 /* AlarmMsgUIControllerViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AlarmMsgUIControllerViewController.h; sourceTree = "<group>"; };
+		CFA985A91921D0D6003092B0 /* AlarmMsgUIControllerViewController.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = AlarmMsgUIControllerViewController.mm; sourceTree = "<group>"; };
+		CFA985AA1921D0D6003092B0 /* AlarmMsgUIControllerViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = AlarmMsgUIControllerViewController.xib; sourceTree = "<group>"; };
+		CFA985B51921F0AE003092B0 /* LocalDatabaseHelper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LocalDatabaseHelper.h; sourceTree = "<group>"; };
+		CFA985B61921F0AE003092B0 /* LocalDatabaseHelper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LocalDatabaseHelper.m; sourceTree = "<group>"; };
+		CFA985B81921F24D003092B0 /* libsqlite3.0.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libsqlite3.0.dylib; path = usr/lib/libsqlite3.0.dylib; sourceTree = SDKROOT; };
+		CFA985BA1921F57E003092B0 /* AlarmMsgTable.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AlarmMsgTable.h; sourceTree = "<group>"; };
+		CFA985BB1921F57E003092B0 /* AlarmMsgTable.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AlarmMsgTable.m; sourceTree = "<group>"; };
+		CFA985BD1921FC71003092B0 /* SettingTable.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SettingTable.h; sourceTree = "<group>"; };
+		CFA985BE1921FC71003092B0 /* SettingTable.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SettingTable.m; sourceTree = "<group>"; };
+		CFA985C5192212C6003092B0 /* LoginViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LoginViewController.h; sourceTree = "<group>"; };
+		CFA985C6192212C6003092B0 /* LoginViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LoginViewController.m; sourceTree = "<group>"; };
+		CFA985C7192212C6003092B0 /* LoginViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = LoginViewController.xib; sourceTree = "<group>"; };
+		CFA985CD19223FBB003092B0 /* AlarmTcpClient.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AlarmTcpClient.h; sourceTree = "<group>"; };
+		CFA985D019245873003092B0 /* libstdc++.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = "libstdc++.dylib"; path = "usr/lib/libstdc++.dylib"; sourceTree = SDKROOT; };
+		CFA985D319245A4E003092B0 /* AlarmMsgItem.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AlarmMsgItem.h; sourceTree = "<group>"; };
+		CFA985D419245A4E003092B0 /* AlarmMsgItem.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AlarmMsgItem.m; sourceTree = "<group>"; };
+		CFA985D91924C9B0003092B0 /* AlarmNotificationTable.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AlarmNotificationTable.h; sourceTree = "<group>"; };
+		CFA985DA1924C9B0003092B0 /* AlarmNotificationTable.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AlarmNotificationTable.m; sourceTree = "<group>"; };
+		CFAC3A7A1935CAE500630B1D /* first.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = first.png; sourceTree = "<group>"; };
+		CFB13ACB192F173400CE1F25 /* read_0.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = read_0.png; sourceTree = "<group>"; };
+		CFB13ACC192F173400CE1F25 /* unread_0.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = unread_0.png; sourceTree = "<group>"; };
+		CFB13ACD192F173400CE1F25 /* mark_0.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = mark_0.png; sourceTree = "<group>"; };
+		CFB13ACE192F173400CE1F25 /* unmark_0.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = unmark_0.png; sourceTree = "<group>"; };
+		CFB13ACF192F173400CE1F25 /* chat_0.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = chat_0.png; sourceTree = "<group>"; };
+		CFB13AD0192F173400CE1F25 /* delete_0.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = delete_0.png; sourceTree = "<group>"; };
+		CFB13AD1192F173400CE1F25 /* Default.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Default.png; sourceTree = "<group>"; };
+		CFF3BA09192A03DC004E7823 /* libprotobuf.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libprotobuf.dylib; path = usr/lib/libprotobuf.dylib; sourceTree = SDKROOT; };
+		CFF3BA0B192A0816004E7823 /* app_login_request.pb.cc */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = app_login_request.pb.cc; sourceTree = "<group>"; };
+		CFF3BA0C192A0816004E7823 /* app_login_request.pb.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = app_login_request.pb.h; sourceTree = "<group>"; };
+		CFF3BA10192A0990004E7823 /* AlarmTcpClient.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = AlarmTcpClient.mm; sourceTree = "<group>"; };
+		CFF3BA12192A25F2004E7823 /* app_pull_msg.pb.cc */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = app_pull_msg.pb.cc; sourceTree = "<group>"; };
+		CFF3BA13192A25F2004E7823 /* app_pull_msg.pb.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = app_pull_msg.pb.h; sourceTree = "<group>"; };
+		CFF3BD21192B436D004E7823 /* libJSONKit.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libJSONKit.a; path = TaomeeChat/lib/libJSONKit.a; sourceTree = "<group>"; };
+		CFF3BD23192B438E004E7823 /* libBase64.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libBase64.a; path = TaomeeChat/lib/libBase64.a; sourceTree = "<group>"; };
+		CFF3BD25192B43A6004E7823 /* libGzipCompressor.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libGzipCompressor.a; path = TaomeeChat/lib/libGzipCompressor.a; sourceTree = "<group>"; };
+		CFF3BD93192B459D004E7823 /* libOpenUDID.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libOpenUDID.a; path = TaomeeChat/lib/libOpenUDID.a; sourceTree = "<group>"; };
+		CFF3BD95192B45C9004E7823 /* libReachability.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libReachability.a; path = TaomeeChat/lib/libReachability.a; sourceTree = "<group>"; };
+		CFF3BD97192B46C7004E7823 /* BPushConfig.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = BPushConfig.plist; sourceTree = "<group>"; };
+		CFF4E593192CC6960059456D /* Toast.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Toast.h; sourceTree = "<group>"; };
+		CFF4E594192CC6960059456D /* Toast.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Toast.m; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		CF057C2E19209CE200AFC586 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				CF78964F19349F9D0029718F /* libBPush.a in Frameworks */,
+				CF78963C19349C630029718F /* libprotobuf.a in Frameworks */,
+				CF9FCBAC192B817C00DE5FAF /* SystemConfiguration.framework in Frameworks */,
+				CF9FCBAA192B816000DE5FAF /* CoreTelephony.framework in Frameworks */,
+				CF2A78051929B71800435225 /* libz.dylib in Frameworks */,
+				CF2A972B1929F58900435225 /* libstdc++.dylib in Frameworks */,
+				CF2A972A1929F58000435225 /* libc++.dylib in Frameworks */,
+				CFA985D219245915003092B0 /* libsqlite3.0.dylib in Frameworks */,
+				CF057C3719209CE200AFC586 /* CoreGraphics.framework in Frameworks */,
+				CF057C3919209CE200AFC586 /* UIKit.framework in Frameworks */,
+				CF057C3519209CE200AFC586 /* Foundation.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		CF057C4F19209CE200AFC586 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				CF057C5419209CE200AFC586 /* XCTest.framework in Frameworks */,
+				CF057C5619209CE300AFC586 /* UIKit.framework in Frameworks */,
+				CF057C5519209CE300AFC586 /* Foundation.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		CF057C2819209CE200AFC586 = {
+			isa = PBXGroup;
+			children = (
+				CF057C3A19209CE200AFC586 /* TaomeeChat */,
+				CF057C5919209CE300AFC586 /* TaomeeChatTests */,
+				CF057C3319209CE200AFC586 /* Frameworks */,
+				CF057C3219209CE200AFC586 /* Products */,
+			);
+			sourceTree = "<group>";
+			usesTabs = 0;
+		};
+		CF057C3219209CE200AFC586 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				CF057C3119209CE200AFC586 /* ichat.app */,
+				CF057C5219209CE200AFC586 /* iChat.temp_caseinsensitive_rename.temp_caseinsensitive_renameTests.xctest */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		CF057C3319209CE200AFC586 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				CF9FCBAB192B817C00DE5FAF /* SystemConfiguration.framework */,
+				CF9FCBA9192B816000DE5FAF /* CoreTelephony.framework */,
+				CFF3BD95192B45C9004E7823 /* libReachability.a */,
+				CFF3BD93192B459D004E7823 /* libOpenUDID.a */,
+				CFF3BD25192B43A6004E7823 /* libGzipCompressor.a */,
+				CFF3BD23192B438E004E7823 /* libBase64.a */,
+				CFF3BD21192B436D004E7823 /* libJSONKit.a */,
+				CFF3BA09192A03DC004E7823 /* libprotobuf.dylib */,
+				CF2A97291929F58000435225 /* libc++.dylib */,
+				CF2A78061929BA3500435225 /* libBPush.a */,
+				CF2A78071929BA3500435225 /* libprotobuf.a */,
+				CF2A78041929B71800435225 /* libz.dylib */,
+				CFA985D019245873003092B0 /* libstdc++.dylib */,
+				CFA985B81921F24D003092B0 /* libsqlite3.0.dylib */,
+				CF057C3419209CE200AFC586 /* Foundation.framework */,
+				CF057C3619209CE200AFC586 /* CoreGraphics.framework */,
+				CF057C3819209CE200AFC586 /* UIKit.framework */,
+				CF057C5319209CE200AFC586 /* XCTest.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		CF057C3A19209CE200AFC586 /* TaomeeChat */ = {
+			isa = PBXGroup;
+			children = (
+				CFB13ABA192E57DD00CE1F25 /* image */,
+				CF9FCB96192B7DAD00DE5FAF /* lib */,
+				CFA985A61921CFB1003092B0 /* Main */,
+				CFA985B41921EFF8003092B0 /* Data */,
+				CFA985A71921D02F003092B0 /* Alarm */,
+				CFA985AD1921D2BD003092B0 /* Protobuf */,
+				CF057C4C19209CE200AFC586 /* Images.xcassets */,
+				CF057C3B19209CE200AFC586 /* Supporting Files */,
+			);
+			path = TaomeeChat;
+			sourceTree = "<group>";
+		};
+		CF057C3B19209CE200AFC586 /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				CF057C3C19209CE200AFC586 /* iChat-Info.plist */,
+				CF057C3D19209CE200AFC586 /* InfoPlist.strings */,
+				CF057C4019209CE200AFC586 /* main.m */,
+				CF057C4219209CE200AFC586 /* iChat-Prefix.pch */,
+				CFF3BD97192B46C7004E7823 /* BPushConfig.plist */,
+			);
+			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		CF057C5919209CE300AFC586 /* TaomeeChatTests */ = {
+			isa = PBXGroup;
+			children = (
+				CF057C5F19209CE300AFC586 /* TaomeeChatTests.m */,
+				CF057C5A19209CE300AFC586 /* Supporting Files */,
+			);
+			path = TaomeeChatTests;
+			sourceTree = "<group>";
+		};
+		CF057C5A19209CE300AFC586 /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				CF057C5B19209CE300AFC586 /* iChat.temp_caseinsensitive_rename.temp_caseinsensitive_renameTests-Info.plist */,
+				CF057C5C19209CE300AFC586 /* InfoPlist.strings */,
+			);
+			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		CF9FCB96192B7DAD00DE5FAF /* lib */ = {
+			isa = PBXGroup;
+			children = (
+				CF78964D19349E650029718F /* BPush.h */,
+				CF78963D19349D160029718F /* Base64.h */,
+				CF78963E19349D160029718F /* Base64.m */,
+				CF78963F19349D160029718F /* Base64Defines.h */,
+				CF78964019349D160029718F /* GzipCompressor.h */,
+				CF78964119349D160029718F /* GzipCompressor.m */,
+				CF78964219349D160029718F /* JSONKit.h */,
+				CF78964319349D160029718F /* JSONKit.m */,
+				CF78964419349D160029718F /* OpenUDID.h */,
+				CF78964519349D160029718F /* OpenUDID.m */,
+				CF78964619349D160029718F /* Reachability.h */,
+				CF78964719349D160029718F /* Reachability.m */,
+			);
+			name = lib;
+			sourceTree = "<group>";
+		};
+		CFA985A61921CFB1003092B0 /* Main */ = {
+			isa = PBXGroup;
+			children = (
+				CF057C4319209CE200AFC586 /* AppDelegate.h */,
+				CF057C4419209CE200AFC586 /* AppDelegate.m */,
+				CF057C4619209CE200AFC586 /* Main.storyboard */,
+				CF057C4919209CE200AFC586 /* ViewController.h */,
+				CF057C4A19209CE200AFC586 /* ViewController.m */,
+				CFA985C5192212C6003092B0 /* LoginViewController.h */,
+				CFA985C6192212C6003092B0 /* LoginViewController.m */,
+				CFA985C7192212C6003092B0 /* LoginViewController.xib */,
+				CFF4E593192CC6960059456D /* Toast.h */,
+				CFF4E594192CC6960059456D /* Toast.m */,
+			);
+			name = Main;
+			sourceTree = "<group>";
+		};
+		CFA985A71921D02F003092B0 /* Alarm */ = {
+			isa = PBXGroup;
+			children = (
+				CFA985A81921D0D6003092B0 /* AlarmMsgUIControllerViewController.h */,
+				CFA985A91921D0D6003092B0 /* AlarmMsgUIControllerViewController.mm */,
+				CFA985AA1921D0D6003092B0 /* AlarmMsgUIControllerViewController.xib */,
+				CFF3BA10192A0990004E7823 /* AlarmTcpClient.mm */,
+				CFA985CD19223FBB003092B0 /* AlarmTcpClient.h */,
+			);
+			name = Alarm;
+			sourceTree = "<group>";
+		};
+		CFA985AD1921D2BD003092B0 /* Protobuf */ = {
+			isa = PBXGroup;
+			children = (
+				CFF3BA12192A25F2004E7823 /* app_pull_msg.pb.cc */,
+				CFF3BA13192A25F2004E7823 /* app_pull_msg.pb.h */,
+				CFF3BA0B192A0816004E7823 /* app_login_request.pb.cc */,
+				CFF3BA0C192A0816004E7823 /* app_login_request.pb.h */,
+			);
+			name = "\bProtobuf";
+			sourceTree = "<group>";
+		};
+		CFA985B41921EFF8003092B0 /* Data */ = {
+			isa = PBXGroup;
+			children = (
+				CFA985B51921F0AE003092B0 /* LocalDatabaseHelper.h */,
+				CFA985B61921F0AE003092B0 /* LocalDatabaseHelper.m */,
+				CFA985BA1921F57E003092B0 /* AlarmMsgTable.h */,
+				CFA985BB1921F57E003092B0 /* AlarmMsgTable.m */,
+				CFA985BD1921FC71003092B0 /* SettingTable.h */,
+				CFA985BE1921FC71003092B0 /* SettingTable.m */,
+				CFA985D319245A4E003092B0 /* AlarmMsgItem.h */,
+				CFA985D419245A4E003092B0 /* AlarmMsgItem.m */,
+				CFA985D91924C9B0003092B0 /* AlarmNotificationTable.h */,
+				CFA985DA1924C9B0003092B0 /* AlarmNotificationTable.m */,
+			);
+			name = Data;
+			sourceTree = "<group>";
+		};
+		CFB13ABA192E57DD00CE1F25 /* image */ = {
+			isa = PBXGroup;
+			children = (
+				CFAC3A7A1935CAE500630B1D /* first.png */,
+				CFB13ACB192F173400CE1F25 /* read_0.png */,
+				CFB13ACC192F173400CE1F25 /* unread_0.png */,
+				CFB13ACD192F173400CE1F25 /* mark_0.png */,
+				CFB13ACE192F173400CE1F25 /* unmark_0.png */,
+				CFB13ACF192F173400CE1F25 /* chat_0.png */,
+				CFB13AD0192F173400CE1F25 /* delete_0.png */,
+				CFB13AD1192F173400CE1F25 /* Default.png */,
+			);
+			path = image;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		CF057C3019209CE200AFC586 /* iChat.temp_caseinsensitive_rename.temp_caseinsensitive_rename */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = CF057C6319209CE300AFC586 /* Build configuration list for PBXNativeTarget "iChat.temp_caseinsensitive_rename.temp_caseinsensitive_rename" */;
+			buildPhases = (
+				CF057C2D19209CE200AFC586 /* Sources */,
+				CF057C2E19209CE200AFC586 /* Frameworks */,
+				CF057C2F19209CE200AFC586 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = iChat.temp_caseinsensitive_rename.temp_caseinsensitive_rename;
+			productName = TaomeeChat;
+			productReference = CF057C3119209CE200AFC586 /* ichat.app */;
+			productType = "com.apple.product-type.application";
+		};
+		CF057C5119209CE200AFC586 /* iChat.temp_caseinsensitive_rename.temp_caseinsensitive_renameTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = CF057C6619209CE300AFC586 /* Build configuration list for PBXNativeTarget "iChat.temp_caseinsensitive_rename.temp_caseinsensitive_renameTests" */;
+			buildPhases = (
+				CF057C4E19209CE200AFC586 /* Sources */,
+				CF057C4F19209CE200AFC586 /* Frameworks */,
+				CF057C5019209CE200AFC586 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				CF057C5819209CE300AFC586 /* PBXTargetDependency */,
+			);
+			name = iChat.temp_caseinsensitive_rename.temp_caseinsensitive_renameTests;
+			productName = TaomeeChatTests;
+			productReference = CF057C5219209CE200AFC586 /* iChat.temp_caseinsensitive_rename.temp_caseinsensitive_renameTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		CF057C2919209CE200AFC586 /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastUpgradeCheck = 0500;
+				ORGANIZATIONNAME = lance;
+				TargetAttributes = {
+					CF057C5119209CE200AFC586 = {
+						TestTargetID = CF057C3019209CE200AFC586;
+					};
+				};
+			};
+			buildConfigurationList = CF057C2C19209CE200AFC586 /* Build configuration list for PBXProject "ichat" */;
+			compatibilityVersion = "Xcode 3.2";
+			developmentRegion = English;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				Base,
+			);
+			mainGroup = CF057C2819209CE200AFC586;
+			productRefGroup = CF057C3219209CE200AFC586 /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				CF057C3019209CE200AFC586 /* iChat.temp_caseinsensitive_rename.temp_caseinsensitive_rename */,
+				CF057C5119209CE200AFC586 /* iChat.temp_caseinsensitive_rename.temp_caseinsensitive_renameTests */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		CF057C2F19209CE200AFC586 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				CFB13AD8192F173400CE1F25 /* Default.png in Resources */,
+				CFB13AD6192F173400CE1F25 /* chat_0.png in Resources */,
+				CFAC3A7B1935CAE500630B1D /* first.png in Resources */,
+				CFA985C9192212C6003092B0 /* LoginViewController.xib in Resources */,
+				CF057C4D19209CE200AFC586 /* Images.xcassets in Resources */,
+				CFB13AD3192F173400CE1F25 /* unread_0.png in Resources */,
+				CFB13AD4192F173400CE1F25 /* mark_0.png in Resources */,
+				CF057C3F19209CE200AFC586 /* InfoPlist.strings in Resources */,
+				CFB13AD7192F173400CE1F25 /* delete_0.png in Resources */,
+				CFA985AC1921D0D6003092B0 /* AlarmMsgUIControllerViewController.xib in Resources */,
+				CF057C4819209CE200AFC586 /* Main.storyboard in Resources */,
+				CFF3BD98192B46C7004E7823 /* BPushConfig.plist in Resources */,
+				CFB13AD5192F173400CE1F25 /* unmark_0.png in Resources */,
+				CFB13AD2192F173400CE1F25 /* read_0.png in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		CF057C5019209CE200AFC586 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				CF057C5E19209CE300AFC586 /* InfoPlist.strings in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		CF057C2D19209CE200AFC586 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				CFA985D519245A4E003092B0 /* AlarmMsgItem.m in Sources */,
+				CF78964819349D160029718F /* Base64.m in Sources */,
+				CF78964919349D160029718F /* GzipCompressor.m in Sources */,
+				CF78964B19349D160029718F /* OpenUDID.m in Sources */,
+				CFF3BA0D192A0816004E7823 /* app_login_request.pb.cc in Sources */,
+				CF78964A19349D160029718F /* JSONKit.m in Sources */,
+				CFA985AB1921D0D6003092B0 /* AlarmMsgUIControllerViewController.mm in Sources */,
+				CFA985BC1921F57E003092B0 /* AlarmMsgTable.m in Sources */,
+				CF057C4B19209CE200AFC586 /* ViewController.m in Sources */,
+				CFF4E595192CC6960059456D /* Toast.m in Sources */,
+				CF78964C19349D160029718F /* Reachability.m in Sources */,
+				CF057C4519209CE200AFC586 /* AppDelegate.m in Sources */,
+				CFA985C8192212C6003092B0 /* LoginViewController.m in Sources */,
+				CFA985B71921F0AE003092B0 /* LocalDatabaseHelper.m in Sources */,
+				CFF3BA11192A0990004E7823 /* AlarmTcpClient.mm in Sources */,
+				CF057C4119209CE200AFC586 /* main.m in Sources */,
+				CFA985DB1924C9B0003092B0 /* AlarmNotificationTable.m in Sources */,
+				CFA985BF1921FC71003092B0 /* SettingTable.m in Sources */,
+				CFF3BA14192A25F2004E7823 /* app_pull_msg.pb.cc in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		CF057C4E19209CE200AFC586 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				CF057C6019209CE300AFC586 /* TaomeeChatTests.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		CF057C5819209CE300AFC586 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = CF057C3019209CE200AFC586 /* iChat.temp_caseinsensitive_rename.temp_caseinsensitive_rename */;
+			targetProxy = CF057C5719209CE300AFC586 /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
+/* Begin PBXVariantGroup section */
+		CF057C3D19209CE200AFC586 /* InfoPlist.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				CF057C3E19209CE200AFC586 /* en */,
+			);
+			name = InfoPlist.strings;
+			sourceTree = "<group>";
+		};
+		CF057C4619209CE200AFC586 /* Main.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				CF057C4719209CE200AFC586 /* Base */,
+			);
+			name = Main.storyboard;
+			sourceTree = "<group>";
+		};
+		CF057C5C19209CE300AFC586 /* InfoPlist.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				CF057C5D19209CE300AFC586 /* en */,
+			);
+			name = InfoPlist.strings;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
+
+/* Begin XCBuildConfiguration section */
+		CF057C6119209CE300AFC586 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				ARCHS = "$(ARCHS_STANDARD)";
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = NO;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				CODE_SIGN_IDENTITY = "iPhone Developer: wei zhen (XGUAUL53S2)";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: wei zhen (XGUAUL53S2)";
+				COPY_PHASE_STRIP = NO;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 6.0;
+				ONLY_ACTIVE_ARCH = NO;
+				OTHER_CFLAGS = "";
+				PRODUCT_NAME = "";
+				PROVISIONING_PROFILE = "C1821439-4F0A-4BB6-AE27-519272BA5087";
+				SDKROOT = iphoneos;
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Debug;
+		};
+		CF057C6219209CE300AFC586 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				ARCHS = "$(ARCHS_STANDARD)";
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = NO;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				CODE_SIGN_IDENTITY = "iPhone Developer: wei zhen (XGUAUL53S2)";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: wei zhen (XGUAUL53S2)";
+				COPY_PHASE_STRIP = YES;
+				ENABLE_NS_ASSERTIONS = NO;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 6.0;
+				ONLY_ACTIVE_ARCH = YES;
+				OTHER_CFLAGS = "";
+				PRODUCT_NAME = "";
+				PROVISIONING_PROFILE = "C1821439-4F0A-4BB6-AE27-519272BA5087";
+				SDKROOT = iphoneos;
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		CF057C6419209CE300AFC586 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
+				"CODE_SIGN_ENTITLEMENTS[sdk=*]" = "";
+				CODE_SIGN_IDENTITY = "iPhone Developer: wei zhen (XGUAUL53S2)";
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "TaomeeChat/iChat-Prefix.pch";
+				HEADER_SEARCH_PATHS = (
+					"$(inherited)",
+					/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/include,
+					"/opt/protobuf-ios/include",
+				);
+				INFOPLIST_FILE = "$(SRCROOT)/TaomeeChat/iChat-Info.plist";
+				LIBRARY_SEARCH_PATHS = (
+					"$(inherited)",
+					/Users/violet/Desktop/lance/TaomeeChat/TaomeeChat,
+					/Users/violet/Desktop/lance,
+					/Users/violet/Desktop/lance/TaomeeChat/TaomeeChat/lib,
+					/Users/violet/Desktop/TaomeeChat/TaomeeChat/lib,
+				);
+				PRODUCT_NAME = ichat;
+				PROVISIONING_PROFILE = "C1821439-4F0A-4BB6-AE27-519272BA5087";
+				WRAPPER_EXTENSION = app;
+			};
+			name = Debug;
+		};
+		CF057C6519209CE300AFC586 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
+				CODE_SIGN_IDENTITY = "iPhone Developer: wei zhen (XGUAUL53S2)";
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "TaomeeChat/iChat-Prefix.pch";
+				HEADER_SEARCH_PATHS = (
+					"$(inherited)",
+					/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/include,
+					"/opt/protobuf-ios/include",
+				);
+				INFOPLIST_FILE = "$(SRCROOT)/TaomeeChat/iChat-Info.plist";
+				LIBRARY_SEARCH_PATHS = (
+					"$(inherited)",
+					/Users/violet/Desktop/lance/TaomeeChat/TaomeeChat,
+					/Users/violet/Desktop/lance,
+					/Users/violet/Desktop/lance/TaomeeChat/TaomeeChat/lib,
+					/Users/violet/Desktop/TaomeeChat/TaomeeChat/lib,
+				);
+				PRODUCT_NAME = ichat;
+				PROVISIONING_PROFILE = "C1821439-4F0A-4BB6-AE27-519272BA5087";
+				WRAPPER_EXTENSION = app;
+			};
+			name = Release;
+		};
+		CF057C6719209CE300AFC586 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ARCHS = "$(ARCHS_STANDARD_INCLUDING_64_BIT)";
+				BUNDLE_LOADER = "$(BUILT_PRODUCTS_DIR)/TaomeeChat.app/TaomeeChat";
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(SDKROOT)/Developer/Library/Frameworks",
+					"$(inherited)",
+					"$(DEVELOPER_FRAMEWORKS_DIR)",
+				);
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "TaomeeChat/TaomeeChat-Prefix.pch";
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				INFOPLIST_FILE = "TaomeeChatTests/iChat.temp_caseinsensitive_rename.temp_caseinsensitive_renameTests-Info.plist";
+				PRODUCT_NAME = iChat.temp_caseinsensitive_rename.temp_caseinsensitive_renameTests;
+				TEST_HOST = "$(BUNDLE_LOADER)";
+				WRAPPER_EXTENSION = xctest;
+			};
+			name = Debug;
+		};
+		CF057C6819209CE300AFC586 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ARCHS = "$(ARCHS_STANDARD_INCLUDING_64_BIT)";
+				BUNDLE_LOADER = "$(BUILT_PRODUCTS_DIR)/TaomeeChat.app/TaomeeChat";
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(SDKROOT)/Developer/Library/Frameworks",
+					"$(inherited)",
+					"$(DEVELOPER_FRAMEWORKS_DIR)",
+				);
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "TaomeeChat/TaomeeChat-Prefix.pch";
+				INFOPLIST_FILE = "TaomeeChatTests/iChat.temp_caseinsensitive_rename.temp_caseinsensitive_renameTests-Info.plist";
+				PRODUCT_NAME = iChat.temp_caseinsensitive_rename.temp_caseinsensitive_renameTests;
+				TEST_HOST = "$(BUNDLE_LOADER)";
+				WRAPPER_EXTENSION = xctest;
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		CF057C2C19209CE200AFC586 /* Build configuration list for PBXProject "ichat" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				CF057C6119209CE300AFC586 /* Debug */,
+				CF057C6219209CE300AFC586 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		CF057C6319209CE300AFC586 /* Build configuration list for PBXNativeTarget "iChat.temp_caseinsensitive_rename.temp_caseinsensitive_rename" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				CF057C6419209CE300AFC586 /* Debug */,
+				CF057C6519209CE300AFC586 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		CF057C6619209CE300AFC586 /* Build configuration list for PBXNativeTarget "iChat.temp_caseinsensitive_rename.temp_caseinsensitive_renameTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				CF057C6719209CE300AFC586 /* Debug */,
+				CF057C6819209CE300AFC586 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = CF057C2919209CE200AFC586 /* Project object */;
+}

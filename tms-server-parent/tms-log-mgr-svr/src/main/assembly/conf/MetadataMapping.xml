@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.taomee.tms.mgr.dao.MetadataDao">
+	<resultMap id="MetadataMap" type="com.taomee.tms.mgr.entity.Metadata">
+		<id column="metadata_id" property="metadataId" jdbcType="INTEGER" />
+		<result column="metadata_name" property="metadataName"
+			jdbcType="VARCHAR" />
+		<result column="data_id" property="dataId" jdbcType="INTEGER" />
+		<result column="period" property="period" jdbcType="INTEGER" />
+		<result column="factor" property="factor" jdbcType="DOUBLE" />
+		<result column="precision" property="precision" jdbcType="INTEGER" />
+		<result column="unit" property="unit" jdbcType="VARCHAR" />
+		<result column="comment_id" property="commentId" jdbcType="INTEGER" />
+		<result column="comment"  property="comment" jdbcType="VARCHAR"/>
+	</resultMap>
+
+
+	<sql id="MetadataColumnList">
+		metadata_id, metadata_name, data_id, period, factor,
+		t_web_metadata.precision, unit, comment_id
+	</sql>
+	
+	<sql id="MetadataJoinCommentColumnList">
+		metadata_id, metadata_name, data_id, period, factor,
+		t_web_metadata.precision, unit, d.comment_id, comment
+	</sql>
+	
+	<select id="getMetadataInfoBycommentId"  resultMap="MetadataMap"
+		parameterType="java.lang.Integer">
+		select
+		t_web_metadata.metadata_id, t_web_metadata.metadata_name,
+		t_web_metadata.data_id, t_web_metadata.period, t_web_metadata.factor,
+		t_web_metadata.precision, t_web_metadata.unit, t_web_comment.comment
+		from t_web_metadata inner join t_web_comment
+		on t_web_metadata.comment_id =t_web_comment.comment_id
+	</select>
+
+	<insert id="insertMetadataInfo" parameterType="com.taomee.tms.mgr.entity.Metadata"
+		useGeneratedKeys="true" keyProperty="metadataId">
+		insert into
+		t_web_metadata (t_web_metadata.metadata_name,
+		t_web_metadata.data_id, t_web_metadata.period, t_web_metadata.factor,
+		t_web_metadata.precision, t_web_metadata.unit, t_web_metadata.comment_id)
+		values(#{metadataName,jdbcType=VARCHAR},
+		#{dataId,jdbcType=INTEGER},
+		#{period,jdbcType=INTEGER},
+		#{factor,jdbcType=DOUBLE},
+		#{precision,jdbcType=INTEGER},
+		#{unit,jdbcType=VARCHAR},
+		#{commentId,jdbcType=INTEGER})
+	</insert>
+
+	<update id="updateMetadataInfo" parameterType="com.taomee.tms.mgr.entity.Metadata">
+		update
+		t_web_metadata
+		set
+		metadata_name=#{metadataName},data_id=#{dataId},period=#{period},factor=#{factor},
+		t_web_metadata.precision=#{precision},unit=#{unit},comment_id=#{commentId}
+		where metadata_id=#{metadataId}
+	</update>
+
+	<select id="getAllMetadataInfos" resultMap="MetadataMap">
+		select d.metadata_id, d.metadata_name, d.data_id, d.period, d.factor, d.precision, d.unit, 
+		d.comment_id, c.comment 
+		from t_web_metadata d LEFT JOIN t_web_comment c 
+		ON d.comment_id = c.comment_id order by d.metadata_id ASC; 
+	</select>
+
+	<delete id="deleteMetadataInfo" parameterType="com.taomee.tms.mgr.entity.Metadata">
+		delete from
+		t_web_metadata
+		where metadata_id=#{metadataId}
+	</delete>
+</mapper> 

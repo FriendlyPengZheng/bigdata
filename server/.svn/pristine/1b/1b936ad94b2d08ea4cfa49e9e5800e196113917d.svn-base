@@ -1,0 +1,147 @@
+2014-09-11 kendy<kendy@taomee.com>
+version: 0.0.23
+svn trunk revision: 4229
+Changelog:
+1. 添加上传告警逻辑
+
+2014-09-09 Tom Li<tomli@taomee.com>
+version: 0.0.22
+svn trunk revision: 4190
+Changelog:
+1. cancel sending notutf8 alarm and insert stat failed alarm to RTX
+
+2014-09-02 Tom Li<tomli@taomee.com>
+version: 0.0.21
+svn trunk revision: 4168
+Changelog:
+1. add holiday setting, simplify module name, magnify fibonacci, merge alarm msg simplify, simplify heartbeat lost time
+
+2014-08-29 Tom Li<tomli@taomee.com>
+version: 0.0.20
+svn trunk revision: 4142
+Changelog:
+1. stat-center collect the notutf8 alarm msg, then send it together
+
+2014-08-28 Tom Li<tomli@taomee.com>
+version: 0.0.19
+svn trunk revision: 4137
+Changelog:
+1. remove sending alarm to app and mobile
+
+2014-08-26 Tom Li<tomli@taomee.com>
+version: 0.0.18
+svn trunk revision: 4103
+Changelog:
+1. simplify alarm message
+
+2014-08-21 Tom Li<tomli@taomee.com>
+version: 0.0.17
+svn trunk revision: 4015
+Changelog:
+1. to show stat service status, forbid alarm on web
+
+2014-07-29 Tom Li<tomli@taomee.com>
+version: 0.0.16
+svn trunk revision: 3694
+Changelog:
+1. add alarm forbid function, you can use stat-monitor to control alarm forbid
+
+2014-06-25 Ian Guo<ianguo@taomee.com>
+version: 0.0.15
+svn trunk revision: 3374
+Changelog:
+1. 增加功能：可配置屏蔽stat-client硬盘剩余空间报警。
+
+2014-06-25 Ian Guo<ianguo@taomee.com>
+version: 0.0.14
+etvn trunk revision: 3341 
+Changelog:
+1. Fix Bug of async_server: 当网络不通或丢包严重时，客户端关闭连接，然后重连，
+但conn进程并不会关闭原连接的socket(原因是没有收到TCP FIN包)，导致连接数增加。
+解决方法：打开tcp_keepalive选项（可配置）.
+
+2014-05-29 Lance <lance@taomee.com>
+version: 0.0.13
+svn trunk: 3012
+Changelog:
+1. 修改0.0.12中的修改引入的单词拼写错误
+
+2014-05-16 Lance <lance@taomee.com>
+version: 0.0.12
+svn trunk: 2854
+Changelog:
+1. 将告警的阀值改为了从配置中读取
+
+2014-05-14 Ian Guo<ianguo@taomee.com>
+version: 0.0.11
+svn trunk revision: 2834
+Changelog:
+1. Fix Bug: 硬盘报警阀值单位错误。
+2. 修改发送报警超时时间，改成20秒
+
+2014-05-13 lance<lance@taomee.com>
+version: 0.0.10
+svn trunk revision: 2822
+Changelog:
+1. 告警标题改成了英文，防止RTX出现乱码（rtx要求GB2132编码）
+
+2014-05-09 Lance<lance@taomee.com>
+version: 0.0.9
+svn trunk revision: 2810
+Changelog:
+1. 报警服务模块从ITL服务中转，接入到了stat-alarmer
+
+2014-04-11 Ian Guo<ianguo@taomee.com>
+version: 0.0.8
+svn trunk revision: 2381 
+Changelog:
+1. 实现按ip，报警查询服务模块状态。
+2. 实现硬盘可用空间报警阀值可配置。
+
+2014-04-03 Ian Guo<ianguo@taomee.com>
+version: 0.0.7
+svn trunk revision: 2285 
+Changelog:
+1. 增加对hadoop的监控，告警功能。
+
+2014-03-17 Ian Guo<ianguo@taomee.com>
+version: 0.0.6
+svn trunk revision: 2102 
+Changelog:
+1. 实现心跳数据持久化，定时以及在程序退出时保存最新心跳数据，在程序启动时恢复。
+
+2014-03-13 Ian Guo<ianguo@taomee.com>
+version: 0.0.5
+svn trunk revision: 2065
+Changelog:
+1. FixBug: 告警信息包含多余数据。
+2. 启动脚本增加对start命令后状态检查。
+3. 完善更新程序模块，精确判断更新是否成功。
+
+2014-03-10 Ian Guo<ianguo@taomee.com>
+version: 0.0.4
+svn trunk revision: 2030
+Changelog:
+1. StatPkg不缓存软件包fd。
+2. FIXBUG: 删除心跳数据时，可能会内存泄漏。
+3. update.sh备份时，增加release-notes.txt
+
+2014-03-10 Ian Guo<ianguo@taomee.com>
+version: 0.0.3
+svn trunk revision: 2012 
+Changelog:
+1. 调整心跳数据输出，增加单位显示，使硬盘大小可读性更强。
+2. 心跳数据输出时，增加summary.
+
+2014-03-06 Ian Guo<ianguo@taomee.com>
+version: 0.0.2
+svn trunk revision: 1943
+Changelog:
+1. 实现对服务模块监控，包括接收注册，反注册，接收心跳数据。
+2. 实现告警功能，支持发送邮件，rtx，监控项有硬盘空间，文件个数，心跳时间。
+
+2014-02-20 Ian Guo<ianguo@taomee.com>
+version: 0.0.1
+svn trunk revision: 1820
+Changelog:
+1. 完成更新包管理，检查，下载，安装等功能。

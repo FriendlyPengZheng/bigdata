@@ -1,0 +1,78 @@
+<%@page import="org.springframework.web.context.request.RequestScope"%>
+<%@page import="com.taomee.tms.mgr.entity.Metadata"%>
+<%@ page language="java" contentType="text/html; charset=utf-8"
+	pageEncoding="utf-8"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn"%>
+<%@ taglib uri="/tmstag" prefix="cc"%>
+<cc:overwrite name="pagetitle">游戏分析</cc:overwrite>
+<cc:overwrite name="pagecss">
+	<style type="text/css">
+@import
+url(
+"<c:url value="
+/
+css
+/data/page/gameanalysis/conf.css"/>");
+</style>
+</cc:overwrite>
+<cc:overwrite name="subnav"><%@ include
+		file="./sub-nav.jsp"%></cc:overwrite>
+<cc:overwrite name="content">
+	<div class="main with-aside">
+		<%@ include file="./aside.jsp"%>
+		<div class="tips" id="J_timeTips" style="display: none;">
+			<a class="tips-close" href="javascript:void(0);">X</a>
+			<div class="tips-text">
+				<span class="tit">{TM::t('tongji', '注意：')}</span>{TM::t('tongji',
+				'页面只能显示{1}时间段的数据，下载数据时间段没有限制哦。', ['{1}' => sprintf('<span
+					class="tit period">%s~%s</span>', $response.param.from,
+				$response.param.to)])}
+			</div>
+		</div>
+		<div class="content clearfix">
+			<input type="hidden" id="J_paramGameId"
+				value="${requestScope.game_id}" />
+			<div class="content-header clearfix">
+				<a class="add-btn" id="J_hideAll">隐藏全部任务</a> <a class="add-btn"
+					id="J_showAll">显示全部任务</a>
+			</div>
+			<div class="content-body" id="J_contentBody"></div>
+		</div>
+	</div>
+</cc:overwrite>
+
+<cc:overwrite name="pagejs">
+	<script
+		src="<c:url value='/js/common/select.js'/>?v=<%=System.currentTimeMillis()%>"></script>
+	<script
+		src="<c:url value='/js/data/common/navigator.js'/>?v=<%=System.currentTimeMillis()%>"></script>
+	<script
+		src="<c:url value='/js/common/datepick.js'/>?v=<%=System.currentTimeMillis()%>"></script>
+	<script
+		src="<c:url value='/js/common/Page.js'/>?v=<%=System.currentTimeMillis()%>"></script>
+	<script
+		src="<c:url value='/js/common/tm.tabs.js'/>?v=<%=System.currentTimeMillis()%>"></script>
+	<script
+		src="<c:url value='/js/common/draw/highstock.js'/>?v=<%=System.currentTimeMillis()%>"></script>
+	<script
+		src="<c:url value='/js/common/tm.draw.js'/>?v=<%=System.currentTimeMillis()%>"></script>
+	<script
+		src="<c:url value='/js/data/common/jquery.choose.js'/>?v=<%=System.currentTimeMillis()%>"></script>
+	<script
+		src="<c:url value='/js/common/tm.datatable.js'/>?v=<%=System.currentTimeMillis()%>"></script>
+	<script
+		src="<c:url value='/js/data/common/common.js'/>?v=<%=System.currentTimeMillis()%>"></script>
+	<script
+		src="<c:url value='/js/data/common/stat.table.js'/>?v=<%=System.currentTimeMillis() %>">"</script>
+	<script
+		src="<c:url value='/js/data/common/tm.module.ok.js'/>?v=<%=System.currentTimeMillis()%>"></script>
+	<script
+		src="<c:url value='/js/data/common/usage.ok.min.js'/>?v=<%=System.currentTimeMillis()%>"></script>
+	<script
+		src="<c:url value='/js/data/page/gameanalysis/without_tools.js'/>?v=<%=System.currentTimeMillis()%>"></script>
+	<script
+		src="<c:url value='/js/data/page/gameanalysis/gametask.js'/>?v=<%=System.currentTimeMillis()%>"></script>
+</cc:overwrite>
+<%@ include file="../layout/head.jsp"%>

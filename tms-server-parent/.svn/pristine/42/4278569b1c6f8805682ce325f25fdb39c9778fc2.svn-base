@@ -1,0 +1,273 @@
+package com.taomee.tms.flume.interceptors;
+
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+
+import org.apache.flume.Context;
+import org.apache.flume.Event;
+import org.apache.flume.interceptor.Interceptor;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
+import com.alibaba.dubbo.common.utils.Log;
+import com.alibaba.dubbo.config.ApplicationConfig;
+import com.google.common.collect.Lists;
+
+import static com.taomee.tms.flume.interceptors.TmsAttributesInterceptor.Constants.*;
+
+// 在event的header中添加host和timestamp，为hdfs的sink分文件使用 
+
+public class TmsAttributesInterceptor implements Interceptor {
+	private static final Logger LOG = LoggerFactory.getLogger(TmsAttributesInterceptor.class);
+	private Map<String, String> attrMap = new HashMap<String, String>();
+	// private LogMgrService logMgrService = null;
+	// private Map<String, String> serverId2GameId = new HashMap<String, String>();
+	
+	private long lastEventSentTick = System.nanoTime(); 
+	private long pastSentLength = 0L;  
+	
+	private static long KB = 1024L;
+	
+	/// 限速配置，最大的流量,超过此阈值线程会sleep一段时间
+	/// 限流先配置4096kb和老版本保持一致,暂时不支持动态配置
+	private long max;  
+	private long timeCostPerCheck = 1000000000L;  
+	private long headerSize = 0L;    
+	private int num = 0;  
+	
+	private TmsAttributesInterceptor(long limitRate) {
+		this.max = (limitRate * KB);
+	}
+
+	@Override
+	public void initialize() {
+		// TODO 从后台拉取到所有的<serverId, gameId>
+		// 通过dubbo的api启动
+    	// 当前应用配置
+    	ApplicationConfig application = new ApplicationConfig();
+    	application.setName("tms-flume-attributes-interceptor");
+    
+//    	// 连接注册中心配置
+//    	RegistryConfig registry = new RegistryConfig();
+//    	registry.setProtocol("zookeeper");
+//    	// TODO 改为外部配置
+//    	registry.setAddress("10.25.14.147:2181");
+//    	 
+//    	// 注意：ReferenceConfig为重对象，内部封装了与注册中心的连接，以及与服务提供方的连接    	 
+//    	// 引用远程服务
+//    	ReferenceConfig<LogMgrService> reference = new ReferenceConfig<LogMgrService>(); // 此实例很重，封装了与注册中心的连接以及与提供者的连接，请自行缓存，否则可能造成内存和连接泄漏
+//    	reference.setApplication(application);
+//    	reference.setRegistry(registry); // 多个注册中心可以用setRegistries()
+//    	reference.setInterface(LogMgrService.class);
+//    	 
+//    	// 和本地bean一样使用xxxService
+//    	logMgrService = reference.get(); // 注意：此代理对象内部封装了所有通讯细节，对象较重，请缓存复用
+//    	
+//    	// 不做异常处理，有异常直接抛出
+//    	for (ServerInfo serverInfo: logMgrService.getAllServerInfos(0)) {
+//    		serverId2GameId.put(serverInfo.getServerId().toString(), serverInfo.getGameId().toString());
+//    	}
+//    	
+//    	for (Map.Entry<String, String> entry : serverId2GameId.entrySet()) {
+//    		LOG.error("severId = " + entry.getKey() + ", gameId = " + entry.getValue());		    	  
+//    	} 
+	}
+
+	/**
+	 * Modifies events in-place.
+	 */
+	@Override
+	public Event intercept(Event event) {
+		attrMap.clear();
+		String content = new String(event.getBody());
+		String[] slices = content.split("\t");
+		for (String slice: slices) {
+			String strKv = slice;
+			String[] kv = strKv.split("=", -1);
+			if (kv.length < 2) {
+				LOG.error("TmsAttributesInterceptor intercept, invalid line key value " + strKv);
+				continue;
+			}
+			attrMap.put(kv[0], kv[1]);
+		}
+		
+		// 处理"_ts_"，简单判断长度为10
+		if (!attrMap.containsKey("_ts_") || attrMap.get("_ts_").length() != 10) {
+			LOG.error("TmsAttributesInterceptor intercept, invalid _ts_ in line: " + content);
+			return null;
+		} 
+		
+		// 处理"_stid", 以及"_sstid_"的日志，区分custom也basic类型的日志
+		if (attrMap.containsKey("_stid_") && attrMap.containsKey("_sstid_")) {
+			// LOG.error("TmsAttributesInterceptor intercept, type is custom");
+			event.getHeaders().put(TYPE, "custom");
+		} else {
+			event.getHeaders().put(TYPE, "basic");
+		}
+		// 区分custom和basic的日志
+		// 秒变成毫秒
+		event.getHeaders().put(TIMESTAMP, attrMap.get("_ts_") + "000");
+		// 处理serverId
+		if (!attrMap.containsKey("_gid_")) {
+			LOG.error("TmsAttributesInterceptor intercept, no _gid_ in line: " + content);
+			return null;
+		}
+		
+//		if (serverId2GameId.get(attrMap.get("_svrid_")) == null) {
+//			int serverId = 0;
+//			try {
+//				serverId = Integer.parseInt(attrMap.get("_svrid_"));
+//			} catch (NumberFormatException ex) {
+//				LOG.error("TmsAttributesInterceptor intercept, NumberFormatException occured, wrong _svrid_ in line: " + content);
+//				return null;
+//			}
+//			
+//			if (serverId <= 0) {
+//				LOG.error("TmsAttributesInterceptor intercept, invalid serverId : " + serverId + " in line: " + content);
+//				return null;
+//			}
+//			
+			// serverId一定>0，若和tms-log-mgr-svr之间通讯有问题则一直等待
+//			do {
+//				try {
+//					// TODO 待测试
+//					serverId2GameId.put(Integer.toString(serverId), logMgrService.getServerInfo(Integer.valueOf(serverId)).getGameId().toString());
+//					break;
+//				} catch (IllegalStateException ex) {
+//					LOG.error("TmsAttributesInterceptor intercept, get IllegalStateException perhaps tms-log-mgr-svr not in service");
+//					// 通讯异常
+//					try {
+//						Thread.sleep(2000L);
+//					} catch (InterruptedException e) {
+//						// TODO
+//						e.printStackTrace();
+//					}
+//				} catch (NullPointerException ex) {
+//					// getServerInfo返回null，应该是此serverId不存在
+//					LOG.error("TmsAttributesInterceptor intercept, get null ServerInfo from tms-log-mgr-svr, serverId : " + serverId + " in line: " + content);
+//					return null;
+//				} catch (Exception ex) {
+//					LOG.error("TmsAttributesInterceptor intercept, catch unknown exception " + ex.getMessage() + ", serverId : " + serverId + " in line: " + content);
+//					return null;
+//				}
+//			} while(true);
+			
+			// 此时serverId2GameId中一定已经有了当前的serverId
+//		}
+		
+		// for debug 
+		// 这不是error
+		// LOG.error("TmsAttributesInterceptor intercept, put host: " + serverId2GameId.get(attrMap.get("_svrid_")));
+		
+		// 借用host存gameid
+		event.getHeaders().put(HOST, attrMap.get("_gid_"));
+		/// 限速，对每个类型的日志都进行限速,防止agent积压过多的日志，发送占用太多机器性能
+		this.num += 1;
+		if (this.pastSentLength > this.max) {
+			long nowTick = System.nanoTime();
+			long multiple = this.pastSentLength / this.max;
+			long missedTime = multiple * this.timeCostPerCheck - (nowTick - this.lastEventSentTick);
+//			LOG.error("pastLength:" + String.valueOf(this.pastSentLength) + 
+//												", max:" + String.valueOf(this.max) +
+//												", multiple:" + String.valueOf(multiple) + 
+//												", missedTime:" + String.valueOf(missedTime));
+			if (missedTime > 0L) {
+				try {
+				    // System.out.printf("Limit source send rate, headerLength:%d,pastSentLength:%d,lastEventSentTick:%d,sleepTime:%d, num:%d\n",  
+	                //        headerSize, pastSentLength, lastEventSentTick, missedTime / 1000000, num);  
+				    LOG.error("Limit source send rate, headerLength:" + String.valueOf(headerSize) +
+				    							",pastSentLength:" +  String.valueOf(pastSentLength) + 
+				    							",lastEventSentTick:" + String.valueOf(lastEventSentTick) + 
+				    							",sleepTime:" +  String.valueOf(missedTime / 1000000) +
+				    							",num:" +  String.valueOf(num));
+	                    Thread.sleep(missedTime / 1000000L, (int) (missedTime % 1000000L));  
+	                } catch (InterruptedException e) {  
+	                    // e.printStackTrace();
+	                	LOG.error(e.getMessage());
+	                }
+			}
+		    this.num = 0;  
+	        this.pastSentLength = 0L;  
+	        this.lastEventSentTick = (nowTick + (missedTime > 0L ? missedTime : 0L));       
+			
+		}
+		this.pastSentLength += this.headerSize + event.getBody().length;
+		
+		return event;
+	}
+	
+	/**
+	 * Delegates to {@link #intercept(Event)} in a loop.
+	 * sort the list to make sure basic data first to handle
+	 * @param events
+	 * @return
+	 */
+	@Override
+	public List<Event> intercept(List<Event> events) {
+		List<Event> interceptedEvents = Lists.newArrayListWithCapacity(events.size());
+		
+		for (Event event : events) {
+			Event intercepedtEvent = intercept(event);
+			/// 需要丢弃无法通过拦截器的event，否则可能会导致commit失败
+			if (intercepedtEvent != null) {
+				interceptedEvents.add(intercepedtEvent);
+			}
+		}
+		return interceptedEvents;
+	}
+
+	@Override
+	public void close() {
+		// no-op
+	}
+
+	/**
+	 * Builder which builds new instances of the TmsAttributesInterceptor.
+	 */
+	public static class Builder implements Interceptor.Builder {
+		private long limitRate;
+		
+		@Override
+		public Interceptor build() {
+			return new TmsAttributesInterceptor(this.limitRate);
+		}
+
+		@Override
+		public void configure(Context context) {
+			this.limitRate = context.getLong(Constants.LIMIT_RATE, Long.valueOf(Constants.DEFAULT_RATE)).longValue();
+		}
+	}
+
+	public static class Constants {
+		public static String TIMESTAMP = "timestamp";
+		public static String HOST = "host";
+		public static String TYPE = "type";
+		public static String LIMIT_RATE = "limitRate";
+		public static long DEFAULT_RATE = 4096L;
+	}
+
+	public static void main(String[] args) {
+//		System.out.println(Integer.parseInt(null));
+		
+		ApplicationConfig application = new ApplicationConfig();
+    	application.setName("tms-flume-attributes-interceptor-test");
+    
+//    	// 连接注册中心配置
+//    	RegistryConfig registry = new RegistryConfig();
+//    	registry.setProtocol("zookeeper");
+//    	registry.setAddress("10.25.14.147:2181");
+//    	 
+//    	// 注意：ReferenceConfig为重对象，内部封装了与注册中心的连接，以及与服务提供方的连接    	 
+//    	// 引用远程服务
+////    	ReferenceConfig<LogMgrService> reference = new ReferenceConfig<LogMgrService>(); // 此实例很重，封装了与注册中心的连接以及与提供者的连接，请自行缓存，否则可能造成内存和连接泄漏
+////    	reference.setApplication(application);
+////    	reference.setRegistry(registry); // 多个注册中心可以用setRegistries()
+////    	reference.setInterface(LogMgrService.class);
+//    	 
+//    	// 和本地bean一样使用xxxService
+//    	LogMgrService logMgrService = reference.get(); // 注意：此代理对象内部封装了所有通讯细节，对象较重，请缓存复用
+//		System.out.println(logMgrService.getServerInfo(3));
+//		
+	}
+}

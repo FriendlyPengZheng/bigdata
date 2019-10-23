@@ -1,0 +1,83 @@
+package users;
+
+import java.util.Map;
+import java.util.TreeMap;
+import java.util.Map.Entry;
+import java.io.FileReader;
+import java.io.BufferedReader;
+
+public class MBProduct
+{
+    private class pidrange {
+        public int lpid = -1;
+        public int hpid = -1;
+        public int gameid = -1;
+        public String type = null;
+        public pidrange(int l, int h, int g, String t) {
+            lpid = l; hpid = h; gameid = g;
+            type = t;
+        }
+    }
+
+    private int mproductid = 0;
+    private TreeMap<Integer, pidrange> mPidGid =
+        new TreeMap<Integer, pidrange>();
+
+    public MBProduct() { }
+    public MBProduct(String cfgfile) { configure(cfgfile); }
+    public void configure(String cfgfile) {      // format: lid:hid gameid
+        BufferedReader bfrd = null;
+        try {
+            FileReader inst = new FileReader(cfgfile);
+            bfrd = new BufferedReader(inst);
+            String line = null;
+            while ((line=bfrd.readLine()) != null && line.length() > 0) {
+                if (line.startsWith("#")) { continue; }
+
+                String [] items = line.split(":|\t");
+                if (items.length != 4) {
+                    System.err.printf("error format: %s\n", line);
+                    continue;
+                }
+
+                try {
+                    Integer lid = Integer.valueOf(items[0]);
+                    Integer hid = Integer.valueOf(items[1]);
+                    Integer gid = Integer.valueOf(items[2]);
+
+                    mPidGid.put(lid, new pidrange(lid,hid,gid,items[3]));
+
+                } catch (Exception efex) { efex.printStackTrace(); }
+
+            }
+            bfrd.close();
+        } catch (Exception ex) {
+            ex.printStackTrace();
+        }
+    }
+
+    // according productid, get belonging gameid
+    public int getGameid(int pid) {
+        // gameid 0 => unknow game, such as: product id 801 
+        Map.Entry<Integer, pidrange> lidrg = mPidGid.floorEntry(pid);
+        if (lidrg == null) { return 0; }
+        
+        pidrange rg = lidrg.getValue();
+        //System.out.printf("l %d h %d cur %d\n", rg.lpid, rg.hpid, pid);
+        if (rg.lpid <= pid && pid <= rg.hpid) {
+            return lidrg.getValue().gameid;
+        }else {
+            return 0;
+        }
+    }
+
+    public int getGameid(String pidstr) {
+        try { 
+            return getGameid(Integer.valueOf(pidstr));
+        } catch (Exception ex) {
+            System.err.printf("error pid string: %s\n", pidstr);
+            ex.printStackTrace();
+            return 0;
+        } 
+    }
+}

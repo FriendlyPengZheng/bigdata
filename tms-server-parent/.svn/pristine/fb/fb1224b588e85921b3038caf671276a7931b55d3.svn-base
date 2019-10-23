@@ -1,0 +1,15 @@
+package com.taomee.tms.mgr.dao;
+
+import java.util.List;
+
+import org.apache.ibatis.annotations.Param;
+
+import com.taomee.tms.mgr.entity.CollectInfo;
+import com.taomee.tms.mgr.entity.SharedCollectInfo;
+
+public interface CollectInfoDao {
+	List<CollectInfo> getListByFavorIdByShared(Integer favord);
+	List<CollectInfo> getListByFavorIdBySelf(@Param("favorId")Integer favorId, @Param("userId")Integer userId);
+	CollectInfo getCollectById(Integer collectId);
+	CollectInfo deleteCollectByCollectId(Integer collectId);
+}

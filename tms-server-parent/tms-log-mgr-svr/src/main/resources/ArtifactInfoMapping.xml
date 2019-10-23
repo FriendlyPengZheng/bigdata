@@ -1,0 +1,93 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.taomee.tms.mgr.dao.ArtifactInfoDao">
+	<resultMap id="ArtifactInfoMap" type="com.taomee.tms.mgr.entity.ArtifactInfo">
+		<id column="artifact_id" property="artifactId" jdbcType="INTEGER" />
+		<result column="task_id" property="taskId" jdbcType="INTEGER" />
+		<result column="offset" property="offset" jdbcType="INTEGER" />
+		<result column="period" property="period" jdbcType="INTEGER" />
+		<result column="result" property="result" jdbcType="INTEGER" />
+		<result column="hive_table_name" property="hiveTableName" jdbcType="VARCHAR" />
+		<result column="hive_table_property" property="hiveTableProperty" jdbcType="INTEGER" />
+		<result column="node_id" property="nodeId" jdbcType="INTEGER" />
+		<result column="add_time" property="addTime" jdbcType="TIMESTAMP"
+			javaType="java.sql.Timestamp" />
+	</resultMap>
+	
+	<sql id="ArtifactInfoColumnList">
+		artifact_id, task_id, offset, period, result, hive_table_name, hive_table_property, node_id, add_time
+	</sql>
+	
+	<sql id="ArtifactInfoColumnListWithTreeInfo">
+		artifact_id, task_id, offset, period, result, hive_table_name, hive_table_property, 
+		t_artifact_info.status, t_web_tree.display_order, t_artifact_info.add_time
+	</sql>
+
+	<insert id="insertArtifactInfo" parameterType="com.taomee.tms.mgr.entity.ArtifactInfo"
+		useGeneratedKeys="true" keyProperty="artifactId">
+		insert into
+		t_artifact_info (task_id, offset, t_artifact_info.period, result, hive_table_name, hive_table_property)
+		values
+		(#{taskId,jdbcType=INTEGER},#{offset,jdbcType=INTEGER}, #{period,jdbcType=INTEGER},#{result,jdbcType=INTEGER},#{hiveTableName,jdbcType=VARCHAR},#{hiveTableProperty,jdbcType=INTEGER})
+	</insert>
+
+	<select id="getArtifactInfoBytaskId" resultMap="ArtifactInfoMap"
+		parameterType="java.lang.Integer">
+		select
+		<include refid="ArtifactInfoColumnList" />
+		from t_artifact_info
+		where task_id = #{taskId,jdbcType=INTEGER}  order by task_id ASC
+	</select>
+
+	<select id="getArtifactInfoByartifact" resultMap="ArtifactInfoMap"
+		parameterType="java.lang.Integer">
+		select
+		<include refid="ArtifactInfoColumnList" />
+		from t_artifact_info
+		where artifact_id = #{artifactId,jdbcType=INTEGER}  order by artifact_id ASC
+	</select>
+
+	<delete id="deleteArtifactInfo" parameterType="com.taomee.tms.mgr.entity.ArtifactInfo">
+		delete from
+		t_artifact_info
+		where task_id = #{taskId,jdbcType=INTEGER}
+	</delete>
+
+	<update id="updateArtifactInfo" parameterType="com.taomee.tms.mgr.entity.ArtifactInfo">
+		update
+		t_artifact_info
+		set
+		period=#{period}, result=#{result}
+		where task_id
+		=
+		#{taskId,jdbcType=INTEGER}
+	</update>
+	
+	<select id="getArtifactInfoContentList" resultMap="ArtifactInfoMap" parameterType="java.lang.Integer">
+		select
+		<include refid="ArtifactInfoColumnListWithTreeInfo" />
+		from t_artifact_info join t_web_tree
+		on t_artifact_info.node_id = t_web_tree.node_id
+		where
+		game_id=#{1} and t_artifact_info.node_id=#{0} and t_web_tree.status=0 order by display_order 
+	</select>
+	
+	<update id="updateStatItemByNodeId" parameterType="java.lang.Integer">
+		update
+		t_artifact_info
+		<trim prefix="set" suffixOverrides=",">
+			<if test="newNodeId==null or newNodeId==0">node_id=0,</if>
+			<if test="newNodeId!=null and newNodeId!=0">node_id=#{newNodeId},</if>
+		</trim>
+		where node_id=#{nodeId}
+	</update>
+	
+<!-- 	<select id="getArtifactInfoBytaskId" resultMap="ArtifactInfoMap"
+		parameterType="java.lang.Integer">
+		select
+		<include refid="ArtifactInfoColumnList" />
+		from t_artifact_info
+		where task_id = #{taskId,jdbcType=INTEGER}  order by task_id ASC
+	</select> -->
+	
+</mapper> 

@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.taomee.tms.mgr.dao.CollectMetadataDao">
+	<resultMap id="CollectMetadataInfo" type="com.taomee.tms.mgr.entity.CollectMetadataInfo">
+		<result column="data_name" property="dataName" jdbcType="VARCHAR" />
+		<result column="r_id" property="relatedId" jdbcType="INTEGER" />
+		<result column="type" property="type" jdbcType="VARCHAR" />
+		<result column="data_id" property="dataId" jdbcType="INTEGER" />
+		<result column="data_expr" property="dataExpr" jdbcType="VARCHAR" />
+		<result column="factor" property="factor" jdbcType="DOUBLE"/>
+		<result column="precision" property="precision" jdbcType="INTEGER" />
+		<result column="unit" property="unit" jdbcType="VARCHAR"/>
+		<result column="gpzs_id" property="gpzsId" jdbcType="INTEGER" />
+		<result column="collect_id" property="collectId" jdbcType="INTEGER" />
+		<result column="game_id" property="gameId" jdbcType="INTEGER" />
+		<result column="platform_id" property="platformId" jdbcType="INTEGER" />
+		<result column="zs_id" property="zsId" jdbcType="VARCHAR" />
+		<result column="display_order" property="displayOrder" jdbcType="INTEGER" />
+	</resultMap>
+<!-- t_web_collect_metadata -->
+
+	<sql id="CollectMetadataColumnList">
+		data_name, r_id, type, data_id, data_expr, factor, t_web_collect_metadata.precision, unit, 
+		collect_id, game_id, platform_id, zs_id, gpzs_id 
+	</sql>
+	
+
+	<insert id="insertCollectMetadataInfo" parameterType="com.taomee.tms.mgr.entity.CollectMetadataInfo">
+		insert into t_web_collect_metadata 
+		(data_name, type, data_id, data_expr, factor, t_web_collect_metadata.precision, unit, collect_id, game_id, platform_id, zs_id, gpzs_id)
+		values (#{dataName}, #{type}, #{dataId}, #{dataExpr}, #{factor}, #{precision}, #{unit}, #{collectId},
+		#{gameId}, #{platformId}, #{zsId}, #{gpzsId})
+	</insert>
+	
+	<select id="getMetadataInfosByCollectId" resultMap="CollectMetadataInfo"
+		parameterType="java.lang.Integer">
+		select
+		<include refid="CollectMetadataColumnList" />
+		from t_web_collect_metadata
+		where collect_id = #{collectId,jdbcType=INTEGER} 
+		order by display_order
+	</select>
+
+
+	<select id="getCollectMetadataInfoByPrimaryKey" resultMap="CollectMetadataInfo">
+		select
+		<include refid="CollectMetadataColumnList" />
+		from t_web_collect_metadata
+		where data_id = #{dataId} and gpzs_id = #{gpzsId} and collect_id = #{collectId} and data_expr = #{dataExpr}
+	</select>
+	
+	<delete id="deleteMetadataByCollectId" parameterType="java.lang.Integer">
+		delete from
+		t_web_collect_metadata
+		where collect_id = #{collectId,jdbcType=INTEGER}
+	</delete>
+	
+	
+	<update id="updateCollectMetadataOrderByPrimaryKey">
+		update
+		t_web_collect_metadata
+		set
+		display_order = #{displayOrder}
+		where data_id = #{dataId} and gpzs_id = #{gpzsId} and collect_id = #{collectId} and data_expr = #{dataExpr}
+	</update>
+
+</mapper>

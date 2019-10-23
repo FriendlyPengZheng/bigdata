@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.taomee.tms.mgr.dao.StidSStidRefLogDiaryDao">
+	<resultMap id="StidSStidRefLogDiaryMap"
+		type="com.taomee.tms.mgr.entity.StidSStidRefLogDiary">
+		<id column="diary_id" property="diaryId" jdbcType="INTEGER" />
+		<result column="curd" property="curd" jdbcType="INTEGER" />
+		<result column="stid" property="stid" jdbcType="VARCHAR" />
+		<result column="sstid" property="sstid" jdbcType="VARCHAR" />
+		<result column="game_id" property="gameId" jdbcType="INTEGER" />
+		<result column="log_id" property="logId" jdbcType="INTEGER" />
+		<result column="status" property="status" jdbcType="INTEGER" />
+	</resultMap>
+
+	<sql id="StidSStidRefLogDiaryColumnList">
+		diary_id, curd, stid, sstid, game_id, log_id, status
+	</sql>
+
+	<insert id="insertStidSStidRefLogDiary" parameterType="com.taomee.tms.mgr.entity.StidSStidRefLogDiary"
+		useGeneratedKeys="true" keyProperty="diaryId">
+		insert into
+		t_stid_logId_diary
+		(curd, stid, sstid, game_id, log_id, status)
+		values
+		(#{curd,jdbcType=INTEGER},
+		#{stid,jdbcType=VARCHAR},
+		#{sstid,jdbcType=VARCHAR},
+		#{gameId,jdbcType=INTEGER},
+		#{logId,jdbcType=INTEGER},
+		#{status,jdbcType=INTEGER})
+	</insert>
+	
+	<select id="getStidSStidRefLogDiaryBydiaryId" resultMap="StidSStidRefLogDiaryMap"
+		parameterType="java.lang.Integer">
+		select
+		<include refid="StidSStidRefLogDiaryColumnList" />
+		from t_stid_logId_diary
+		where diary_id &gt;
+		#{diaryId,jdbcType=INTEGER} order by diary_id ASC
+	</select>
+
+	<select id="getStidSStidRefLogDiaryBylastId" resultMap="StidSStidRefLogDiaryMap">
+		select 
+		<include refid="StidSStidRefLogDiaryColumnList" />
+		from t_stid_logId_diary order by diary_id desc  limit 1
+	</select>
+</mapper> 

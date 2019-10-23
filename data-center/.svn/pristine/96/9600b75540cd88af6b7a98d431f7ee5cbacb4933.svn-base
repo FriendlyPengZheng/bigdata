@@ -1,0 +1,131 @@
+{extends "layout/layout.html"}
+{block "layout.title"}{$response.application_info.name}-{TM::t('tongji', '我的收藏')}{/block}
+{block "layout.pagecss"}
+<link rel="stylesheet" type="text/css" href="{$response.res_server}/data/css/page/home/favor.css?v={$response.application_info.version}">
+{/block}
+{block "layout.main"}
+<div class="main with-aside">
+    {include "home/aside.html"}
+    {if isset($response.param.show) && $response.param.show == 1}
+        <div class="tips" id="J_timeTips">
+    {else}
+        <div class="tips" id="J_timeTips" style="display: none;">
+    {/if}
+        <a class="tips-close" href="javascript:void(0);">X</a>
+        <div class="tips-text"><span class="tit">{TM::t('tongji', '注意：')}</span>{TM::t('tongji', '页面只能显示{1}时间段的数据，下载数据时间段没有限制哦。', ['{1}' => sprintf('<span class="tit period">%s~%s</span>', $response.param.from, $response.param.to)])}</div>
+    </div>
+    <div class="content clearfix">
+        <input type="hidden" id="J_gR" value="{$response.param.r}" />
+		<div id="J_test" style="position: absolute; visibility: hidden; height: auto; width: auto; white-space: nowrap">Test string length</div>
+        {if isset($response.favor_info.game_name) && $response.favor_info.favor_type == 1}
+        <input type="hidden" id="J_gGameId" value="{$response.favor_info.game_id}" />
+        <input type="hidden" id="J_gGameName" value="{$response.favor_info.game_name}" />
+        {/if}
+        <input type="hidden" id="J_gFavorId" value="{$response.favor_info.favor_id}" />
+        <input type="hidden" id="J_gFavorLayout" value="{$response.favor_info.layout}" />
+        <input type="hidden" id="J_gFavorName" value="{$response.favor_info.favor_name}" />
+        <input type="hidden" id="J_gFavorType" value="{$response.favor_info.favor_type}" />
+        <div class="content-header" id="J_contentHeader">
+            <div class="unit w100p clearfix noOverflow">
+                <div class="fl pl5 favor-title">
+                    <span spellcheck="false" class="glyphName" contenteditable="true">{$response.favor_info.favor_name}</span>
+                    <span class="f14">
+                        {if isset($response.favor_info.game_name)}
+                            ({$response.favor_info.game_name})
+                        {/if}
+                    </span>
+                </div>
+            </div>
+            <div class="posr">
+                {if $response.favor_info.favor_type == 1 && isset($response.platform) }
+                    <div class="select-con" id="J_zoneServer" tabindex="0">
+                        <div class="select-title">{TM::t('tongji', '请选择：')}</div>
+                    </div>
+                    <select id="J_platform" class="r">
+                    {if !empty($response.platform)}
+                    {foreach $response.platform as $platform}
+                        <option data-id="{$platform.platform_id}">{$platform.gpzs_name}</option>
+                    {/foreach}
+                    {else}
+                        <option>{TM::t('tongji', '选择平台：')}</option>
+                    {/if}
+                    </select>
+                {/if}
+                <div class="datepicker-trigger radius5-all fr mr5" id="J_from_to" >
+                    <input type="hidden" id="J_from" value="{$response.param.from}" />
+                    <input type="hidden" id="J_to" value="{$response.param.to}" />
+                    <input type="hidden" id="J_showFrom" value="{$response.param.from}" />
+                    <input type="hidden" id="J_showTo" value="{$response.param.to}" />
+                    <i class="datepicker-icon"></i>
+                    <input class="title" type="text" id="J_date" value="{$response.param.from}~{$response.param.to}" />
+                    <i class="datepicker-arrow"></i>
+                </div>
+            </div>
+        </div>
+        <div class="toolbar-section">
+            {if isset($response.favor_info.is_default) && $response.favor_info.is_default==1 }
+                <span class="btn-dft" id="J_dftCenterBtn" title="{TM::t('tongji', '取消设置首次进入页面默认收藏')}" data-type="1">{TM::t('tongji', '取消默认收藏')}</span>
+            {else}
+                <span class="btn-dft" id="J_dftCenterBtn" title="{TM::t('tongji', '设置首次进入页面默认收藏')}" data-type="0">{TM::t('tongji', '设置为默认收藏')}</span>
+            {/if}
+            <span class="division">|</span>
+            <span class="btn-dft" id="J_download">{TM::t('tongji', '导出')}</span>
+            <span class="division">|</span>				
+            <span class="btn-dft" id="J_delCenterBtn" >{TM::t('tongji', '删除我的收藏')}</span>
+            {if $response.user.is_super_admin && !$response.shared}
+            <span class="division">|</span>				
+            <span class="btn-dft" id="J_sharedCenterBtn" >{TM::t('tongji', '分享我的收藏')}</span>
+            {/if}
+        </div>
+        <div class="content-body mt10 clearfix" id="J_contentBody" >
+            <div
+            {if isset($response.favor_info.layout) && $response.favor_info.layout == 1}
+                class="window-layout-container fl" style="width:100%;"
+            {else}
+                class="window-layout-container fl mr" style="width:50%;"
+            {/if}
+            ></div>
+            <div
+            {if isset($response.favor_info.layout) && $response.favor_info.layout == 1}
+                class="window-layout-container fl" style="width:100%;"
+            {else}
+                class="window-layout-container fl mr" style="width:50%;"
+            {/if}
+            ></div>
+        </div>
+    </div>
+</div>
+{/block}
+{block "layout.pagejs"}
+    <!-- here you can add some page javascript -->
+    <script src="{$response.res_server}/common/js/jquery.ui.mouse.js"></script>
+    <script src="{$response.res_server}/common/js/jquery.ui.draggable.js"></script>
+    <script src="{$response.res_server}/common/js/jquery.ui.droppable.js"></script>
+	<script src="{$response.res_server}/common/js/jquery.ui.sortable.js"></script>    
+    <script src="{$response.res_server}/common/js/datepick.js"></script>
+    <script src="{$response.res_server}/common/js/select.js"></script>
+    <script src="{$response.res_server}/common/js/draw/highstock.js"></script>
+    <script src="{$response.res_server}/common/js/tm.draw.js"></script>
+    <script src="{$response.res_server}/common/js/tm.datatable.js"></script>
+    <script src="{$response.res_server}/data/js/common/navigator.js?v={$response.application_info.version}"></script>
+    <script src="{$response.res_server}/data/js/common/jquery.choose.js?v={$response.application_info.version}"></script>
+    <script src="{$response.res_server}/data/js/common/common.js"></script>
+    <script src="{$response.res_server}/data/js/common/stat.table.js"></script>
+    <script src="{$response.res_server}/data/js/common/tm.module.ok.js"></script>
+    <script src="{$response.res_server}/data/js/common/usage.ok.js"></script>
+	<script src="{$response.res_server}/data/js/page/home/controller/favor_ajax.js?v={$response.application_info.version}"></script>
+	<script src="{$response.res_server}/data/js/page/home/favor_basic.js?v={$response.application_info.version}"></script>
+	<script src="{$response.res_server}/data/js/page/home/favor_widget.js?v={$response.application_info.version}"></script>
+	<script src="{$response.res_server}/data/js/page/home/favor_speed.js?v={$response.application_info.version}"></script>
+	<script src="{$response.res_server}/data/js/page/home/view/favor_view.js?v={$response.application_info.version}"></script>
+    <script>
+        window.pageConfigure = window.pageConfigure || {};
+        window.pageConfigure.shared = {if $response.shared}1{else}0{/if};
+    </script>
+    
+    {if $response.favor_info.favor_type == 1}
+        <script src="{$response.res_server}/data/js/page/home/bak/single.js?v={$response.application_info.version}"></script>
+    {else}
+        <script src="{$response.res_server}/data/js/page/home/bak/multi.js?v={$response.application_info.version}"></script>
+    {/if}
+{/block}

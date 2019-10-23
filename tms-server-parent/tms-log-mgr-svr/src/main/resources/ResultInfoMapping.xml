@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.taomee.tms.mgr.dao.ResultInfoDao">
+	<resultMap id="ResultInfoMap" type="com.taomee.tms.mgr.entity.ResultInfo">
+		<id column="data_id" property="dataId" jdbcType="INTEGER" />
+		<result column="server_id" property="serverId" jdbcType="INTEGER" />
+		<result column="time" property="Time" jdbcType="INTEGER" />
+		<result column="value" property="value" jdbcType="DOUBLE" />
+	</resultMap>
+
+	<sql id="ResultInfoColumnList">
+		data_id, server_id, time, value
+	</sql>
+
+	<select id="getDayValueInfo" resultMap="ResultInfoMap">
+		select
+		<include refid="ResultInfoColumnList" />
+		from t_db_data_day
+		where data_id=#{0} and server_id=#{1} and #{2} &lt;=
+		time and #{3} &gt;= time
+	</select>
+
+	<select id="getMinuteValueInfo" resultMap="ResultInfoMap">
+		select
+		<include refid="ResultInfoColumnList" />
+		from t_db_data_minute
+		where data_id=#{0} and server_id=#{1} and #{2} &lt;=
+		time and #{3} &gt;= time
+	</select>
+
+	<update id="insertUpdataResultInfo">
+		insert INTO t_db_data_day
+		(data_id, server_id, time,
+		value)
+		VALUES
+		(#{dataId,jdbcType=INTEGER},
+		#{serverId,jdbcType=INTEGER},
+		#{Time,jdbcType=INTEGER},
+		#{value,jdbcType=INTEGER})
+		ON DUPLICATE KEY
+		UPDATE
+		value = VALUES(value)
+	</update>
+
+
+</mapper>

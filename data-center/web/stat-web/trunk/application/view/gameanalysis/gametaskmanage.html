@@ -1,0 +1,11 @@
+{extends "gameanalysis/without_tools.html"}
+
+{block "without_tools.contentheader"}
+<div class="content-header clearfix">
+    <a class="add-btn" id="J_hideAll">{TM::t('tongji', '隐藏全部任务')}</a>
+    <a class="add-btn" id="J_showAll">{TM::t('tongji', '显示全部任务')}</a>
+</div>
+{/block}
+{block "without_tools.pagejs"}
+<script src="{$response.res_server}/data/js/page/gameanalysis/gametask.js?v={$response.application_info.version}"></script>
+{/block}

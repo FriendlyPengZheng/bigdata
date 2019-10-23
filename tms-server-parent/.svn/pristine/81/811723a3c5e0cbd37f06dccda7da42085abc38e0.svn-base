@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.taomee.tms.mgr.dao.SharedCollectInfoDao">
+	<resultMap id="SharedCollectInfoMap" type="com.taomee.tms.mgr.entity.SharedCollectInfo">
+		<result column="collect_id" property="collectId" jdbcType="INTEGER" />
+		<result column="favor_id" property="favorId" jdbcType="INTEGER" />
+		<result column="user_id" property="userId" jdbcType="INTEGER" />
+	</resultMap>
+
+	<sql id="SharedCollectInfoColumnList">
+		collect_id, favor_id, user_id
+	</sql>
+
+	<select id="findByCollectId" resultMap="SharedCollectInfoMap"  parameterType="java.lang.Integer">
+		select
+		<include refid="SharedCollectInfoColumnList" />
+		from t_web_shared_collect
+		where collect_id = #{collectId,jdbcType=INTEGER}
+	</select>
+</mapper>

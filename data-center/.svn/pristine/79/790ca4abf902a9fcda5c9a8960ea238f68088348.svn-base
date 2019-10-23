@@ -1,0 +1,7 @@
+local-ip    10.1.1.63
+stat-center-host    10.1.1.44:19300
+db-host 10.1.1.60
+db-port 3306
+db-name db_td_config
+db-user root
+db-passwd   pwd@60

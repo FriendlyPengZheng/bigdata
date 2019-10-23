@@ -1,0 +1,403 @@
+#!/usr/bin/python
+# coding=utf-8
+
+#############################################################################
+# Company    TaoMee.Inc, ShangHai.
+# Copyright  Copyright (c) 2014, TaoMee.Inc, ShangHai.
+#
+# brief:  A tool for check stat status.
+# author: Ian Guo<ianguo@taomee.com>
+# date:   2014-03-06
+#############################################################################
+
+import sys,os
+import socket
+import struct
+import readline
+import traceback
+
+"A tool for check stat status."
+
+class StatStatus():
+    "connect to stat-center and issue command"
+
+    # cmd : module_type
+    _query_cmd_dic = {"lc" : 0, \
+                       "ls" : 1, \
+                       "lds" : 2,\
+                       "lcs" : 3, \
+                       "lrs" : 4, \
+                       "lnn" : 5, \
+                       "ljt" : 6, \
+                       "ldn" : 7, \
+                       "ltt" : 8}
+
+    # fdcmd : module_type 
+    _query_fdcmd_dic = {"fdc" : 0, \
+                        "fds" : 1, \
+                        "fdds" : 2, \
+                        "fdcs" : 3, \
+                        "fdrs" : 4, \
+                        "fdnn" : 5, \
+                        "fdjt" : 6, \
+                        "fddn" : 7, \
+                        "fdtt" : 8}
+
+    # cmd : print_param
+    _query_cmd_param_dic = {"A" : 0x80, \
+                            "a" : 0x80, \
+                            "i" : 0x40, \
+                            "I" : 0x40, \
+                            "-" : 0}
+
+    # fdcmd : fd_param
+    _query_fdcmd_param_dic = {"e" : 0x80, \
+                              "E" : 0x80, \
+                              "d" : 0x00, \
+                              "D" : 0x00, \
+                              "-" : 0}
+
+    # cmd : proto_id
+    _op_cmd_dic = {"del" : 0xA002, \
+                   "d"   : 0xA002}
+
+    # module : module-type
+    _module_dic = {"stat-client" : 0, \
+                   "stat-server" : 1, \
+                   "db-server" : 2, \
+                   "config-server" : 3, \
+                   "stat-redis" : 4, \
+                   "stat-namenode" : 5, \
+                   "stat-jobtracker" : 6, \
+                   "stat-datanode" : 7, \
+                   "stat-tasktracker" : 8}
+
+    def __init__(self, ip, port):
+        try:
+            self.__sock_fd = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
+            self.__sock_fd.settimeout(10)
+            self.__sock_fd.connect((ip, port))
+        except Exception, e:
+            self.close()
+            raise
+
+    def close(self):
+        if(self.__sock_fd):
+            self.__sock_fd.close()
+
+    def __send_and_recv(self, send_data):
+        "send request and recv response."
+
+        try:
+            self.__sock_fd.send(send_data)
+            str_proto_len = self.__sock_fd.recv(4)
+            proto_len = struct.unpack("<I", str_proto_len[0:4])[0] # total response package length
+            str_total = str_proto_len
+            while True:
+                ret = self.__sock_fd.recv(proto_len - len(str_total))
+                str_total += ret
+                if(len(str_total) >= proto_len):
+                    break
+
+            return str_total
+        except Exception, e:
+            return "" 
+
+    def __handle_op_cmd(self, cmd, args):
+        str_help = "Wrong arguments of command: %s. Type help for command help." % cmd
+
+        # just implement unregister module proto
+
+        if(args == None or len(args) != 2 or (args[0] not in self._module_dic.keys())):
+            return str_help
+        inet_ip = None
+        try:
+            inet_ip = socket.inet_pton(socket.AF_INET, args[1])
+        except Exception, e:
+            str_help = "Error: Invalid IP address."
+            inet_ip = None
+
+        if(inet_ip == None):
+            return str_help
+
+        send_data = struct.pack("<2I1B", 13, self._op_cmd_dic[cmd], self._module_dic[args[0]])
+        send_data += inet_ip;
+        str_total = self.__send_and_recv(send_data)
+        if(len(str_total) != 9):
+            return "Network error."
+        
+        pkg_ret = struct.unpack("<1B", str_total[-1])[0]
+        if(pkg_ret == 0):
+            return "%s %s %s, stat-center returns OK." % (cmd, args[0], args[1])
+        else:
+            return "%s %s %s, stat-center returns Fail." % (cmd, args[0], args[1])
+
+
+
+    def __handle_query_cmd(self, module_type, args):
+        flag = 0
+        pkg_len = 11
+        ip_list = None
+        str_error = "Error: Invalid Paramaters.\ncmd [op] [ip-list]\n"
+
+        if(args != None and len(args) >= 1):
+            for param_char in args[0]:
+                if((param_char in self._query_cmd_param_dic.keys())):
+                    flag = flag|self._query_cmd_param_dic[param_char]
+                else:
+                    return str_error
+
+        if(args != None and (flag&self._query_cmd_param_dic["I"]) == 0 and len(args) > 1):
+            return "Error: Too many paramters.\n"
+        if(args != None and (flag&self._query_cmd_param_dic["I"]) != 0):
+            if(len(args) < 2):
+                return "Error: Lost IP.\n"
+            else:
+                for param_ip in args[1:]:
+                    try:
+                        if (ip_list == None):
+                            ip_list = socket.inet_pton(socket.AF_INET, param_ip)
+                        else:
+                            ip_list += socket.inet_pton(socket.AF_INET, param_ip)
+                        pkg_len += 4
+                    except Exception, e:
+                        print e
+                        return str_error
+
+        send_data = struct.pack("<2I3B", pkg_len, 0xA010, module_type, 0, flag) # proto of printing heartbeat data
+        if(ip_list != None):
+            send_data += ip_list
+        str_total = self.__send_and_recv(send_data)
+
+        if(len(str_total) <= 9):
+            return "No status found or error comeout."
+
+        return str_total[9:]
+
+#######################################################################################3##
+    def __handle_query_fdcmd(self, module_type, args):
+
+        flag = 0
+        pkg_len = 11
+        fd_param = None
+        str_error = "Error: Invalid Paramaters.\ncmd [-e/E] [minutes] [ip]\ncmd [-d/D] [ip]"
+        
+        flag = flag|0x20 # to distinguish from 'l' cmd
+        if((("e" in args[0]) or ("E" in args[0])) and \
+                            (("d" in args[0]) or ("D" in args[0]))):
+            return "[e/E] and [d/D] can ont be used at the same time.\n"
+        
+        if((not ("e" in args[0]) or ("E" in args[0])) and \
+                            (not (("d" in args[0]) or ("D" in args[0])))):
+            return "Please chose -e option to enable forbid or -d to disable forbid.\n"
+
+        if(args != None and len(args) >= 1):
+            for param_char in args[0]:
+                if((param_char in self._query_fdcmd_param_dic.keys())):
+                    flag = flag|self._query_fdcmd_param_dic[param_char]
+                else:
+                    return str_error
+            
+            if(flag & 0x80):   # enable forbidden
+                if(len(args) == 3): # ip
+                    if not args[1].isdigit():
+                        return "please input integer as minutes.\n"
+                    fd_param = socket.inet_pton(socket.AF_INET, args[2])
+                    pkg_len += 8
+                    send_data = struct.pack("<2I3B1I", pkg_len, 0xA010, module_type, 0, flag, int(args[1]))
+                    if fd_param != None:
+                        send_data += fd_param
+                elif(len(args) == 2): # moduletype
+                    if not args[1].isdigit():
+                        return "please input integer as minutes.\n"
+                    fd_param = args[1]
+                    pkg_len += 4
+                    flag |= 0x40
+                    send_data = struct.pack("<2I3B1I", pkg_len, 0xA010, module_type, 0, flag, int(args[1]))
+                else:
+                    return "Error: parameters error.\n"    
+            else: # disable forbidden
+                if(len(args) == 2): # ip
+                    fd_param = socket.inet_pton(socket.AF_INET, args[1])
+                    pkg_len += 4
+                    send_data = struct.pack("<2I3B", pkg_len, 0xA010, module_type, 0, flag)
+                    send_data += fd_param
+
+                elif(len(args) == 1): # moduletype
+                    flag |= 0x40
+                    send_data = struct.pack("<2I3B", pkg_len, 0xA010, module_type, 0, flag)
+                else:
+                    return "Error: parameters error.\n"
+        else:
+            return "Error: parameters error.\n"
+                            
+        
+        str_total = self.__send_and_recv(send_data)
+        if(len(str_total) == 9):
+            if(flag & 0x80):
+                if(flag & 0x40):
+                    if(int(module_type) == 0):
+                        return "forbid stat-client alarm successfully."
+                    elif(int(module_type) == 1):
+                        return "forbid stat-server alarm successfully."
+                    elif(int(module_type) == 2):
+                        return "forbid db-server alarm successfully."
+                    elif(int(module_type) == 3):
+                        return "forbid config-server alarm successfully."
+                    elif(int(module_type) == 4):
+                        return "forbid stat-redis alarm successfully."
+                    elif(int(module_type) == 5):
+                        return "forbid stat-namenode alarm successfully."
+                    elif(int(module_type) == 6):
+                        return "forbid stat-jobtracker alarm successfully."
+                    elif(int(module_type) == 7):
+                        return "forbid stat-datanode alarm successfully."
+                    elif(int(module_type) == 8):
+                        return "forbid stat-tasktracker alarm successfully."
+                else:
+                    return "forbid %s alarm successfully." % args[2]
+            else:
+                if(flag & 0x40):
+                    if(int(module_type) == 0):
+                        return "stat-client alarm start successfully."
+                    elif(int(module_type) == 1):
+                        return "stat-server alarm start successfully."
+                    elif(int(module_type) == 2):
+                        return "db-server alarm start successfully."
+                    elif(int(module_type) == 3):
+                        return "config-server alarm start successfully."
+                    elif(int(module_type) == 4):
+                        return "stat-redis alarm start successfully."
+                    elif(int(module_type) == 5):
+                        return "stat-namenode alarm start successfully."
+                    elif(int(module_type) == 6):
+                        return "stat-jobtracker alarm start successfully."
+                    elif(int(module_type) == 7):
+                        return "stat-datanode alarm start successfully."
+                    elif(int(module_type) == 8):
+                        return "stat-tasktracker alarm start successfully."
+                else:
+                    return "%s alarm start successfully." % args[1]
+        elif(len(str_total) > 9):
+            return str_total[9:]
+        else:
+            return "No status found or error comeout."
+
+#########################################################################################
+
+    def run_cmd(self, cmd, args):
+        if(len(cmd) == 0):
+            return "command is empty."
+
+        if(cmd in self._query_cmd_dic.keys()):
+            return self.__handle_query_cmd(self._query_cmd_dic[cmd], args)
+
+        if(cmd in self._query_fdcmd_dic.keys()):
+            return self.__handle_query_fdcmd(self._query_fdcmd_dic[cmd], args)
+
+        if(cmd in self._op_cmd_dic.keys()):
+            return self.__handle_op_cmd(cmd, args)
+
+        return "Error command: %s not supported. Type help for available commands." % cmd
+
+
+class CmdLineLoop():
+    "main loop of command line"
+    def __init__(self, ip, port):
+        try:
+            self.__runner = StatStatus(ip, int(port))
+        except Exception, e:
+            print "Failed to connect to ", ip, ":", port
+            print "Exception caught:", e
+            sys.exit(1)
+
+    def __parse_cmd(self, str_cmd):
+        cmd = None
+        try:
+            cmd = str(str_cmd).split()
+        except Exception, e:
+            return None, None
+
+        args = None
+        if(len(cmd) > 1):
+            args = cmd[1:]
+
+        return cmd[0], args
+
+    def print_help(self):
+        print "\nAvailable commands:\n" + \
+              "h[elp]\t print this help.\n\n" + \
+              "lc  [OPTION] [IP]\t list stat-client status.\n" + \
+              "ls  [OPTION] [IP]\t list stat-server status.\n" + \
+              "lds [OPTION] [IP]\t list db-server status.\n" + \
+              "lcs [OPTION] [IP]\t list config-server status.\n" + \
+              "lrs [OPTION] [IP]\t list stat-redis status.\n" + \
+              "lnn [OPTION] [IP]\t list stat-namenode status.\n" + \
+              "ljt [OPTION] [IP]\t list stat-jobtracker status.\n" + \
+              "ldn [OPTION] [IP]\t list stat-datanode status.\n" + \
+              "ltt [OPTION] [IP]\t list stat-tasktracker status.\n" + \
+              "\t usage:[OPTION]\n" + \
+              "\t A|a : If you just want Alarmed host msg -> maybe like \"ls A\" or \"lc a\" or \"lcs -A\"\n" + \
+              "\t I|i : If you want get msg with the IP you should use this option, and must set [IP] after.\n" + \
+              "\t\t--> maybe like \"ls I 127.0.0.1\" or \"lc i 127.0.0.1\" or \"ldn -i 127.0.0.1\"\n" + \
+              "\t Also,you can use one more options together -> maybe like \"ls AI 127.0.0.1\"\n" + \
+              "\t And also, if you used none option, it will list all hosts msg in the module type.\n" + \
+              "\t And and and, it max display 50 items if it find more than 50 items.\n\n" + \
+              "d[el]\t delete(unregister) module. \n\t usage: del module-name ip-address \n\t for example: del stat-client 192.168.1.2\n\t available modules: stat-client, stat-server, db-server, config-server.\n" + \
+              "e[xit]\t exit this tool.\n" + \
+              "q[uit]\t exit this tool.\n" + \
+              "---------------------------------------------------------------------------------------------------------------------------------------------------\n\n" + \
+              "fdc  [OPTION] [monutes] [IP]\t forbid stat-client alarm or specified ip(belong to stat-client) alarm.\n" + \
+              "fds  [OPTION] [monutes] [IP]\t forbid stat-server alarm or specified ip(belong to stat-server) alarm.\n" + \
+              "fdds [OPTION] [monutes] [IP]\t forbid db-server alarm or specified ip(belong to db-server) alarm.\n" + \
+              "fdcs [OPTION] [monutes] [IP]\t forbid config-server alarm or specified ip(belong to config-server) alarm.\n" + \
+              "fdrs [OPTION] [monutes] [IP]\t forbid stat-redis alarm or specified ip(belong to stat-redis) alarm.\n" + \
+              "fdnn [OPTION] [monutes] [IP]\t forbid stat-namenode alarm or specified ip(belong to stat-namenode) alarm.\n" + \
+              "fdjt [OPTION] [monutes] [IP]\t forbid stat-jobtracker alarm or specified ip(belong to stat-jobtracker) alarm.\n" + \
+              "fddn [OPTION] [monutes] [IP]\t forbid stat-datanode alarm or specified ip(belong to stat-datanode) alarm.\n" + \
+              "fdtt [OPTION] [monutes] [IP]\t forbid stat-tasktracker alarm or specified ip(belong to stat-tacktracker) alarm.\n" + \
+              "\t usage:[OPTION]\n" + \
+              "\t E|e :  enable forbid alarm.\n" + \
+              "\t        If you want to forbid alarm from certain module_type -> fdc -e 10 , it means: forbid alarm from stat-client for 10 minutes.\n" + \
+              "\t        If you want to forbid alarm from certain ip -> fdc -e 10 10.1.1.44 , it means: forbid alarm from 10.1.1.44 for 10 minutes.\n" + \
+              "\t D|e :  cancel(disable) forbid alarm \n" + \
+              "\t        If you want to cancel forbidding alarm from certain module_type -> fdc -d , it means: cancel forbidding alarm from stat-client.\n" + \
+              "\t        If you want to cancel forbidding alarm from certain ip -> fdc -d 10.1.1.44 , it means: cancel forbidding alarm from 10.1.1.44.\n" 
+
+    def main_loop(self):
+        print "\nWelcome to stat monitor, type help for help, type quit or exit to exit.\n"
+        while True:
+            str_cmd = raw_input("stat monitor@ ")
+            if(len(str_cmd) == 0):
+                continue
+
+            cmd, args = self.__parse_cmd(str_cmd)
+
+            if(cmd == "quit" or cmd == "q" or cmd == "exit" or cmd == "e"):
+                break 
+
+            if(cmd == "help" or cmd == "h"):
+                self.print_help()
+                continue
+
+            try:
+                ret = self.__runner.run_cmd(cmd, args)
+                if(ret != None):
+                    print ret
+            except Exception, e:
+                print "Failed to run command: ", cmd, " ".join(args)
+                #traceback.print_exc()
+                print "Exception caught:", e
+                print "Type quit or exit to exit and then run stat-monitor again."
+
+        print "\nstat monitor exit. Bye!"
+
+
+if __name__ == "__main__":
+    if(len(sys.argv) != 3):
+        print "Usage:\nstat-monitor ip port"
+        sys.exit(1)
+
+    cmdline = CmdLineLoop(sys.argv[1], sys.argv[2])
+    cmdline.main_loop()
+    sys.exit(0)

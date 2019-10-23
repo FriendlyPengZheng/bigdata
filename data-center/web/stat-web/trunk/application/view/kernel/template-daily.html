@@ -1,0 +1,42 @@
+{extends "mail/layout.html"}
+
+{block "layout.subject"}{$subject}{/block}
+{block "layout.main"}
+<table cellpadding="0" cellspacing="0" border="0">
+    <tr>
+        <td valign="top" align="center" style="padding-bottom:20px;font-size:16px;font-weight:bold;">日报时间：{date('Y-m-d', $date)}</td>
+	</tr>
+	<tr>
+		<td valign="top">
+			<table cellpadding="0" cellspacing="0" border="0" align="left" style="color:#333;">
+				{foreach $topRemarks as $remark}
+				<tr>
+					<td valign="top" style="font-size:14px;color:#808080">注：{$remark}</td>
+				</tr>
+				{/foreach}
+			</table>
+		</td>
+	</tr>
+    {foreach $content as $val}
+    <tr>
+        <td valign="top" style="padding-bottom:20px;">
+            {$val}
+        </td>
+    </tr>
+    {/foreach}
+    <tr>
+        <td valign="top">
+            <table cellpadding="0" cellspacing="0" border="0" align="left" style="color:#333;">
+                <tr>
+                    <td valign="top">数据定义：</td>
+                </tr>
+                {foreach $bottomRemarks as $remark}
+                <tr>
+                    <td valign="top" style="font-size:14px;">{$remark}</td>
+                </tr>
+                {/foreach}
+            </table>
+        </td>
+    </tr>
+</table>
+{/block}

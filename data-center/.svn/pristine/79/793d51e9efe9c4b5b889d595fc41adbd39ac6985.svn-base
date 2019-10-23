@@ -1,0 +1,30 @@
+# 数据分析平台交接文档
+
+------
+
+## 网站部署
+| 环境     | 机器            |  路径                       |  域名                    |
+| -------- | -----:          | :----:                      | :----:                   |
+| 内网     | 10.1.1.104      | /var/www/tongji.taomee.net  |http://tongji.taomee.net  |
+| 外网     | 192.168.71.59   | /var/www/tongji.taomee.com  |http://tongji.taomee.com  |
+
+## 发布流程
+### 1.更新最新代码至10.1.1.104:/var/www/tongji.taomee.net
+```bash
+cd /var/www/tongji.taomee.net
+sudo svn up
+```
+### 2.通过http://sync.taomee.com发布至外网
+### 3.变更版本号
+```bash
+chver 1.0.{version} # {version}为代码svn版本号
+```
+
+## 注意问题
+### 日报重新发送，数据库中调整自动发送时间为上次发送时间
+```sql
+set names utf8;
+use db_td_config;
+update t_timing_task set next_execute_time = next_execute_time - timing_interval where task_id = 4;
+/* 4为自动发送日报的任务ID */
+```

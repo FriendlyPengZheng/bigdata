@@ -1,0 +1,28 @@
+2011-01-19 imane <imane@taomee.com>
+	* route: 加了一个设置set_rule的接口
+	* main: 让web-thread,monitor-thread,client-thread绑定不同ip和端口，以及增加了一个热加载配置功能
+
+2010-12-23 richard <richard@taomee.com>
+	* web-thread: 修改web-thread里的屏幕显示
+
+2010-12-13 richard <richard@taomee.com>
+	* *.*: 修改代码以支持网络监听绑定到指定IP
+
+2010-11-18 richard <richard@taomee.com>
+	* *.*: 修改代码使用最新的stat-lib库
+
+2010-06-30 richard <richard@taomee.com>
+	* client_thread_impl.cpp: 修改代码以在64位的机器上编译
+
+2010-06-30 richard <richard@taomee.com>
+	* main.cpp: 修改程序使用标准库中的ringqueue
+	* start_proxy.sh: 修改程序的启动脚本
+
+2010-06-23 richard <richard@taomee.com>
+	* main.cpp: 在日志中打印程序编译的时间
+
+2010-06-22 richard <richard@taomee.com>
+	* main.cpp: 修改程序对信号的处理方式，修改程序退出的处理方式
+	* start_proxy.sh: 修改程序的启动脚本
+	* state_proxy.sh: 增加查看程序状态的脚本
+	* stop_proxy.sh: 修改程序的停止脚本

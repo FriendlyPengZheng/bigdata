@@ -1,0 +1,16 @@
+#!/bin/sh
+
+if [ $# -eq 1 ]
+then
+    if [ $1 = "develop" -o $1 = "release" ]
+    then
+        chmod -R 777 ../runtime
+        unlink ../webroot/index.php
+        cp ./webroot/$1-index.php ../webroot/index.php
+        echo "done, now $1!"
+    else
+        echo "unknown option $1, need \"develop\" or \"release\"!"
+    fi
+else
+    echo 'Usage: ./install {develop|release}'
+fi

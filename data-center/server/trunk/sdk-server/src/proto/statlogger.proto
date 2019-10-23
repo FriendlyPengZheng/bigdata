@@ -1,0 +1,314 @@
+package statlogger;
+
+import "statlogger.common.proto";
+
+//total_len(uint32)+cmd(uint16)+proto_body
+
+enum zone_type_t {
+    TEL = 1;//电信
+    NET = 2;//网通
+    ALL = 3;//总在线
+}
+
+enum unit_t {
+    YUAN = 1;//元
+    JIAO = 2;//角
+    FEN = 3;//分
+}
+
+enum currency_t {
+    MIBI = 1;//米币
+    RMB = 2;//人民币
+}
+
+enum pay_reason_t {
+    PAY_BUY = 1;//买游戏道具
+    PAY_VIP = 2;//开通vip
+}
+
+enum task_type_t {
+    BEGIN = 1;//新手任务
+    MAIN = 2;//主线任务
+    AUX = 3;//支线任务
+    ETC = 4;//其它任务
+}
+
+enum reg_trans_step_t {
+    fGetRegSucc = 1;
+    fLoadRegSucc = 2;
+    fSendLoginReq = 3;
+    bGetLoginReq = 4;
+    bSendLoginReq = 5;
+    bGetLoginSucc = 6;
+    fGetLoginSucc = 7;
+    fLoadLoginSucc = 8;
+    fClickStartBtn = 9;
+    bGetNewroleReq = 10;
+    bSendNewroleSucc = 11;
+    fStartSrvlistReq = 12;
+    bStartGetSrvlist = 13;
+    bGetSrvlistSucc = 14;
+    fGetSrvlistSucc = 15;
+    fSendOnlineReq = 16;
+    fSend1001Req = 17;
+    bSendOnlineSucc = 18;
+    fOnlineSucc = 19;
+    fLoadInfoSucc = 20;
+    fInterGameSucc = 21;
+}
+
+enum op_type_t {
+    SUM = 1;//求和
+    MAX = 2;//最大值
+    SET = 3;//最新值
+}
+
+message cs_0xF001_veri_pass_t {
+    required statloggercommon.game_info_t game = 1;
+    required statloggercommon.user_id_t   uid = 2;
+
+    optional string client_ip = 3;  //用户ip
+    optional string ads_id = 4;     //跳转广告位，如innermedia.taomee.seer.topbar
+    optional string browse = 5;     //浏览器，如MSIE，Chrome，Safari
+    optional string device = 6;     //用户设备，如iphone
+    optional string os = 7;         //操作系统，如android5，ios9
+    optional string resolution = 8; //分辨率，如1024X768
+    optional string network = 9;    //网络，如wifi，3G，4G
+    optional string isp = 10;       //运营商，如电信，移动
+}
+
+message sc_0xF001_veri_pass_t {
+    required statloggercommon.return_t ret = 1;
+}
+
+message cs_0xF002_reg_role_t {
+    required statloggercommon.game_info_t game = 1;
+    required statloggercommon.user_id_t   uid = 2;
+
+    optional string race = 3;       //职业
+    optional string client_ip = 4;  //用户ip
+    optional string ads_id = 5;     //跳转广告位，如innermedia.taomee.seer.topbar
+    optional string browse = 6;     //浏览器，如MSIE，Chrome，Safari
+    optional string device = 7;     //用户设备，如iphone
+    optional string os = 8;         //操作系统，如android5，ios9
+    optional string resolution = 9; //分辨率，如1024X768
+    optional string network = 10;   //网络，如wifi，3G，4G
+    optional string isp = 11;       //运营商，如电信，移动
+}
+
+message sc_0xF002_reg_role_t {
+    required statloggercommon.return_t ret = 1;
+}
+
+message cs_0xF003_login_online_t {
+    required statloggercommon.game_info_t game = 1;
+    required statloggercommon.user_id_t   uid = 2;
+
+    optional string race = 3;       //职业
+    optional bool   isvip = 4;      //是否是vip
+    optional uint32 level = 5;      //用户等级
+    optional string client_ip = 6;  //用户ip
+    optional string ads_id = 7;     //跳转广告位，如innermedia.taomee.seer.topbar
+    optional zone_type_t zone = 8;  //电信，网通，或者全部
+    optional string browse = 9;     //浏览器，如MSIE，Chrome，Safari
+    optional string device = 10;    //用户设备，如iphone
+    optional string os = 11;        //操作系统，如android5，ios9
+    optional string resolution = 12;//分辨率，如1024X768
+    optional string network = 13;   //网络，如wifi，3G，4G
+    optional string isp = 14;       //运营商，如电信，移动
+}
+
+message sc_0xF003_login_online_t {
+    required statloggercommon.return_t ret = 1;
+}
+
+message cs_0xF004_logout_t {
+    required statloggercommon.game_info_t game = 1;
+    required statloggercommon.user_id_t   uid = 2;
+
+    required uint32 oltime = 3;     //用户本次在线时长
+    optional bool   isvip = 4;      //是否是vip
+    optional uint32 level = 5;      //用户等级
+}
+
+message sc_0xF004_logout_t {
+    required statloggercommon.return_t ret = 1;
+}
+
+message cs_0xF005_online_count_t {
+    required statloggercommon.game_info_t game = 1;
+    required uint32 olcnt = 2;  //当前在线人数
+
+    optional zone_type_t zone = 3 [default = ALL];
+}
+
+message sc_0xF005_online_count_t {
+    required statloggercommon.return_t ret = 1;
+}
+
+message cs_0xF006_level_up_t {
+    required statloggercommon.game_info_t game = 1;
+    required statloggercommon.user_id_t   uid = 2;
+
+    required uint32 level = 3;  //升级后的等级
+    optional string race = 4;   //职业
+}
+
+message sc_0xF006_level_up_t {
+    required statloggercommon.return_t ret = 1;
+}
+
+message cs_0xF007_pay_t {
+    required statloggercommon.game_info_t game = 1;
+    required statloggercommon.user_id_t   uid = 2;
+
+    optional bool isvip = 3;//是否是vip
+    required uint32 pay_amount = 4; //付费额
+    required unit_t pay_unit = 5 [default=FEN];//付费额的单位，默认为分
+    required currency_t currency_type = 6 [default=MIBI];//货币类型，默认为米币
+    required pay_reason_t pay_reason = 7;//付费原因
+    required uint32 outcome = 8;//获得的道具id，或者VIP月数
+    optional uint32 outcnt = 9 [default=1]; //获得的道具数量，默认为1
+    required uint32 pay_channel = 10;//由支付平台确定的付费渠道
+}
+
+message sc_0xF007_pay_t {
+    required statloggercommon.return_t ret = 1;
+}
+
+message cs_0xF008_free_golds_t {
+    required statloggercommon.game_info_t game = 1;
+    required statloggercommon.user_id_t   uid = 2;
+
+    required uint32    amt = 3; //免费获得的游戏币数量
+}
+
+message sc_0xF008_free_golds_t {
+    required statloggercommon.return_t ret = 1;
+}
+
+message cs_0xF009_buy_item_t {
+    required statloggercommon.game_info_t game = 1;
+    required statloggercommon.user_id_t   uid = 2;
+
+    optional bool isvip = 3;//是否是vip
+    optional uint32 lv = 4; //购买时的等级
+    required uint32 pay_amt = 5;    //花费的游戏币数量
+    required string outcome = 6;    //购买得到的道具名称
+    optional uint32 outcnt = 7 [default=1]; //购买得到的道具数量,默认1
+}
+
+message sc_0xF009_buy_item_t {
+    required statloggercommon.return_t ret = 1;
+}
+
+message cs_0xF00A_buy_other_t {
+    required statloggercommon.game_info_t game = 1;
+    required statloggercommon.user_id_t   uid = 2;
+
+    optional bool isvip = 3;//是否是vip
+    optional uint32 lv = 4; //购买时的等级
+    required uint32 pay_amt = 5;    //花费的游戏币数量
+    required string reason = 6;     //花费游戏币的原因（比如开启功能，跳过关卡，加速等等）
+}
+
+message sc_0xF00A_buy_other_t {
+    required statloggercommon.return_t ret = 1;
+}
+
+message cs_0xF00B_accept_task_t {
+    required statloggercommon.game_info_t game = 1;
+    required statloggercommon.user_id_t   uid = 2;
+
+    optional uint32 lv = 3; //等级
+    required task_type_t type = 4;//任务类型
+    required string name = 5;//任务名称
+}
+
+message sc_0xF00B_accept_task_t {
+    required statloggercommon.return_t ret = 1;
+}
+
+message cs_0xF00C_finish_task_t {
+    required statloggercommon.game_info_t game = 1;
+    required statloggercommon.user_id_t   uid = 2;
+
+    optional uint32 lv = 3; //等级
+    required task_type_t type = 4;//任务类型
+    required string name = 5;//任务名称
+}
+
+message sc_0xF00C_finish_task_t {
+    required statloggercommon.return_t ret = 1;
+}
+
+message cs_0xF00D_abort_task_t {
+    required statloggercommon.game_info_t game = 1;
+    required statloggercommon.user_id_t   uid = 2;
+
+    optional uint32 lv = 3; //等级
+    required task_type_t type = 4;//任务类型
+    required string name = 5;//任务名称
+}
+
+message sc_0xF00D_abort_task_t {
+    required statloggercommon.return_t ret = 1;
+}
+
+message cs_0xF00E_obtain_spirit_t {
+    required statloggercommon.game_info_t game = 1;
+    required statloggercommon.user_id_t   uid = 2;
+
+    optional uint32 lv = 3; //等级
+    optional bool isvip = 4;
+
+    required string spirit = 5;//精灵名称
+}
+
+message sc_0xF00E_obtain_spirit_t {
+    required statloggercommon.return_t ret = 1;
+}
+
+message cs_0xF00F_lose_spirit_t {
+    required statloggercommon.game_info_t game = 1;
+    required statloggercommon.user_id_t   uid = 2;
+
+    optional uint32 lv = 3; //等级
+    optional bool isvip = 4;
+
+    required string spirit = 5;//精灵名称
+}
+
+message sc_0xF00F_lose_spirit_t {
+    required statloggercommon.return_t ret = 1;
+}
+
+message cs_0xF010_new_trans_t {
+    required statloggercommon.game_info_t game = 1;
+    required statloggercommon.user_id_t   uid = 2;
+
+    required reg_trans_step_t step = 3;//注册转换步骤
+}
+
+message sc_0xF010_new_trans_t {
+    required statloggercommon.return_t ret = 1;
+}
+
+message cs_0xF100_custom_t {
+    required statloggercommon.game_info_t game = 1;
+    required statloggercommon.user_id_t   uid = 2;
+
+    required string stid = 3;   //一级统计项名称
+    required string sstid = 4;  //二级统计项名称
+    optional string item = 5;   //三级统计项名称
+
+    //求人数人次的统计项不需要下面这些字段
+    optional op_type_t op = 6;
+    optional string key = 7 [default="key"];  //操作数的key，默认为'key'
+    optional double value = 8;//操作数的值，根据不同的op_type做不同的运算。有op字段的统计项，一定要有value字段
+}
+
+message sc_0xF100_custom_t {
+    required statloggercommon.return_t ret = 1;
+}
+

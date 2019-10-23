@@ -1,0 +1,27 @@
+package StatAlarmerProto;
+
+message AlarmContact
+{
+    required string name = 1; // nickname 
+    required string email = 2; // email address.
+    required string mobile = 3; // mobile number.
+}
+
+// 每个协议包开头需有:
+//   uint32_t len
+//   uint32_t proto_id
+// 这两个字段不用protobuf打包
+
+message StatAlarmRequest 
+{
+    optional string title = 1;
+    optional string content = 2;
+    repeated AlarmContact send_to = 3;
+    repeated AlarmContact send_cc = 4;
+    optional uint32 group_id = 5;
+}
+
+message StatAlarmResponse
+{
+    required uint32 ret = 1; // 0: succ, non-zero, error
+}

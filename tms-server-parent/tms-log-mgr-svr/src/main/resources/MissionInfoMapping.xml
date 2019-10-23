@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.taomee.tms.mgr.dao.MissionInfoDao">
+	<resultMap id="MissionListMap" type="com.taomee.tms.mgr.entity.MissionInfo">
+		<id column="sstid" property="sstid" jdbcType="VARCHAR" />
+		<result column="type" property="type" jdbcType="VARCHAR" />
+		<result column="gametask_name" property="gametaskName" jdbcType="VARCHAR" />
+		<result column="getucount" property="getUcount" jdbcType="INTEGER" />
+		<result column="abrtucount" property="abrtUcount" jdbcType="INTEGER" />
+		<result column="doneucount" property="doneUcount" jdbcType="INTEGER" />
+		<result column="acceptpercent" property="acceptPercent" jdbcType="VARCHAR" />
+		<result column="donepercent" property="donepercent" jdbcType="VARCHAR" />
+	</resultMap>
+	
+	<sql id="tableName">
+		v_gametask_data
+	</sql>
+	
+	<select id="getMissionList" resultMap="MissionListMap">
+		SELECT 
+			type,sstid,gametask_name,SUM(getucount) AS getucount,SUM(abrtucount) AS abrtucount, 
+			SUM(doneucount) AS doneucount,CONCAT(ROUND(SUM(doneucount)/SUM(getucount)*100, 2), "%") AS donepercent
+		FROM
+			<include refid="tableName"/>
+		WHERE
+			server_id = #{serverId,jdbcType=INTEGER} AND time BETWEEN #{start,jdbcType=INTEGER} AND #{end,jdbcType=INTEGER}
+			AND type IN (#{type, jdbcType=VARCHAR})
+		GROUP BY 
+			type,sstid
+		ORDER BY 
+			`order`
+	</select>
+	
+	<select id="getMissionDetial" resultMap="MissionListMap">
+		SELECT 
+			sstid,time ,gametask_name,getucount,abrtucount,doneucount,
+			CONCAT(ROUND(acceptpercent, 2), "%") AS acceptpercent,CONCAT(ROUND(donepercent, 2), "%") AS donepercent
+		FROM
+			<include refid="tableName"/>
+		WHERE
+			server_id = #{serverId,jdbcType=INTEGER} AND time BETWEEN #{start,jdbcType=INTEGER} AND #{end,jdbcType=INTEGER}
+			AND sstid IN (#{sstid, jdbcType=VARCHAR})
+	</select>
+</mapper>

@@ -1,0 +1,6 @@
+Manifest-Version: 1.0
+Built-By: friendly
+Build-Jdk: 1.8.0_181
+Class-Path: fastjson-1.2.54.jar
+Created-By: Maven Integration for Eclipse
+

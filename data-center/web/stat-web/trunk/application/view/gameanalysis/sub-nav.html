@@ -1,0 +1,22 @@
+<div class="wrapper">
+    <ul class="main-sub-nav">
+        <li class="sub-nav-li">
+            <select id="J_game">
+            {foreach $response.game as $key => $game}
+                {if $response.param.game_id == $key}
+                <option data-id="{$key}" data-href="{$game.url}" selected="true" data-key="{$game.game_type}">{$game.game_name}{if $game.game_type == "webgame"}{TM::t('tongji', '【页游】')}{elseif $game.game_type == "mobilegame"}{TM::t('tongji', '【手游】')}{elseif $game.game_type == "site"}{TM::t('tongji', '【网站】')}{elseif $game.game_type == "clientgame"}{TM::t('tongji', '【端游】')}{else}{TM::t('tongji', '【测试】')}{/if}</option>
+                </option>
+                {else}
+                <option data-id="{$key}" data-href="{$game.url}" data-key="{$game.game_type}">{$game.game_name}{if $game.game_type == "webgame"}{TM::t('tongji', '【页游】')}{elseif $game.game_type == "mobilegame"}{TM::t('tongji', '【手游】')}{elseif $game.game_type == "site"}{TM::t('tongji', '【网站】')}{elseif $game.game_type == "clientgame"}{TM::t('tongji', '【端游】')}{else}{TM::t('tongji', '【测试】')}{/if}</option>
+                </option>
+                 {/if}
+            {/foreach}
+            </select>
+        </li>
+        {if isset($response.admin_auth)}
+        <li class="sub-nav-li posr stat-button" title="模板管理">
+        <a href="index.php?r=admin/manage/displayPage&page_url={$response.param.r}&navi_key={$response.current.pageKey}&module_name={$response.current.pageTitle}" class="bar-manage"><i class="iconfont icon-config"></i>{TM::t('tongji', '模板管理')}</a>
+		</li>
+        {/if}
+    </ul>
+</div>

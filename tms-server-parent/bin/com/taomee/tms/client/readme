@@ -1,0 +1,4 @@
+1.添加流描述符类
+2.添加数据解析服务类
+3.重写HdfsTmsDataSendTask的process方法。
+4.

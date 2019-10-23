@@ -1,0 +1,410 @@
+package com.taomee.tms.mgr.util;
+
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.HashSet;
+import java.util.List;
+import java.util.Map;
+import java.util.Set;
+
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
+import redis.clients.jedis.HostAndPort;
+import redis.clients.jedis.Jedis;
+import redis.clients.jedis.JedisCluster;
+import redis.clients.jedis.JedisPool;
+import redis.clients.jedis.JedisPoolConfig;
+import redis.clients.jedis.Pipeline;
+
+public  class RedisUtil {
+	private static final Logger LOG = LoggerFactory.getLogger(RedisUtil.class);
+
+	//private JedisClusterConfig jedisClusterConfig;
+	private JedisCluster jedisCluster;
+	
+	public JedisCluster getJedisCluster() {
+		return jedisCluster;
+	}
+	
+	//private static final int expireSecs = 21600;
+	// Redis服务器IP Redis的端口号
+	static final String redisHosts = "10.1.1.35:6379,10.1.1.153:6379,10.1.1.151:6379"; 
+	//static final String redisHosts = "10.25.11.107:6379";
+	/**
+	 * 初始化Redis连接  获取Jedis实例
+	 */
+	private static volatile RedisUtil instance = null;
+	
+	//初始化不可重入，重入后导致每个线程都会创建jedisCluster的实例，就会消耗内存，而且这块内存又没有被及时地释放掉，导致多用户并发以后，快速吃光了服务器的内存。
+	private RedisUtil(){
+		try {
+			JedisPoolConfig config = new JedisPoolConfig();
+		   /* config.setMaxTotal(MAX_ACTIVE); //可用连接实例的最大数目，默认值为8；
+		    config.setMaxIdle(MAX_IDLE);  //控制一个pool最多有多少个状态为idle(空闲的)的jedis实例，默认值也是8。
+		    config.setMaxWaitMillis(MAX_WAIT); //等待可用连接的最大时间，单位毫秒，默认值为-1，表示永不超时
+		    config.setTestOnBorrow(TEST_ON_BORROW); //在获取连接的时候检查有效性, 默认false*/
+		    
+			Set<HostAndPort> jedisClusterNodes = new HashSet<HostAndPort>();
+
+			for (String hostPort : redisHosts.split(",")) {
+				String[] host_port = hostPort.split(":");
+				jedisClusterNodes.add(new HostAndPort(host_port[0], Integer.valueOf(host_port[1])));
+			}
+			jedisCluster = new JedisCluster(jedisClusterNodes, config);
+			//return true;
+		} catch (Exception e) {
+			e.printStackTrace();
+			//return false;
+		}
+		//return true;
+	}
+	
+	public static RedisUtil getInstance() {
+		if(instance == null) {
+			synchronized (RedisUtil.class) {
+				if(instance == null) {
+					instance  = new RedisUtil();
+				}
+			}
+		}
+		return instance;
+	}
+
+/*	*//**
+	 * 释放jedis资源
+	 * 
+	 * 
+	 *//*
+	public static void cleanup() {
+		jedisCluster.close();
+	}*/
+
+	public  String jedisSet(String key, String value) {
+		// TODO Auto-generated method stub
+		String values = "fail";
+		try {
+			values = jedisCluster.set(key, value);
+		} catch (Exception e) {
+			LOG.error("redis set fail" + e.getMessage());
+			e.printStackTrace();
+		}
+		return values;
+	}
+
+	public  String jedisGet(String key) {
+		// TODO Auto-generated method stub
+		String values = "";
+		try {
+			values = jedisCluster.get(key);
+		} catch (Exception e) {
+			LOG.error("redis get fail" + e.getMessage());
+			e.printStackTrace();
+		}
+		return values;
+	}
+
+	public  Map<String, String> jedishGetAll(String key) {
+		Map<String, String> mapInfos = new HashMap<String, String>();
+		try {
+			mapInfos = jedisCluster.hgetAll(key);
+			for (int i = 0; i < 1440; i++) {
+				if (mapInfos.containsKey(String.valueOf(i))) {
+					;
+				} else {
+					mapInfos.put(String.valueOf(i), null);
+				}
+			}
+			return mapInfos;
+		} catch (Exception e) {
+			LOG.error("redis数据未获取到" + e.getMessage());
+			e.printStackTrace();
+		}
+		return null;
+	}
+	
+	public Set<String> jedisSmembers(String key){
+		if(key == null)throw new IllegalArgumentException("Error:key could no be null when smembers method is called.");
+		return jedisCluster.smembers(key);
+	}
+	
+	public Map<String,String> jedisHgetAll(String key){
+		if(key == null)throw new IllegalArgumentException("Error:key could no be null when smembers method is called.");
+		return jedisCluster.hgetAll(key);
+	}
+	
+	public String jedisHmset(String key,Map<String,String> hash){
+		return jedisCluster.hmset(key, hash);
+	}
+	
+	public long jedisSadd(String key,String member){
+		return jedisCluster.sadd(key, member);
+	}
+	
+	public long jedisSadd(String key,Long member){
+		return jedisCluster.sadd(key, String.valueOf(member));
+	}
+	
+	public long jedisSadd(String key,int member){
+		return jedisCluster.sadd(key, String.valueOf(member));
+	}
+	
+	public boolean jedisSismember(String key,String member){
+		return jedisCluster.sismember(key, member);
+	}
+	
+	public long jedisDel(String key){
+		return jedisCluster.del(key);
+	}
+	
+	public List<String> jedisKeys(String pattern){
+		List<String> keys = new ArrayList<>(); 
+		
+		Map<String,JedisPool> nodesMap = jedisCluster.getClusterNodes();
+		
+		for(String node:nodesMap.keySet()){
+			Jedis connection = nodesMap.get(node).getResource();
+			try{
+				keys.addAll(connection.keys(pattern));
+			}catch(Exception e){
+				e.printStackTrace();
+			}finally{
+				connection.close();
+			}
+		}
+		return keys;
+	}
+	
+	
+	public Map<String,String> jedisMget(String pattern){
+		Map<String,String> resMap = new HashMap<String,String>();
+		Map<String,JedisPool> nodes = jedisCluster.getClusterNodes();
+		List<String> keyList = new ArrayList<String>();
+		
+		for(String node:nodes.keySet()){
+			keyList.clear();
+			Jedis connection = nodes.get(node).getResource();//从连接池获取一个可用redis连接
+			try{
+				keyList.addAll(connection.keys(pattern));
+				
+				Pipeline pipeline = connection.pipelined();
+				for(String key:keyList){
+					pipeline.get(key);
+				}
+				List<Object> res = pipeline.syncAndReturnAll();
+				for(int i=0;i<keyList.size();i++){
+					String key = keyList.get(i);
+					Object value = res.get(i);
+					if(value != null){
+						resMap.put(key,value.toString());
+					}
+				}
+			}catch(Exception e){
+				e.printStackTrace();
+			}finally{
+				connection.close();
+			}
+		}
+		return resMap;
+	}
+	
+	public Map<String,Map<String,String>> jedisMhgetall(String pattern){
+		Map<String,Map<String,String>> resMap = new HashMap<String,Map<String,String>>();
+		Map<String,JedisPool> nodes = jedisCluster.getClusterNodes();
+		List<String> keyList = new ArrayList<String>();
+		
+		for(String node:nodes.keySet()){
+			keyList.clear();
+			Jedis connection = nodes.get(node).getResource();//从连接池获取一个可用redis连接
+			try{
+				keyList.addAll(connection.keys(pattern));
+				
+				Pipeline pipeline = connection.pipelined();
+				for(String key:keyList){
+					pipeline.hgetAll(key);
+				}
+				List<Object> res = pipeline.syncAndReturnAll();
+				for(int i=0;i<keyList.size();i++){
+					String key = keyList.get(i);
+					Map<String,String> value = (Map<String,String>)res.get(i);
+					if(value != null){
+						resMap.put(key,value);
+					}
+				}
+			}catch(Exception e){
+				e.printStackTrace();
+			}finally{
+				connection.close();
+			}
+		}
+		return resMap;
+	}
+	
+	public void jedisMdel(String pattern){
+		Map<String,JedisPool> nodes = jedisCluster.getClusterNodes();
+		List<String> keyList = new ArrayList<String>();
+		
+		for(String node:nodes.keySet()){
+			keyList.clear();
+			Jedis connection = nodes.get(node).getResource();//从连接池获取一个可用redis连接
+			try{
+				keyList.addAll(connection.keys(pattern));
+				
+				Pipeline pipeline = connection.pipelined();
+				for(String key:keyList){
+					pipeline.del(key);
+				}
+				pipeline.syncAndReturnAll();
+			}catch(Exception e){
+				e.printStackTrace();
+			}finally{
+				connection.close();
+			}
+		}
+	}
+	
+	public Map<String,Set<String>> jedisMsmembers(String pattern){
+		Map<String,Set<String>> resMap = new HashMap<String,Set<String>>();
+		Map<String,JedisPool> nodes = jedisCluster.getClusterNodes();
+		List<String> keyList = new ArrayList<String>();
+		
+		for(String node:nodes.keySet()){
+			keyList.clear();
+			Jedis connection = nodes.get(node).getResource();//从连接池获取一个可用redis连接
+			try{
+				keyList.addAll(connection.keys(pattern));
+				
+				Pipeline pipeline = connection.pipelined();
+				for(String key:keyList){
+					pipeline.smembers(key);
+				}
+				List<Object> res = pipeline.syncAndReturnAll();
+				for(int i=0;i<keyList.size();i++){
+					String key = keyList.get(i);
+					Set<String> value = (Set<String>)res.get(i);
+					if(value != null){
+						resMap.put(key,value);
+					}
+				}
+			}catch(Exception e){
+				e.printStackTrace();
+			}finally{
+				connection.close();
+			}
+		}
+		return resMap;
+	}
+	
+	public void jedisExpire(String key,Integer seconds){
+		if(seconds == null){
+			return;
+		}
+		jedisCluster.expire(key, seconds);
+	}
+	
+	
+	public static void main(String[] args){
+		RedisUtil jedis = RedisUtil.getInstance();
+		
+		//test sadd
+		System.out.println(jedis.jedisSadd("testsadd2", "1"));
+		System.out.println(jedis.jedisSadd("testsadd2", "1"));
+		System.out.println(jedis.jedisSadd("testsadd2", "2"));
+		System.out.println(jedis.jedisSadd("testsadd2", "3"));
+		
+//		//test jedisMdel
+//		jedis.jedisMdel("sch_*");
+//		jedis.jedisMdel("l2schs_*");
+//		
+//		Map<String,Set<String>> map = jedis.jedisMsmembers("l2schs_67344*");
+//		for(String str:map.keySet()){
+//			System.out.print(str+":");
+//			for(String v:map.get(str)){
+//				System.out.print(v+" ");
+//			}
+//			System.out.println();
+//		}
+//		
+//		RedisUtil jedis = RedisUtil.getInstance();
+//		Map<String,Map<String,String>> map = jedis.jedisMhgetall("sch_4608*");
+//		for(String str:map.keySet()){
+//			for(String k:map.get(str).keySet()){
+//				String v = map.get(str).get(k);
+//				System.out.println(k+" "+v);
+//			}
+//			System.out.println();
+//		}
+//	}
+//	public Map<String,String>mget(String... keys){
+//		Map<String,String> resMap = new HashMap<>();
+//		if(keys == null || keys.length == 0){
+//			return resMap;
+//		}
+//		//如果只有一条，直接使用get即可
+//		if(keys.length == 1){
+//			resMap.put(keys[0],jedisCluster.get(keys[0]));
+//			return resMap;
+//		}
+//		
+//		//JedisCluster继承了BinaryJedisCluster
+//		//BinaryJedisCluster的JedisClusterConnectionHandler属性
+//		//里面有JedisClusterInfoCache，根据这一条继承链，可以获取到JedisClusterInfoCache
+//		//从而获取slot和JedisPool直接的映射
+//		JedisClusterInfoCache cache = (JedisClusterInfoCache) SystemMetaObject.forObject(jedisCluster).getValue("connectionHandler.cache");
+//		
+//		//保存地址+端口和命令的映射
+//		Map<JedisPool,List<String>> jedisPoolMap = new HashMap<>();
+//		
+//		List<String> keyList = null;
+//		JedisPool currentJedisPool = null;
+//		Pipeline currentPipeline = null;
+//		
+//		for(String key:keys){
+//			//计算哈希槽
+//			int crc = JedisClusterCRC16.getSlot(key);
+//			//通过哈希槽获取节点的连接
+//			currentJedisPool = cache.getSlotPool(crc);
+//			
+//			//由于JedisPool作为value保存在JedisClusterInfoCache中的一个map对象中，每个节点的
+//			//JedisPool在map的初始化阶段就是确定的和唯一的，所以获取到的每个节点的JedisPool都是一样
+//			//的，可以作为map的key
+//			if(jedisPoolMap.containsKey(currentJedisPool)){
+//				jedisPoolMap.get(currentJedisPool).add(key);
+//			}else{
+//				keyList = new ArrayList<>();
+//				keyList.add(key);
+//				jedisPoolMap.put(currentJedisPool, keyList);
+//			}
+//		}
+//		
+//		//保存结果
+//		List<Object> res = new ArrayList<>();
+//		
+//		//执行
+//		for(Entry<JedisPool,List<String>> entry:jedisPoolMap.entrySet()){
+//			try {
+//				currentJedisPool = entry.getKey();
+//				keyList = entry.getValue();
+//				//获取pipeline
+//				currentPipeline = currentJedisPool.getResource().pipelined();
+//				for(String key:keyList){
+//					currentPipeline.get(key);
+//				}
+//				//从pipeline中获取结果
+//				res = currentPipeline.syncAndReturnAll();
+//				currentPipeline.close();
+//				for(int i=0;i<keyList.size();i++){
+//					resMap.put(keyList.get(i),res.get(i)==null?null:res.get(i).toString());
+//				}
+//			} catch (Exception e) {
+//				e.printStackTrace();
+//				return new HashMap<>();
+//			}
+//			
+//		}
+//		return resMap;
+	}
+	
+	
+	
+}

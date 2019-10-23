@@ -1,0 +1,157 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.taomee.tms.mgr.dao.EconomyInfoDao">
+
+	<resultMap id="EconomyInfoMap" type="com.taomee.tms.mgr.entity.EconomyInfo">
+		<result column="sstid" property="sstid" jdbcType="VARCHAR" />
+		<result column="time" property="time" jdbcType="VARCHAR" />
+		<result column="item_id" property="item_id" jdbcType="VARCHAR" />
+		<result column="item_name" property="item_name" jdbcType="VARCHAR" />
+		<result column="vip" property="vip" jdbcType="INTEGER" />
+		<result column="server_id" property="server_id" jdbcType="INTEGER" />
+		<result column="buycount" property="buycount" jdbcType="INTEGER" />
+		<result column="buyucount" property="buyucount" jdbcType="INTEGER" />
+		<result column="salenum" property="salenum" jdbcType="INTEGER"/>
+		<result column="salemoney" property="salemoney" jdbcType="INTEGER" />
+	</resultMap>
+	
+	<resultMap id="CategoryInfoMap" type="com.taomee.tms.mgr.entity.CategoryInfo">
+		<result column="category_id" property="category_id" jdbcType="INTEGER" />
+		<result column="category_name" property="category_name" jdbcType="VARCHAR" />
+		<result column="is_leaf" property="is_leaf" jdbcType="INTEGER" />
+		<result column="buycount" property="buycount" jdbcType="INTEGER" />
+		<result column="salenum" property="salenum" jdbcType="INTEGER"/>
+		<result column="salemoney" property="salemoney" jdbcType="INTEGER" />
+		<result column="sstid" property="sstid" jdbcType="VARCHAR" />
+		<result column="buyucount" property="buyucount" jdbcType="INTEGER" />
+		<result column="time" property="time" jdbcType="VARCHAR" />
+	</resultMap>
+	
+	<sql id="ItemTop10List">
+		<!-- sstid,time,item_id,item_name,vip,server_id,buycount,buyucount,salenum,salemoney -->
+		item_name,salenum,salemoney
+	</sql>
+	
+	<sql id="ItemList">
+		item_id,item_name,SUM(buycount) AS buycount,SUM(salenum) AS salenum,SUM(salemoney) AS salemoney
+	</sql>
+	
+	<sql id="ItemDetailList">
+		item_id,time,item_name,buyucount,salenum,salemoney
+	</sql>
+	
+	<select id="getSaleTop10" resultMap="EconomyInfoMap">
+		select
+			<include refid="ItemTop10List" />
+		from v_item_sale_data
+		where 
+			sstid = #{sstid} and vip = #{vip} 
+			and time <![CDATA[>=]]> #{timeFrom} and time <![CDATA[<=]]> #{timeTo} 
+			and server_id=#{server_id}
+		order by salemoney desc limit 0,10
+	</select>
+
+	<select id="getItemSaleList" resultMap="EconomyInfoMap">
+		select
+			<include refid="ItemList" />
+		from v_item_sale_data
+		where 
+			sstid = #{sstid} and vip = #{vip} 
+			and time <![CDATA[>=]]> #{timeFrom} and time <![CDATA[<=]]> #{timeTo} 
+			and server_id=#{server_id} 
+		group by item_id
+	</select>	
+	
+	<select id="getItemSaleDetail" resultMap="EconomyInfoMap">
+		select
+			<include refid="ItemDetailList" />
+		from v_item_sale_data
+		where 
+			sstid = #{sstid} and vip = #{vip} 
+			and time <![CDATA[>=]]> #{timeFrom} and time <![CDATA[<=]]> #{timeTo} 
+			and server_id=#{server_id} and item_id=#{item_id}
+	</select>
+	
+	<select id="getItemSaleListTotal" resultType="Integer">
+		select 
+			count(distinct(item_id)) 
+		from t_item_sale_data 
+		where 
+			sstid =#{sstid} AND server_id =#{server_id} 
+			and time <![CDATA[>=]]> #{timeFrom} and time <![CDATA[<=]]> #{timeTo}  
+			AND vip = #{vip};
+	</select>
+	
+	<update id="createTemporaryTable" parameterType="java.lang.Integer">
+		CREATE TEMPORARY TABLE tmp_category_table (
+			SELECT 
+				rel.category_id, 
+				cat.category_name, 
+				cat.is_leaf, rel.item_id, 
+				item.hide, rel.game_id, 
+				rel.sstid 
+			FROM t_web_item_category_rel rel 
+			INNER JOIN 
+				(SELECT category_id, category_name, is_leaf FROM t_web_item_category WHERE parent_id = #{0} ) cat 
+			ON rel.category_id = cat.category_id 
+			INNER JOIN 
+				t_item_info item 
+			ON rel.item_id = item.item_id AND rel.game_id = item.game_id AND rel.sstid = item.sstid
+		)
+	</update>
+	
+	<update id="dropTemTableByName" parameterType="String" statementType="STATEMENT">
+		drop temporary table if exists ${tableName}
+	</update>
+	
+	<select id="getCategorySaleList" resultMap="CategoryInfoMap">
+		SELECT 
+			rel.category_id,
+			rel.category_name,
+			rel.is_leaf,
+			SUM(data.buycount) AS buycount,
+			SUM(data.salenum) AS salenum,
+			SUM(data.salemoney) AS salemoney  
+		FROM tmp_category_table rel 
+		INNER JOIN 
+			(SELECT SUM(salemoney) AS salemoney ,SUM(salenum) AS salenum ,SUM(buycount) AS buycount,item_id,game_id,sstid
+			FROM t_current_item_sale_data WHERE vip = -1 AND server_id = #{server_id} AND sstid = #{sstid} and time <![CDATA[>=]]> #{timeFrom} and time <![CDATA[<=]]> #{timeTo}  GROUP BY item_id ) data 
+		ON rel.item_id = data.item_id AND rel.game_id = data.game_id AND rel.sstid = data.sstid WHERE rel.hide = 0 GROUP BY rel.category_id
+	</select>
+	
+	<select id="getCategorySaleListTotal" resultType="java.lang.Integer">
+		 SELECT 
+		 	COUNT(DISTINCT(rel.category_id)) 
+		 FROM tmp_category_table rel 
+		 INNER JOIN ( 'SELECT DISTINCT(item_id), game_id, sstid FROM t_item_sale_data WHERE vip = -1 AND server_id = #{server_id} AND sstid = #{sstid} and time <![CDATA[>=]]> #{timeFrom} and time <![CDATA[<=]]> #{timeTo} ) data 
+		 ON rel.item_id = data.item_id AND rel.game_id = data.game_id AND rel.sstid = data.sstid WHERE rel.hide = 0'
+	</select>
+	
+	<select id="getCategoryItemSaleList">
+		 SELECT 
+		 	sub.item_id,sub.sstid,sub.game_id,item.item_name 
+		 FROM ( SELECT rel.item_id,rel.sstid,rel.game_id FROM t_web_item_category_rel rel 
+		 INNER JOIN t_web_item_category cat 
+		 ON rel.category_id=cat.category_id 
+		 WHERE rel.category_id=#{category_id} AND rel.sstid=#{sstid} AND rel.game_id=#{game_id} ) sub 
+		 LEFT JOIN t_item_info item 
+		 ON sub.item_id = item.item_id AND sub.sstid = item.sstid AND sub.game_id = item.game_id
+	</select>
+	
+	<select id="getCategorySaleDetail" resultMap="CategoryInfoMap">
+		SELECT 
+			cat.category_id as category_id,
+			data.time AS time,
+			cat.category_name as category_name,
+			SUM(data.buycount) AS buycount, 
+			SUM(data.salenum) AS salenum,
+			SUM(data.salemoney) AS salemoney 
+		FROM t_web_item_category_rel rel 
+		INNER JOIN ( SELECT category_id,category_name FROM t_web_item_category where category_id=#{category_id}) cat 
+		ON rel.category_id = cat.category_id 
+		INNER JOIN t_item_info item 
+		ON rel.item_id = item.item_id AND rel.game_id = item.game_id AND rel.sstid = item.sstid 
+		INNER JOIN ( SELECT game_id,time,item_id,sstid,buycount,salenum,salemoney FROM t_item_sale_data WHERE vip = -1 AND server_id = #{server_id} AND sstid = #{sstid} and time <![CDATA[>=]]> #{timeFrom} and time <![CDATA[<=]]> #{timeTo} ) data 
+		ON rel.item_id = data.item_id AND rel.game_id = data.game_id AND rel.sstid = data.sstid WHERE item.hide = 0 GROUP BY rel.category_id,data.time
+	</select>
+</mapper> 

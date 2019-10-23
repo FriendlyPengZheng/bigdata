@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.taomee.tms.mgr.dao.CommentDao">
+	<resultMap id="CommentMap" type="com.taomee.tms.mgr.entity.Comment">
+		<id column="comment_id" property="commentId" jdbcType="INTEGER" />
+		<result column="keyword" property="keyword" jdbcType="VARCHAR" />
+		<result column="comment" property="comment" jdbcType="VARCHAR" />
+	</resultMap>
+
+	<sql id="CommentColumnList">
+		comment_id, keyword, comment
+	</sql>
+
+	<insert id="insertCommentInfo" parameterType="com.taomee.tms.mgr.entity.Comment"
+		useGeneratedKeys="true" keyProperty="commentId">
+		insert into t_web_comment (keyword, comment)
+		values
+		(#{keyword,jdbcType=VARCHAR},
+		#{comment,jdbcType=VARCHAR})
+
+	</insert>
+
+	<update id="updateCommentInfo" parameterType="com.taomee.tms.mgr.entity.Comment">
+		update
+		t_web_comment
+		set keyword=#{keyword},comment=#{comment}
+		where
+		comment_id=#{commentId}
+	</update>
+
+	<select id="getAllCommentInfos" resultMap="CommentMap">
+		select
+		<include refid="CommentColumnList" />
+		from t_web_comment order by comment_id ASC
+	</select>
+
+	<delete id="deleteCommentInfo" parameterType="com.taomee.tms.mgr.entity.Comment">
+		delete from
+		t_web_comment
+		where comment_id=#{commentId}
+	</delete>
+
+	<select id="getCommentByKeyword" resultMap="CommentMap">
+		select
+		<include refid="CommentColumnList" />
+		from t_web_comment where keyword=#{keyword}
+	</select>
+
+	<select id="getCommentByKeywordFuzzy" parameterType="String"
+		resultMap="CommentMap">
+		select
+		<include refid="CommentColumnList" />
+		from t_web_comment where keyword like CONCAT('%', #{keyword}, '%')
+	</select>
+
+	<select id="getCommentInfoBycommentId" resultMap="CommentMap"
+		parameterType="java.lang.Integer">
+		select
+		<include refid="CommentColumnList" />
+		from t_web_comment
+		where comment_id = #{commentId,jdbcType=INTEGER}  order by comment_id ASC
+	</select>
+
+</mapper> 

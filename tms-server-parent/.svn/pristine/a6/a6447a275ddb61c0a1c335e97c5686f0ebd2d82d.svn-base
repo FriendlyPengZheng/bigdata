@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.taomee.tms.mgr.dao.GameTaskInfoDao">
+	<resultMap id="GameTaskInfoMap" type="com.taomee.tms.mgr.entity.GameTaskInfo">
+		<id column="sstid" property="id" jdbcType="VARCHAR" />
+		<result column="gametask_name" property="name" jdbcType="VARCHAR" />
+		<result column="type" property="type" jdbcType="VARCHAR" />
+		<result column="game_id" property="gameId" jdbcType="INTEGER" />
+		<result column="hide" property="hide" jdbcType="INTEGER" />
+	</resultMap>
+	
+	<sql id="tableName">
+		t_gametask_info
+	</sql>
+	
+	<select id="getList" resultMap="GameTaskInfoMap">
+		SELECT 
+			sstid,gametask_name,hide
+		FROM 
+			<include refid="tableName"/>
+		WHERE
+			game_id = #{gameId,jdbcType=INTEGER} AND type IN (#{type, jdbcType=VARCHAR})
+		ORDER BY
+			`order`
+	</select>
+	
+	<update id="setName" parameterType="com.taomee.tms.mgr.entity.GameTaskInfo">
+		UPDATE
+			<include refid="tableName"/>
+		SET
+			gametask_name = #{name,jdbcType=VARCHAR}
+		WHERE
+			type = #{type,jdbcType=VARCHAR} AND sstid = #{id,jdbcType=VARCHAR} AND game_id = #{gameId,jdbcType=INTEGER}
+	</update>
+	
+	<update id="setHide" parameterType="com.taomee.tms.mgr.entity.GameTaskInfo">
+		UPDATE
+			<include refid="tableName"/>
+		SET
+			hide = #{hide,jdbcType=VARCHAR}
+		WHERE
+			type = #{type,jdbcType=VARCHAR} AND sstid = #{id,jdbcType=VARCHAR} AND game_id = #{gameId,jdbcType=INTEGER}
+	</update>
+	
+	<update id="setHideAll" parameterType="com.taomee.tms.mgr.entity.GameTaskInfo">
+		UPDATE
+			<include refid="tableName"/>
+		SET
+			hide = #{hide,jdbcType=VARCHAR}
+		WHERE
+			type = #{type,jdbcType=VARCHAR} AND game_id = #{gameId,jdbcType=INTEGER}
+	</update>
+	
+</mapper>

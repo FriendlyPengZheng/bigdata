@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- /* ** Copyright 2012, The Android Open Source Project ** ** Licensed 
+	under the Apache License, Version 2.0 (the "License"); ** you may not use 
+	this file except in compliance with the License. ** You may obtain a copy 
+	of the Lice se at * http://www.apache.org/licenses/LICENSE-2 0  * *
+	* 
+	Unless required by applicable law or agreed to in writing, softwa e ** distribute
+	d 
+	under the License is distributed on an "AS IS" BASI , ** WITHOUT WARRANTIE
+	S 
+	OR CONDITIONS OF ANY KIND, either express or implie . ** See the Licens
+	e 
+	for the specific language governing permissions and ** limitations un
+	der 
+	th  L cense. */ -->
+<android.support.v7.internal.widget.ActionBarC
+	w
+	xmlns:android="http://schemas.android.com/apk/res/android"
+	:layout_width="fill_parent" android:layout_height="wrap_content"
+	android:visibility="gone" style="?attr/actionModeStyle:layout_width="fill_parent"" />

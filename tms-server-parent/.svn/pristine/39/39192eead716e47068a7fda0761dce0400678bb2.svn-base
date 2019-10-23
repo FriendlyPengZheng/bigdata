@@ -1,0 +1,325 @@
+package com.taomee.tms.storm.function;
+
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Map;
+
+import org.apache.storm.trident.operation.BaseFunction;
+import org.apache.storm.trident.operation.TridentCollector;
+import org.apache.storm.trident.operation.TridentOperationContext;
+import org.apache.storm.trident.tuple.TridentTuple;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
+
+
+import com.alibaba.dubbo.config.ApplicationConfig;
+import com.alibaba.dubbo.config.ReferenceConfig;
+import com.alibaba.dubbo.config.RegistryConfig;
+import com.taomee.tms.mgr.api.LogMgrService;
+import com.taomee.tms.mgr.core.loganalyser.RealtimeLogAnalyser;
+import com.taomee.tms.mgr.core.loganalyser.RealtimePlainLogItem;
+import com.taomee.tms.mgr.entity.SchemaInfo;
+import com.taomee.tms.mgr.entity.ServerInfo;
+import com.taomee.tms.storm.config.ConfigSwitcher;
+import com.taomee.tms.storm.config.Configer;
+
+//import storm.trident.operation.*;
+//import storm.trident.tuple.TridentTuple;
+
+public class LogSplitFunction extends BaseFunction {
+	private static final long serialVersionUID = 5097236152288190818L;
+	private static final Logger LOG = LoggerFactory.getLogger(LogSplitFunction.class);
+	
+	private RealtimeLogAnalyser realtimelogAnalyser = new RealtimeLogAnalyser();
+	private Configer config;
+	
+	public LogSplitFunction(){
+		
+	}
+	
+	public LogSplitFunction(Configer config){
+		this.config = config;
+	}
+
+	@Override
+	public void prepare(@SuppressWarnings("rawtypes") Map conf, TridentOperationContext context) {
+		LOG.info("LogSplitFunction prepare() method starting...");
+		
+    	ApplicationConfig application = new ApplicationConfig();
+    	application.setName(config.getDubboServiceName());
+    	
+    	RegistryConfig registry = new RegistryConfig();
+    	registry.setProtocol(config.getDubboRegistryProtocol());
+    	registry.setAddress(config.getDubboRegistryAdress());
+    	 
+    	ReferenceConfig<LogMgrService> reference = new ReferenceConfig<LogMgrService>();
+    	reference.setApplication(application);
+    	reference.setRegistry(registry);
+    	reference.setInterface(LogMgrService.class);
+    	 
+    	LogMgrService logMgrService = reference.get();
+
+		try {
+			if (!realtimelogAnalyser.Init(logMgrService.getSchemaInfosByLogType(0),logMgrService.getAllServerInfos(Integer.valueOf(0)))) {
+				LOG.error("LogSplitFunction prepare, logParser Init failed");
+				return;
+			}
+		} catch (Exception e) {
+			LOG.error("LogSplitFunction prepare, logParser Init failed while init realtimelogAnalyser, " + e.getMessage());
+			e.printStackTrace();
+		}
+		
+		LOG.info("LogSplitFunction prepare() method finished.");
+		
+	}
+
+	public void execute(TridentTuple tuple, TridentCollector collector) {
+		if (realtimelogAnalyser.SetLog(tuple.getString(0))) {
+			// 处理内存中schema的增删改
+			if (realtimelogAnalyser.IsDealingSpecailLog()) {
+				if (!realtimelogAnalyser.UpdateConfig()) {
+					LOG.error("LogSplitFunction execute, UpdateConfig failed");
+					return;
+				}
+			} else {
+				List<RealtimePlainLogItem> logItems = realtimelogAnalyser.GetAllRealTimeLogItems();
+				if (logItems != null) {
+					for (RealtimePlainLogItem item : logItems) {
+						LOG.info("emit log item is " + item.toString());
+						List<Object> values = new ArrayList<Object>();
+						values.add(item.getStrOp());
+						values.add(item.getSchemaId());
+						values.add(item.getServerId());
+						values.add(item.getCascadeValue());
+						values.add(item.getOpValues());
+						values.add(item.getDateTime());
+						collector.emit(values);
+					}
+				}
+			}
+		}
+	}
+	
+//	private RealtimeLogAnalyser GetTestLogAnalyser() {
+//		RealtimeLogAnalyser realtimeLogAnalyser = new RealtimeLogAnalyser();
+//		List<SchemaInfo> schemaInfos = new ArrayList<SchemaInfo>();
+//		SchemaInfo si1 = new SchemaInfo();
+//		si1.setLogId(100);
+//		si1.setSchemaId(1);
+//		si1.setOp("material(_acid_,_amt_)");
+//		si1.setCascadeFields("_pid_|_zid_|_sid_");
+//		schemaInfos.add(si1);
+//		// count
+//		SchemaInfo si2 = new SchemaInfo();
+//		si2.setLogId(100);
+//		si2.setSchemaId(2);
+//		si2.setOp("count()");
+//		si2.setCascadeFields("_pid_|_zid_|_sid_");
+//		schemaInfos.add(si2);
+//		// distinct_count
+//		SchemaInfo si3 = new SchemaInfo();
+//		si3.setLogId(100);
+//		si3.setSchemaId(3);
+//		si3.setOp("distinct_count(_acid_)");
+//		si3.setCascadeFields("");
+//		schemaInfos.add(si3);
+//		// sum
+//		SchemaInfo si4 = new SchemaInfo();
+//		si4.setLogId(100);
+//		si4.setSchemaId(4);
+//		si4.setOp("sum(_amt_)");
+//		si4.setCascadeFields("");
+//		schemaInfos.add(si4);
+//		// max
+//		SchemaInfo si5 = new SchemaInfo();
+//		si5.setLogId(100);
+//		si5.setSchemaId(5);
+//		si5.setOp("max(_amt_)");
+//		si5.setCascadeFields("");
+//		schemaInfos.add(si5);
+//		// min
+//		SchemaInfo si6 = new SchemaInfo();
+//		si6.setLogId(100);
+//		si6.setSchemaId(6);
+//		si6.setOp("min(_amt_)");
+//		si6.setCascadeFields("");
+//		schemaInfos.add(si6);
+//		// assign
+//		SchemaInfo si7 = new SchemaInfo();
+//		si7.setLogId(100);
+//		si7.setSchemaId(7);
+//		si7.setOp("assign(_amt_)");
+//		si7.setCascadeFields("");
+//		schemaInfos.add(si7);
+//		
+//		List<ServerInfo> serverInfos = new ArrayList<ServerInfo>();
+//		ServerInfo s1 = new ServerInfo();
+//		s1.setServerId(1);
+//		s1.setParentId(0);
+//		s1.setGameId(16);
+//		serverInfos.add(s1);
+//		
+//		ServerInfo s2 = new ServerInfo();
+//		s2.setServerId(2);
+//		s2.setParentId(1);
+//		s2.setGameId(16);
+//		serverInfos.add(s2);
+//		
+//		ServerInfo s3 = new ServerInfo();
+//		s3.setServerId(3);
+//		s3.setParentId(1);
+//		s3.setGameId(16);
+//		serverInfos.add(s3);
+//		
+//		ServerInfo s4 = new ServerInfo();
+//		s4.setServerId(4);
+//		s4.setParentId(2);
+//		s4.setGameId(16);
+//		serverInfos.add(s4);
+//		
+//		ServerInfo s5 = new ServerInfo();
+//		s5.setServerId(5);
+//		s5.setParentId(2);
+//		s5.setGameId(16);
+//		serverInfos.add(s5);
+//		
+//		ServerInfo s6 = new ServerInfo();
+//		s6.setServerId(6);
+//		s6.setParentId(3);
+//		s6.setGameId(16);
+//		serverInfos.add(s6);
+//		
+//		realtimeLogAnalyser.Init(schemaInfos, serverInfos);
+//		
+//		return realtimeLogAnalyser;
+//	}
+	
+//	public static void main(String[] args) {
+//		RealtimeLogAnalyser realtimeLogAnalyser = new RealtimeLogAnalyser();
+//		List<SchemaInfo> schemaInfos = new ArrayList<SchemaInfo>();
+//		
+////		 * 1	material()
+////		 * 2	count()
+////		 * 3	distinct_count(key)
+////		 * 4	sum(key)
+////		 * 5	max(key)
+////		 * 6	min(key)
+////		 * 7	assign(key)
+//		// material
+//		String strLog = "_hip_=192.168.111.129   _logid_=100	_svrid_=6       _gid_=25        _zid_=3        _sid_=4	_amt_=10        _pid_=2        _ts_=1483801210 _acid_=583895372";
+//		
+//		SchemaInfo si1 = new SchemaInfo();
+//		si1.setLogId(100);
+//		si1.setSchemaId(1);
+//		si1.setOp("material(_acid_,_amt_)");
+//		si1.setCascadeFields("_pid_|_zid_|_sid_");
+//		schemaInfos.add(si1);
+//		// count
+//		SchemaInfo si2 = new SchemaInfo();
+//		si2.setLogId(100);
+//		si2.setSchemaId(2);
+//		si2.setOp("count()");
+//		si2.setCascadeFields("_pid_|_zid_|_sid_");
+//		schemaInfos.add(si2);
+//		// distinct_count
+//		SchemaInfo si3 = new SchemaInfo();
+//		si3.setLogId(100);
+//		si3.setSchemaId(3);
+//		si3.setOp("distinct_count(_acid_)");
+//		si3.setCascadeFields("");
+//		schemaInfos.add(si3);
+//		// sum
+//		SchemaInfo si4 = new SchemaInfo();
+//		si4.setLogId(100);
+//		si4.setSchemaId(4);
+//		si4.setOp("sum(_amt_)");
+//		si4.setCascadeFields("");
+//		schemaInfos.add(si4);
+//		// max
+//		SchemaInfo si5 = new SchemaInfo();
+//		si5.setLogId(100);
+//		si5.setSchemaId(5);
+//		si5.setOp("max(_amt_)");
+//		si5.setCascadeFields("");
+//		schemaInfos.add(si5);
+//		// min
+//		SchemaInfo si6 = new SchemaInfo();
+//		si6.setLogId(100);
+//		si6.setSchemaId(6);
+//		si6.setOp("min(_amt_)");
+//		si6.setCascadeFields("");
+//		schemaInfos.add(si6);
+//		// assign
+//		SchemaInfo si7 = new SchemaInfo();
+//		si7.setLogId(100);
+//		si7.setSchemaId(7);
+//		si7.setOp("assign(_amt_)");
+//		si7.setCascadeFields("");
+//		schemaInfos.add(si7);
+//		
+//		List<ServerInfo> serverInfos = new ArrayList<ServerInfo>();
+//		ServerInfo s1 = new ServerInfo();
+//		s1.setServerId(1);
+//		s1.setParentId(0);
+//		s1.setGameId(16);
+//		serverInfos.add(s1);
+//		
+//		ServerInfo s2 = new ServerInfo();
+//		s2.setServerId(2);
+//		s2.setParentId(1);
+//		serverInfos.add(s2);
+//		
+//		ServerInfo s3 = new ServerInfo();
+//		s3.setServerId(3);
+//		s3.setParentId(1);
+//		serverInfos.add(s3);
+//		
+//		ServerInfo s4 = new ServerInfo();
+//		s4.setServerId(4);
+//		s4.setParentId(2);
+//		serverInfos.add(s4);
+//		
+//		ServerInfo s5 = new ServerInfo();
+//		s5.setServerId(5);
+//		s5.setParentId(2);
+//		serverInfos.add(s5);
+//		
+//		ServerInfo s6 = new ServerInfo();
+//		s6.setServerId(6);
+//		s6.setParentId(3);
+//		serverInfos.add(s6);
+//		
+//		if (realtimeLogAnalyser.Init(schemaInfos, serverInfos)) {
+//			System.out.println("-----------------------------------");
+//			if (realtimeLogAnalyser.SetLog(strLog)) {
+//				List<RealtimePlainLogItem> items = realtimeLogAnalyser.GetAllRealTimeLogItems();
+//				if (items != null) {
+//					for (RealtimePlainLogItem item: items) {
+//						System.out.print("\n" + item.toString());
+//					}
+//				}
+//			}
+//		}
+//	}
+
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

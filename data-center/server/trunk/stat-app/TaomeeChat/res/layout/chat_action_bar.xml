@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+	android:layout_width="fill_parent" android:layout_height="fill_parent"
+	android:baselineAligned="false" android:orientation="horizontal">
+
+	<Button android:id="@+id/btn_delete" android:layout_width="45dp"
+		android:layout_height="45dp" android:layout_marginLeft="2dp"
+		android:background="@drawable/delete_01" />
+
+	<Button android:id="@+id/btn_marked_read" android:layout_width="45dp"
+		android:layout_height="45dp" android:layout_marginLeft="2dp"
+		android:background="@drawable/mark_read_01" />
+
+	<Button android:id="@+id/btn_marked_unread"
+		android:layout_width="45dp" android:layout_height="45dp"
+		android:layout_marginLeft="2dp" android:background="@drawable/marked_unread_01" />
+
+	<Button android:id="@+id/btn_marked_care" android:layout_width="45dp"
+		android:layout_height="45dp" android:layout_marginLeft="2dp"
+		android:background="@drawable/marked_care_01" />
+
+	<Button android:id="@+id/btn_dismiss_care" android:layout_width="45dp"
+		android:layout_height="45dp" android:layout_marginLeft="2dp"
+		android:background="@drawable/marked_care_02" />
+
+	<Button android:id="@+id/btn_discuss_with" android:layout_width="45dp"
+		android:layout_height="45dp" android:layout_marginLeft="2dp"
+		android:background="@drawable/discuss_with_01" />
+
+</LinearLayout>

@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.taomee.tms.mgr.dao.StidSStidRefLogDao">
+	<resultMap id="StidSStidRefLogMap" type="com.taomee.tms.mgr.entity.StidSStidRefLog">
+		<result column="stid" property="stid" jdbcType="VARCHAR" />
+		<result column="sstid" property="sstid" jdbcType="VARCHAR" />
+		<result column="game_id" property="gameId" jdbcType="INTEGER" />
+		<result column="log_id" property="logId" jdbcType="INTEGER" />
+		<result column="op" property="op" jdbcType="VARCHAR" />
+		<result column="status" property="status" jdbcType="INTEGER" />
+	</resultMap>
+
+	<sql id="StidSStidRefLogColumnList">
+		stid, sstid, game_id, log_id, op, status
+	</sql>
+
+	<insert id="insertStidSStidRefLog" parameterType="com.taomee.tms.mgr.entity.StidSStidRefLog">
+		insert into
+		t_stid_logId
+		(stid, sstid, game_id, log_id, op, status)
+		values
+		(#{stid,jdbcType=VARCHAR}, #{sstid,jdbcType=VARCHAR},
+		#{gameId,jdbcType=INTEGER}, #{logId,jdbcType=INTEGER}, #{op,jdbcType=VARCHAR}, #{status,jdbcType=INTEGER})
+	</insert>
+
+
+	<select id="getLogIdBySStidGameId" resultMap="StidSStidRefLogMap" >
+		select
+		<include refid="StidSStidRefLogColumnList" />
+		from t_stid_logId
+		where stid = #{0} and sstid = #{1} and game_id = #{2} and op = #{3}
+	</select>
+	
+	<update id="updateStidSStidRefLog" parameterType="com.taomee.tms.mgr.entity.StidSStidRefLog">
+		update
+		t_stid_logId
+		set
+		status=#{status}
+		where log_id = #{logId,jdbcType=INTEGER}
+	</update>
+	
+	<select id="getStidSStidRefLogBystatus" resultMap="StidSStidRefLogMap" parameterType="java.lang.Integer">
+		select
+		<include refid="StidSStidRefLogColumnList" />
+		from t_stid_logId  where status=#{status,jdbcType=INTEGER} 
+	</select>
+</mapper> 

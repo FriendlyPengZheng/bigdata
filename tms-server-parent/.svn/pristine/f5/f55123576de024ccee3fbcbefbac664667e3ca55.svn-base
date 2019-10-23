@@ -1,0 +1,104 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.taomee.tms.mgr.dao.CollectInfoDao">
+	<resultMap id="CollectInfoMap" type="com.taomee.tms.mgr.entity.CollectInfo">
+		<id column="collect_id" property="collectId" jdbcType="INTEGER" />
+		<result column="collect_name" property="collectName" jdbcType="VARCHAR" />
+		<result column="favor_id" property="favorId" jdbcType="INTEGER" />
+		<result column="draw_type" property="drawType" jdbcType="INTEGER" />
+		<result column="display_order" property="displayOrder"
+			jdbcType="INTEGER" />
+		<result column="user_id" property="userId" jdbcType="INTEGER" />
+		<result column="ctime" property="cTime" jdbcType="TIMESTAMP"
+			javaType="java.sql.Timestamp" />
+		<result column="calc_option" property="calcOption" jdbcType="VARCHAR" />
+		<result column="calculateRow_option" property="calculateRowOption" jdbcType="INTEGER"/>
+		<result column="metadata_cnt" property="metadataCnt" jdbcType="INTEGER" />
+	</resultMap>
+
+	<sql id="CollectInfoColumnList">
+		collect_id, collect_name, favor_id, draw_type, display_order, user_id, ctime, calc_option, calculateRow_option
+	</sql>
+	
+	<select id="getListByFavorIdByShared" resultMap="CollectInfoMap"  parameterType="java.lang.Integer">
+		select
+		c.collect_id,c.collect_name,d.favor_id,c.draw_type,c.user_id,c.calc_option, COUNT(1) AS metadata_cnt
+		from t_web_shared_collect d join t_web_collect as c on d.collect_id = c.collect_id
+		left join t_web_collect_metadata m on c.collect_id = m.collect_id
+		where d.favor_id=#{favorId,jdbcType=INTEGER}
+		group by c.collect_id
+		order by c.collect_id
+	</select>
+	
+	<select id="getListByFavorIdBySelf" resultMap="CollectInfoMap">
+		select c.collect_id, c.collect_name, c.favor_id, c.draw_type, c.user_id, c.calc_option 
+		from t_web_collect c 
+		<where>
+			<if test="favorId != null and  favorId != 0">
+		 		c.favor_id = #{favorId}
+		 	</if>
+			<if test="userId != null and  userId != 0">
+				and c.user_id = #{userId}
+			</if>
+		</where>
+		order by c.collect_id
+	</select>
+	
+	<select id="getListByFavorIdByCountMetadataSelf" resultMap="CollectInfoMap">
+		select c.collect_id, c.collect_name, c.favor_id, c.draw_type, c.user_id, c.calc_option, count(1) as  metadata_cnt
+		from t_web_collect c left join t_web_collect_metadata m  on c.collect_id = m.collect_id
+		<where>
+			<if test="favorId != null and  favorId != 0">
+		 		c.favor_id = #{favorId}
+		 	</if>
+			<if test="userId != null and  userId != 0">
+				and c.user_id = #{userId}
+			</if>
+		</where>
+		group by c.collect_id
+		order by c.collect_id
+	</select>
+	
+	
+	<select id="getCollectById" resultMap="CollectInfoMap"
+		parameterType="java.lang.Integer">
+		select
+		<include refid="CollectInfoColumnList" />
+		from t_web_collect
+		where collect_id = #{collectId,jdbcType=INTEGER}
+	</select>
+	
+	<delete id="deleteCollectByCollectId" parameterType="java.lang.Integer">
+		delete from
+		t_web_collect
+		where collect_id = #{collectId,jdbcType=INTEGER}
+	</delete>
+
+	<insert id="insertCollectInfo" parameterType="com.taomee.tms.mgr.entity.CollectInfo"
+		useGeneratedKeys="true" keyProperty="collectId">
+		insert into t_web_collect (collect_name, favor_id, draw_type, user_id)
+		values (#{collectName,jdbcType=VARCHAR}, #{favorId,jdbcType=INTEGER}, #{drawType,jdbcType=INTEGER},
+		 #{userId,jdbcType=INTEGER})
+	</insert>
+	
+	<update id="updateCollectInfoBycollectId">
+		update
+		t_web_collect
+		set
+		favor_id = #{favorId}
+		where collect_id
+		=
+		#{collectId,jdbcType=INTEGER}
+	</update>
+	
+	<update id="updateCollectNameByCollectId">
+		update
+		t_web_collect
+		set
+		collect_name = #{collectName}
+		where collect_id
+		=
+		#{collectId,jdbcType=INTEGER}
+	</update>
+	
+</mapper>

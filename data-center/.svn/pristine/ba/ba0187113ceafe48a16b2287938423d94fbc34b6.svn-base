@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+        <title>{block "layout.title"}在线统计{/block}</title>
+        <link rel="stylesheet" type="text/css" href="{$response.res_server}/common/css/online.css?ver={$response.application_info.version}">
+        <link rel="stylesheet" type="text/css" href="{$response.res_server}/online/css/forbidden.css?ver={$response.application_info.version}">
+    </head>
+    <body>
+    <!-- header begin -->
+    <div class="header" id="J_header">
+        <div class="wrapper">
+            <h1 class="logo"><a href="#" title="在线统计" class="tit"><span class="ir">在线统计</span></a></h1>
+            <ul class="links">
+                <li>欢迎你，{$response.user.current_admin_name}</li>
+                <li>|</li>
+                <li class="setting"><a href="index.php?r=user/logout">退出</a></li>
+            </ul>
+        </div>
+    </div>
+    <!-- header end -->
+    <!-- main begin -->
+    <div class="wrapper auth-wrapper">
+        <div class="auth-main">
+            <span class="title f14b">亲，在线统计正在发布中哦~~(>_<)~~</span>
+            <div class="main">
+                <ul class="auth-ul">
+                    <li>表桑心，很快与您见面~</li>
+                    <li>如有疑问请联系B01数据平台部人员。</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+    </body>
+</html>

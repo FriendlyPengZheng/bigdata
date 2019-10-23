@@ -1,0 +1,230 @@
+192.168.11.199
+# m h  dom mon dow   command
+
+# common day process
+###########################广告start###############################
+#广告效果(pvuv)
+30 8  * * * ~/ads/mapred/work/runPrevDay.sh pvuv
+#广告效果(注册渠道)
+0 5  * * * ~/ads/mapred/work/runPrevDay.sh newad
+#广告效果(登录渠道)
+#30 19 * * * ~/ads/mapred/work/runPrevDay.sh actad
+#游戏运营
+11 19 * * * ~/ads/mapred/work/runPrevDay.sh tp
+#道具专题 每天10点来是运行
+#0 11 * * * ~/ads/mapred/work/runPrevDay.sh bossitem
+
+#每小时运行一次当天的数据
+#51 10-17/1 * * 1-5 ~/ads/mapred/work/runPrevDay.sh today
+
+#同步 用于广告的付费
+0 10 * * * ~/ads/mapred/work/runPrevDay.sh sync
+
+#计算新增、留存、回流用户的付费率、arpu
+0 8 * * * cd /opt/taomee/hadoop/ads/mapred/work && /bin/sh runArpu.sh
+
+#对account上传的源数据进行监控，确保每小时都有数据传上来  检测昨天的文件是否正常,文件数不够会发告警邮件
+15 8 * * * cd /opt/taomee/hadoop/ads/monitor/ && ./monitor_datasrc.php >> logs/monitorsrc.log 2>&1
+#对account上传的源数据进行监控，确保每小时都有数据传上来  检测当天的文件是否正常
+20 18 * * * cd /opt/taomee/hadoop/ads/monitor/ && ./monitor_datasrc.php >> logs/monitorsrc.log 2>&1
+
+#B01广告效果日报
+13 8 * * * cd /opt/taomee/hadoop/ads-daily && /bin/sh ads.sh
+#新增用户数、UV日报
+13 10 * * * cd /opt/taomee/hadoop/ads-daily && /bin/sh newuv.sh
+###########################广告 end################################
+
+### --- hadoop system maintain ---
+#hadoop的数据平衡，每天执行12小时,偏差在10%
+0 10 * * * ~/hadoop/bin/start-balancer.sh -threshold 10
+#干掉均衡进程
+0 22 * * * cd ~/hadoop/bin/ && sh stopb.sh
+#对hadoop集群的secondarynamenode进行监控  主要看129的50090端口是否通
+45 */1 * * * cd ~/ads/monitor/ && ./monitorsnn.py >> logs/msnn.log 2>&1
+
+#每20分钟备份一次namenode的镜像文件
+0 10-23/1 * * * cd ~/ads/monitor/ && ./minute_bak.sh >> logs/bak.log 2>&1
+
+
+#无线统计
+#5 0 * * * /opt/taomee/hadoop/wireless/run.sh
+0 1 20 * * cd /opt/taomee/hadoop/wireless/create_db && /usr/bin/php create_db.php >> log.txt
+#0 */2 * * * cd /opt/taomee/hadoop/wireless/kpi && /usr/bin/php get.php
+
+* 9 * * * /opt/taomee/hadoop/hadoop/bin/hadoop fs -rmr /user/hadoop/.Trash/14*
+
+#创新兵团N日留存
+0 8 * * * cd /opt/taomee/hadoop/stat-repair && /bin/sh repair_lianyun.sh
+0 11 2 * * cd /opt/taomee/hadoop/stat-repair && /bin/sh repair_month.sh
+20 11 2 * * cd /opt/taomee/hadoop/stat-repair && /bin/sh repair_quarter.sh
+
+#清理hadoop的log 只保留最近5天
+0 23 * * * cd /opt/taomee/hadoop/hadoop/logs && find -mtime +5 -delete 
+#清理新增UV日报的log
+0 22 * * * cd /opt/taomee/hadoop/ads-daily/log && find -mtime +5 -delete 
+#清理hadoop-monitor的log
+10 22 * * * cd /opt/taomee/hadoop/hadoop-monitor/log && find -mtime +5 -delete 
+
+0 0 * * * cd /opt/taomee/hadoop/hadoop-monitor && ./stop_monitor.sh && ./start_monitor.sh
+
+# 临时解决统计日志权限不正确
+*/1 * * * * chmod 777 /opt/taomee/stat/data/inbox/*
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+192.168.11.129
+# m h  dom mon dow   command
+#############老统计数据处理####################
+#统计系统每天计算表达式
+1 1 * * * cd /opt/taomee/hadoop/newstat && /bin/sh calc.sh
+#停止多区服-20151221
+#0 9 * * * cd /opt/taomee/hadoop/stat && /bin/sh run.sh
+
+#统计系统每小时计算ucount和uvalue
+#15 9-18/1 * * 1-5 cd /opt/taomee/hadoop/newstat && /bin/sh calc_today.sh
+#合并压缩uvalue和result
+#0 12 * * * cd /opt/taomee/hadoop/compression && /bin/sh merge.sh
+##############老统计数据处理#####################
+
+###################新统计数据处理##################
+#调度系统上线日报数据 20150204
+0 2 * * * cd /opt/taomee/hadoop/bigdata-code/stat-calc && /bin/sh start_daily_all.sh
+#调度系统上线小时数据 20150310
+#0 9-18/2 * * * cd /opt/taomee/hadoop/bigdata-code/stat-calc && /bin/sh start_hours.sh
+
+#数据检测放在每天早晨8:40
+40 8 * * * cd /opt/taomee/hadoop/value_check && php start_check_value.php > log/check_value.log 2>&1
+
+#每月1号18点计算上月月报数据
+0 18 1 * * cd /opt/taomee/hadoop/bigdata-code/stat-calc && /bin/sh start_month_report.sh
+
+#将自定义统计项分开
+0 5 * * * cd /opt/taomee/hadoop/bigdata-custom && sh calc_split_custom.sh > log/calc_split_custom.log 2>&1
+#30 21 * * * cd /opt/taomee/hadoop/bigdata-code/stat-calc/script && sh calc_custom_by_game.sh > log/calc_custom_by_game.log
+
+#2015-06-29 计算注册转换
+0 8  * * * cd /opt/taomee/hadoop/register && ./run.sh
+
+#2015-09-30  压缩数据
+#0 10 * * * cd /opt/taomee/hadoop/compression &&  /bin/sh runday.sh
+
+#7k7k广告位留存 20151124
+#42 9 * * * cd /opt/taomee/hadoop/ads/work && /usr/bin/php 7k7k.php
+
+#日报延迟发送邮件及微信通知 20160112
+0 10 * * * cd /opt/taomee/hadoop/value_check && /usr/bin/php send_warn_mail.php > log/send_warn_mail.log 2>&1
+#######################新统计数据处理########################################
+
+
+#清理hadoop的log 只保留最近10天 
+0 23 * * *  cd /opt/taomee/hadoop/hadoop/logs && find -mtime +10 -delete
+0 22 * * *  cd /opt/taomee/hadoop/newstat/log && find -mtime +3 -delete
+
+#沃尔学院每月新登陆人数
+0 9 1 * * cd /opt/taomee/hadoop/newstat && /bin/sh woer-newlog.sh
+
+
+
+
+192.168.71.36 data-analsy用户
+# m h  dom mon dow   command
+  2 
+  3 ### 老月报相关 数据来源 老统计和boss
+  4 # 月报数据运行 每月1号 统计数据运行并入库
+  5 0 12 1 * * cd /opt/taomee/data-analysis/system/gen-report/handler && ./run_month_report_all_step_manual.sh
+  6 # 月报数据运行 每月2号 从数据中心拉取数据并发邮件
+  7 0 11 2 * * cd /opt/taomee/data-analysis/system/gen-report/handler && ./run_month_report_all_step_auto.sh
+  8 # 从hadoop中拉取相关游戏的活跃和新增
+  9 0 11 * * * cd /opt/taomee/data-analysis/system/pull-data && ./new_stat_data_run_auto.sh
+ 10 # 收入数据每日拉取1号到当天前一天的数据
+ 11 0 4 * * * cd /opt/taomee/data-analysis/system/pull-data && ./revenue_data_run_auto.sh
+ 12 
+ 13 
+ 14 #@ 数据中心-新增用户登陆环节转化率
+ 15 # 计算数据-20141212启用 # 2015-06-29停用，转为在11.129上使用hadoop计算
+ 16 #0 9 * * * cd /opt/taomee/data-analysis/system/Reg-Conversion-Rate/Compute-Module/src && sh run_reg_daily.sh
+ 17 
+ 18 # 发送测试邮件-20141212启用
+ 19 30 09 * * * cd /opt/taomee/data-analysis/system/Reg-Conversion-Rate/Mail-Module/src && sh run_mail.sh 1 1
+ 20 
+ 21 # 发送正式邮件-20141212启用
+ 22 30 10 * * * cd /opt/taomee/data-analysis/system/Reg-Conversion-Rate/Mail-Module/src && sh run_mail.sh 2 1
+ 23 
+ 24 # 注册转换细节-20150917测试
+ 25 0 10 * * * cd /opt/taomee/data-analysis/system/Reg-Conversion-Rate/Mail-Module/src && php mail_reg_detail_daily.php 1
+ 26 30 10 * * * cd /opt/taomee/data-analysis/system/Reg-Conversion-Rate/Mail-Module/src && php mail_reg_detail_daily.php 2
+ 27 
+ 28 # 小时注册转化(前一个小时) 添加赤瞳之刃的小时注册转化数据-20150416
+ 29 30 * * * * cd /opt/taomee/data-analysis/system/Model-reg-funnel && ./run_reg_hourly.sh
+ 30 # 当天累计注册转化(截止到前一个小时) 添加赤瞳之刃的累计注册转化数据-20150416
+ 31 50 * * * * cd /opt/taomee/data-analysis/system/Model-reg-funnel && ./run_reg_curday.sh
+ 32 
+ 33 
+ 34 ### 20160317关闭 新用户付费转化先行研究脚本 tongji平台已有相关计算
+ 35 # 新增付费转化-首日付费和首周付费
+ 36 #40 11 * * * cd /opt/taomee/data-analysis/system/Model-reg-funnel && ./run_compute_payrate_auto.sh
+ # 新用户付费转化-30日累计付费率
+ 38 #50 11 * * * cd /opt/taomee/data-analysis/system/Model-reg-funnel && ./run_compute_pay_cumulate_auto.sh
+ 39 #55 11 * * * cd /opt/taomee/data-analysis/system/Model-reg-funnel && ./run_compute_pay_newuid_cumulate_auto.sh
+ 40 
+ 41 
+ 42 ### 20160317关闭 用于分析时查看某天的余额状态 用的不多,历史数据可能有用
+ 43 #@ 月报收入相关源数据拉取脚本(每月拉取一次), 源数据机器: 1.159
+ 44 # 拉取1号凌晨的支付账户余额信息
+ 45 #10 0 * * *  cd /opt/taomee/data-analysis/system/month-report-rvu && ./get_bean_balance.sh >> ./logs/get_bean_balance.log 2>&1
+ 46 #0 0 * * *  cd /opt/taomee/data-analysis/system/month-report-rvu && ./get_mb_balance.sh >> ./logs/get_mb_balance.log 2>&1
+ 47 
+ 48 ### 20160317关闭 只用户计算老月报的有效活跃，目前数据已经拉不到
+ 49 #@ 从account登陆日志中拉取月在线时长, 源数据机器: 1.153
+ 50 #20 3 1 * * cd /opt/taomee/data-analysis/system/tools/get-account-data && ./get.sh >> ./logs/get.log 2>&1
+
+
+
+
+
+ 192.168.71.56 stat用户
+ # m h  dom mon dow   command
+
+#0 */1 * * * cd /opt/taomee/stat/stat-monitor/ && ./stat_monitor.php
+#0 2 * * 5 cd /opt/taomee/stat/stat-proxy && ./stop_proxy.sh > stop.log
+#30 2 * * 5 cd /opt/taomee/stat/stat-proxy && ./start_proxy.sh > start.log
+#0 2 * * 6 cd /opt/taomee/stat/stat-proxy && ./stop_proxy.sh > stop.log
+#30 2 * * 6 cd /opt/taomee/stat/stat-proxy && ./start_proxy.sh > start.log
+#0 2 * * 2 cd /opt/taomee/stat/stat-proxy && ./stop_proxy.sh > stop.log
+#30 2 * * 2 cd /opt/taomee/stat/stat-proxy && ./start_proxy.sh > start.log
+
+#tmp
+#0  2 * * 4 cd /opt/taomee/stat/stat-proxy && ./stop_proxy.sh > stop.log
+#0  3 * * 4 cd /opt/taomee/stat/stat-proxy && ./start_proxy.sh > start.log
+#10 3 * * 4 cd /opt/taomee/stat/stat-proxy && /usr/bin/php check.php
+#0  2 * * 1 cd /opt/taomee/stat/stat-proxy && ./stop_proxy.sh > stop.log
+#0  3 * * 1 cd /opt/taomee/stat/stat-proxy && ./start_proxy.sh > start.log
+#10 3 * * 1 cd /opt/taomee/stat/stat-proxy && /usr/bin/php check.php
+
+#修复boss中，所有游戏商品总计数不准确的问题
+0 * * * * cd /opt/taomee/stat/ping/php && /usr/bin/php boss.php
+#0 1 * * * cd /opt/taomee/stat/ping/php && /usr/bin/php boss_rs_sync.php
+#*/1 * * * * cd /opt/taomee/stat/stat-cli-new && ./keep-alive.sh >> keep-alive.log 2>&1
+
+#online监控
+*/20 * * * * cd /opt/taomee/stat/online-monitor && ./get-config.sh
+#* 6-22 * * * cd /opt/taomee/stat/online-monitor && /usr/bin/php online-monitor.php >> log/monitor.log
+#cdn监控
+0 9 * * * cd /opt/taomee/stat/online-monitor && /usr/bin/php cdn-monitor.php >> log/cdn-monitor.log
+0 * * * * cd /opt/taomee/stat/online-monitor && rm -f core*
+
+
+
+#每天重算月付费回流,20150301放弃该脚本，由mapreduce修改该数据
+#20 10 * * * cd /opt/taomee/stat/kendy/script/pay_back && sh run.sh > log/pay_back.log

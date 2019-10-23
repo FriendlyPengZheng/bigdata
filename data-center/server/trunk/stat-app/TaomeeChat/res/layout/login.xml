@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+	android:layout_width="match_parent" android:layout_height="match_parent">
+
+	<LinearLayout android:layout_width="match_parent"
+		android:layout_height="match_parent" android:orientation="vertical">
+
+		<LinearLayout android:layout_width="match_parent"
+			android:layout_height="40dp">
+
+			<TextView android:id="@+id/nameText" android:layout_width="80dp"
+				android:layout_height="wrap_content" android:gravity="right"
+				android:text="@string/login_username" />
+
+			<EditText android:id="@+id/nameEdit" android:layout_width="0dp"
+				android:layout_height="wrap_content" android:layout_weight="1"
+				android:ems="10" android:hint="@string/login_user_hint"
+				android:singleLine="true">
+
+				<requestFocus />
+			</EditText>
+		</LinearLayout>
+
+		<LinearLayout android:layout_width="match_parent"
+			android:layout_height="40dp">
+
+			<TextView android:id="@+id/passwordText"
+				android:layout_width="80dp" android:layout_height="wrap_content"
+				android:gravity="right" android:text="@string/login_password" />
+
+			<EditText android:id="@+id/passwordEdit"
+				android:layout_width="0dp" android:layout_height="wrap_content"
+				android:layout_weight="1" android:ems="10" android:inputType="textPassword"
+				android:singleLine="true" />
+		</LinearLayout>
+
+		<LinearLayout android:layout_width="match_parent"
+			android:layout_height="40dp">
+
+			<TextView android:id="@+id/mobileText" android:layout_width="80dp"
+				android:layout_height="wrap_content" android:gravity="right"
+				android:text="@string/login_mobile" />
+
+			<EditText android:id="@+id/mobileEdit" android:layout_width="0dp"
+				android:layout_height="wrap_content" android:layout_weight="1"
+				android:ems="10" android:hint="@string/login_mobile_hint"
+				android:singleLine="true" />
+		</LinearLayout>
+
+		<Button android:id="@+id/loginBtn" android:layout_width="match_parent"
+			android:layout_height="wrap_content" android:text="@string/login_loginBtn" />
+	</LinearLayout>
+
+</FrameLayout>

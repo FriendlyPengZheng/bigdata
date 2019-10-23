@@ -1,0 +1,27 @@
+package com.taomee.tms.storm.function;
+
+import java.util.List;
+
+import com.taomee.tms.mgr.entity.SchemaInfo;
+import com.taomee.tms.mgr.entity.ServerInfo;
+import com.taomee.tms.storm.config.Configer;
+
+public class LogSplitFunctionBasic2 extends LogSplitFunction2 {
+	
+	public LogSplitFunctionBasic2(){
+		
+	}
+	
+	public LogSplitFunctionBasic2(Configer config){
+		super(config);
+	}
+	
+ 	protected List<ServerInfo> getInitialServerInfos() {
+		return this.logMgrService.getAllServerInfos();
+	}
+
+	protected List<SchemaInfo> getInitialSchemaInfos() {
+		return this.logMgrService.getSchemaInfosByLogType(0);
+	}
+
+}

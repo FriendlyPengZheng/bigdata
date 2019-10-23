@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<classpath>
+	<classpathentry kind="src" path="src"/>
+	<classpathentry kind="lib" path="scrpit/libsvm.jar"/>
+	<classpathentry kind="lib" path="scrpit/stat-bigdata.jar"/>
+	<classpathentry kind="lib" path="scrpit/weka.jar"/>
+	<classpathentry kind="lib" path="stat-bigdata.jar"/>
+	<classpathentry kind="lib" path="lib/cglib-nodep-2.2.2.jar"/>
+	<classpathentry kind="lib" path="lib/commons-cli-1.2.jar"/>
+	<classpathentry kind="lib" path="lib/commons-configuration-1.6.jar"/>
+	<classpathentry kind="lib" path="lib/commons-httpclient-3.0.1.jar"/>
+	<classpathentry kind="lib" path="lib/commons-lang-2.4.jar"/>
+	<classpathentry kind="lib" path="lib/commons-logging-1.1.1.jar"/>
+	<classpathentry kind="lib" path="lib/guava-r07.jar"/>
+	<classpathentry kind="lib" path="lib/hadoop-core-1.2.1.jar" sourcepath="C:/Users/friendly/Downloads/hadoop-1.2.1.zip">
+		<attributes>
+			<attribute name="javadoc_location" value="jar:file:/E:/taomee-friendly/hadoop-1.2.1.zip!/"/>
+		</attributes>
+	</classpathentry>
+	<classpathentry kind="lib" path="lib/jackson-core-asl-1.8.8.jar"/>
+	<classpathentry kind="lib" path="lib/jackson-mapper-asl-1.8.8.jar"/>
+	<classpathentry kind="lib" path="lib/javassist-3.20.0-GA.jar"/>
+	<classpathentry kind="lib" path="lib/log4j-1.2.15.jar"/>
+	<classpathentry kind="lib" path="lib/mockito-all-1.10.19.jar"/>
+	<classpathentry kind="lib" path="lib/mockito-all-1.9.5.jar"/>
+	<classpathentry kind="lib" path="lib/mrunit-0.8.0-incubating.jar"/>
+	<classpathentry kind="lib" path="lib/mrunit-0.9.0-incubating-hadoop1.jar"/>
+	<classpathentry kind="lib" path="lib/mrunit-0.9.0-incubating-hadoop2.jar"/>
+	<classpathentry kind="lib" path="lib/mrunit-1.0.0-hadoop1.jar"/>
+	<classpathentry kind="lib" path="lib/mrunit-1.1.0-hadoop1.jar"/>
+	<classpathentry kind="lib" path="lib/mrunit-1.1.0-hadoop2.jar"/>
+	<classpathentry kind="lib" path="lib/mrunit-1.1.0-javadoc.jar"/>
+	<classpathentry kind="lib" path="lib/mrunit-1.1.0-sources.jar"/>
+	<classpathentry kind="lib" path="lib/objenesis-2.1.jar"/>
+	<classpathentry kind="lib" path="lib/powermock-core-1.5.1.jar"/>
+	<classpathentry kind="lib" path="lib/powermock-mockito-1.6.3-full.jar"/>
+	<classpathentry kind="lib" path="lib/mysql-connector-java-5.1.47-bin.jar"/>
+	<classpathentry kind="lib" path="lib/mysql-connector-java-5.1.47.jar"/>
+	<classpathentry kind="lib" path="C:/Program Files/Java/jdk1.7.0_80/src.zip"/>
+	<classpathentry kind="lib" path="C:/Users/friendly/.m2/repository/com/alibaba/dubbo/2.5.3/dubbo-2.5.3.jar" sourcepath="C:/Users/friendly/.m2/repository/com/alibaba/dubbo/2.5.3/dubbo-2.5.3-sources.jar">
+		<attributes>
+			<attribute name="maven.pomderived" value="true"/>
+			<attribute name="maven.groupId" value="com.alibaba"/>
+			<attribute name="maven.artifactId" value="dubbo"/>
+			<attribute name="maven.version" value="2.5.3"/>
+			<attribute name="maven.scope" value="compile"/>
+		</attributes>
+	</classpathentry>
+	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER/org.eclipse.jdt.internal.debug.ui.launcher.StandardVMType/JavaSE-1.7"/>
+	<classpathentry kind="lib" path="E:/taomee-friendly/hadoop-1.2.1.zip"/>
+	<classpathentry kind="output" path="src"/>
+</classpath>

@@ -1,0 +1,21 @@
+log_dir         ./log
+log_level       8
+log_size        32000000
+log_maxfiles    100
+
+proc_name       stat-server 
+pid_file        ./bin/daemon.pid
+plugin_file     ./bin/stat-server.so
+
+shmq_size       1048576 
+
+max_connect     20000
+max_pkg_len     1048576 
+
+bind_ip         127.0.0.1
+bind_port       19200
+
+work_conf       ./conf/work.conf
+
+include         ./conf/stat-server.conf
+include         ./conf/version.conf

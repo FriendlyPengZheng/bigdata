@@ -1,0 +1,8 @@
+message backend_proto_GetHeader
+{
+    required uint32 protoId = 1;
+    required uint8 moduleType = 2;
+    required uint8 printType = 3 [default = 1];
+    required uint8 printFlag = 4;
+    required uint32 ip = 5 [default = 0];
+}

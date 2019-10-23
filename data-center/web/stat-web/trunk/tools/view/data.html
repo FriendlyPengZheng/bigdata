@@ -1,0 +1,33 @@
+{extends "layout.html"}
+
+{block "layout.subject"}{$subject}{/block}
+{block "layout.css"}
+body { font-family:"Microsoft YaHei"; }
+{/block}
+{block "layout.main"}
+<table cellpadding="0" cellspacing="0" border="0">
+    <tr>
+        <td valign="top" align="center" style="padding-bottom:20px;font-size:16px;font-weight:bold;">发送时间：{$time}</td>
+    </tr>
+    {foreach $content as $val}
+    <tr>
+        <td valign="top" style="padding-bottom:20px;">
+            <table cellpadding="0" cellspacing="0" align="center" class="table">
+                <tr>
+                    {foreach $val.thead as $th}
+                    <th valign="top">{$th}</th>
+                    {/foreach}
+                </tr>
+                {foreach $val.content as $row}
+                <tr>
+                    {foreach $row as $td}
+                    <td valign="top">{$td}</td>
+                    {/foreach}
+                </tr>
+                {/foreach}
+            </table>
+        </td>
+    </tr>
+    {/foreach}
+</table>
+{/block}

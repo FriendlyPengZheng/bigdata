@@ -1,0 +1,123 @@
+package com.taomee.tms.storm.realtime;
+
+//import storm.trident.*;
+//import backtype.storm.Config;
+//import backtype.storm.StormSubmitter;
+//import backtype.storm.generated.AlreadyAliveException;
+//import backtype.storm.generated.AuthorizationException;
+//import backtype.storm.generated.Grouping;
+//import backtype.storm.generated.InvalidTopologyException;
+//import backtype.storm.grouping.CustomStreamGrouping;
+//import backtype.storm.spout.SchemeAsMultiScheme;
+//import backtype.storm.tuple.Fields;
+//import storm.kafka.StringScheme;
+//import storm.kafka.ZkHosts;
+//import storm.kafka.trident.*;
+//import storm.trident.operation.Aggregator;
+//import storm.trident.operation.builtin.Count;
+//import storm.trident.operation.builtin.Sum;
+//import storm.trident.state.OpaqueValue;
+//import storm.trident.state.StateFactory;
+
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+import org.apache.storm.Config;
+import org.apache.storm.StormSubmitter;
+import org.apache.storm.generated.AlreadyAliveException;
+import org.apache.storm.generated.AuthorizationException;
+import org.apache.storm.generated.InvalidTopologyException;
+import org.apache.storm.spout.SchemeAsMultiScheme;
+import org.apache.storm.kafka.StringScheme;
+import org.apache.storm.kafka.ZkHosts;
+import org.apache.storm.kafka.trident.OpaqueTridentKafkaSpout;
+import org.apache.storm.kafka.trident.TridentKafkaConfig;
+import org.apache.storm.redis.common.mapper.RedisDataTypeDescription;
+import org.apache.storm.redis.trident.state.Options;
+import org.apache.storm.trident.TridentTopology;
+//import org.apache.storm.trident.operation.builtin.Count;
+//import org.apache.storm.trident.operation.builtin.Sum;
+import org.apache.storm.trident.state.OpaqueValue;
+import org.apache.storm.tuple.Fields;
+
+import com.taomee.tms.storm.function.DataInfoKeyGenFunction;
+import com.taomee.tms.storm.function.DataInfoPersistFunction;
+import com.taomee.tms.storm.function.LogSplitFunction;
+
+import java.net.InetSocketAddress;
+import java.util.HashSet;
+import java.util.Set;
+
+// 全量扫描日志，发现新的dataId，并通过dubbo rpc入库
+
+public class DataInfoDetector 
+{
+	static final String TOPIC_NAME = "tms-online-test";
+	static final String STREAM_NAME = "tms-datainfo-detector-stream";
+	static final String TOPO_NAME = "tms-datainfo-detector-topo";
+	
+	static final String zkHosts = "10.1.1.35:2181,10.1.1.153:2181,10.1.1.151:2181";
+	static final String redisHosts = "10.1.1.35:6379,10.1.1.153:6379,10.1.1.151:6379";
+	
+	private static final Logger LOG = LoggerFactory.getLogger(DataInfoDetector.class);
+	
+    public static void main( String[] args ) throws AlreadyAliveException, InvalidTopologyException
+    {
+        TridentTopology topology = new TridentTopology();
+        
+        /*
+		 * kafka broker list and partitions will be gotten from default
+		 * zkPath(/brokers/).
+		 */
+		TridentKafkaConfig kafkaConf = new TridentKafkaConfig(new ZkHosts(
+				zkHosts), // default zkPath /brokers/
+				TOPIC_NAME, "tms"); // topic
+		
+		// storm-kafka内置的类，从kafka中读取数据，作为字符串处理并在tuple中输入一个默认名称为"str"的字段
+		// 增加吞吐量的方式包括（http://stackoverflow.com/questions/24510456/performance-issues-kafka-storm-trident-opaquetridentkafkaspout）：
+		// - 有多少个partition就设置多少个spout
+		// - topology.max.spout.pending：同时活跃的batch数量，你必须设置同时处理的batch数量，如果你不指定，默认是1。
+		// - tridentConfig.fetchSizeBytes：
+		// - topology.trident.batch.emit.interval.millis
+		// - topology.message.timeout.secs
+		// - use G1GC garbage collection
+		
+		kafkaConf.scheme = new SchemeAsMultiScheme(new StringScheme()); // default fields named "str"
+		// kafkaConf.forceFromStart = true;
+
+		OpaqueTridentKafkaSpout kafkaSpout = new OpaqueTridentKafkaSpout(
+				kafkaConf);
+
+		Set<InetSocketAddress> nodes = new HashSet<InetSocketAddress>();
+		for (String hostPort : redisHosts.split(",")) {
+			String[] host_port = hostPort.split(":");
+			nodes.add(new InetSocketAddress(host_port[0], Integer
+					.valueOf(host_port[1])));
+		}
+		RedisDataTypeDescription dataTypeDescription = new RedisDataTypeDescription(
+				RedisDataTypeDescription.RedisDataType.STRING, null);
+		
+		@SuppressWarnings("rawtypes")
+		Options<OpaqueValue> opts = new Options<OpaqueValue>();
+		opts.dataTypeDescription = dataTypeDescription;
+		opts.expireIntervalSec = 300; // 设置分钟数据在redis中的过期时间。
+			
+		topology.newStream(STREAM_NAME, kafkaSpout).parallelismHint(2)		// 后续改为读取相应kafka中topic，有多少partition就设置多少并行度
+				.each(kafkaConf.scheme.getOutputFields(),
+						new LogSplitFunction(),
+						new Fields("op", "schemaId", "serverId", "cascadeValue", "opValues", "dateTime"))
+				.project(new Fields("schemaId", "cascadeValue"))
+				.each(new Fields("schemaId", "cascadeValue"), new DataInfoKeyGenFunction(), new Fields("schemaId cascadeValue"))
+				.partitionBy(new Fields("schemaId cascadeValue"))
+				.each(new Fields("schemaId cascadeValue"), new DataInfoPersistFunction(), new Fields()).parallelismHint(2);
+
+		Config conf = new Config();
+		try {
+			StormSubmitter.submitTopology(TOPO_NAME, conf,
+					topology.build());
+		} catch (AuthorizationException e) {
+			// TODO Auto-generated catch block
+			LOG.error("submitTopology failed, " + e.toString());
+			e.printStackTrace();
+		}
+    }
+}

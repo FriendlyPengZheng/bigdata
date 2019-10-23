@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.taomee.tms.mgr.dao.NaviDao">
+	<resultMap id="NaviMap" type="com.taomee.tms.mgr.entity.Navi">
+		<id column="navi_id" property="naviId" jdbcType="INTEGER" />
+		<result column="navi_name" property="naviName" jdbcType="VARCHAR" />
+		<result column="navi_key" property="naviKey" jdbcType="VARCHAR" />
+		<result column="navi_url" property="naviUrl" jdbcType="VARCHAR" />
+		<result column="parent_id" property="parentId" jdbcType="INTEGER" />
+		<result column="auth_id" property="authId" jdbcType="VARCHAR" />
+		<result column="level" property="level" jdbcType="INTEGER" />
+		<result column="is_page" property="isPage" jdbcType="INTEGER" />
+		<result column="is_main" property="isMain" jdbcType="INTEGER" />
+		<result column="display_order" property="dispalyOrder"
+			jdbcType="INTEGER" /> 
+		<result column="status" property="status" jdbcType="INTEGER" />
+		<result column="game_related" property="gameRelated"
+			jdbcType="INTEGER" />
+		<result column="is_parent" property="isParent" jdbcType="INTEGER" />
+		<result column="func_slot" property="funcSlot" jdbcType="INTEGER" />
+	</resultMap>
+
+
+	<select id="getNaviInfosByLevel" resultMap="NaviMap">
+		select
+		navi_id, navi_name, navi_key, navi_url,parent_id, auth_id, level, is_page, is_main, display_order, status, game_related,
+		is_parent, func_slot
+		from t_web_navi
+		where level != 0 and status = 1 order by display_order ASC
+	</select>
+	</mapper> 

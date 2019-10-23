@@ -1,0 +1,187 @@
+package ad.users;
+import util.*;
+
+import java.util.*;
+import java.io.DataInput;
+import java.io.DataOutput;
+import java.io.IOException;
+
+//import org.apache.commons.logging.LogFactory;
+//import org.apache.commons.logging.Log;
+import org.apache.hadoop.fs.Path;
+import org.apache.hadoop.util.Tool;
+import org.apache.hadoop.util.ToolRunner;
+import org.apache.hadoop.conf.Configured;
+import org.apache.hadoop.conf.Configuration;
+import org.apache.hadoop.io.*;
+import org.apache.hadoop.mapred.*;
+import org.apache.hadoop.mapred.lib.*;
+import org.apache.hadoop.mapred.join.*;
+import org.apache.hadoop.mapreduce.Counter;
+
+// compute /new/ative/ users from indepedent Ad/accumulated Ad and gameid
+public class UserGameStat extends Configured implements Tool {
+    // from day/month/quarter active login substract all ative login, get newers
+    public static class LeftTadMap extends MapReduceBase
+            implements Mapper<Text, Text, Text, LongWritable>
+    {
+        private JobConf jobConf = null;
+        private Text realKey = new Text();
+        private LongWritable one = new LongWritable(1);
+        private AdParser adp = new AdParser();
+        public void configure(JobConf job) {
+            this.jobConf = job;
+        }
+
+        public void map(Text key, Text value,
+                OutputCollector<Text,LongWritable> output, Reporter reporter)
+            throws IOException
+        {
+            // format ::= gameid,mimi \t tad(day|month|quarter) \t tad(all)
+            String [] items = key.toString().split(",");
+            if (items.length != 2) {
+                System.err.printf("key error format: %s\n", key.toString());
+                return;
+            }
+
+            // only fetch first tad to process
+            String[] tads = value.toString().split("\t", -1);
+            adp.init(tads[0]);
+            Iterator<String> adit = adp.iterator();
+            while (adit.hasNext()) {
+                // format ::= ad,gameid \t 1
+                realKey.set(String.format("%s,%s", adit.next(), items[0]));
+                output.collect(realKey, one);
+            }
+            // for all ads to gameid
+            realKey.set(String.format("all,%s", items[0]));
+            output.collect(realKey, one);
+        }
+    }
+
+    // from user game login ad intermediate result to get activers' distr data
+    // in:: gameid,mimi \t tad
+    //      =>
+    //  out:: ad(all),gameid \t 1
+    public static class ActiveMap extends MapReduceBase
+            implements Mapper<Text, Text, Text, LongWritable>
+    {
+        private JobConf jobConf = null;
+        private Text realKey = new Text();
+        private LongWritable one = new LongWritable(1);
+        private AdParser adp = new AdParser();
+        public void configure(JobConf job) {
+            this.jobConf = job;
+        }
+
+        public void map(Text key, Text value,
+                OutputCollector<Text,LongWritable> output, Reporter reporter)
+            throws IOException
+        {
+            // format: gameid,mimi \t tad
+            String [] items = key.toString().split(",");
+            if (items.length != 2) {
+                System.err.printf("middle login error format: %s\n", key.toString());
+                return;
+            }
+
+            adp.init(value.toString());
+            Iterator<String> adit = adp.iterator();
+            while (adit.hasNext()) {
+                // format ::= ad,gameid \t 1
+                realKey.set(String.format("%s,%s", adit.next(), items[0]));
+                output.collect(realKey, one);
+            }
+            // for all ads to gameid
+            realKey.set(String.format("all,%s", items[0]));
+            output.collect(realKey, one);
+        }
+    }
+
+    //public static class Reduce extends MapReduceBase
+        //implements Reducer<Text, Text, Text, Text>
+    //{
+        //public void reduce(Text key, Iterator<Text> values,
+                //OutputCollector<Text,Text> output, Reporter reporter) throws IOException {
+            //while (values.hasNext()) {
+            //}
+        //}
+    //}
+
+    public int run(String[] args) throws Exception {
+        // final Log LOG = LogFactory.getLog("main-test");
+
+        String clsName = this.getClass().getName();
+        if (args.length < 2) {
+            System.out.printf("Usage: %s ctype inputs... output\n\n"+
+                    "compute according ctype (new/active):\n"+
+                    "\tnew\t---\tnew users number\n"+
+                    "\tkeep\t---\tkeep users number\n"+
+                    "\tactive\t---\tactive users number\n" , clsName);
+            System.exit(-1);
+        }
+        String ctype = args[0];
+
+        Configuration conf = getConf();
+        JobConf job = new JobConf(conf, getClass());
+        String jarName = job.get("user.jar.name", "AdsMon.jar");
+        job.setJar(jarName);
+        Path outPath = new Path(args[args.length - 1]);
+        job.setJobName(String.format("%s - %s/%s", ctype, clsName, outPath.getName()));
+
+
+        for (int i = 1 ; i < args.length - 1 ; ++i) {
+            if (!MiscUtil.pathExist(args[i], conf)) { continue; }
+
+            System.out.printf("add path: %s\n", args[i]);
+            FileInputFormat.addInputPaths(job, args[i]);
+        }
+
+        // set input format
+        job.setInputFormat(KeyValueTextInputFormat.class);
+
+        if (ctype.equals("new")) {
+            job.setMapperClass(LeftTadMap.class);
+        } 
+        else if (ctype.equals("keep")) {
+            job.setMapperClass(LeftTadMap.class);
+        } 
+        else if (ctype.equals("active")) {
+            job.setMapperClass(ActiveMap.class);
+        } 
+        else {
+            System.err.printf("not supported process type: %s\n", ctype);
+            return -1;
+        }
+        job.setMapOutputKeyClass(Text.class);
+        job.setMapOutputValueClass(LongWritable.class);
+
+        job.setCombinerClass(LongSumReducer.class);
+
+        job.setReducerClass(LongSumReducer.class);
+        job.setOutputKeyClass(Text.class);
+        job.setOutputValueClass(LongWritable.class);
+
+        // set output format
+        job.setOutputFormat(TextOutputFormat.class);
+        FileOutputFormat.setOutputPath(job, outPath);
+
+        // set Partion and Group
+        //job.setPartitionerClass(TextPartitioner.class);
+        //job.setGroupingComparatorClass(TextComparator.class);
+        //job.setNumMapTasks(1);
+        int reduceNum = job.getInt("mapred.reduce.tasks", 0);
+        System.out.printf("mapred.reduce.tasks = %d\n", reduceNum);
+        job.setNumReduceTasks(reduceNum);
+
+        JobClient.runJob(job);
+
+        return 0;
+    }
+
+    public static void main(String args[]) throws Exception
+    {
+        int ret = ToolRunner.run(new Configuration(), new UserGameStat(), args);
+        System.exit(ret);
+    }
+}

@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.taomee.tms.mgr.dao.EmailTemplateDao">	
+	<sql id="tableName">
+		t_web_email_template
+	</sql>
+	
+	<select id="getEmailTemplateId" parameterType="java.lang.String" resultType="java.lang.Integer">
+		SELECT 
+			email_template_id
+		FROM
+			<include refid="tableName"/>
+		WHERE
+			template_type = #{templateType,jdbcType=VARCHAR}
+	</select>
+</mapper>

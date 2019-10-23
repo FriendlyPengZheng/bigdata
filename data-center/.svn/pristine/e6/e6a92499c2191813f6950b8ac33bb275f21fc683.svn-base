@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <string name="app_name">米粒</string>
+    <string name="action_settings">设置</string>
+    <string name="action_relogin">重新登录</string>
+    <string name="action_set_bell">只提示一次</string>
+    <string name="action_set_shake">震动</string>
+    <string name="action_set_server_info">服务端配置</string>
+    <string name="action_set_app_info">App配置</string>
+    <string name="action_chat">聊天</string>
+    <string name="action_show_alarm">查看告警信息</string>
+    
+    <string name="action_open">打开</string>
+    <string name="action_close">关闭</string>
+    
+    <string name="log_label">日志：</string>
+    <string name="log_clean">清除</string>
+    <string name="log_load">加载日志</string>
+    <string name="log_find">查找日志</string>
+    
+    <string name="login_title">请输入用户名和密码</string>
+    <string name="login_username">用户名：</string>
+    <string name="login_user_hint">Taomee账号</string>
+    <string name="login_password">密   码：</string>
+    <string name="login_mobile">手机号 ：</string>
+    <string name="login_mobile_hint">本机号码</string>
+    <string name="login_loginBtn">登录</string>
+    <string name="login_info_confirm">请确认登录信息</string>
+    <string name="login_faild">登录失败，请重试~~</string>
+    
+    
+    <string name="login_changeUser">切换</string>
+    <string name="login_logout">退出登录</string>
+    <string name="login_status_out">请登录</string>
+    <string name="login_status_in">欢迎使用Alarm_0.0.2</string>
+    <string name="msg_app_init">初始化中···</string>
+    <string name="msg_quit">退出？</string>
+    <string name="btn_quit">退出</string>
+    <string name="btn_confirm">确定</string>
+    <string name="btn_cancel">取消</string>
+    
+    <string name="recv_msg_toast">您有%d条未读告警信息！！</string>
+    <string name="unread_msg_prompt">条未读信息！！</string>
+    <string name="alarm_notification_title">[淘米网]运维告警</string>
+    
+    <string name="check_all">全选</string>
+    <string name="all_msg">全部</string>
+    <string name="read_msg">已读</string>
+    <string name="unread_msg">未读</string>  
+    <string name="marked_msg">标记</string> 
+    <string name="pull_msg">待拉取</string> 
+    
+    <string name="pull_msg_prompt">正在向服务器拉取%d条消息···</string>
+    <string name="pull_msg_timeout">消息拉取超时，稍后将重试···</string>
+    <string name="pull_msg_failed">条消息拉取失败,注意查收告警短信!!</string>
+    
+    <string name="delete_checked">删除选中</string>
+    <string name="to_has_read">标记已读</string>
+    <string name="to_unread">标记未读</string>
+    
+    <string name="marked_count">条记录被选中 </string>
+    <string name="marked_to_delete">是否删除？</string>
+    <string name="marked_to_read">是否标记为已读？</string>
+    <string name="marked_to_unread">是否标记为未读？</string>
+    
+    <string name="loading_more_msg">正在加载···</string>
+    
+    <string name="chat_contact">好友</string>
+    <string name="chat_group">群组</string>
+    <string name="chat_msg">消息</string>
+</resources>

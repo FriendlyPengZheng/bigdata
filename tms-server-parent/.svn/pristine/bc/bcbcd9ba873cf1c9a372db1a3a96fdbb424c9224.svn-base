@@ -1,0 +1,353 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.taomee.tms.mgr.dao.EconomyInfoDao">
+
+	<resultMap id="EconomyInfoMap" type="com.taomee.tms.mgr.entity.EconomyInfo">
+		<result column="sstid" property="sstid" jdbcType="VARCHAR" />
+		<result column="time" property="time" jdbcType="VARCHAR" />
+		<result column="item_id" property="item_id" jdbcType="VARCHAR" />
+		<result column="item_name" property="item_name" jdbcType="VARCHAR" />
+		<result column="vip" property="vip" jdbcType="INTEGER" />
+		<result column="server_id" property="server_id" jdbcType="INTEGER" />
+		<result column="buycount" property="buycount" jdbcType="INTEGER" />
+		<result column="buyucount" property="buyucount" jdbcType="INTEGER" />
+		<result column="salenum" property="salenum" jdbcType="INTEGER"/>
+		<result column="salemoney" property="salemoney" jdbcType="INTEGER" />
+	</resultMap>
+	
+	<resultMap id="CategoryInfoMap" type="com.taomee.tms.mgr.entity.CategoryInfo">
+		<result column="category_id" property="category_id" jdbcType="INTEGER" />
+		<result column="category_name" property="category_name" jdbcType="VARCHAR" />
+		<result column="is_leaf" property="is_leaf" jdbcType="INTEGER" />
+		<result column="buycount" property="buycount" jdbcType="INTEGER" />
+		<result column="salenum" property="salenum" jdbcType="INTEGER"/>
+		<result column="salemoney" property="salemoney" jdbcType="INTEGER" />
+		<result column="sstid" property="sstid" jdbcType="VARCHAR" />
+		<result column="buyucount" property="buyucount" jdbcType="INTEGER" />
+		<result column="time" property="time" jdbcType="VARCHAR" />
+	</resultMap>
+	
+	<resultMap id="ItemInfoMap" type="com.taomee.tms.mgr.entity.ItemInfo">
+		<result column="id" property="id" jdbcType="VARCHAR" />
+		<result column="name" property="name" jdbcType="VARCHAR" />
+		<result column="hide" property="hide" jdbcType="INTEGER" />
+		<result column="category_name" property="category_name" jdbcType="VARCHAR" />
+	</resultMap>	
+	
+	<resultMap id="ItemCategoryInfoMap" type="com.taomee.tms.mgr.entity.ItemCategoryInfo">
+		<result column="category_id" property="category_id" jdbcType="INTEGER" />
+		<result column="category_name" property="category_name" jdbcType="VARCHAR" />
+		<result column="sstid" property="sstid" jdbcType="VARCHAR" />
+		<result column="game_id" property="game_id" jdbcType="INTEGER" />
+		<result column="parent_id" property="parent_id" jdbcType="INTEGER" />
+		<result column="is_leaf" property="is_leaf" jdbcType="INTEGER" />
+		<result column="parent_name" property="parent_name" jdbcType="VARCHAR" />
+	</resultMap>	
+	
+	<sql id="ItemTop10List">
+		<!-- sstid,time,item_id,item_name,vip,server_id,buycount,buyucount,salenum,salemoney -->
+		item_name,salenum,salemoney
+	</sql>
+	
+	<sql id="ItemList">
+		item_id,item_name,SUM(buycount) AS buycount,SUM(salenum) AS salenum,SUM(salemoney) AS salemoney
+	</sql>
+	
+	<sql id="ItemDetailList">
+		item_id,time,item_name,buyucount,salenum,salemoney
+	</sql>
+	
+	<select id="getSaleTop10" resultMap="EconomyInfoMap">
+		select
+			<include refid="ItemTop10List" />
+		from v_item_sale_data
+		where 
+			sstid = #{sstid} and vip = #{vip} 
+			and time <![CDATA[>=]]> #{timeFrom} and time <![CDATA[<=]]> #{timeTo} 
+			and server_id=#{server_id}
+		order by salemoney desc limit 0,10
+	</select>
+
+	<select id="getItemSaleList" resultMap="EconomyInfoMap">
+		select
+			<include refid="ItemList" />
+		from v_item_sale_data
+		where 
+			sstid = #{sstid} and vip = #{vip} 
+			and time <![CDATA[>=]]> #{timeFrom} and time <![CDATA[<=]]> #{timeTo} 
+			and server_id=#{server_id} 
+		group by item_id
+		limit #{start},#{end}
+	</select>	
+	
+
+	<select id="getItemSaleDetail" resultMap="EconomyInfoMap">
+		select
+			<include refid="ItemDetailList" />
+		from v_item_sale_data
+		where 
+			sstid = #{sstid} and vip = #{vip} 
+			and time <![CDATA[>=]]> #{timeFrom} and time <![CDATA[<=]]> #{timeTo} 
+			and server_id=#{server_id} and item_id=#{item_id}
+	</select>
+	
+	<select id="getItemSaleListTotal" resultType="Integer">
+		select 
+			count(*) 
+		from t_item_sale_data 
+		where 
+			sstid =#{sstid} AND server_id =#{server_id} 
+			and time <![CDATA[>=]]> #{timeFrom} and time <![CDATA[<=]]> #{timeTo}  
+			AND vip = #{vip};
+	</select>
+	
+	<update id="createTemporaryTable" parameterType="java.lang.Integer">
+		CREATE TEMPORARY TABLE tmp_category_table (
+			SELECT 
+				rel.category_id, 
+				cat.category_name, 
+				cat.is_leaf, rel.item_id, 
+				item.hide, rel.game_id, 
+				rel.sstid 
+			FROM t_web_item_category_rel rel 
+			INNER JOIN 
+				(SELECT category_id, category_name, is_leaf FROM t_web_item_category WHERE parent_id = #{0} ) cat 
+			ON rel.category_id = cat.category_id 
+			INNER JOIN 
+				t_item_info item 
+			ON rel.item_id = item.item_id AND rel.game_id = item.game_id AND rel.sstid = item.sstid
+		)
+	</update>
+	
+	<update id="dropTemTableByName" parameterType="String" statementType="STATEMENT">
+		drop temporary table if exists ${tableName}
+	</update>
+	
+	<select id="getCategorySaleList" resultMap="CategoryInfoMap">
+		SELECT 
+			rel.category_id,
+			rel.category_name,
+			rel.is_leaf,
+			SUM(data.buycount) AS buycount,
+			SUM(data.salenum) AS salenum,
+			SUM(data.salemoney) AS salemoney  
+		FROM tmp_category_table rel 
+		INNER JOIN 
+			(SELECT SUM(salemoney) AS salemoney ,SUM(salenum) AS salenum ,SUM(buycount) AS buycount,item_id,game_id,sstid
+			FROM t_current_item_sale_data WHERE vip = -1 AND server_id = #{server_id} AND sstid = #{sstid} and time <![CDATA[>=]]> #{timeFrom} and time <![CDATA[<=]]> #{timeTo}  GROUP BY item_id ) data 
+		ON rel.item_id = data.item_id AND rel.game_id = data.game_id AND rel.sstid = data.sstid WHERE rel.hide = 0 GROUP BY rel.category_id
+		limit #{start},#{end}
+	</select>
+	
+	<select id="getCategorySaleListTotal" resultType="java.lang.Integer">
+		SELECT 
+			count(distinct(rel.category_id)) 
+			FROM tmp_category_table rel 
+			INNER JOIN 
+				(SELECT SUM(salemoney) AS salemoney ,SUM(salenum) AS salenum ,SUM(buycount) AS buycount,item_id,game_id,sstid 
+				FROM t_current_item_sale_data 
+				WHERE vip = -1 AND server_id = #{server_id} AND sstid = #{sstid} and time <![CDATA[>=]]> #{timeFrom} and time <![CDATA[<=]]> #{timeTo}  
+				GROUP BY item_id ) data 
+			ON rel.item_id = data.item_id AND rel.game_id = data.game_id AND rel.sstid = data.sstid 
+			WHERE rel.hide = 0 ;
+	</select>
+<!-- 	
+	<select id="getCategoryItemSaleList">
+		 SELECT 
+		 	sub.item_id,sub.sstid,sub.game_id,item.item_name 
+		 FROM ( SELECT rel.item_id,rel.sstid,rel.game_id FROM t_web_item_category_rel rel 
+		 INNER JOIN t_web_item_category cat 
+		 ON rel.category_id=cat.category_id 
+		 WHERE rel.category_id=#{category_id} AND rel.sstid=#{sstid} AND rel.game_id=#{game_id} ) sub 
+		 LEFT JOIN t_item_info item 
+		 ON sub.item_id = item.item_id AND sub.sstid = item.sstid AND sub.game_id = item.game_id
+	</select>
+	 -->
+	<select id="getCategorySaleDetail" resultMap="CategoryInfoMap">
+		SELECT 
+			cat.category_id as category_id,
+			data.time AS time,
+			cat.category_name as category_name,
+			SUM(data.buycount) AS buycount, 
+			SUM(data.salenum) AS salenum,
+			SUM(data.salemoney) AS salemoney 
+		FROM t_web_item_category_rel rel 
+		INNER JOIN ( SELECT category_id,category_name FROM t_web_item_category where category_id=#{category_id}) cat 
+		ON rel.category_id = cat.category_id 
+		INNER JOIN t_item_info item 
+		ON rel.item_id = item.item_id AND rel.game_id = item.game_id AND rel.sstid = item.sstid 
+		INNER JOIN ( SELECT game_id,time,item_id,sstid,buycount,salenum,salemoney FROM t_item_sale_data WHERE vip = -1 AND server_id = #{server_id} AND sstid = #{sstid} and time <![CDATA[>=]]> #{timeFrom} and time <![CDATA[<=]]> #{timeTo} ) data 
+		ON rel.item_id = data.item_id AND rel.game_id = data.game_id AND rel.sstid = data.sstid WHERE item.hide = 0 GROUP BY rel.category_id,data.time
+	</select>
+	<!--after 20190530 add -->
+	
+	<!-- start -->
+	<update id="createCat1">
+		CREATE TEMPORARY TABLE cat11 
+			(item_id int(11), 
+			category_name varchar(255), 
+		primary key(item_id, category_name)) DEFAULT CHARSET=utf8
+	</update>
+	
+	<update id="Initializecat11">
+		INSERT INTO cat11 
+		SELECT 
+			rel.item_id, 
+			cat.category_name 
+		FROM t_web_item_category_rel rel 
+		INNER JOIN 
+			( SELECT cat11.category_id,CONCAT_WS("-",cat2.category_name,cat11.category_name ) AS category_name FROM t_web_item_category cat11 
+		LEFT JOIN t_web_item_category cat2 
+		ON cat11.parent_id=cat2.category_id 
+		WHERE cat11.sstid = #{sstid} AND cat11.game_id = #{game_id} AND cat11.is_leaf = #{is_leaf}) cat 
+		ON rel.category_id = cat.category_id
+	</update>
+	
+	<select id="getItemInfoListIfGameIdIs2" resultMap="ItemInfoMap">
+		SELECT 
+			item.item_id AS id, 
+			item.item_name AS name, 
+			item.hide as hide, 
+			cat11.category_name as category_name
+		FROM t_item_info item 
+		LEFT JOIN cat11 
+		ON item.item_id = cat11.item_id WHERE item.sstid = #{sstid} and item.game_id = #{game_id}
+		limit #{start},#{end}
+	</select>
+	
+	<select id="getItemInfoListTotalIfGameIdIs2" resultType="Integer">
+		SELECT 
+			count(item.item_id)
+		FROM t_item_info item 
+		LEFT JOIN cat11 
+		ON item.item_id = cat11.item_id WHERE item.sstid = #{sstid} and item.game_id = #{game_id}
+	</select>
+	<!-- end -->	
+	<select id="getItemInfoList" resultMap="ItemInfoMap">
+		SELECT 
+			item.item_id AS id,
+			item.item_name AS name,
+			item.hide as hide,
+			cat1.category_name as category_name
+		FROM t_item_info item 
+		LEFT JOIN 
+			( SELECT rel.item_id,cat.category_name FROM t_web_item_category_rel rel 
+		INNER JOIN 
+			( SELECT cat1.category_id,CONCAT_WS("-",cat2.category_name,cat1.category_name) AS category_name 
+				FROM t_web_item_category cat1 LEFT JOIN t_web_item_category cat2 
+		ON cat1.parent_id=cat2.category_id 
+		WHERE cat1.sstid = #{sstid} AND cat1.game_id = #{game_id} AND cat1.is_leaf=#{is_leaf} ) cat 
+		ON rel.category_id = cat.category_id ) cat1 
+		ON item.item_id = cat1.item_id WHERE item.sstid = #{sstid} and item.game_id = #{game_id}
+		limit #{start},#{end}		
+	</select>	
+	
+	<select id="getItemInfoListTotal" resultType="Integer">
+		SELECT 
+			count(item.item_id)
+		FROM t_item_info item 
+		LEFT JOIN 
+			( SELECT rel.item_id,cat.category_name FROM t_web_item_category_rel rel 
+		INNER JOIN 
+			( SELECT cat1.category_id,CONCAT_WS("-",cat2.category_name,cat1.category_name) AS category_name 
+				FROM t_web_item_category cat1 LEFT JOIN t_web_item_category cat2 
+		ON cat1.parent_id=cat2.category_id 
+		WHERE cat1.sstid = #{sstid} AND cat1.game_id = #{game_id} AND cat1.is_leaf=#{is_leaf} ) cat 
+		ON rel.category_id = cat.category_id ) cat1 
+		ON item.item_id = cat1.item_id WHERE item.sstid = #{sstid} and item.game_id = #{game_id}		
+	</select>	
+	
+	<insert id="replaceItemInfo">
+		replace into t_item_info(
+			sstid, 
+			game_id, 
+			item_id, 
+			item_name, 
+			hide) 
+		VALUES (#{sstid}, #{game_id}, #{item_id}, #{item_name}, #{hide})
+	</insert>
+	
+	<select id="findHide">
+		select 
+			hide 
+		from t_item_info 
+		where item_id=#{item_id} and game_id=#{game_id}	and sstid={sstid}
+	</select>
+	
+	<!-- 编辑类别 -->
+	<select id="getItemCategory" resultMap="ItemCategoryInfoMap">
+		SELECT 
+			sub.category_id,
+			sub.category_name,
+			sub.parent_id,
+			cat.category_name AS parent_name 
+			FROM (
+				SELECT
+					cat.category_id,
+					cat.category_name,
+					cat.parent_id 
+				FROM t_web_item_category_rel rel 
+				INNER JOIN t_web_item_category cat 
+				ON rel.category_id=cat.category_id 
+				WHERE rel.item_id= #{item_id} AND rel.sstid=#{sstid} AND rel.game_id=#{game_id} AND cat.is_leaf=#{is_leaf} ) sub 
+		LEFT JOIN t_web_item_category cat 
+		ON sub.parent_id = cat.category_id 
+	</select>
+	<!-- 获取道具类别列表 -->
+	<select id="getCategoryList" resultMap="ItemCategoryInfoMap">
+		select 
+			* 
+		from t_web_item_category 
+		where game_id=#{game_id} and sstid=#{sstid} and parent_id=#{parent_id}
+	</select>
+	
+	<!-- 设置道具类别 -->
+	<insert id="setItemCategory">
+		replace into t_web_item_category_rel(
+			category_id,
+			sstid,
+			game_id,
+			item_id,
+			ref_count)
+		values(#{category_id},#{sstid},#{game_id},#{item_id},#{ref_count})
+	</insert>
+	
+	<delete id="deleteItemCategory">
+		delete from 
+			t_web_item_category_rel
+		where item_id = #{item_id} and game_id=#{game_id} and sstid = #{sstid}
+	</delete>
+	
+	<update id="updateItemCategory">
+		update 
+			t_web_item_category
+		set category_name = #{category_name}
+		where category_id = #{category_id}
+	</update>
+	
+	<insert id="insertItemCategory">
+		insert into 
+			t_web_item_category(category_name,sstid,game_id,parent_id,is_leaf)
+		values(#{category_name},#{sstid},#{game_id},#{parent_id},#{is_leaf})
+	</insert>
+	
+	<delete id="delCategory">
+		delete from 
+			t_web_item_category
+		where category_id=#{category_id} and game_id=#{game_id} and sstid=#{sstid}
+	</delete>
+	
+	<select id="selectItemCategory">
+		select 
+			* 
+		from t_web_item_category
+		where category_id=#{category_id}
+	</select>
+	
+	<update id="moveCategory">
+		update 
+			t_web_item_category
+		set parent_id = #{parent_id}
+		where category_id = #{category_id} and game_id=#{game_id} and sstid=#{sstid}
+	</update>
+</mapper> 

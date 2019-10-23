@@ -1,0 +1,97 @@
+WORKDIR=`dirname $0`
+WORKDIR=`cd $WORKDIR && pwd`
+cd $WORKDIR
+echo workdir = $WORKDIR
+
+source config.sh
+
+date=$1
+
+if [[ $date == "" ]]; then
+    echo invalid param: date
+    exit
+fi
+
+activebasic=170
+newbasic=210
+payerbasic=250
+
+for t in new payer
+do
+	bid=${t}basic
+	bid=${!bid}
+	b=0
+	#7日，14日
+	n=7
+		inputs=""
+		nday=`date -d "$date -${n} day" +%Y%m%d`
+#		path=${DAY_DIR}/$nday/level/part*
+#		${HADOOP_PATH}hadoop fs -ls $path
+#		if [[ $? -eq 0 ]]; then
+#			inputs="$inputs -addInput $path,com.taomee.bigdata.task.lost.LostLevelMapper "
+#		fi
+#		path=${ALL_DIR}/$nday/undonemain/part*
+#		${HADOOP_PATH}hadoop fs -ls $path
+#		if [[ $? -eq 0 ]]; then
+#			inputs="$inputs -addInput $path,com.taomee.bigdata.task.lost.LostUndoMainMapper "
+#		fi
+#		path=${ALL_DIR}/$nday/undonenb/part*
+#		${HADOOP_PATH}hadoop fs -ls $path
+#		if [[ $? -eq 0 ]]; then
+#			inputs="$inputs -addInput $path,com.taomee.bigdata.task.lost.LostUndoNbMapper "
+#		fi
+#		path=${ALL_DIR}/$nday/account-all/active*
+#		${HADOOP_PATH}hadoop fs -ls $path
+#		if [[ $? -eq 0 ]]; then
+#			inputs="$inputs -addInput $path,com.taomee.bigdata.task.lost.LostPdayMapper "
+#		fi
+#		path=${ALL_DIR}/$nday/pay-all/allpay*
+#		${HADOOP_PATH}hadoop fs -ls $path
+#		if [[ $? -eq 0 ]]; then
+#			inputs="$inputs -addInput $path,com.taomee.bigdata.task.lost.LostPayAnalyMapper "
+#		fi
+#		${HADOOP_PATH}hadoop jar ${HADOOP_JAR_PATH} \
+#			com.taomee.bigdata.driver.MultipleInputsJobDriver \
+#			-conf ${HADOOP_CONF} \
+#			-jobName "$t Lost Analysis $n day $date" \
+#			-outKey org.apache.hadoop.io.Text \
+#			-outValue org.apache.hadoop.io.Text \
+#			-inFormat org.apache.hadoop.mapred.TextInputFormat \
+#			-outFormat org.apache.hadoop.mapred.TextOutputFormat \
+#			-addInput ${DAY_DIR}/$date/$t-lost-$n/part*,com.taomee.bigdata.task.lost.LostAnalyMapper \
+#			$inputs \
+#			-reducerClass com.taomee.bigdata.task.lost.LostAnalyReducer \
+#			-output ${DAY_DIR}/$date/lostanaly-$t-$n
+#
+		${HADOOP_PATH}hadoop jar ${HADOOP_JAR_PATH} \
+			com.taomee.bigdata.driver.SimpleJobDriver \
+			-D mapred.reduce.tasks=2 \
+			-conf ${HADOOP_CONF} \
+			-D sumdistr=0,100,500,1000,1100,1500,2000,3000,4000,5000,6000,7000,8000,9000,10000,10100,12000,12100,15000,20000,30000,50000,100000 \
+			-D cntdistr=0,1,2,3,4,5,6,11,21,31,41,51 \
+			-D daydistr=2,4,8,15,31,91,181,366 \
+			-jobName "$t Lost Analysis $n day Sum $date" \
+			-outKey org.apache.hadoop.io.Text \
+			-outValue org.apache.hadoop.io.IntWritable \
+			-inFormat org.apache.hadoop.mapred.TextInputFormat \
+			-outFormat org.apache.hadoop.mapred.TextOutputFormat \
+			-mapperClass  com.taomee.bigdata.task.lost.LostAnalySumMapper \
+			-reducerClass com.taomee.bigdata.task.lost.LostAnalySumReducer \
+			-input ${DAY_DIR}/$date/lostanaly-$t-$n/part* \
+			-addMos "level,org.apache.hadoop.mapred.TextOutputFormat,org.apache.hadoop.io.Text,org.apache.hadoop.io.IntWritable" \
+			-addMos "undomain,org.apache.hadoop.mapred.TextOutputFormat,org.apache.hadoop.io.Text,org.apache.hadoop.io.IntWritable" \
+			-addMos "undonb,org.apache.hadoop.mapred.TextOutputFormat,org.apache.hadoop.io.Text,org.apache.hadoop.io.IntWritable" \
+			-addMos "pday,org.apache.hadoop.mapred.TextOutputFormat,org.apache.hadoop.io.Text,org.apache.hadoop.io.IntWritable" \
+			-addMos "psum,org.apache.hadoop.mapred.TextOutputFormat,org.apache.hadoop.io.Text,org.apache.hadoop.io.IntWritable" \
+			-addMos "pcnt,org.apache.hadoop.mapred.TextOutputFormat,org.apache.hadoop.io.Text,org.apache.hadoop.io.IntWritable" \
+			-output ${SUM_DIR}/$date/lostanaly-$t-$n
+
+#		$DB_UPLOAD -type 2 -date $date -task `expr $bid + $b + 0` -path ${SUM_DIR}/$date/lostanaly-$t-$n/level-*
+#		$DB_UPLOAD -type 2 -date $date -task `expr $bid + $b + 1` -path ${SUM_DIR}/$date/lostanaly-$t-$n/pday-*
+#		$DB_UPLOAD -type 2 -date $date -task `expr $bid + $b + 2` -path ${SUM_DIR}/$date/lostanaly-$t-$n/psum-*
+#		$DB_UPLOAD -type 2 -date $date -task `expr $bid + $b + 3` -path ${SUM_DIR}/$date/lostanaly-$t-$n/pcnt-*
+#		$DB_UPLOAD -type 2 -date $date -task `expr $bid + $b + 4` -path ${SUM_DIR}/$date/lostanaly-$t-$n/undomain-*
+#		$DB_UPLOAD -type 2 -date $date -task `expr $bid + $b + 5` -path ${SUM_DIR}/$date/lostanaly-$t-$n/undonb-*
+		b=`expr $b + 10`
+		exit
+done

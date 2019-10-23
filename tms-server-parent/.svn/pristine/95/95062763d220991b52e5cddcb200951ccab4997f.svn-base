@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.taomee.tms.mgr.dao.MaterialInfoDao">
+	<resultMap id="MaterialInfoMap" type="com.taomee.tms.mgr.entity.MaterialInfo">
+		<id column="material_id" property="materialId" jdbcType="INTEGER" />
+		<result column="material_name" property="materialName"
+			jdbcType="VARCHAR" />
+		<result column="add_time" property="addTime" jdbcType="TIMESTAMP"
+			javaType="java.sql.Timestamp" />
+	</resultMap>
+
+	<sql id="MaterialInfoColumnList">
+		material_id, material_name, add_time
+	</sql>
+
+	<insert id="insertMaterialInfo" parameterType="com.taomee.tms.mgr.entity.MaterialInfo"
+		useGeneratedKeys="true" keyProperty="materialId">
+		insert into
+		t_material_info
+		(material_name)
+		values
+		(#{materialName,jdbcType=VARCHAR})
+	</insert>
+
+	<update id="updateMaterialInfo" parameterType="com.taomee.tms.mgr.entity.MaterialInfo">
+		update
+		t_material_info
+		set
+		material_name=#{materialName}
+		where material_id = #{materialId,jdbcType=INTEGER}
+	</update>
+
+	<delete id="deleteMaterialInfo" parameterType="com.taomee.tms.mgr.entity.MaterialInfo">
+		delete from
+		t_material_info
+		where material_id = #{materialId,jdbcType=INTEGER}
+	</delete>
+
+	<select id="getMaterialInfoBymaterialId" resultMap="MaterialInfoMap"
+		parameterType="java.lang.Integer">
+		select
+		<include refid="MaterialInfoColumnList" />
+		from t_material_info
+		where material_id = #{materialId,jdbcType=INTEGER}
+	</select>
+
+	<select id="getMaterialInfoBymaterialName" resultMap="MaterialInfoMap"
+		parameterType="java.lang.String">
+		select
+		<include refid="MaterialInfoColumnList" />
+		from t_material_info
+		where material_name =
+		#{materialName,jdbcType=VARCHAR}
+	</select>
+	
+	<insert id="insertMaterialInfoBymaterialId" parameterType="com.taomee.tms.mgr.entity.MaterialInfo">
+		insert into
+		t_material_info (material_id, material_name)
+		values
+		(#{materialId,jdbcType=INTEGER},#{materialName,jdbcType=VARCHAR})
+	</insert>
+	
+</mapper>

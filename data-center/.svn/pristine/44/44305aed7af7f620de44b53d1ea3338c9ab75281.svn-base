@@ -1,0 +1,54 @@
+<table cellpadding="0" cellspacing="0" align="center" class="table">
+    <tr>
+        <th colspan="6" valign="top">{$content.content_title}</th>
+    </tr>
+    <tr>
+        <th valign="top">指标</th>
+        <th valign="top">当天</th>
+        <th valign="top">较前一天</th>
+        <th valign="top">较上周同期</th>
+        <th valign="top">较上月同期</th>
+    </tr>
+    {foreach $datas as $i => $data}
+    <tr {if $i%2}
+        style="background-color:#E8F8F7;"
+        {/if}
+    >
+        <td valign="top">{$data['name']}</td>
+        <td valign="top">{$data['today']}</td>
+        <td valign="top">
+            {$data['yesterday']}
+            (
+            {if $data['yesterday_rate'] < -5}<span class="decrease">下降
+            {elseif $data['yesterday_rate'] < 0}<span>下降
+            {elseif $data['yesterday_rate'] == 0}<span>持平
+            {elseif $data['yesterday_rate'] > 10}<span class="increase">上升
+            {else}<span>上升
+            {/if}{abs($data['yesterday_rate'])}%</span>
+            )
+        </td>
+        <td dataign="top">
+            (
+            {$data['weekly']}
+            {if $data['weekly_rate'] < -5}<span class="decrease">下降
+            {elseif $data['weekly_rate'] < 0}<span>下降
+            {elseif $data['weekly_rate'] == 0}<span>持平
+            {elseif $data['weekly_rate'] > 10}<span class="increase">上升
+            {else}<span>上升
+            {/if}{abs($data['weekly_rate'])}%</span>
+            )
+        </td>
+        <td dataign="top">
+            (
+            {$data['monthly']}
+            {if $data['monthly_rate'] < -5}<span class="decrease">下降
+            {elseif $data['monthly_rate'] < 0}<span>下降
+            {elseif $data['monthly_rate'] == 0}<span>持平
+            {elseif $data['monthly_rate'] > 10}<span class="increase">上升
+            {else}<span>上升
+            {/if}{abs($data['monthly_rate'])}%</span>
+            )
+        </td>
+    </tr>
+    {/foreach}
+</table>

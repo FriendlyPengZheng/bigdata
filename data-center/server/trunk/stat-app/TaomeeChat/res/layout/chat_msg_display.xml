@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+	android:layout_width="fill_parent" android:layout_height="fill_parent"
+	android:orientation="vertical">
+
+	<LinearLayout android:layout_width="match_parent"
+		android:layout_height="40dp">
+		<Button android:id="@+id/btn_chat_msg" android:layout_width="0dp"
+			android:layout_height="wrap_content" android:layout_weight="0.5"
+			android:text="@string/chat_msg" />
+
+		<Button android:id="@+id/btn_chat_contact"
+			android:layout_width="0dp" android:layout_height="wrap_content"
+			android:layout_weight="0.5" android:text="@string/chat_contact" />
+
+		<Button android:id="@+id/btn_chat_group" android:layout_width="0dp"
+			android:layout_height="wrap_content" android:layout_weight="0.5"
+			android:text="@string/chat_group" />
+
+	</LinearLayout>
+
+	<LinearLayout android:id="@+id/chat_msg_laylout"
+		android:layout_width="match_parent" android:layout_height="match_parent"
+		android:orientation="vertical">
+
+		<ListView android:id="@+id/chat_msg_list_tag"
+			android:layout_width="match_parent" android:layout_height="wrap_content"
+			android:dividerHeight="0dp">
+		</ListView>
+
+		<ListView android:id="@+id/chat_msg_list_detail"
+			android:layout_width="match_parent" android:layout_height="wrap_content"
+			android:dividerHeight="0dp">
+		</ListView>
+	</LinearLayout>
+</LinearLayout>

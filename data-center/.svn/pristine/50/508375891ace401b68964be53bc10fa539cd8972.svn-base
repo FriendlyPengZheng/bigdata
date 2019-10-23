@@ -1,0 +1,15 @@
+[uexpr]
+tmp_dir = ./tmp/
+ucount_report_data_dir = ./ucount-report-data/
+ucount_result_data_dir = ./ucount-result-data/
+uvalue_report_data_dir = ./uvalue-report-data/
+uvalue_result_data_dir = ./uvalue-result-data/
+uexpr_so_dir = ./
+
+rsync_ucount_addr_0 = ./ucount-report-data/
+rsync_ucount_addr_1 = ./ucount-report-data/
+rsync_ucount_addr_2 = ./ucount-report-data/
+rsync_ucount_addr_3 = ./ucount-report-data/
+
+rsync_uvalue_addr_0 = ./uvalue-report-data/
+rsync_uvalue_addr_1 = ./uvalue-report-data/

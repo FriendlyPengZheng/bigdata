@@ -1,0 +1,40 @@
+2014-06-25 Ian Guo<ianguo@taomee.com>
+version: 0.0.8
+svn trunk revision: 3341 
+Changelog:
+1. Fix Bug of async_server: 当网络不通或丢包严重时，客户端关闭连接，然后重连，
+但conn进程并不会关闭原连接的socket(原因是没有收到TCP FIN包)，导致连接数增加。
+解决方法：打开tcp_keepalive选项（可配置）.
+
+2014-06-11 Ian Guo<ianguo@taomee.com>
+version: 0.0.7
+svn trunk revision: 3195
+Changelog:
+1. 重构TcpClient的close函数。
+
+2014-03-12 Ian Guo<ianguo@taomee.com>
+version: 0.0.4
+svn trunk revision: 2052
+Changelog:
+1. 重构获取本机IP函数，确保是内网地址。
+
+2014-03-12 Ian Guo<ianguo@taomee.com>
+version: 0.0.3
+svn trunk revision: 2049 
+Changelog:
+1. 实现流量监控，流量统计，落日志功能。
+2. 完善更新模块功能，在更新前先关闭所有文件描述符。
+3. update.sh增加备份release-notes.txt
+
+2014-03-06 Ian Guo<ianguo@taomee.com>
+version: 0.0.2
+svn trunk revision: 1943
+Changelog:
+1. 完成监控功能，向stat-center注册，每分钟上报心跳数据，
+   包括：硬盘剩余空间，inbox/outbox/sent中文件个数和大小
+
+2014-02-20 Ian Guo<ianguo@taomee.com>
+version: 0.0.1
+svn trunk revision: 1820
+Changelog:
+1. 完成自动更新功能，包括：检查更新，下载，安装。

@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.taomee.tms.mgr.dao.GameInfoDao">
+	<resultMap id="GameInfoMap" type="com.taomee.tms.mgr.entity.GameInfo">
+		<id column="game_id" property="gameId" jdbcType="INTEGER" />
+		<result column="game_name" property="gameName" jdbcType="VARCHAR"/>
+		<result column="game_type" property="gameType" jdbcType="VARCHAR"/>
+		<result column="auth_id" property="authId" jdbcType="VARCHAR"/>
+		<result column="manage_auth_id" property="mangeAuthId" jdbcType="VARCHAR"/>
+		<result column="status" property="status" jdbcType="INTEGER" />
+		<result column="func_slot" property="funcSlot" jdbcType="INTEGER" />
+		<result column="online_auth_id" property="onlineAuthId" jdbcType="VARCHAR" />
+		<result column="ignore" property="ignoreId" jdbcType="VARCHAR"/>
+		<result column="game_email" property="gameEmail" jdbcType="VARCHAR"/>
+	</resultMap>
+
+	<sql id="GameInfoColumnList">
+		game_id, game_name, game_type, auth_id, manage_auth_id, online_auth_id, func_slot, status, `ignore`, game_email
+	</sql>
+	
+	<select id="getGameInfos" resultMap="GameInfoMap" parameterType="java.lang.Integer">
+		select
+		<include refid="GameInfoColumnList" />
+		from t_game_info order by game_id ASC
+	</select>
+	
+	<select id="getGameInfoByGameId" resultMap="GameInfoMap" parameterType="java.lang.Integer">
+		select
+		<include refid="GameInfoColumnList" />
+		from t_game_info where game_id = #{gameId,jdbcType=INTEGER}
+	</select>
+	
+	
+	<insert id="insertGameInfo" parameterType="com.taomee.tms.mgr.dao.GameInfoDao" 
+	 useGeneratedKeys="true" keyProperty="gameId">
+		insert into
+		t_game_info (game_id, game_name, game_type, auth_id, manage_auth_id, online_auth_id, func_slot, status, `ignore`, game_email)
+		values (#{gameId}, #{gameName,jdbcType=VARCHAR}, #{gameType,jdbcType=VARCHAR},
+		#{authId,jdbcType=VARCHAR}, #{mangeAuthId,jdbcType=VARCHAR},
+		#{online_auth_id}, #{funcSlot,jdbcType=INTEGER},#{status}, #{ignoreId}, #{gameEmail})
+	</insert>
+	
+	<update id="updateGameInfo" parameterType="com.taomee.tms.mgr.dao.GameInfoDao">
+		update
+		t_game_info
+		set
+		game_name=#{gameName}, game_type=#{gameType}, auth_id=#{authId}, manage_auth_id=#{mangeAuthId},
+		online_auth_id=#{onlineAuthId}, func_slot=#{funcSlot}, status=#{status}, `ignore`=#{ignoreId}, game_email=#{gameEmail}
+		where game_id = #{gameId,jdbcType=INTEGER}
+	</update>
+
+	<update id="updateStatus" parameterType="com.taomee.tms.mgr.dao.GameInfoDao">
+		update 
+		t_game_info
+		set status=#{status}
+		where game_id = #{gameId,jdbcType=INTEGER}
+	</update>
+	
+	</mapper>

@@ -1,0 +1,50 @@
+#[log]
+log_dir         ./log
+log_level       8
+log_size        32000000
+log_maxfiles    100
+
+proc_name       misc_server
+pid_file        ./bin/daemon.pid
+
+
+#[path]
+stat_file_dir       ./inbox/
+stat_file_name    misc.log
+
+#[url_key]
+key_msg_id     type
+#关键字组个数
+key_group_count 3
+
+#[group0]
+group0_key_count 2
+group0_key0_name mm
+group0_key1_name count
+
+#[group1]
+group1_key_count 3
+group1_key0_name mm
+group1_key1_name count
+group1_key2_name count1
+
+#[group2]
+#type=0x18000000&zone_id=1&server_id=3&user_id=1234671&event_id=0x1800000a&time=1366771819
+group2_key_count 4
+group2_key0_name zone_id
+group2_key1_name server_id
+group2_key2_name user_id
+group2_key3_name event_id
+
+
+#[message id]
+msg_id_file ./conf/msg_id_list
+client_tip_info newmisc0@10.1.1.44
+
+#[specail msg_id list]
+specail_msg_count 1
+#战神联盟
+specail_msg_id0 0x18000000
+
+
+

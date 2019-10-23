@@ -1,0 +1,5 @@
+.auth-wrapper{border:1px solid #d8dadf;background-color:#fff;}
+.auth-main{padding-left:140px;margin:150px auto;width:380px;background:#fff url("../../images/auth.png") 0 0 no-repeat;}
+.auth-main .main .auth-ul{margin-top:20px;margin-bottom:40px;list-style:disc;padding-left:20px;}
+.auth-main .main .auth-ul li{font-size:14px;line-height:40px;}
+

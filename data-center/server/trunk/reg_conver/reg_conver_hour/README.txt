@@ -1,0 +1,1 @@
+run_reg_hourly_manual.sh为小时注册转换修复脚本，具体脚本里面都有修复注释。

@@ -1,0 +1,189 @@
+<?xml version="1.0" encoding="UTF-8" ?>  
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.taomee.tms.mgr.dao.SchemaInfoDao">
+	<resultMap id="SchemaInfoMap" type="com.taomee.tms.mgr.entity.SchemaInfo">
+		<id column="schema_id" property="schemaId" jdbcType="INTEGER" />
+		<result column="log_id" property="logId" jdbcType="INTEGER" />
+		<result column="op" property="op" jdbcType="VARCHAR" />
+		<result column="cascade_fields" property="cascadeFields"
+			jdbcType="VARCHAR" />
+		<result column="material_id" property="materialId" jdbcType="INTEGER" />
+		<result column="node_id" property="nodeId" jdbcType="INTEGER"/>
+		<result column="status" property="status" jdbcType="INTEGER" />
+		<result column="material_name" property="materialName" jdbcType="VARCHAR" />
+		<result column="display_order" property="displayOrder" jdbcType="INTEGER" />
+		<result column="schema_name" property="schemaName" jdbcType="VARCHAR" />
+		<result column="flag" property="flag" jdbcType="INTEGER" />
+		<result column="add_time" property="addTime" jdbcType="TIMESTAMP"
+			javaType="java.sql.Timestamp" />
+	</resultMap>
+
+	<sql id="SchemaInfoColumnList">
+		schema_id, log_id, op, cascade_fields, material_id, node_id, status, schema_name, flag, add_time
+	</sql>
+	
+	<sql id="SchemaInfoColumnListWithTableName">
+		t_schema_info.schema_id, t_schema_info.log_id,
+		t_schema_info.op, t_schema_info.cascade_fields,
+		t_schema_info.material_id, t_schema_info.status,t_schema_info.schema_name, flag
+	</sql>
+	
+	<sql id="SchemaInfoColumnListWithMaterialInfo">
+		t_schema_info.schema_id, t_schema_info.log_id,
+		t_schema_info.op, t_schema_info.cascade_fields,
+		t_schema_info.material_id, t_material_info.material_name, t_schema_info.status, t_schema_info.schema_name,flag
+	</sql>
+	
+	<sql id="SchemaInfoColumnListWithTreeInfo">
+		t_schema_info.schema_id, schema_name, t_schema_info.log_id,
+		t_schema_info.op, t_schema_info.cascade_fields, t_schema_info.node_id,
+		t_schema_info.material_id, t_schema_info.status, t_web_tree.display_order, t_schema_info.add_time, flag
+	</sql>
+
+<!-- schema_name            log_id        op      cascade_fields    materia_id   node_id  --> 
+	<insert id="insertSchemaInfo" parameterType="com.taomee.tms.mgr.entity.SchemaInfo"
+	    useGeneratedKeys="true" keyProperty="schemaId" >
+		insert into
+		t_schema_info (log_id, schema_name, op, cascade_fields, material_id, node_id, status)
+		values
+				(#{logId,jdbcType=INTEGER}, #{schemaName,jdbcType=VARCHAR}, #{op,jdbcType=VARCHAR},
+		#{cascadeFields,jdbcType=VARCHAR}, #{materialId,jdbcType=INTEGER}, #{nodeId,jdbcType=INTEGER},  #{status,jdbcType=INTEGER})
+	</insert>
+
+	<select id="getSchemaInfoByschemaId" resultMap="SchemaInfoMap"
+		parameterType="java.lang.Integer">
+		select
+		<include refid="SchemaInfoColumnListWithMaterialInfo" />
+		from t_schema_info LEFT OUTER JOIN t_material_info 
+		on t_schema_info.material_id =t_material_info.material_id 
+		where schema_id = #{schemaId,jdbcType=INTEGER}
+	</select>
+
+	<select id="getSchemaInfosByLogId" resultMap="SchemaInfoMap"
+		parameterType="java.lang.Integer">
+		select
+		<include refid="SchemaInfoColumnListWithMaterialInfo" />
+		from t_schema_info LEFT OUTER JOIN t_material_info 
+		on t_schema_info.material_id =t_material_info.material_id 
+		where log_id = #{logId,jdbcType=INTEGER} and t_schema_info.status=0 
+	</select>
+	
+	<select id="getSchemaInfosByStatus" resultMap="SchemaInfoMap"
+		parameterType="java.lang.Integer">
+		select
+		<include refid="SchemaInfoColumnListWithMaterialInfo" />
+		from t_schema_info LEFT OUTER JOIN t_material_info 
+		on t_schema_info.material_id =t_material_info.material_id 
+		where status=#{status,jdbcType=INTEGER} order by schema_id ASC
+	</select>
+	
+
+	<select id="getSchemaInfos" resultMap="SchemaInfoMap">
+		select
+		<include refid="SchemaInfoColumnListWithMaterialInfo" />
+		from t_schema_info LEFT OUTER JOIN t_material_info 
+		on t_schema_info.material_id =t_material_info.material_id  order by schema_id ASC
+	</select>
+
+	<select id="getSchemaInfosByLogType" resultMap="SchemaInfoMap"
+		parameterType="java.lang.Integer">
+		select
+		<include refid="SchemaInfoColumnListWithTableName" />
+		from t_schema_info inner join t_log_info
+		on t_schema_info.log_id =t_log_info.log_id
+		where t_log_info.type = #{type,jdbcType=INTEGER} and  t_schema_info.status=0 and t_log_info.status=0
+	</select>
+	
+	<update id="updateSchemaInfoByStatus" parameterType="com.taomee.tms.mgr.entity.SchemaInfo" >
+		update
+		t_schema_info
+		set
+		status=#{status}
+		where schema_id=#{schemaId}
+	</update>	
+	
+	<select id="updateSchemaInfoBySchemaName" parameterType="com.taomee.tms.mgr.entity.SchemaInfo">
+		update
+		t_schema_info
+		set 
+		schema_name=#{schemaName}
+		where schema_id=#{schemaId}
+	</select>
+
+	<select id="updateSchemaFlagBySchemaId" parameterType="com.taomee.tms.mgr.entity.SchemaInfo">
+		update
+		t_schema_info
+		set 
+		flag = 1
+		where schema_id=#{schemaId}
+	</select>
+	
+	<delete id="deleteSchemaInfo" parameterType="com.taomee.tms.mgr.entity.SchemaInfo">
+		delete from
+		t_schema_info
+		where schema_id=#{schemaId}
+	</delete>
+	
+	<insert id="insertSchemaInfoByschemaId" parameterType="com.taomee.tms.mgr.entity.SchemaInfo">
+		insert into
+		t_schema_info (schema_id, log_id, op, cascade_fields,material_id, status, schema_name)
+		values
+		(#{schemaId,jdbcType=INTEGER},#{logId,jdbcType=INTEGER}, #{op,jdbcType=VARCHAR},
+		#{cascadeFields,jdbcType=VARCHAR},#{materialId,jdbcType=INTEGER},#{status,jdbcType=INTEGER},#{schemaName,jdbcType=VARCHAR})
+	</insert>
+	
+	<!-- <select id="getStatItemBySchemaId" resultMap="SchemaInfoMap"
+		parameterType="java.lang.Integer">
+		select
+		<include refid="SchemaInfoColumnListWithMaterialInfo" />
+		from t_schema_info LEFT OUTER JOIN t_material_info 
+		on t_schema_info.material_id =t_material_info.material_id 
+		where schema_id = #{schemaId,jdbcType=INTEGER}
+	</select> -->
+	
+	<select id="getSchemaInfoContentList" resultMap="SchemaInfoMap" parameterType="java.lang.Integer">
+		select
+		<include refid="SchemaInfoColumnListWithTreeInfo" />
+		from t_schema_info join t_web_tree
+		on t_schema_info.node_id =t_web_tree.node_id
+		where
+		game_id=#{1} and t_schema_info.node_id=#{0} and t_schema_info.flag=0 and t_schema_info.status=0 and t_web_tree.status=0 order by display_order 
+	</select>
+	
+	<select id="getTrashInfos" resultMap="SchemaInfoMap"  parameterType="java.lang.Integer">
+		select
+		<include refid="SchemaInfoColumnListWithTreeInfo" />
+		from t_schema_info join t_web_tree
+		on t_schema_info.node_id =t_web_tree.node_id
+		where
+		game_id=#{gameId} and t_schema_info.flag=1 and t_schema_info.status=0 and t_web_tree.status=0 order by display_order 
+	</select>
+	
+	<update id="updateStatItemByNodeId" parameterType="java.lang.Integer" >
+		update
+		t_schema_info
+			<trim prefix="set" suffixOverrides=",">
+			<if test="newNodeId==null or newNodeId==0">node_id=0,</if>
+			<if test="newNodeId!=null and newNodeId!=0">node_id=#{newNodeId},</if>
+		</trim>
+		where node_id=#{nodeId}
+	</update>
+
+	<update id="updateSchemaNodeInfo" parameterType="com.taomee.tms.mgr.entity.SchemaInfo" >
+		update
+		t_schema_info
+		set
+		node_id=#{nodeId}, flag=#{flag}
+		where schema_id=#{schemaId}
+	</update>
+	
+	
+	<select id="getSchemaInfoByParams" resultMap="SchemaInfoMap" parameterType="com.taomee.tms.mgr.entity.SchemaInfo">>
+		select
+		<include refid="SchemaInfoColumnList" />
+		from t_schema_info 
+		where
+		material_id=#{materialId} and node_id=#{nodeId} and log_id=#{logId} and schema_name=#{schemaName} and op=#{op} and status=#{status}
+	</select>
+	
+</mapper> 

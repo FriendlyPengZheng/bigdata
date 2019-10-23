@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+	android:layout_width="fill_parent" android:layout_height="fill_parent">
+	<LinearLayout android:layout_width="40dp"
+		android:layout_height="match_parent" android:orientation="vertical">
+		<Button android:id="@+id/btn_all_msg" android:layout_width="wrap_content"
+			android:layout_height="0dp" android:layout_weight="0.5" android:text="@string/all_msg" />
+
+		<Button android:id="@+id/btn_read_msg" android:layout_width="wrap_content"
+			android:layout_height="0dp" android:layout_weight="0.5" android:text="@string/read_msg" />
+
+		<Button android:id="@+id/btn_unread_msg" android:layout_width="wrap_content"
+			android:layout_height="0dp" android:layout_weight="0.5"
+			android:text="@string/unread_msg" />
+
+		<Button android:id="@+id/btn_marked_msg" android:layout_width="wrap_content"
+			android:layout_height="0dp" android:layout_weight="0.5"
+			android:text="@string/marked_msg" />
+
+		<Button android:id="@+id/btn_pull_msg" android:layout_width="wrap_content"
+			android:layout_height="0dp" android:layout_weight="0.5" android:text="@string/pull_msg" />
+
+	</LinearLayout>
+
+
+	<ListView android:id="@+id/list_msg" android:layout_width="match_parent"
+		android:layout_height="wrap_content" android:dividerHeight="5dp">
+	</ListView>
+</LinearLayout>

@@ -1,0 +1,233 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<definitions name="Service"
+ targetNamespace="http://localhost:80/Service.wsdl"
+ xmlns:tns="http://localhost:80/Service.wsdl"
+ xmlns:SOAP-ENV="http://schemas.xmlsoap.org/soap/envelope/"
+ xmlns:SOAP-ENC="http://schemas.xmlsoap.org/soap/encoding/"
+ xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+ xmlns:xsd="http://www.w3.org/2001/XMLSchema"
+ xmlns:monitor="http://tempuri.org/monitor.xsd"
+ xmlns:SOAP="http://schemas.xmlsoap.org/wsdl/soap/"
+ xmlns:MIME="http://schemas.xmlsoap.org/wsdl/mime/"
+ xmlns:DIME="http://schemas.xmlsoap.org/ws/2002/04/dime/wsdl/"
+ xmlns:WSDL="http://schemas.xmlsoap.org/wsdl/"
+ xmlns="http://schemas.xmlsoap.org/wsdl/">
+
+<types>
+
+ <schema targetNamespace="http://tempuri.org/monitor.xsd"
+  xmlns:SOAP-ENV="http://schemas.xmlsoap.org/soap/envelope/"
+  xmlns:SOAP-ENC="http://schemas.xmlsoap.org/soap/encoding/"
+  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xmlns:xsd="http://www.w3.org/2001/XMLSchema"
+  xmlns:monitor="http://tempuri.org/monitor.xsd"
+  xmlns="http://www.w3.org/2001/XMLSchema"
+  elementFormDefault="unqualified"
+  attributeFormDefault="unqualified">
+  <import namespace="http://schemas.xmlsoap.org/soap/encoding/"/>
+  <!-- operation request element -->
+  <element name="get-client-info">
+   <complexType>
+    <sequence>
+    </sequence>
+   </complexType>
+  </element>
+  <!-- operation response element -->
+  <element name="get-client-infoResponse">
+   <complexType>
+    <sequence>
+     <element name="result" type="xsd:string" minOccurs="1" maxOccurs="1"/>
+    </sequence>
+   </complexType>
+  </element>
+  <!-- operation request element -->
+  <element name="get-server-info">
+   <complexType>
+    <sequence>
+    </sequence>
+   </complexType>
+  </element>
+  <!-- operation response element -->
+  <element name="get-server-infoResponse">
+   <complexType>
+    <sequence>
+     <element name="result" type="xsd:string" minOccurs="1" maxOccurs="1"/>
+    </sequence>
+   </complexType>
+  </element>
+  <!-- operation request element -->
+  <element name="route">
+   <complexType>
+    <sequence>
+     <element name="route-id" type="xsd:unsignedInt" minOccurs="1" maxOccurs="1"/>
+    </sequence>
+   </complexType>
+  </element>
+  <!-- operation response element -->
+  <element name="routeResponse">
+   <complexType>
+    <sequence>
+     <element name="result" type="xsd:string" minOccurs="1" maxOccurs="1"/>
+    </sequence>
+   </complexType>
+  </element>
+  <!-- operation request element -->
+  <element name="client">
+   <complexType>
+    <sequence>
+     <element name="client-ip" type="xsd:string" minOccurs="1" maxOccurs="1"/>
+    </sequence>
+   </complexType>
+  </element>
+  <!-- operation response element -->
+  <element name="clientResponse">
+   <complexType>
+    <sequence>
+     <element name="result" type="xsd:string" minOccurs="1" maxOccurs="1"/>
+    </sequence>
+   </complexType>
+  </element>
+  <!-- operation request element -->
+  <element name="server">
+   <complexType>
+    <sequence>
+    </sequence>
+   </complexType>
+  </element>
+  <!-- operation response element -->
+  <element name="serverResponse">
+   <complexType>
+    <sequence>
+     <element name="result" type="xsd:string" minOccurs="1" maxOccurs="1"/>
+    </sequence>
+   </complexType>
+  </element>
+ </schema>
+
+</types>
+
+<message name="get-client-infoRequest">
+ <part name="parameters" element="monitor:get-client-info"/>
+</message>
+
+<message name="get-client-infoResponse">
+ <part name="parameters" element="monitor:get-client-infoResponse"/>
+</message>
+
+<message name="get-server-infoRequest">
+ <part name="parameters" element="monitor:get-server-info"/>
+</message>
+
+<message name="get-server-infoResponse">
+ <part name="parameters" element="monitor:get-server-infoResponse"/>
+</message>
+
+<message name="routeRequest">
+ <part name="parameters" element="monitor:route"/>
+</message>
+
+<message name="routeResponse">
+ <part name="parameters" element="monitor:routeResponse"/>
+</message>
+
+<message name="clientRequest">
+ <part name="parameters" element="monitor:client"/>
+</message>
+
+<message name="clientResponse">
+ <part name="parameters" element="monitor:clientResponse"/>
+</message>
+
+<message name="serverRequest">
+ <part name="parameters" element="monitor:server"/>
+</message>
+
+<message name="serverResponse">
+ <part name="parameters" element="monitor:serverResponse"/>
+</message>
+
+<portType name="ServicePortType">
+ <operation name="get-client-info">
+  <documentation>Service definition of function monitor__get_client_info</documentation>
+  <input message="tns:get-client-infoRequest"/>
+  <output message="tns:get-client-infoResponse"/>
+ </operation>
+ <operation name="get-server-info">
+  <documentation>Service definition of function monitor__get_server_info</documentation>
+  <input message="tns:get-server-infoRequest"/>
+  <output message="tns:get-server-infoResponse"/>
+ </operation>
+ <operation name="route">
+  <documentation>Service definition of function monitor__route</documentation>
+  <input message="tns:routeRequest"/>
+  <output message="tns:routeResponse"/>
+ </operation>
+ <operation name="client">
+  <documentation>Service definition of function monitor__client</documentation>
+  <input message="tns:clientRequest"/>
+  <output message="tns:clientResponse"/>
+ </operation>
+ <operation name="server">
+  <documentation>Service definition of function monitor__server</documentation>
+  <input message="tns:serverRequest"/>
+  <output message="tns:serverResponse"/>
+ </operation>
+</portType>
+
+<binding name="Service" type="tns:ServicePortType">
+ <SOAP:binding style="document" transport="http://schemas.xmlsoap.org/soap/http"/>
+ <operation name="get-client-info">
+  <SOAP:operation soapAction=""/>
+  <input>
+     <SOAP:body parts="parameters" use="literal"/>
+  </input>
+  <output>
+     <SOAP:body parts="parameters" use="literal"/>
+  </output>
+ </operation>
+ <operation name="get-server-info">
+  <SOAP:operation soapAction=""/>
+  <input>
+     <SOAP:body parts="parameters" use="literal"/>
+  </input>
+  <output>
+     <SOAP:body parts="parameters" use="literal"/>
+  </output>
+ </operation>
+ <operation name="route">
+  <SOAP:operation soapAction=""/>
+  <input>
+     <SOAP:body parts="parameters" use="literal"/>
+  </input>
+  <output>
+     <SOAP:body parts="parameters" use="literal"/>
+  </output>
+ </operation>
+ <operation name="client">
+  <SOAP:operation soapAction=""/>
+  <input>
+     <SOAP:body parts="parameters" use="literal"/>
+  </input>
+  <output>
+     <SOAP:body parts="parameters" use="literal"/>
+  </output>
+ </operation>
+ <operation name="server">
+  <SOAP:operation soapAction=""/>
+  <input>
+     <SOAP:body parts="parameters" use="literal"/>
+  </input>
+  <output>
+     <SOAP:body parts="parameters" use="literal"/>
+  </output>
+ </operation>
+</binding>
+
+<service name="Service">
+ <documentation>gSOAP 2.7.9l generated service definition</documentation>
+ <port name="Service" binding="tns:Service">
+  <SOAP:address location="http://localhost:80"/>
+ </port>
+</service>
+
+</definitions>

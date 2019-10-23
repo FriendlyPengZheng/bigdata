@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.taomee.tms.mgr.dao.FavorSetDataInfoDao">
+	<resultMap id="FavorSetDataInfoMap" type="com.taomee.tms.mgr.entity.FavorSetDataInfo">
+		<result column="data_name" property="dataName" jdbcType="VARCHAR" />
+		<result column="data_id" property="dataId" jdbcType="INTEGER" />
+		<result column="data_expr" property="dataExpr" jdbcType="VARCHAR" />
+		<result column="factor" property="factor" jdbcType="DOUBLE" />
+		<result column="precision" property="precision" jdbcType="INTEGER" />
+		<result column="unit" property="unit" jdbcType="VARCHAR" />
+		<result column="game_id" property="gameId" jdbcType="INTEGER" />
+		<result column="set_id" property="id" jdbcType="INTEGER" />
+	</resultMap>
+
+	<insert id="insertFavorSetDataInfo" parameterType="com.taomee.tms.mgr.entity.FavorSetDataInfo">
+		insert into t_web_set_data (data_name, data_id, data_expr, factor, `precision`, unit, game_id, set_id)
+		values (#{dataName,jdbcType=VARCHAR}, #{dataId,jdbcType=INTEGER}, #{dataExpr,jdbcType=VARCHAR},
+		 #{factor,jdbcType=DOUBLE},  #{precision,jdbcType=INTEGER},  #{unit,jdbcType=VARCHAR}, #{gameId,jdbcType=INTEGER}, 
+		 #{id, jdbcType=INTEGER})
+	</insert>
+	
+	<sql id="FavorSetDataInfoColumnList">
+		data_name, data_id, data_expr, factor, `precision`, unit, game_id, set_id 
+	</sql>
+	
+	<select id="getFavorSetDataInfoByPrimaryKey" resultMap="FavorSetDataInfoMap">
+		select 
+			data_name, data_id, data_expr, factor, c.precision, unit, game_id, set_id as id
+		from t_web_set_data c
+		<where>
+			 <if test="id != null and id != 0">
+			 	c.set_id=#{id}
+			 </if>
+			 <if test="dataId != null">
+			 	and c.data_id=#{dataId}
+			 </if>
+			 <if test="gameId != null">
+			 	and c.game_id=#{gameId}
+			 </if>
+			<if test="dataExpr != null and dataExpr != ''">
+				and c.data_expr = #{dataExpr}
+			</if>
+		</where>
+	</select>
+	
+</mapper>

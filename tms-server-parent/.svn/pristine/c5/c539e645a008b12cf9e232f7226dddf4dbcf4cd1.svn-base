@@ -1,0 +1,402 @@
+package com.taomee.tms.mgr.api;
+
+import java.util.List;
+//import java.util.TreeMap;
+
+
+
+import com.taomee.tms.mgr.entity.ArtifactInfo;
+import com.taomee.tms.mgr.entity.CollectInfo;
+import com.taomee.tms.mgr.entity.CollectMetadataInfo;
+//import com.taomee.tms.mgr.entity.CollectInfo;
+//import com.taomee.tms.mgr.entity.CollectShareInfo;
+import com.taomee.tms.mgr.entity.Comment;
+import com.taomee.tms.mgr.entity.CommentByComponentId;
+import com.taomee.tms.mgr.entity.Component;
+import com.taomee.tms.mgr.entity.CustomQueryParams;
+import com.taomee.tms.mgr.entity.DataInfo;
+import com.taomee.tms.mgr.entity.DataInfoQueryParams;
+import com.taomee.tms.mgr.entity.DataInfoUniqueKeyParams;
+import com.taomee.tms.mgr.entity.DataToObject;
+import com.taomee.tms.mgr.entity.DeleteDataInfoParams;
+import com.taomee.tms.mgr.entity.DistrDataInfo;
+import com.taomee.tms.mgr.entity.EmailConfigInfo;
+import com.taomee.tms.mgr.entity.EmailDataInfo;
+import com.taomee.tms.mgr.entity.EmailTemplateContentInfo;
+import com.taomee.tms.mgr.entity.EmailTemplateDataInfo;
+import com.taomee.tms.mgr.entity.FavorInfo;
+import com.taomee.tms.mgr.entity.FavorSetDataInfo;
+import com.taomee.tms.mgr.entity.FavorSetInfo;
+import com.taomee.tms.mgr.entity.GameInfo;
+import com.taomee.tms.mgr.entity.GameInfoPage;
+import com.taomee.tms.mgr.entity.GameTaskInfo;
+import com.taomee.tms.mgr.entity.LogInfo;
+import com.taomee.tms.mgr.entity.Metadata;
+import com.taomee.tms.mgr.entity.MissionInfo;
+import com.taomee.tms.mgr.entity.Navi;
+//import com.taomee.tms.mgr.entity.Page;
+import com.taomee.tms.mgr.entity.PlatformInfo;
+//import com.taomee.tms.mgr.entity.WhaleUserInfo;
+//import com.taomee.tms.mgr.entity.WhaleUserMonthInfo;
+import com.taomee.tms.mgr.entity.RealTimeDataInfo;
+import com.taomee.tms.mgr.entity.ResultInfo;
+import com.taomee.tms.mgr.entity.SchemaDiaryInfo;
+import com.taomee.tms.mgr.entity.SchemaInfo;
+import com.taomee.tms.mgr.entity.ServerAllPlatform;
+import com.taomee.tms.mgr.entity.ServerDiaryInfo;
+import com.taomee.tms.mgr.entity.ServerGPZSInfo;
+import com.taomee.tms.mgr.entity.ServerInfo;
+import com.taomee.tms.mgr.entity.ServerNameInfo;
+import com.taomee.tms.mgr.entity.SharedCollectInfo;
+//import com.taomee.tms.mgr.entity.SharedCollectInfo;
+import com.taomee.tms.mgr.entity.StidSStidRefLog;
+import com.taomee.tms.mgr.entity.StidSStidRefLogDiary;
+import com.taomee.tms.mgr.entity.TaskInfo;
+import com.taomee.tms.mgr.entity.TreeInfo;
+import com.taomee.tms.mgr.entity.ZSInfo;
+
+public interface LogMgrService {
+	// redis相关的接口
+	//boolean jedisClientInit();  //从集群中获取一个redis实例
+	
+	//涉及入库结果表 (t_db_data_day)和redis缓存 前端通过dataId,serverId,天/分钟数据时间段获取结果值value
+	//timeDimension 0:日    周 1      月 2        版本周3      分钟4      小时5 
+	List<ResultInfo> getValueInfo(Integer dataId, Integer serverId,
+			String startTime, String endTime, Integer timeDimension); 
+	
+	//实时分钟数据 timeDimension=4
+	/*TreeMap<Integer, Double> getDateValueMin(Integer dataId, Integer serverId,
+			String startTime, String endTime, Integer timeDimension); */
+	//实时分钟数据id类型：dataId
+	List<RealTimeDataInfo> getDateValueMin(Integer dataId, Integer gameId, Integer serverId, String dataTime);
+	//实时小时数据
+	List<RealTimeDataInfo> getDateValueHour(Integer dataId, Integer gameId, Integer serverId, String dataTime);
+	
+	/*TreeMap<Integer, Double> getDateValueHour(Integer dataId, Integer serverId,
+			String startTime, String endTime, Integer timeDimension); */
+	
+	//分布计算拉取dataInfo信息【dataID, dataName】//timeDimension 0:日   周 1    月 2     版本周 3        分钟4           小时5 
+	List<DistrDataInfo> getDistrDataInfos(Integer relateId, Integer serverId, 
+			String startTime, String endTime, Integer type, Integer timeDimension);
+	
+	//平台区服分布拉取数据 serverId传的是上一级的serverId
+	List<DistrDataInfo> getGPZSDistrInfos(Integer relateId, Integer serverId,
+			String startTime, String endTime, Integer type); 
+	
+	//拉取在线数据的dataId dataName
+	// t_log_info
+	Integer insertLogInfo(LogInfo loginfo);
+	Integer updateLogInfo(LogInfo loginfo); //修改logName
+	Integer updateLogInfoByStatus(LogInfo loginfo); //修改状态【在使用 弃用】
+	//Integer deleteLogInfo(Integer logId);
+	LogInfo getLogInfoByLogId(Integer logId);
+	List<LogInfo> getLogInfos();  //可用和不可用进行获取
+	List<LogInfo> getLogInfos(Integer status);
+
+	// t_schema_info
+	Integer insertSchemaInfo(SchemaInfo schemaInfo);
+	Integer updateSchemaInfo(SchemaInfo schemaInfo);  //仅修改material_name
+	Integer updateSchemaInfoByStatus(SchemaInfo schemaInfo); //修改状态【是否可用 0：可用  1：不可用】
+	//Integer deleteSchemaInfo(Integer schemaId);
+	SchemaInfo getSchemaInfoByschemaId(Integer schemaId);
+	List<SchemaInfo> getSchemaInfos();  
+	List<SchemaInfo> getSchemaInfosFromRedis();
+	List<SchemaInfo> getSchemaInfosFromRedis(String pattern);
+	List<SchemaInfo> getSchemaInfos(Integer status);
+	List<SchemaInfo> getSchemaInfosByLogId(Integer logId);
+	List<SchemaInfo> getSchemaInfosByLogIdForStorm(Integer logId,Boolean writeToRedis,Integer redisExpireTime);
+	// 供hadoop打散脚本使用
+	List<SchemaInfo> getSchemaInfosByLogType(Integer type);
+
+	// t_data_info 插入数据库
+	void deleteDataInfo(DeleteDataInfoParams deleteDataInfoParams);
+	Integer insertDataInfo(DataInfo dataInfo);
+	DataInfo getDataInfo(Integer dataId);
+	DataInfo getDataInfoByUniqueKey(DataInfoUniqueKeyParams params);
+	//获取t_data_info表内信息
+	List<DataInfo> getDataInfosByParams(DataInfoQueryParams params);
+	// 通过schema_id和级联字段增加一个dataInfo
+	Integer insertUpdateDataInfoByschemaId(Integer schemaId,
+			String cascadeFields);
+
+	// 数据入库 t_data_info和结果表 (t_db_data_day)
+	void insertUpdateDataResultInfo(DataToObject datatoObject);
+
+	// t_server_info
+	Integer insertServerInfo(ServerInfo serverInfo);
+	Integer updateServerInfo(ServerInfo serverInfo);
+	Integer updateServerInfoByStatus(ServerInfo serverInfo);
+	//Integer deleteServerInfo(Integer serverId);
+	ServerInfo getServerInfo(Integer serverId);
+	List<ServerInfo> getAllServerInfos(Integer status);  //status 0为正常显示的游戏
+	List<ServerInfo> getAllServerInfos(); 
+	//List<ServerInfo> getServerInfos();
+	List<ServerInfo> getServerInfoByparentId(Integer parentId);
+	ServerGPZSInfo getServerInfoByTopgameId(Integer gameId); //获取全区全服信息
+	//ServerDiaryInfo
+	List<ServerDiaryInfo> getServerDiaryInfoBydiaryId(Integer diaryId);
+	
+	// 供加工运算使用 t_task_info
+	Integer insertTaskInfo(TaskInfo taskInfo);
+	Integer updateTaskInfo(TaskInfo taskInfo);
+	Integer deleteTaskInfo(Integer taskId);
+	TaskInfo getTaskInfo(Integer taskId);
+	List<TaskInfo> getTaskInfos();
+	
+	// t_artifact_info 
+	void insertArtifactInfo(ArtifactInfo artifactInfo);
+	ArtifactInfo getArtifactInfoBytaskId(Integer taskId);
+	ArtifactInfo getArtifactInfoByartifact(Integer artifactId);
+	//入库程序特定的taskId获取对应的ArtifactInfo信息
+	ArtifactInfo getArtifactInfoToLoadBytaskId(Integer taskId);
+
+	// t_web_comment
+	Integer insertCommentInfo(Comment commentInfo);
+	void updateCommentInfo(Comment commentInfo); // 其中commendId为0表示新增，否则为update
+	List<Comment> getAllCommentInfos();
+	void deleteCommentInfo(Comment CommentInfo);
+	List<Comment> getCommentByKeyword(String keyword); // 精确匹配keyword
+	List<Comment> getCommentByKeywordFuzzy(String keyword); // 模糊匹配keyword
+	Comment getCommentInfoBycommentId(Integer commentId);
+
+	// t_web_metadata
+	Integer insertMetadataInfo(Metadata metadataInfo);
+	void updateMetadataInfo(Metadata metadataInfo);
+	List<Metadata> getAllMetadataInfos();
+	void deleteMetadataInfo(Metadata metadataInfo);
+	List<Metadata> getMetadataInfoBycommentId(Integer commentId);
+	
+	// t_web_component
+	List<Component> getComponentInfoByComponentId(Integer componentId);
+	List<Component> getComponents(String moduleKey, Integer parentId, Integer gameId);
+	Integer insertComponentInfo(Component componentInfo);
+	void updateComponentInfo(Component componentInfo);
+	void deleteComponentInfos(Integer componentId);
+
+	//FavorInfo getListByTop1UserId(Integer userId);
+	////////////////////////////////////////////////////////////////////////////////////////////////////////////
+	/**
+	 * game_id -> PlatformInfo(platform_id, platform_name)
+	 * @param gameId
+	 * @return List<PlatformInfo>
+	 */
+	List<PlatformInfo> getPlatFormInfosByGameId(Integer gameId);
+	
+	/**
+	 * game_id+platform_id -> zsInfo(zoneServerId, zoneServerName)
+	 * zoneServerId用_分隔，例如1区全服(1_-1)
+	 * @param gameId
+	 * @param platformId
+	 * @return List<ZSInfo>
+	 */
+	List<ZSInfo> getZSInfosByGPId(Integer gameId, Integer platformId);
+	
+	/**
+	 * @param gameId
+	 * @param platformId
+	 * @param zoneId
+	 * @param sId
+	 * @return
+	 */
+	Integer getServerIDByGPZS(Integer gameId, Integer platformId ,Integer zoneId ,Integer sId);
+	Integer getServerIDByGPZSForStorm(Integer gameId, Integer platformId ,Integer zoneId ,Integer sId,Integer expireSeconds);
+	
+	/**
+	 * t_server_gpzs_info和t_serverName_info表的插入
+	 * @param gameId
+	 * @param platformId
+	 * @param zoneId
+	 * @param sId
+	 * @param pName
+	 * @param zsName
+	 * @return serverId
+	 */
+	Integer insertServerInfosByGPZS(Integer gameId, Integer platformId, Integer zoneId, Integer sId, String pName, String zsName);
+	
+	/**
+	 * 获取t_server_gpzs_info表中信息
+	 * @return List<ServerGPZSInfo>
+	 */
+	List<ServerGPZSInfo> getAllServerGpzsInfos();
+	List<ServerGPZSInfo> getServerGpzsInfosFromRedis(String pattern);
+	
+	/**
+	 * 获取【使用中/废弃状态】的gpzs_info信息
+	 * status: 0-使用中 1-废弃
+	 * @param status
+	 * @return List<ServerGPZSInfo>
+	 */
+	List<ServerGPZSInfo> getAllServerGpzsInfos(Integer status);
+	
+	
+	///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+	// t_web_navi
+	List<Navi> getNaviInfosByLevel();
+	
+	//模板管理页面
+	/*List<Page> getNaviInfos();*/
+	
+	//获取所有使用中的游戏信息(gameId和gameName)
+	List<GameInfoPage> getGameInfoPage();
+	
+	// t_web_component_comment 关联表
+	List<CommentByComponentId> getCommentsByComponentId(Integer componentId);
+	void saveComponentComments(Integer componentId, Integer commentId);
+
+	// SchemaDiaryInfo日志信息表变更记录：实时更新redis的schemaInfo信息
+	List<SchemaDiaryInfo> getSchemaDiaryInfoBydiaryId(Integer diaryId);
+	//获取SchemaDiaryInfo日志信息表的最大的日志id
+		
+	//通过父的data_id获取子dataInfo信息(级联显示)
+	List<DataInfo> getChildDataInfoByparentId(Integer dataId); 
+	
+	//游戏管理t_game_info
+	List<GameInfo> getGameInfos();
+	GameInfo getGameInfoById(Integer gameId);
+	Integer insertGameInfo(GameInfo gameInfo);
+	Integer updateGameInfo(GameInfo gameInfo);
+	Integer updateStatus(GameInfo game);
+	
+	//自定义数据页面
+	//从数据库中获取树结构(只包含两级)
+	List<TreeInfo> getTreeInfos(Integer gameId);  
+	List<TreeInfo> getTreeInfosByGameIdParentId(Integer gameId, Integer parentId);
+	//重命名【设置node和item名称】 
+	void updateNodeName(TreeInfo treeInfo);  //必须参数：gameId nodeName nodeId
+	void updateItemName(SchemaInfo schemaInfo); //必须参数：schemaId schemaName
+	    //确保节点存在且拥有游戏权限
+		//boolean ensureNodeExistsAndAuthed(Integer nodeId);
+		//checkGameManageAuth(gameId)
+	    //获取节点信息
+	    //TreeInfo getNodeById(Integer nodeId);  //isBasic=0:非basic統計項
+		//更新节点
+		//TreeInfo updateNode(Integer nodeId);
+	//新增节点
+	TreeInfo addTreeNode(TreeInfo treeInfo);
+	//删除节点
+	void delTreeNode(List<Integer> nodeId, Integer gameId);
+	//合并非叶子节点
+	TreeInfo mergeTreeNode(Integer nodeId, Integer gameId);  //传进来的参数是node_id是左树的顶层的node_id即可合并它的子节点
+	//移动节点
+	void moveTreeNode(Integer gameId, Integer nodeId, Integer parentId, Integer afterId);
+	//绑定统计项到树节点
+	void moveStatItem(Integer gameId, List<Integer> itemSchemaIdList, Integer moveToNodeId);
+	//搜索节点
+	List<TreeInfo> searchNode(Integer gameId, String nodeName);
+	//根据node_id获取内容列表，只获取显示的项(status=0)
+	List<SchemaInfo> getSchemaInfoContentList(Integer nodeId, Integer gameId);
+	List<SchemaInfo> getSchemaInfoContentListItem(Integer nodeId, Integer gameId);   //注意区分游戏拉取数据
+	List<ArtifactInfo> getArtifactInfoContentList(Integer nodeId, Integer gameId);
+	//回收站t_schema_info表中加一个字段标记flag判断 是否加入了回收站   flag=0正常 flag=1加入回收站中的item
+	//List<SchemaInfo> getTrashInfos(Integer nodeId, Integer gameId);   //回收站的node_id=-1 
+	
+	Integer insertCustomLogInfo(CustomQueryParams customQueryParams);
+	Integer getCustomLogInfo(CustomQueryParams customQueryParams,Boolean writeToRedis,Integer redisExpireTime);
+	Integer getCustomLogInfo(String stid,String sstid,Integer gameID,String op,Boolean writeToRedis, Integer redisExpireSeconds);
+	List<StidSStidRefLogDiary> getStidSStidRefLogDiaryBydiaryId(Integer diaryId);
+	List<StidSStidRefLog> getStidSStidRefLogBystatus(Integer status);
+	List<StidSStidRefLog> getStidSStidRefLogFromRedis(String pattern);
+	
+	//鲸鱼用户页面 v_whale_user v_whale_user_month
+	//List<WhaleUserMonthInfo> getWhaleUserMonthInfos(Integer gameId, Integer platFormId, String time);
+	
+	
+	//==========maggie==================
+	
+	//t_web_email_config
+	List<EmailConfigInfo> getEmailConfigAll();
+	EmailConfigInfo getEmailConfigByEmailId(Integer emailId);
+	Integer insertEmailConfigInfo(EmailConfigInfo info);
+	Integer deleteEmailConfigByEmailId(Integer emailId);
+	Integer updateEmailConfigInfo(EmailConfigInfo info);
+	Integer seEmailConfigtStatus(Integer emailId, Integer status);
+	//t_web_email_data
+	List<EmailDataInfo> getEmailInfoByEmailId(Integer emailId);
+	List<EmailDataInfo> getEmailInfoByContentId(Integer emailId, Integer emailContentId);
+	Integer insertEmailDataInfo(EmailDataInfo info);
+	
+	//t_web_email_template
+	Integer getEmailTemplateId(String templateType);
+	
+	//t_web_email_template_content
+	List<EmailTemplateContentInfo> getEmailTemplateContentInfo(Integer emailTemplateId);
+	EmailTemplateContentInfo getEmailTemlateContentInfoById(Integer emailTemplateContentId);
+	
+	//t_web_email_template_data
+	List<EmailTemplateDataInfo>  getEmailTemplateData(Integer emailTemplateContentId);
+	
+	//v_gametask_data
+	List<MissionInfo> getMissionList(Integer serverId,Integer start, Integer end,String type);
+	List<MissionInfo> getMissionDetialInfo(Integer serverId,Integer start, Integer end,String sstid);
+	
+	//t_gametask_info
+	List<GameTaskInfo> getGameTaskInfoList(Integer gameId, String type);
+	void updateGameTaskName(GameTaskInfo info);
+	void updateGameTaskHide(GameTaskInfo info);
+	void updateGameTaskHideAll(Integer gameId, String type, Integer hide);
+
+	//==================================
+	/**
+	 * 查找t_web_componet中所有ignored不等于0的记录
+	 * @return
+	 */
+	List<Component> getAllComponentsByIgnored(); 
+	
+	/*********************我的收藏相关接口************************************************************/
+	List<CollectInfo> getListByFavorId(Integer favorId, Integer userId, boolean bCountMetadata);
+	List<CollectInfo> getListByFavorId(Integer favorId);
+	
+	List<SharedCollectInfo> findByCollectId(Integer collectId);
+	CollectInfo getCollectById(Integer collectId);
+
+	//通过collectId在t_web_collect_metadata表中拉出所需的数据
+	List<CollectMetadataInfo> getMetadataInfosByCollectId(Integer collectId);
+	
+	//根据user_id在t_web_favor中查找对应的记录  favor_type 1/2 favorType=null则可以拉出该用户下的所有收藏
+	List<FavorInfo> getListByUserId(Integer userId, Integer favorType, String favorName);
+	//增加默认我的收藏
+	Integer addDefaultFavor(FavorInfo favorInfo);
+	
+	Integer insertSetInfo(FavorSetInfo favorSetInfo);	
+	void insertFavorSetDataInfo(FavorSetDataInfo favorSetDataInfo);
+	
+	Integer insertFavorInfo(FavorInfo favorInfo);
+	boolean updateFavorInfoByFavorId(FavorInfo favorInfo);
+	
+	//todo以下两个接口需要在收藏环节同一个事务中 
+	Integer insertCollectInfo(CollectInfo collectInfo);
+	//通过set_id+data_id/set_id+data_erpr返回对应的记录
+	FavorSetDataInfo getFavorSetDataInfoByPrimaryKey(Integer dataId, Integer id, String dataExpr, Integer gameId);
+
+	Integer insertCollectMetadataInfo(CollectMetadataInfo collectMetadataInfo);
+	//todo PRIMARY KEY (`data_id`,`gpzs_id`,`collect_id`,`data_expr`)
+	CollectMetadataInfo getCollectMetadataInfoByPrimaryKey(Integer dataId, Integer gpzsId, Integer collectId, String dataExpr);
+	
+	
+	Integer updateFavor(Integer favorId, String favorName, Integer layOut);
+	Integer deleteFavor(Integer favorId, Integer userId);
+	Integer updateFavorDefault(Integer favorId, Integer userId, Integer isDefault);
+	Integer updateDefaultFavorByfavorId(Integer favorId);
+	
+	Integer deleteCollectByCollectId(Integer collectId);
+	Integer deleteCollectMetadataInfo(Integer collectId);
+	void deleteShareInfoByCollectUserId(Integer collectId, Integer userId);
+	
+	FavorInfo getFavorByfavorId(Integer favorId);
+	SharedCollectInfo getShareInfoByPrimaryId(Integer favorId, Integer collectId);
+	Integer deleteShareInfoByPrimaryId(Integer favorId, Integer collectId);
+	Integer insertShareCollectInfo(SharedCollectInfo sInfo);
+	void updateCollectInfoBycollectId(Integer collectId, Integer favorId);
+	void updateShareCollectInfoBycollectId(Integer collectId, Integer srcFavorId, Integer descFavorId);
+	
+	List<SharedCollectInfo> getShareInfoByFavorId(Integer favorId, Integer userId);
+	void updateCollectNameByCollectId(Integer collectId, String collectName);
+	void updateCollectMetadataOrderByPrimaryKey(Integer dataId, Integer gpzsId, Integer collectId, String dataExpr, Integer displayOrder);
+	
+	/*******************************************************************************************************/
+	List<ServerNameInfo> getServerNameInfosByGameId(Integer gameId);
+	void updateServerPNameByServerId(Integer serverId, String pname);
+	void updateServerZSNameByServerId(Integer serverId, String zsname);
+	void updateServerNameStatusByServerId(Integer serverId, Integer hide);
+	List<ServerAllPlatform> getAllPlatByGameId(Integer gameId);
+}

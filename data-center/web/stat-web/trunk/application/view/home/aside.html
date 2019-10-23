@@ -1,0 +1,15 @@
+<div class="aside" id="J_aside">
+    <ul>
+        {foreach $response.home_aside as $aside}
+        <li class="
+            {if isset($aside.current) && $aside.current}
+            cur
+            {/if}
+            " data-id= "{$aside.favor_id}" data-type="{$aside.favor_type}" data-game="{$aside.game_id}" >
+            <a href="{$aside.url}"><span>{$aside.favor_name}</span></a>
+        </li>
+        {/foreach}
+    </ul>
+    <ul class="bt">
+    </ul>
+</div>

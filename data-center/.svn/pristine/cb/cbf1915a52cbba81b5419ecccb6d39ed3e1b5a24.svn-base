@@ -1,0 +1,81 @@
+#!/usr/bin/python
+
+# -*- coding: utf-8 -*- 
+
+import httplib
+import urllib
+import sys
+
+class AlarmConfig():
+    cmd = {"rtx" : "10003", "email" : "10002", "mobile" : "10001"}
+    rtx_contact = {"ianguo" : "ianguo", "henry" : "henry", "ping" : "ping", "seasondi" : "seasondi"}
+    email_contact = {"ianguo" : "ianguo@taomee.com", "henry" : "henry@taomee.com", "ping" : "ping@taomee.com", "seasondi" : "seasondi@taomee.com"}
+    mobile_contact = {}
+    alarm_server = "192.168.6.51"
+    alarm_port = 80
+    alarm_path = "/itl-alarm-server/index.php"
+
+    contact = ("ianguo", "henry", "ping", "seasondi") # real contacts are configurated here.
+
+# Simple alarm, just post http request to itl
+class StatAlarmer():
+    def __init__(self, cmd, msg):
+        contact = None
+        if(cmd == "rtx"):
+            contact = AlarmConfig.rtx_contact
+        elif(cmd == "email"):
+            contact = AlarmConfig.email_contact
+        elif(cmd == "mobile"):
+            contact = AlarmConfig.mobile_contact
+        else:
+            raise
+
+        list_contact = [] 
+        for c in AlarmConfig.contact:
+            list_contact.append(contact[c])
+
+        str_contact = ",".join(list_contact)
+        if(len(str_contact) == 0):
+            raise
+
+        self.dic_params = {"cmd" : AlarmConfig.cmd[cmd], "contact" : str_contact, "msg" : msg}
+
+        self.header = {"Content-type": "application/x-www-form-urlencoded", "Accept": "text/plain"}
+
+        self.alarmer = httplib.HTTPConnection(AlarmConfig.alarm_server, AlarmConfig.alarm_port)
+
+        self.alarmer.connect()
+
+    def request(self):
+        return self.alarmer.request("POST", AlarmConfig.alarm_path, urllib.urlencode(self.dic_params), self.header)
+
+    def getresult(self):
+        response = self.alarmer.getresponse()
+        if(response.status == 200):
+            return 0 
+        else:
+            return -1;
+
+    def close(self):
+        if(self.alarmer):
+            self.alarmer.close()
+
+if __name__ == "__main__":
+
+    if(len(sys.argv) != 3):
+        print "alarm-sender mode msg"
+        sys.exit(1)
+
+    try:
+        alarmer = StatAlarmer(sys.argv[1], sys.argv[2])
+        alarmer.request()
+        ret = alarmer.getresult()
+        alarmer.close()
+
+        if(ret == 0):
+            sys.exit(0)
+        else:
+            sys.exit(1)
+    except Exception, e:
+        print e
+        sys.exit(1)

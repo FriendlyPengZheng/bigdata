@@ -1,0 +1,25 @@
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    tools:context="com.example.taomeechat.TaomeeChatMainActivity" >
+
+    <item
+        android:id="@+id/action_relogin"
+        android:orderInCategory="1"
+        android:title="@string/action_relogin"
+        app:showAsAction="never"/>
+    
+    <item
+        android:id="@+id/action_bell"
+        android:orderInCategory="1"
+        android:title="@string/action_set_bell"
+        app:showAsAction="never"/>
+    <!-- 
+    <item
+        android:id="@+id/action_chat"
+        android:orderInCategory="1"
+        android:title="@string/action_chat"
+        app:showAsAction="never"/>
+     -->
+       
+</menu>

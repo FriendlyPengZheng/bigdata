@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<map>
+	<bundle bundleID="950" localization="OSGI-INF/l10n/bundle" name="RemoteSystemsTempFiles" project="RemoteSystemsTempFiles"/>
+	<bundle bundleID="953" localization="OSGI-INF/l10n/bundle" name="tms-server-parent" project="tms-server-parent"/>
+	<bundle bundleID="949" localization="OSGI-INF/l10n/bundle" name="AAAAA" project="AAAAA">
+		<library name="AAAAA.jar"/>
+		<library name="lib/log4j-1.2.15.jar"/>
+		<library name="lib/hadoop-core-1.2.1.jar"/>
+		<library name="ads-data.jar"/>
+		<library name="lib/flume-taildir-source-tm-0.0.1-SNAPSHOT.jar"/>
+	</bundle>
+</map>

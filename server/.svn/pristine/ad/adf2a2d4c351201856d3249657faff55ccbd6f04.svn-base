@@ -1,0 +1,28 @@
+log_dir         ./log
+log_level       8
+log_size        32000000
+log_maxfiles    100
+
+proc_name       stat-alarmer 
+pid_file        ./bin/daemon.pid
+plugin_file     ./bin/stat-alarmer.so
+
+shmq_size       1048576 
+
+max_connect     20000
+max_pkg_len     1048576 
+
+# bind_ip         127.0.0.1
+bind_ip         0.0.0.0
+bind_port       19401
+
+#短信报警相关配置
+warning_server_ip 192.168.4.68
+warning_port    33001
+project_name    stat-alarmer 
+phone_number    13774451574,15821994882,13795204407 # henry,ping,ianguo
+
+work_conf       ./conf/work.conf
+
+include         ./conf/stat-alarmer.conf
+include         ./conf/version.conf

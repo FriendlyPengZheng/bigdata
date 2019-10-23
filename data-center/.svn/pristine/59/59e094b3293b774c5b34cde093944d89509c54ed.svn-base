@@ -1,0 +1,63 @@
+{extends "layout/layout.html"}
+
+{block "layout.title"}{$response.application_info.name}-元数据管理{/block}
+{block "layout.pagecss"}
+     <link rel="stylesheet" type="text/css" href="{$response.res_server}/data/css/page/conf/conf.css?v={$response.application_info.version}">
+{/block}
+{block "layout.main"}
+<div class="main with-aside">
+    {include "layout/aside.html"}
+    <div class="content" id="J_tableContainer">
+        <div class="content-header clearfix">
+            <a class="add-btn" id="J_addMetadataBtn">+添加元数据</a>
+            <div id="J_tableSearchContainer" class="search-wrapper"></div>
+        </div>
+        <table class="table module-table">
+            <thead>
+                <tr>
+                    <th class="th">时间维度</th>
+                    <th class="th">元数据名称</th>
+                    <th class="th">类型</th>
+                    <th class="th">配置</th>
+                    <th class="th">因子</th>
+                    <th class="th">精度</th>
+                    <th class="th">单位</th>
+                    <th class="th">注释</th>
+                    <th class="th">操作</th>
+                </tr>
+            </thead>
+            <tbody>
+                {foreach $response.metadatas as $metadata}
+                <tr>
+                    <td class="td hd">{$metadata.period_name}</td>
+                    <td class="td hd">{$metadata.data_name}</td>
+                    <td class="td hd">{$metadata.type_name}</td>
+                    {if $metadata.type=='1'}
+                    <td class="td hd">stid={$metadata.stid}&#38;sstid={$metadata.sstid}&#38;op_type={$metadata.op_type}&#38;op_fields={$metadata.op_fields}&#38;range={$metadata.range}</td>
+                    {else}
+                    <td class="td hd">task_id={$metadata.task_id}&#38;range={$metadata.range}</td>
+                    {/if}
+                    <td class="td hd">{$metadata.factor}</td>
+                    <td class="td hd">{$metadata.precision}</td>
+                    <td class="td hd">{$metadata.unit}</td>
+                    <td class="td hd">{$metadata.comment}</td>
+                    <td class="td hd">
+                        <a href="javascript: void(0);" class="upd-btn btn-green" data='{json_encode($metadata)}' title="修改元数据配置">修改</a>
+                        <a href="javascript: void(0);" class="del-btn btn-green" data='{json_encode($metadata)}' title="删除元数据配置">删除</a>
+                    </td>
+                </tr>
+                {/foreach}
+            </tbody>
+        </table>
+    </div>
+</div>
+{/block}
+{block "layout.pagejs"}
+<!-- here you can add some page javascript -->
+<script src="{$response.res_server}/common/js/select.js"></script>
+<script src="{$response.res_server}/common/js/jquery.form.js"></script>
+<script src="{$response.res_server}/common/js/Page.js"></script>
+<script src="{$response.res_server}/common/js/tm.datatable.js"></script>
+<script src="{$response.res_server}/data/js/common/tm.form.js"></script>
+<script src="{$response.res_server}/data/js/page/conf/metadatas.js?v={$response.application_info.version}"></script>
+{/block}

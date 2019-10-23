@@ -1,0 +1,82 @@
+{extends "layout/layout.html"}
+
+{block "layout.title"}{$response.application_info.name}-{TM::t('tongji', '后台服务状态')}{/block}
+{block "layout.subnav"}{include "gameanalysis/sub-nav.html"}{/block}
+{block "layout.pagecss"}
+<link rel="stylesheet" type="text/css" href="{$response.res_server}/data/css/page/gameanalysis/conf.css?v={$response.application_info.version}">
+{/block}
+{block "layout.main"}
+<div class="main with-aside">
+  {include "gameanalysis/aside.html"}
+  <div class="content" id="J_tableContainer">
+	<div class="ip-info email-tips" id="J_ipStatus">
+		<span class="mr20 ip-num" id="J_enrolled">{TM::t('tongji', '注册的IP个数')}：-</span>
+		<span class="mr20 ip-num" id="J_warned">{TM::t('tongji', '告警的IP个数：')}-</span>
+    </div>
+	<div class="toolbar-section">
+      <div class="toolbar-left">
+        <span class="add-btn" id="J_allInfoBtn">{TM::t('tongji', '全部信息')}</span>
+        <span class="division">|</span>
+        <span class="btn-dft" id="J_alertInfoBtn">{TM::t('tongji', '告警信息')}</span>
+      </div>
+      <div class="toolbar-right">
+		<span class="btn-dft" id="J_typeAlertOffBtn">{TM::t('tongji', '类型禁止告警')}</span>
+		<span class="division">|</span>
+		<span class="btn-dft" id="J_typeAlertOnBtn">{TM::t('tongji', '类型开启告警')}</span>
+		<span class="division">|</span>
+        <span class="btn-dft" id="J_alertsOnBtn">{TM::t('tongji', '批量禁止告警')}</span>
+        <span class="division">|</span>
+        <span class="btn-dft" id="J_alertOffBtn">{TM::t('tongji', '批量开启告警')}</span>
+      </div>
+    </div>
+    <div class="all-info">
+	  <div class="search-wrapper search-config"></div>
+      <table class="table module-table">
+		<thead>
+			<tr>
+              <th class="th w60" data-disabled="1">
+				<a class="table-btn sel-total">{TM::t('tongji', '全选')}</a>|<a class="table-btn sel-other">{TM::t('tongji', '反选')}</a>
+              </th>
+              {foreach $response.thead as $key => $thead}
+              <th class="th" data-key="{$key}" title="{$thead}">{$thead}</th>
+              {/foreach}
+              <th class="th w120" data-disabled="1">{TM::t('tongji', '操作')}</th>
+			</tr>
+          </thead>
+        <tbody>
+        </tbody>
+      </table>
+    </div>
+    <div class="alert-info hidden">
+	  <div class="search-wrapper search-config"></div>
+      <table class="table module-table">
+		  <thead>
+			<tr>
+              <th class="th w80" data-disabled="1">
+				<a class="table-btn sel-total">全选</a>|<a class="table-btn sel-other">反选</a>
+              </th>
+              {foreach $response.thead as $key => $thead}
+			  <th class="th" data-key="{$key}" title="{$thead}">{$thead}</th>
+              {/foreach}
+              <th class="th" data-disabled="1">操作</th>
+			</tr>
+          </thead>
+        <tbody>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>
+{/block}
+{block "layout.pagejs"}
+<!-- here you can add some page javascript -->
+<script src="{$response.res_server}/common/js/Page.js"></script>
+<script src="{$response.res_server}/common/js/select.js"></script>
+<script src="{$response.res_server}/common/js/tm.tabs.js"></script>
+<script src="{$response.res_server}/common/js/jquery.form.js"></script>
+<script src="{$response.res_server}/common/js/tm.datatable.js"></script>
+<script src="{$response.res_server}/data/js/common/tm.form.js"></script>
+<script src="{$response.res_server}/data/js/common/stat.table.js"></script>
+<script src="{$response.res_server}/data/js/common/navigator.js?v={$response.application_info.version}"></script>
+<script src="{$response.res_server}/data/js/page/gameanalysis/backend.js?v={$response.application_info.version}"></script>
+{/block}

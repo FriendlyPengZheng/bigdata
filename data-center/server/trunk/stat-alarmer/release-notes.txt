@@ -1,0 +1,47 @@
+2014-08-20 ianguo<ianguo@taomee.com>
+version: 0.0.7
+svn trunk revision: 3985 
+Changelog:
+1. 切换到新的短信网关接口。
+
+2014-06-06 bennyjiao<bennyjiao@taomee.com>
+version: 0.0.6
+svn trunk revision: 3125
+Changelog:
+1.截取短信长度
+
+2014-05-29 bennyjiao<bennyjiao@taomee.com>
+version: 0.0.5
+svn trunk revision: 2999
+Changelog:
+1.Add ios support
+2.对于为app未注册或app发送失败的情况，发送短信
+
+2015-05-13 lance<lance@taomee.com>
+version: 0.0.4
+svn trunk revision: 2819
+Changelog:
+1.修复了URL编码中文失败，导致的RTX标题和内容不支持中文的BUG
+
+2014-05-09 lance<lance@taomee.com>
+version: 0.0.3
+svn trunk revision: 2809
+Changelog:
+1.app客户端登录信息的持久化
+2.告警信息的持久化
+3.登录验证密码采用固定的字符串验证
+4.客户端收到推送通知后，需要向服务端拉取消息内容
+
+2014-04-30 lance<lance@taomee.com>
+version: 0.0.2
+svn trunk revision: 2661
+Changelog:
+1.修复了base64转码UTF-8格式字符串失败的问题
+2.将向app推送消息的方式改为了发消息
+3.将向百度云发送http请求的超时时间改为了1秒
+
+2014-04-23 lance<lance@taomee.com>
+version: 0.0.1
+svn trunk revision: 2588
+Changelog:
+1. 完成stat-alarmer初始版本

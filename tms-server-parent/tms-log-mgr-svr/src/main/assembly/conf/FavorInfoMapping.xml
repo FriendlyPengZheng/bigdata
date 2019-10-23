@@ -1,0 +1,90 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.taomee.tms.mgr.dao.FavorInfoDao">
+	<resultMap id="FavorInfoMap" type="com.taomee.tms.mgr.entity.FavorInfo">
+		<id column="favor_id" property="favorId" jdbcType="INTEGER" />
+		<result column="favor_name" property="favorName" jdbcType="VARCHAR" />
+		<result column="favor_type" property="favorType" jdbcType="INTEGER" />
+		<result column="layout" property="layout" jdbcType="INTEGER" />
+		<result column="game_id" property="gameId"
+			jdbcType="INTEGER" />
+		<result column="user_id" property="userId" jdbcType="INTEGER" />
+		<result column="ctime" property="cTime" jdbcType="TIMESTAMP"
+			javaType="java.sql.Timestamp" />
+		<result column="is_default" property="isDefault" jdbcType="INTEGER" />
+		<result column="display_order" property="displayOrder" jdbcType="INTEGER" />
+	</resultMap>
+	
+	
+	<sql id="FavorInfoColumnList">
+		favor_id, favor_name, favor_type, layout, game_id, user_id, ctime, is_default, display_order
+	</sql>
+	
+	
+	<insert id="insertFavorInfo" parameterType="com.taomee.tms.mgr.entity.FavorInfo"
+		useGeneratedKeys="true" keyProperty="favorId"   keyColumn="favor_id">
+		insert into t_web_favor (favor_name, favor_type, layout, game_id, user_id)
+		values (#{favorName,jdbcType=VARCHAR}, #{favorType,jdbcType=INTEGER}, #{layout,jdbcType=INTEGER},
+		 #{gameId,jdbcType=INTEGER},  #{userId,jdbcType=INTEGER})
+	</insert>
+	
+	<select id="getFavorByfavorId" resultMap="FavorInfoMap" parameterType="java.lang.Integer">
+		select 
+		<include refid="FavorInfoColumnList" />
+		from t_web_favor 
+		where favor_id=#{favorId}
+	</select>
+
+	
+	<select id="getListByUserId" parameterType="java.lang.Integer" resultMap="FavorInfoMap">
+		select 
+		<include refid="FavorInfoColumnList" />
+		from t_web_favor
+		<where>
+			<if test="userId!=null and userId!=0">
+				user_id=#{userId}
+			</if>
+			<if test="favorType!=null and favorType!=0">
+				 and favor_type=#{favorType}
+			</if>
+			<if test="favorName!=null and favorName!=''">
+				 and favor_name=#{favorName}
+			</if>
+		</where>
+		order by favor_id
+	</select>
+	
+	<update id="updateFavorDefault" parameterType="java.lang.Integer">
+		update
+		t_web_favor
+		set
+		user_id=#{userId}, is_default=#{isDefault}
+		where favor_id = #{favorId,jdbcType=INTEGER}
+	</update>
+	
+	
+	<update id="updateDefaultFavorByfavorId" parameterType="java.lang.Integer">
+		update
+		t_web_favor
+		set
+		is_default=#{isDefault}
+		where favor_id = #{favorId,jdbcType=INTEGER}
+	</update>
+	
+	
+	<update id="updateFavorByFavorNameLayOut" >
+		update
+		t_web_favor
+		set
+		favor_name=#{favorName}, layout=#{layout}
+		where favor_id = #{favorId,jdbcType=INTEGER}
+	</update>
+	
+	
+	<delete id="deleteFavorByfavorId" parameterType="java.lang.Integer">
+		delete from
+		t_web_favor
+		where favor_id = #{favorId,jdbcType=INTEGER}
+	</delete>
+	
+</mapper>

@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.taomee.tms.mgr.dao.TaskInfoDao">
+	<resultMap id="TaskInfoMap" type="com.taomee.tms.mgr.entity.TaskInfo">
+		<id column="task_id" property="taskId" jdbcType="INTEGER" />
+		<result column="task_name" property="taskName" jdbcType="VARCHAR" />
+		<result column="type" property="type" jdbcType="INTEGER" />
+		<result column="op" property="op" jdbcType="VARCHAR" />
+		<result column="execute_time" property="executeTime" jdbcType="VARCHAR" />
+		<result column="priority" property="priority" jdbcType="INTEGER" />
+		<result column="add_time" property="addTime" jdbcType="TIMESTAMP"
+			javaType="java.sql.Timestamp" />
+	</resultMap>
+
+	<sql id="TaskInfoColumnList">
+		t_task_info.task_id, task_name, type,  op, execute_time, priority,  add_time
+	</sql>
+
+
+	<sql id="TaskInfoColumnListWithTableName">
+		t_task_info.task_id, task_name, type, op, execute_time, priority,
+		t_artifact_info.period, t_artifact_info.result, t_task_info.add_time
+	</sql>
+
+	<insert id="insertTaskInfo" parameterType="com.taomee.tms.mgr.entity.TaskInfo"
+		useGeneratedKeys="true" keyProperty="taskId">
+		insert into
+		t_task_info (task_name,
+		op, execute_time, priority)
+		values
+		(#{taskName,jdbcType=VARCHAR},
+		#{op,jdbcType=VARCHAR},
+		#{executeTime,jdbcType=VARCHAR},
+		#{priority,jdbcType=INTEGER})
+	</insert>
+
+	<select id="getTaskInfo" resultMap="TaskInfoMap" parameterType="java.lang.Integer">
+		select
+		<include refid="TaskInfoColumnListWithTableName" />
+		from t_task_info LEFT OUTER JOIN t_artifact_info
+		on t_task_info.task_id =t_artifact_info.task_id
+		where t_task_info.task_id = #{taskId,jdbcType=INTEGER} order by task_id ASC
+	</select>
+
+	<select id="getTaskInfos" resultMap="TaskInfoMap">
+		select
+		<include refid="TaskInfoColumnListWithTableName" />
+		from t_task_info LEFT OUTER JOIN t_artifact_info
+		on t_task_info.task_id =t_artifact_info.task_id 
+		order by task_id ASC
+	</select>
+
+	<update id="updateTaskInfo" parameterType="com.taomee.tms.mgr.entity.TaskInfo">
+		update
+		t_task_info
+		set
+		task_id=#{taskId},task_name=#{taskName},op=#{op},execute_time=#{executeTime},priority=#{priority}
+		where t_task_info.task_id = #{taskId,jdbcType=INTEGER}
+	</update>
+
+	<delete id="deleteTaskInfo" parameterType="com.taomee.tms.mgr.entity.TaskInfo">
+		delete from
+		t_task_info
+		where t_task_info.task_id = #{taskId,jdbcType=INTEGER}
+	</delete>
+
+</mapper> 

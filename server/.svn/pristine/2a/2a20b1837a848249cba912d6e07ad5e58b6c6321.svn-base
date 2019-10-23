@@ -1,0 +1,21 @@
+log_dir         ./log
+log_level       8
+log_size        32000000
+log_maxfiles    100
+
+proc_name       stat-calc-custom
+pid_file        ./bin/daemon.pid
+plugin_file     ./bin/stat-calc-custom.so
+
+shmq_size       1048576
+
+max_connect     20000
+max_pkg_len     1048576
+
+bind_ip         10.1.1.63
+bind_port       19210
+
+work_conf       ./conf/work.conf
+
+include         ./conf/stat-calc-custom.conf
+include         ./conf/version.conf

@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.taomee.tms.mgr.dao.SchemaDiaryInfoDao">
+	<resultMap id="SchemaDiaryInfoMap" type="com.taomee.tms.mgr.entity.SchemaDiaryInfo">
+		<id column="diary_id" property="diaryId" jdbcType="INTEGER" />
+		<result column="curd" property="curd" jdbcType="INTEGER" />
+		<result column="schema_id" property="schemaId" jdbcType="INTEGER" />
+		<result column="log_id" property="logId" jdbcType="INTEGER" />
+		<result column="op" property="op" jdbcType="VARCHAR" />
+		<result column="cascade_fields" property="cascadeFields"
+			jdbcType="VARCHAR" />
+		<result column="material_id" property="materialId" jdbcType="INTEGER" />
+		<result column="status" property="status" jdbcType="INTEGER" />
+		<result column="add_time" property="addTime" jdbcType="TIMESTAMP"
+			javaType="java.sql.Timestamp" />
+	</resultMap>
+
+	<sql id="SchemaDiaryInfoColumnList">
+		diary_id, curd, schema_id, log_id, op, cascade_fields,
+		material_id, status, add_time
+	</sql>
+
+	<insert id="insertSchemaDiaryInfo" parameterType="com.taomee.tms.mgr.entity.SchemaDiaryInfo"
+		useGeneratedKeys="true" keyProperty="diaryId">
+		insert into
+		t_schema_diary_info
+		(curd, schema_id, log_id, op, cascade_fields,material_id, status)
+		values
+		(#{curd,jdbcType=INTEGER},#{schemaId,jdbcType=INTEGER}, #{logId,jdbcType=INTEGER},
+		#{op,jdbcType=VARCHAR},
+		#{cascadeFields,jdbcType=VARCHAR},#{materialId,jdbcType=INTEGER}, #{status,jdbcType=INTEGER})
+	</insert>
+
+	<select id="getSchemaDiaryInfoBydiaryId" resultMap="SchemaDiaryInfoMap"
+		parameterType="java.lang.Integer">
+		select
+		<include refid="SchemaDiaryInfoColumnList" />
+		from t_schema_diary_info
+		where diary_id &gt;
+		#{diaryId,jdbcType=INTEGER} order by diary_id ASC
+	</select>
+
+	<select id="getSchemaDiaryInfoBylastId" resultMap="SchemaDiaryInfoMap">
+		select 
+		<include refid="SchemaDiaryInfoColumnList" />
+		from t_schema_diary_info order by diary_id DESC  limit 1
+	</select>
+
+</mapper>

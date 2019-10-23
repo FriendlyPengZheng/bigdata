@@ -1,0 +1,84 @@
+package org.apache.hadoop.mapred.lib;
+
+import util.*;
+import java.io.IOException;
+import ad.active.MergeKey;
+
+import org.apache.hadoop.fs.Path;
+import org.apache.hadoop.io.*;
+import org.apache.hadoop.util.*;
+import org.apache.hadoop.conf.*;
+import org.apache.hadoop.mapred.*;
+import org.apache.hadoop.mapred.lib.*;
+import org.apache.hadoop.mapred.join.*;
+import org.apache.hadoop.mapreduce.Counter;
+
+//public static class RegisterMap extends MapReduceBase
+public class RegisterMapQSCR extends MapReduceBase
+        implements Mapper<LongWritable, Text, LongWritable, MergeKey>
+{
+    private LongWritable mimiKey = new LongWritable();
+    private MergeKey tadvalue = new MergeKey();
+    private FileSplit fsplit = null;
+    //private int processday = 0;
+    private JobConf jobConf = null;
+    public void configure(JobConf job) {
+        this.jobConf = job;
+        try {
+            //String pdaystr = job.get("process.day");
+            //processday = Integer.parseInt(pdaystr);
+            //tadvalue.timeday.set(processday);
+            //System.out.println("register p day: "+pdaystr);
+            tadvalue.gid.set(-1);
+
+            Path[] ps = TextInputFormat.getInputPaths(job);
+            for (int i=0 ; i<ps.length ; ++i) {
+                System.out.println("Text input : " + ps[i].toString());
+            } /* - end for - */
+            System.out.println("input dir: "+job.get("mapred.input.dir"));
+            System.out.println("input mapper: "+job.get("mapred.input.dir.mappers"));
+            
+        } catch (Exception ex) {
+            ex.printStackTrace();
+        }
+    }
+    // in: mimi tad
+    // out: mimi {tad game(-1) time}
+    public void map(LongWritable key, Text value,
+            OutputCollector<LongWritable,MergeKey> output, Reporter reporter)
+        throws IOException
+    {
+        if (fsplit == null) {
+            InputSplit clx = reporter.getInputSplit();
+            System.err.println("class: " + clx.getClass());
+
+            fsplit = (FileSplit)(((TaggedInputSplit)(reporter.getInputSplit())).getInputSplit());
+            Path slitpath = fsplit.getPath();
+            System.err.println("split path: " + slitpath.toString());
+            int processday = 0;
+            try { 
+                String dayTok = slitpath.getParent().getName();
+                processday = Integer.parseInt(dayTok);
+                System.err.println("reg day tok: " + dayTok);
+            } catch (Exception ex) {
+                ex.printStackTrace();
+            }
+            tadvalue.timeday.set(processday);
+        }
+        String line = value.toString();
+        String[] items = line.split("\t");
+        if (items.length != 2) { System.err.println("error reg fmt: " + line); return; }
+
+        try {
+            mimiKey.set(Long.parseLong(items[0]));
+        } catch (Exception ex) {
+            ex.printStackTrace();
+        }
+        tadvalue.tad.set(items[1]);
+
+        output.collect(mimiKey, tadvalue);
+    }
+
+    public void close() {
+    }
+}

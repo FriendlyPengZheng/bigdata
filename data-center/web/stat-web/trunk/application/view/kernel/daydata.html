@@ -1,0 +1,46 @@
+{extends "layout/layout.html"}
+
+{block "layout.title"}{$response.application_info.name}-核心数据{/block}
+{block "layout.subnav"}{include "kernel/sub-nav-email.html"}{/block}
+{block "layout.pagecss"}
+     <link rel="stylesheet" type="text/css" href="{$response.res_server}/data/css/page/kernel/kernel.css?v={$response.application_info.version}">
+{/block}
+{block "layout.main"}
+<div class="main">
+    <input type="hidden" id="J_gEmailId" value="{$response.param.email_id}"/>
+	<input type="hidden" id="J_gEmailFreqId" value="{$response.param.frequency_type}"/>
+    <div class="content clearfix" id="J_content">
+        <div class="email-tips" id="J_emailTips">
+            <span class="mr20">最后发送：<span class="last-send-time mr10 {if strtotime($response.param.last_send_time) >= strtotime(date('Y-m-d 00:00:00'))}sent{/if}">{$response.param.last_send_time}</span><span class="last-send-user {if strtotime($response.param.last_send_time) >= strtotime(date('Y-m-d 00:00:00'))}sent{/if}">{$response.param.last_send_user}</span></span>
+            <span class="mr20">收件人：<span class="receviers">{$response.param.receviers}</span></span>
+            <span>测试收件人：<span class="test-receiver">{$response.param.test_receiver}</span></span>
+        </div>
+        <table class="table item-table mb10" id="J_datalist">
+            <tbody>
+                {foreach $response.datalist as $list}
+                <tr data-id="{$list.email_data_id}" data-expr="{$list.data_expr}" data-offset="{$list.offset}" data-gpzs="{$list.gpzs_id}" data-name="{$list.data_name}" data-period="{$list.data_date_type}" data-threshold='{$list.threshold}'>
+                    <td class="td hd"><a href="javascript:void(0);" class="item" title="点击查看详情">{if $list.content_title}【{$list.content_title}】{/if}{$list.data_name}</a></td>
+                    <td class="td hd" colspan="7">
+                        <span class="row-loading">加载中...</span>
+                    </td>
+                </tr>
+                {/foreach}
+            </tbody>
+        </table>
+    </div>
+</div>
+{/block}
+{block "layout.pagejs"}
+    <!-- here you can add some page javascript -->
+    <script src="{$response.res_server}/common/js/select.js"></script>
+    <script src="{$response.res_server}/data/js/common/navigator.js?v={$response.application_info.version}"></script>
+    <script src="{$response.res_server}/common/js/draw/highstock.js"></script>
+    <script src="{$response.res_server}/common/js/tm.draw.js"></script>
+    <script src="{$response.res_server}/common/js/tm.datatable.js"></script>
+    <script src="{$response.res_server}/data/js/common/common.js?v={$response.application_info.version}"></script>
+    <script src="{$response.res_server}/data/js/common/stat.table.js"></script>
+    <script src="{$response.res_server}/data/js/common/tm.module.ok.js?v={$response.application_info.version}"></script>
+    <script src="{$response.res_server}/data/js/common/usage.ok.js?v={$response.application_info.version}"></script>
+    <script src="{$response.res_server}/data/js/common/tm.form.js?v={$response.application_info.version}"></script>
+    <script src="{$response.res_server}/data/js/page/kernel/kernel.js?v={$response.application_info.version}"></script>
+{/block}

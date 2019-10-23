@@ -1,0 +1,90 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.taomee.tms.mgr.dao.EmailConfigDao">
+	<resultMap id="EmailConfigMap" type="com.taomee.tms.mgr.entity.EmailConfigInfo">
+		<id column="email_id" property="emailId" jdbcType="INTEGER" />
+		<result column="server_id" property="serverId" jdbcType="INTEGER" />
+		<result column="game_id" property="gameId" jdbcType="INTEGER" />
+		<result column="sender" property="sender" jdbcType="INTEGER" />
+		<result column="receviers" property="receviers" jdbcType="VARCHAR" />
+		<result column="cc" property="cc" jdbcType="VARCHAR" />
+		<result column="subject" property="subject" jdbcType="VARCHAR" />
+		<result column="remarks" property="remarks" jdbcType="VARCHAR" />
+		<result column="frequency_type" property="frequencyType" jdbcType="VARCHAR" />
+		<result column="frequency" property="frequency" jdbcType="INTEGER" />
+		<result column="last_send_time" property="lastSendTime" javaType="long" jdbcType="INTEGER"/>
+		<result column="last_send_user" property="lastSendUser" jdbcType="VARCHAR" />
+		<result column="test_receiver" property="testReceiver" jdbcType="VARCHAR" />
+		<result column="status" property="status" jdbcType="INTEGER" />
+		<result column="dependencies" property="dependencies" jdbcType="VARCHAR" />
+		<result column="weixin_media_id" property="weixinMediaId" jdbcType="VARCHAR" />
+		<result column="weixin_recev" property="weixinRecev" jdbcType="VARCHAR" />
+		<result column="order" property="order" jdbcType="INTEGER" />
+	</resultMap>
+	
+	<sql id="tableName">
+		t_web_email_config_maggie
+	</sql>
+	
+	<sql id="allInfo">
+		email_id,server_id,game_id,sender,receviers,cc,subject,remarks,frequency_type,frequency,last_send_time,last_send_user,test_receiver,status,dependencies,weixin_media_id,weixin_recev,`order`
+	</sql>
+	
+	<select id="queryAll" resultMap="EmailConfigMap">
+		SELECT
+			<include refid="allInfo"/>
+		FROM 
+			<include refid="tableName"/>
+		ORDER BY
+			`order`		                                                                                                                  
+	</select>
+	
+	<select id="queryByEmailId" parameterType="java.lang.Integer" resultMap="EmailConfigMap">
+		SELECT
+			<include refid="allInfo"/>
+		FROM
+			<include refid="tableName"/>
+		WHERE
+			email_id = #{emailId,jdbcType=INTEGER}
+	</select>
+	
+	<insert id="insert" parameterType="com.taomee.tms.mgr.entity.EmailConfigInfo"
+			useGeneratedKeys="true" keyProperty="emailId">
+		INSERT INTO 
+			<include refid="tableName"/> (server_id, game_id, subject, receviers, cc, test_receiver, weixin_recev,weixin_media_id, frequency_type, remarks,dependencies)
+		VALUES
+			(#{serverId,jdbcType=INTEGER},#{gameId,jdbcType=INTEGER},#{subject,jdbcType=VARCHAR}, #{receviers,jdbcType=VARCHAR}, #{cc,jdbcType=VARCHAR}, #{testReceiver,jdbcType=VARCHAR},#{weixinRecev,jdbcType=VARCHAR},#{weixinMediaId,jdbcType=VARCHAR},#{frequencyType,jdbcType=VARCHAR},#{remarks,jdbcType=VARCHAR},#{dependencies,jdbcType=VARCHAR})	
+	</insert>
+	
+	<delete id="deleteByEmailId" parameterType="java.lang.Integer">
+		DELETE FROM
+			<include refid="tableName"/>
+		WHERE
+			email_id = #{emailId,jdbcType=INTEGER}
+	</delete>
+	
+	<update id="update" parameterType="com.taomee.tms.mgr.entity.EmailConfigInfo">
+		UPDATE
+			<include refid="tableName"/>
+		SET
+			receviers = #{receviers,jdbcType=VARCHAR},
+			test_receiver = #{testReceiver,jdbcType=VARCHAR},
+			cc = #{cc,jdbcType=VARCHAR},
+			subject = #{subject,jdbcType=VARCHAR},
+			remarks = #{remarks,jdbcType=VARCHAR},
+			dependencies = #{dependencies,jdbcType=VARCHAR},
+			weixin_recev = #{weixinRecev,jdbcType=VARCHAR},
+			weixin_media_id = #{weixinMediaId, jdbcType=VARCHAR}
+		WHERE
+			email_id = #{emailId,jdbcType=INTEGER}
+	</update>
+	
+	<update id="setStatus">
+		UPDATE
+			<include refid="tableName"/>
+		SET
+			status = #{status,jdbcType=INTEGER}
+		WHERE
+			email_id = #{emailId,jdbcType=INTEGER}
+	</update>
+</mapper>

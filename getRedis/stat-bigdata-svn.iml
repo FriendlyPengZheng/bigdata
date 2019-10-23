@@ -1,0 +1,363 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<module type="JAVA_MODULE" version="4">
+  <component name="EclipseModuleManager">
+    <libelement value="jar://$MODULE_DIR$/../server/trunk/stat-bigdata/scrpit/libsvm.jar!/" />
+    <libelement value="jar://$MODULE_DIR$/../server/trunk/stat-bigdata/scrpit/stat-bigdata.jar!/" />
+    <libelement value="jar://$MODULE_DIR$/../server/trunk/stat-bigdata/scrpit/weka.jar!/" />
+    <libelement value="jar://$MODULE_DIR$/../server/trunk/stat-bigdata/stat-bigdata.jar!/" />
+    <libelement value="jar://$MODULE_DIR$/../server/trunk/stat-bigdata/lib/cglib-nodep-2.2.2.jar!/" />
+    <libelement value="jar://$MODULE_DIR$/../server/trunk/stat-bigdata/lib/commons-cli-1.2.jar!/" />
+    <libelement value="jar://$MODULE_DIR$/../server/trunk/stat-bigdata/lib/commons-configuration-1.6.jar!/" />
+    <libelement value="jar://$MODULE_DIR$/../server/trunk/stat-bigdata/lib/commons-httpclient-3.0.1.jar!/" />
+    <libelement value="jar://$MODULE_DIR$/../server/trunk/stat-bigdata/lib/commons-lang-2.4.jar!/" />
+    <libelement value="jar://$MODULE_DIR$/../server/trunk/stat-bigdata/lib/commons-logging-1.1.1.jar!/" />
+    <libelement value="jar://$MODULE_DIR$/../server/trunk/stat-bigdata/lib/guava-r07.jar!/" />
+    <libelement value="jar://$MODULE_DIR$/../server/trunk/stat-bigdata/lib/hadoop-core-1.2.1.jar!/" />
+    <libelement value="jar://$MODULE_DIR$/../server/trunk/stat-bigdata/lib/jackson-core-asl-1.8.8.jar!/" />
+    <libelement value="jar://$MODULE_DIR$/../server/trunk/stat-bigdata/lib/jackson-mapper-asl-1.8.8.jar!/" />
+    <libelement value="jar://$MODULE_DIR$/../server/trunk/stat-bigdata/lib/javassist-3.20.0-GA.jar!/" />
+    <libelement value="jar://$MODULE_DIR$/../server/trunk/stat-bigdata/lib/log4j-1.2.15.jar!/" />
+    <libelement value="jar://$MODULE_DIR$/../server/trunk/stat-bigdata/lib/mockito-all-1.10.19.jar!/" />
+    <libelement value="jar://$MODULE_DIR$/../server/trunk/stat-bigdata/lib/mockito-all-1.9.5.jar!/" />
+    <libelement value="jar://$MODULE_DIR$/../server/trunk/stat-bigdata/lib/mrunit-0.8.0-incubating.jar!/" />
+    <libelement value="jar://$MODULE_DIR$/../server/trunk/stat-bigdata/lib/mrunit-0.9.0-incubating-hadoop1.jar!/" />
+    <libelement value="jar://$MODULE_DIR$/../server/trunk/stat-bigdata/lib/mrunit-0.9.0-incubating-hadoop2.jar!/" />
+    <libelement value="jar://$MODULE_DIR$/../server/trunk/stat-bigdata/lib/mrunit-1.0.0-hadoop1.jar!/" />
+    <libelement value="jar://$MODULE_DIR$/../server/trunk/stat-bigdata/lib/mrunit-1.1.0-hadoop1.jar!/" />
+    <libelement value="jar://$MODULE_DIR$/../server/trunk/stat-bigdata/lib/mrunit-1.1.0-hadoop2.jar!/" />
+    <libelement value="jar://$MODULE_DIR$/../server/trunk/stat-bigdata/lib/mrunit-1.1.0-javadoc.jar!/" />
+    <libelement value="jar://$MODULE_DIR$/../server/trunk/stat-bigdata/lib/mrunit-1.1.0-sources.jar!/" />
+    <libelement value="jar://$MODULE_DIR$/../server/trunk/stat-bigdata/lib/objenesis-2.1.jar!/" />
+    <libelement value="jar://$MODULE_DIR$/../server/trunk/stat-bigdata/lib/powermock-core-1.5.1.jar!/" />
+    <libelement value="jar://$MODULE_DIR$/../server/trunk/stat-bigdata/lib/powermock-mockito-1.6.3-full.jar!/" />
+    <libelement value="jar://$MODULE_DIR$/../server/trunk/stat-bigdata/lib/mysql-connector-java-5.1.47-bin.jar!/" />
+    <libelement value="jar://$MODULE_DIR$/../server/trunk/stat-bigdata/lib/mysql-connector-java-5.1.47.jar!/" />
+    <libelement value="jar://C:/Program Files/Java/jdk1.7.0_80/src.zip!/" />
+    <libelement value="jar://$MAVEN_REPOSITORY$/com/alibaba/dubbo/2.5.3/dubbo-2.5.3.jar!/" />
+    <libelement value="jar://E:/taomee-friendly/hadoop-1.2.1.zip!/" />
+    <src_description expected_position="0">
+      <src_folder value="file://$MODULE_DIR$/../server/trunk/stat-bigdata/src" expected_position="0" />
+    </src_description>
+  </component>
+  <component name="NewModuleRootManager">
+    <output url="file://$MODULE_DIR$/../server/trunk/stat-bigdata/src" />
+    <exclude-output />
+    <content url="file://$MODULE_DIR$/../server/trunk/stat-bigdata">
+      <sourceFolder url="file://$MODULE_DIR$/../server/trunk/stat-bigdata/src" isTestSource="false" />
+    </content>
+    <orderEntry type="sourceFolder" forTests="false" />
+    <orderEntry type="module-library">
+      <library name="libsvm.jar">
+        <CLASSES>
+          <root url="jar://$MODULE_DIR$/../server/trunk/stat-bigdata/scrpit/libsvm.jar!/" />
+        </CLASSES>
+        <JAVADOC />
+        <SOURCES />
+      </library>
+    </orderEntry>
+    <orderEntry type="module-library">
+      <library name="stat-bigdata.jar">
+        <CLASSES>
+          <root url="jar://$MODULE_DIR$/../server/trunk/stat-bigdata/scrpit/stat-bigdata.jar!/" />
+        </CLASSES>
+        <JAVADOC />
+        <SOURCES />
+      </library>
+    </orderEntry>
+    <orderEntry type="module-library">
+      <library name="weka.jar">
+        <CLASSES>
+          <root url="jar://$MODULE_DIR$/../server/trunk/stat-bigdata/scrpit/weka.jar!/" />
+        </CLASSES>
+        <JAVADOC />
+        <SOURCES />
+      </library>
+    </orderEntry>
+    <orderEntry type="module-library">
+      <library name="stat-bigdata.jar">
+        <CLASSES>
+          <root url="jar://$MODULE_DIR$/../server/trunk/stat-bigdata/stat-bigdata.jar!/" />
+        </CLASSES>
+        <JAVADOC />
+        <SOURCES />
+      </library>
+    </orderEntry>
+    <orderEntry type="module-library">
+      <library name="cglib-nodep-2.2.2.jar">
+        <CLASSES>
+          <root url="jar://$MODULE_DIR$/../server/trunk/stat-bigdata/lib/cglib-nodep-2.2.2.jar!/" />
+        </CLASSES>
+        <JAVADOC />
+        <SOURCES />
+      </library>
+    </orderEntry>
+    <orderEntry type="module-library">
+      <library name="commons-cli-1.2.jar">
+        <CLASSES>
+          <root url="jar://$MODULE_DIR$/../server/trunk/stat-bigdata/lib/commons-cli-1.2.jar!/" />
+        </CLASSES>
+        <JAVADOC />
+        <SOURCES />
+      </library>
+    </orderEntry>
+    <orderEntry type="module-library">
+      <library name="commons-configuration-1.6.jar">
+        <CLASSES>
+          <root url="jar://$MODULE_DIR$/../server/trunk/stat-bigdata/lib/commons-configuration-1.6.jar!/" />
+        </CLASSES>
+        <JAVADOC />
+        <SOURCES />
+      </library>
+    </orderEntry>
+    <orderEntry type="module-library">
+      <library name="commons-httpclient-3.0.1.jar">
+        <CLASSES>
+          <root url="jar://$MODULE_DIR$/../server/trunk/stat-bigdata/lib/commons-httpclient-3.0.1.jar!/" />
+        </CLASSES>
+        <JAVADOC />
+        <SOURCES />
+      </library>
+    </orderEntry>
+    <orderEntry type="module-library">
+      <library name="commons-lang-2.4.jar">
+        <CLASSES>
+          <root url="jar://$MODULE_DIR$/../server/trunk/stat-bigdata/lib/commons-lang-2.4.jar!/" />
+        </CLASSES>
+        <JAVADOC />
+        <SOURCES />
+      </library>
+    </orderEntry>
+    <orderEntry type="module-library">
+      <library name="commons-logging-1.1.1.jar">
+        <CLASSES>
+          <root url="jar://$MODULE_DIR$/../server/trunk/stat-bigdata/lib/commons-logging-1.1.1.jar!/" />
+        </CLASSES>
+        <JAVADOC />
+        <SOURCES />
+      </library>
+    </orderEntry>
+    <orderEntry type="module-library">
+      <library name="guava-r07.jar">
+        <CLASSES>
+          <root url="jar://$MODULE_DIR$/../server/trunk/stat-bigdata/lib/guava-r07.jar!/" />
+        </CLASSES>
+        <JAVADOC />
+        <SOURCES />
+      </library>
+    </orderEntry>
+    <orderEntry type="module-library">
+      <library name="hadoop-core-1.2.1.jar">
+        <CLASSES>
+          <root url="jar://$MODULE_DIR$/../server/trunk/stat-bigdata/lib/hadoop-core-1.2.1.jar!/" />
+        </CLASSES>
+        <JAVADOC>
+          <root url="jar://E:/taomee-friendly/hadoop-1.2.1.zip!/" />
+        </JAVADOC>
+        <SOURCES>
+          <root url="file://$USER_HOME$/Downloads/hadoop-1.2.1.zip" />
+        </SOURCES>
+      </library>
+    </orderEntry>
+    <orderEntry type="module-library">
+      <library name="jackson-core-asl-1.8.8.jar">
+        <CLASSES>
+          <root url="jar://$MODULE_DIR$/../server/trunk/stat-bigdata/lib/jackson-core-asl-1.8.8.jar!/" />
+        </CLASSES>
+        <JAVADOC />
+        <SOURCES />
+      </library>
+    </orderEntry>
+    <orderEntry type="module-library">
+      <library name="jackson-mapper-asl-1.8.8.jar">
+        <CLASSES>
+          <root url="jar://$MODULE_DIR$/../server/trunk/stat-bigdata/lib/jackson-mapper-asl-1.8.8.jar!/" />
+        </CLASSES>
+        <JAVADOC />
+        <SOURCES />
+      </library>
+    </orderEntry>
+    <orderEntry type="module-library">
+      <library name="javassist-3.20.0-GA.jar">
+        <CLASSES>
+          <root url="jar://$MODULE_DIR$/../server/trunk/stat-bigdata/lib/javassist-3.20.0-GA.jar!/" />
+        </CLASSES>
+        <JAVADOC />
+        <SOURCES />
+      </library>
+    </orderEntry>
+    <orderEntry type="module-library">
+      <library name="log4j-1.2.15.jar">
+        <CLASSES>
+          <root url="jar://$MODULE_DIR$/../server/trunk/stat-bigdata/lib/log4j-1.2.15.jar!/" />
+        </CLASSES>
+        <JAVADOC />
+        <SOURCES />
+      </library>
+    </orderEntry>
+    <orderEntry type="module-library">
+      <library name="mockito-all-1.10.19.jar">
+        <CLASSES>
+          <root url="jar://$MODULE_DIR$/../server/trunk/stat-bigdata/lib/mockito-all-1.10.19.jar!/" />
+        </CLASSES>
+        <JAVADOC />
+        <SOURCES />
+      </library>
+    </orderEntry>
+    <orderEntry type="module-library">
+      <library name="mockito-all-1.9.5.jar">
+        <CLASSES>
+          <root url="jar://$MODULE_DIR$/../server/trunk/stat-bigdata/lib/mockito-all-1.9.5.jar!/" />
+        </CLASSES>
+        <JAVADOC />
+        <SOURCES />
+      </library>
+    </orderEntry>
+    <orderEntry type="module-library">
+      <library name="mrunit-0.8.0-incubating.jar">
+        <CLASSES>
+          <root url="jar://$MODULE_DIR$/../server/trunk/stat-bigdata/lib/mrunit-0.8.0-incubating.jar!/" />
+        </CLASSES>
+        <JAVADOC />
+        <SOURCES />
+      </library>
+    </orderEntry>
+    <orderEntry type="module-library">
+      <library name="mrunit-0.9.0-incubating-hadoop1.jar">
+        <CLASSES>
+          <root url="jar://$MODULE_DIR$/../server/trunk/stat-bigdata/lib/mrunit-0.9.0-incubating-hadoop1.jar!/" />
+        </CLASSES>
+        <JAVADOC />
+        <SOURCES />
+      </library>
+    </orderEntry>
+    <orderEntry type="module-library">
+      <library name="mrunit-0.9.0-incubating-hadoop2.jar">
+        <CLASSES>
+          <root url="jar://$MODULE_DIR$/../server/trunk/stat-bigdata/lib/mrunit-0.9.0-incubating-hadoop2.jar!/" />
+        </CLASSES>
+        <JAVADOC />
+        <SOURCES />
+      </library>
+    </orderEntry>
+    <orderEntry type="module-library">
+      <library name="mrunit-1.0.0-hadoop1.jar">
+        <CLASSES>
+          <root url="jar://$MODULE_DIR$/../server/trunk/stat-bigdata/lib/mrunit-1.0.0-hadoop1.jar!/" />
+        </CLASSES>
+        <JAVADOC />
+        <SOURCES />
+      </library>
+    </orderEntry>
+    <orderEntry type="module-library">
+      <library name="mrunit-1.1.0-hadoop1.jar">
+        <CLASSES>
+          <root url="jar://$MODULE_DIR$/../server/trunk/stat-bigdata/lib/mrunit-1.1.0-hadoop1.jar!/" />
+        </CLASSES>
+        <JAVADOC />
+        <SOURCES />
+      </library>
+    </orderEntry>
+    <orderEntry type="module-library">
+      <library name="mrunit-1.1.0-hadoop2.jar">
+        <CLASSES>
+          <root url="jar://$MODULE_DIR$/../server/trunk/stat-bigdata/lib/mrunit-1.1.0-hadoop2.jar!/" />
+        </CLASSES>
+        <JAVADOC />
+        <SOURCES />
+      </library>
+    </orderEntry>
+    <orderEntry type="module-library">
+      <library name="mrunit-1.1.0-javadoc.jar">
+        <CLASSES>
+          <root url="jar://$MODULE_DIR$/../server/trunk/stat-bigdata/lib/mrunit-1.1.0-javadoc.jar!/" />
+        </CLASSES>
+        <JAVADOC />
+        <SOURCES />
+      </library>
+    </orderEntry>
+    <orderEntry type="module-library">
+      <library name="mrunit-1.1.0-sources.jar">
+        <CLASSES>
+          <root url="jar://$MODULE_DIR$/../server/trunk/stat-bigdata/lib/mrunit-1.1.0-sources.jar!/" />
+        </CLASSES>
+        <JAVADOC />
+        <SOURCES />
+      </library>
+    </orderEntry>
+    <orderEntry type="module-library">
+      <library name="objenesis-2.1.jar">
+        <CLASSES>
+          <root url="jar://$MODULE_DIR$/../server/trunk/stat-bigdata/lib/objenesis-2.1.jar!/" />
+        </CLASSES>
+        <JAVADOC />
+        <SOURCES />
+      </library>
+    </orderEntry>
+    <orderEntry type="module-library">
+      <library name="powermock-core-1.5.1.jar">
+        <CLASSES>
+          <root url="jar://$MODULE_DIR$/../server/trunk/stat-bigdata/lib/powermock-core-1.5.1.jar!/" />
+        </CLASSES>
+        <JAVADOC />
+        <SOURCES />
+      </library>
+    </orderEntry>
+    <orderEntry type="module-library">
+      <library name="powermock-mockito-1.6.3-full.jar">
+        <CLASSES>
+          <root url="jar://$MODULE_DIR$/../server/trunk/stat-bigdata/lib/powermock-mockito-1.6.3-full.jar!/" />
+        </CLASSES>
+        <JAVADOC />
+        <SOURCES />
+      </library>
+    </orderEntry>
+    <orderEntry type="module-library">
+      <library name="mysql-connector-java-5.1.47-bin.jar">
+        <CLASSES>
+          <root url="jar://$MODULE_DIR$/../server/trunk/stat-bigdata/lib/mysql-connector-java-5.1.47-bin.jar!/" />
+        </CLASSES>
+        <JAVADOC />
+        <SOURCES />
+      </library>
+    </orderEntry>
+    <orderEntry type="module-library">
+      <library name="mysql-connector-java-5.1.47.jar">
+        <CLASSES>
+          <root url="jar://$MODULE_DIR$/../server/trunk/stat-bigdata/lib/mysql-connector-java-5.1.47.jar!/" />
+        </CLASSES>
+        <JAVADOC />
+        <SOURCES />
+      </library>
+    </orderEntry>
+    <orderEntry type="module-library">
+      <library name="src.zip">
+        <CLASSES>
+          <root url="jar://C:/Program Files/Java/jdk1.7.0_80/src.zip!/" />
+        </CLASSES>
+        <JAVADOC />
+        <SOURCES />
+      </library>
+    </orderEntry>
+    <orderEntry type="module-library">
+      <library name="dubbo-2.5.3.jar">
+        <CLASSES>
+          <root url="jar://$MAVEN_REPOSITORY$/com/alibaba/dubbo/2.5.3/dubbo-2.5.3.jar!/" />
+        </CLASSES>
+        <JAVADOC />
+        <SOURCES>
+          <root url="jar://$MAVEN_REPOSITORY$/com/alibaba/dubbo/2.5.3/dubbo-2.5.3-sources.jar!/" />
+        </SOURCES>
+      </library>
+    </orderEntry>
+    <orderEntry type="jdk" jdkName="1.7" jdkType="JavaSDK" />
+    <orderEntry type="module-library">
+      <library name="hadoop-1.2.1.zip">
+        <CLASSES>
+          <root url="jar://E:/taomee-friendly/hadoop-1.2.1.zip!/" />
+        </CLASSES>
+        <JAVADOC />
+        <SOURCES />
+      </library>
+    </orderEntry>
+  </component>
+</module>

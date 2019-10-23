@@ -1,0 +1,18 @@
+[INFO] [2019-09-18 10:34:52.297] com.taomee.tms.mgr.svc.LogMgrServiceImpl.getServerInfoByTopgameId(LogMgrServiceImpl.java:2165) | gameId 16
+  [INFO] [2019-09-18 10:34:52.360] com.taomee.tms.mgr.svc.LogMgrServiceImpl.getServerInfoByTopgameId(LogMgrServiceImpl.java:2165) | gameId 16
+  [INFO] [2019-09-18 10:34:52.297] com.taomee.tms.mgr.svc.LogMgrServiceImpl.getServerInfoByTopgameId(LogMgrServiceImpl.java:2165) | gameId 16
+  [INFO] [2019-09-18 10:34:52.298] com.taomee.tms.mgr.svc.LogMgrServiceImpl.getServerInfoByTopgameId(LogMgrServiceImpl.java:2165) | gameId 16
+  [INFO] [2019-09-18 10:34:54.646] com.taomee.tms.mgr.svc.LogMgrServiceImpl.getServerInfoByTopgameId(LogMgrServiceImpl.java:2167) | serverInfo:serverGPZSInfo [serverId=225, gameId=16, platformId=-1, zoneId=-1, sId=-1, status=0, addTime=2019-04-25 11:48:58.0]
+  [INFO] [2019-09-18 10:34:54.647] com.taomee.tms.mgr.svc.LogMgrServiceImpl.getServerInfoByTopgameId(LogMgrServiceImpl.java:2167) | serverInfo:serverGPZSInfo [serverId=225, gameId=16, platformId=-1, zoneId=-1, sId=-1, status=0, addTime=2019-04-25 11:48:58.0]
+  [INFO] [2019-09-18 10:34:54.647] com.taomee.tms.mgr.svc.LogMgrServiceImpl.getServerInfoByTopgameId(LogMgrServiceImpl.java:2167) | serverInfo:serverGPZSInfo [serverId=225, gameId=16, platformId=-1, zoneId=-1, sId=-1, status=0, addTime=2019-04-25 11:48:58.0]
+  [INFO] [2019-09-18 10:34:54.646] com.taomee.tms.mgr.svc.LogMgrServiceImpl.getServerInfoByTopgameId(LogMgrServiceImpl.java:2167) | serverInfo:serverGPZSInfo [serverId=225, gameId=16, platformId=-1, zoneId=-1, sId=-1, status=0, addTime=2019-04-25 11:48:58.0]
+  [INFO] [2019-09-18 10:34:54.964] com.taomee.tms.mgr.svc.LogMgrServiceImpl.getValueInfo(LogMgrServiceImpl.java:1960) | getValueInfo-> dataId: 10318 serverId: 225 startTime:2019-08-18 endTime: 2019-09-17 timedimension :0
+  [INFO] [2019-09-18 10:34:55.186] com.taomee.tms.mgr.svc.LogMgrServiceImpl.getDistrDataInfos(LogMgrServiceImpl.java:2190) | 分布拉数据接口参数relateId: 0 serverId: 225 startTime:2019-08-18 endtime: 2019-09-17 type: 1 timeDimension:0
+  [INFO] [2019-09-18 10:34:55.187] com.taomee.tms.mgr.svc.LogMgrServiceImpl.getDistrDataInfos(LogMgrServiceImpl.java:2190) | 分布拉数据接口参数relateId: 0 serverId: 225 startTime:2019-08-18 endtime: 2019-09-17 type: 1 timeDimension:0
+  [INFO] [2019-09-18 10:34:55.189] com.taomee.tms.mgr.svc.LogMgrServiceImpl.getDistrDataInfos(LogMgrServiceImpl.java:2190) | 分布拉数据接口参数relateId: 0 serverId: 225 startTime:2019-08-18 endtime: 2019-09-17 type: 1 timeDimension:0
+  [INFO] [2019-09-18 10:34:55.959] com.taomee.tms.mgr.svc.LogMgrServiceImpl.getValueInfo(LogMgrServiceImpl.java:1991) | 1566057600
+  [INFO] [2019-09-18 10:34:56.110] com.taomee.tms.mgr.svc.LogMgrServiceImpl.getValueInfo(LogMgrServiceImpl.java:1992) | 1568649600
+  [INFO] [2019-09-18 10:34:58.127] org.apache.hadoop.hbase.zookeeper.RecoverableZooKeeper.<init>(RecoverableZooKeeper.java:120) | Process identifier=hconnection-0x5e37679c connecting to ZooKeeper ensemble=10.1.1.228:2181
+  [INFO] [2019-09-18 10:35:02.203] com.taomee.tms.mgr.svc.LogMgrServiceImpl.getValueInfo(LogMgrServiceImpl.java:2004) | resultInfos: []
+  [INFO] [2019-09-18 10:36:12.464] org.apache.hadoop.hbase.client.ConnectionManager$HConnectionImplementation.closeZooKeeperWatcher(ConnectionManager.java:1712) | Closing zookeeper sessionid=0x16d14d78b5b7370
+  

@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.taomee.tms.mgr.dao.WhaleUserMonthDao">
+	<resultMap id="WhaleUserMonthMap"
+		type="com.taomee.tms.mgr.entity.WhaleUserMonthInfo">
+		<result column="game_id" property="gameId" jdbcType="INTEGER" />
+		<result column="server_id" property="serverId" jdbcType="VARCHAR" />
+		<result column="parent_id" property="parentId" jdbcType="VARCHAR" />
+		<result column="account_id" property="accountId" jdbcType="INTEGER" />
+		<result column="ctime" property="ctime" jdbcType="INTEGER" />
+		<result column="current_level" property="currentLevel" jdbcType="INTEGER" />
+		<result column="time" property="time" jdbcType="INTEGER" />
+		<result column="total_payments" property="totalPayments" jdbcType="INTEGER" />
+		<result column="total_count" property="totalCount" jdbcType="INTEGER" />
+		<result column="total_ratio" property="totalRatio" jdbcType="INTEGER" />
+		<result column="total_ratio_by_platform" property="totalRatioByPlatform" jdbcType="INTEGER" />
+	</resultMap>
+
+	<sql id="WhaleUserMonthByparentIdColumnList">
+		game_id, server_id, parent_id, account_id, ctime, current_level, time, total_payments,
+		total_count, total_ratio, total_ratio_by_platform
+	</sql>
+	
+	
+	<sql id="WhaleUserMonthByserverIdColumnList">
+		game_id, server_id, parent_id, account_id, ctime, current_level, time, total_payments,
+		total_count, total_ratio
+	</sql>
+	
+	<select id="getWhaleUserMonthInfosByparentId" resultMap="WhaleUserMonthMap"
+		parameterType="java.lang.Integer">
+		select
+		<include refid="WhaleUserMonthByparentIdColumnList" />
+		from v_whale_user_month
+		where
+			game_id=#{gameId} and parent_id=#{parentId}
+		order by total_payments DESC limit 500
+	</select>
+	
+	<select id="getWhaleUserMonthInfosByserverId" resultMap="WhaleUserMonthMap"
+		parameterType="java.lang.Integer">
+		select
+		<include refid="WhaleUserMonthByserverIdColumnList" />
+		from v_whale_user_month
+		where
+			game_id=#{gameId} and parent_id=#{parentId}
+		order by total_payments DESC limit 500
+	</select>
+</mapper> 

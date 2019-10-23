@@ -1,0 +1,9 @@
+1.com.taomee.tms.trunk.splitlog目录下的mapreducer代码，按照之前打散目录处理的
+2.com.taomee.tms.splitlog目录下的mapreducer代码为新的打散目录设计的。
+3.脚本在调用的时候根据打散目录的要求，自信选择不同版本的打散程序实现即可
+
+补充说明:
+com.taomee.tms.splitlog下的reducer打散程序，需要在打散脚本里面指定date参数。-D参数必须在脚本的一开始定义，否则程序可能加载不到date参数
+
+edit:
+20170731 com.taomee.tms.splitlog下的reducer打散程序下的reducer最后去掉date参数，同时在最后的目录下也不需要date参数作为目录之一了 

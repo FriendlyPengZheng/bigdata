@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.taomee.tms.mgr.dao.EmailTemplateDataDao">
+	<resultMap id="EmailTemplateDataMap" type="com.taomee.tms.mgr.entity.EmailTemplateDataInfo">
+		<id column="email_template_data_id" property="emailTemplateDataId" jdbcType="INTEGER" />
+		<result column="email_template_content_id" property="emailTemplateContentId" jdbcType="INTEGER" />
+		<result column="data_date_type" property="dataDateType" jdbcType="VARCHAR" />
+		<result column="data_expr" property="dataExpr" jdbcType="VARCHAR" />
+		<result column="data_name" property="dataName" jdbcType="VARCHAR" />
+		<result column="offset" property="offset" jdbcType="INTEGER" />
+		<result column="unit" property="unit" jdbcType="VARCHAR" />
+		<result column="in_table" property="inTable" jdbcType="INTEGER" />
+		<result column="in_graph" property="inGraph" jdbcType="INTEGER" />
+	</resultMap>
+	
+	<sql id="tableName">
+		t_web_email_template_data_maggie2
+	</sql>
+	
+	<sql id="allInfo">
+		email_template_data_id,email_template_content_id,data_date_type,data_expr,data_name,offset,unit,in_table,in_graph
+	</sql>
+	
+	<select id="getByTemplateContentId" parameterType="java.lang.Integer" resultMap="EmailTemplateDataMap">
+		SELECT
+			<include refid="allInfo"/>
+		FROM 
+			<include refid="tableName"/>
+		WHERE
+			email_template_content_id = #{emailTemplateContentId,jdbcType=INTEGER}	                                                                                                                  
+	</select>
+	
+</mapper>

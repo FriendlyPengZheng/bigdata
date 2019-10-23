@@ -1,0 +1,504 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<!--<meta name="viewport" content="initial-scale=1, maximum-scale=1, minimum-scale=1, user-scalable=no">-->
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="keywords" content="">
+    <meta name="description" content="">
+    <title>淘米数据分析平台手机版</title>
+	<link rel="stylesheet" href="../css/pure/pure-min.css">
+	<link rel="stylesheet" href="../css/mtj/public.css">
+	<link rel="stylesheet" href="../css/mtj/mtj.css">
+	<link rel="stylesheet" href="../css/font-awesome/css/font-awesome.min.css">
+</head>
+<body>
+
+<div class="header-bar">
+	<div class="pure-menu pro-list-div">
+        <a href="javascript:history.go(-1)" class="pro-list-link">&nbsp;&nbsp;<i class="fa fa-chevron-left"></i></a>
+        <a href="#" id="J-menu" class="pro-list-link"><i class="fa fa-list"></i></a>
+		<ul class="pro-list-ul">
+		</ul>
+	</div>
+    <span id="product-name" class="big-title"></span>
+	<div class="admin-info">
+	    <span></span>,
+		<a href="#">退出</a>
+    </div>
+</div>
+
+<div class="container">
+	<div class="section">
+	    <div class="">
+			<label>今日收入</label>
+            <h1 class="income-num"><i class="fa fa-jpy"></i><span id="overview-todayincome">N/A</span></h1>
+		</div>
+		<div class="increase-num">
+			<label class="tar">较昨日</label>
+			<h3 class="cy-num">N/A</h3>
+		</div>
+	</div>
+	<div class="section">
+	    <ul class="keys-ul">
+			<li>
+			    <label>付费帐号</label>
+				<a href="keypage.html" data="付费用户数" class="keypage" id="overview-payusers">N/A</a>
+			</li>
+			<li>
+			    <label>新增帐号</label>
+				<a href="keypage.html" data="新增用户数" class="keypage" id="overview-newusers">N/A</a>
+			</li>
+			<li>
+			    <label>活跃帐号</label>
+				<a href="keypage.html" data="活跃用户数" class="keypage" id="overview-actusers">N/A</a>
+			</li>
+            <!--
+			<li>
+			    <label>新增设备</label>
+				<a href="keypage.html" data="新增设备数" class="keypage" id="overview-newdevice">N/A</a>
+			</li>
+			<li>
+			    <label>活跃设备</label>
+				<a href="keypage.html" data="登录设备数" class="keypage" id="overview-actdevice">N/A</a>
+            </li>
+            -->
+			<li>
+			    <label>在线人数</label>
+				<a href="keypage.html" data="总在线" class="keypage" id="overview-online">N/A</a>
+			</li>
+			<li>
+			    <label>最高在线</label>
+				<a href="keypage.html" data="PCU" class="keypage" id="overview-peakonline">N/A</a>
+			</li>
+			<li>
+			    <label>平均在线</label>
+				<a href="keypage.html" data="ACU" class="keypage" id="overview-aveonline">N/A</a>
+			</li>
+		</ul>
+	</div>
+	<div class="section">
+	    <div class="statictis-item">
+		    <div class="graph-div" data="新增用户数">
+			    <canvas class="chart"></canvas>
+			</div>
+			<div class="data">
+			    <h3>新增帐号</h3>
+				<ul>
+				    <li>
+					    <label class="tar">今日</label>
+						<a href="keypage.html" data="新增用户数" class="today-num keypage">N/A</a>
+					</li>
+					<li>
+					    <label class="tar">昨日</label>
+						<a href="keypage.html" data="新增用户数" class="yesterday-num keypage">N/A</a>
+					</li>
+				</ul>
+			</div>
+		</div>
+		<div class="statictis-item">
+		    <div class="graph-div" data="活跃用户数">
+			    <canvas class="chart"></canvas>
+			</div>
+			<div class="data">
+			    <h3>活跃帐号</h3>
+				<ul>
+				    <li>
+					    <label class="tar">今日</label>
+						<a href="keypage.html" data="活跃用户数" class="today-num keypage">N/A</a>
+					</li>
+					<li>
+					    <label class="tar">昨日</label>
+						<a href="keypage.html" data="活跃用户数" class="yesterday-num keypage">N/A</a>
+					</li>
+				</ul>
+			</div>
+		</div>
+		<div class="statictis-item">
+		    <div class="graph-div" data="新增设备数">
+			    <canvas class="chart"></canvas>
+			</div>
+			<div class="data">
+			    <h3>新增设备</h3>
+				<ul>
+				    <li>
+					    <label class="tar">今日</label>
+						<a href="keypage.html" data="新增设备数" class="today-num keypage">N/A</a>
+					</li>
+					<li>
+					    <label class="tar">昨日</label>
+						<a href="keypage.html" data="新增设备数" class="yesterday-num keypage">N/A</a>
+					</li>
+				</ul>
+			</div>
+		</div>
+		<div class="statictis-item">
+		    <div class="graph-div" data="登录设备数">
+			    <canvas class="chart"></canvas>
+			</div>
+			<div class="data">
+			    <h3>活跃设备</h3>
+				<ul>
+				    <li>
+					    <label class="tar">今日</label>
+						<a href="keypage.html" data="登录设备数" class="today-num keypage">N/A</a>
+					</li>
+					<li>
+					    <label class="tar">昨日</label>
+						<a href="keypage.html" data="登录设备数" class="yesterday-num keypage">N/A</a>
+					</li>
+				</ul>
+			</div>
+		</div>
+		<div class="statictis-item">
+		    <div class="graph-div" data="收入总额（元）">
+			    <canvas class="chart"></canvas>
+			</div>
+			<div class="data">
+			    <h3>付费金额</h3>
+				<ul>
+				    <li>
+					    <label class="tar">今日</label>
+						<a href="keypage.html" data="收入总额（元）" class="today-num keypage">N/A</a>
+					</li>
+					<li>
+					    <label class="tar">昨日</label>
+						<a href="keypage.html" data="收入总额（元）" class="yesterday-num keypage">N/A</a>
+					</li>
+				</ul>
+			</div>
+		</div>
+		<div class="statictis-item">
+		    <div class="graph-div" data="付费用户数">
+			    <canvas class="chart"></canvas>
+			</div>
+			<div class="data">
+			    <h3>付费帐号</h3>
+				<ul>
+				    <li>
+					    <label class="tar">今日</label>
+						<a href="keypage.html" data="付费用户数" class="today-num keypage">N/A</a>
+					</li>
+					<li>
+					    <label class="tar">昨日</label>
+						<a href="keypage.html" data="付费用户数" class="yesterday-num keypage">N/A</a>
+					</li>
+				</ul>
+			</div>
+        </div>
+	</div>
+	<div class="section">
+		<div class="statictis-item">
+            <h3><a href="distribution.html" class="distribution" data="新增分布">Top5渠道/平台</a></h3>
+			<div class="pie" data="新增分布">
+				<canvas class="chart"></canvas>
+			</div>
+		</div>
+	</div>
+	<div class="section">
+		<ul class="keys-ul">
+			<li>
+				<label>留存用户</label>
+				<a class="keys-ul-icon retention" data="新增留存" href="retention.html"><i class="fa fa-users fa-3x"></i></a>
+			</li>
+			<li>
+				<label>付费渗透</label>
+				<a class="keys-ul-icon penetration" data="付费渗透" href="penetration.html"><i class="fa fa-money fa-3x"></i></a>
+			</li>
+		</ul>
+	</div>
+</div>
+
+<script src="../js/jquery.min.js" type="text/javascript" charset="utf-8"></script>
+<script src="../js/chart/Chart.min.js" type="text/javascript" charset="utf-8"></script>
+<script src="../js/public.js" type="text/javascript" charset="utf-8"></script>
+<script src="../js/mtj.js" type="text/javascript" charset="utf-8"></script>
+<script type="text/javascript" charset="utf-8">
+	var localUrl = window.location.search;
+	var param    = localUrl.substring(1, localUrl.length);
+    var game   = param.split('&')[0];
+    var gameId = game.split('=')[1];
+    var gpzs   = param.split('&')[1];
+    var gpzsId = gpzs.split('=')[1];
+	if(gameId == undefined || !gameId){
+		gameId = 657;
+        gpzsId = 25555;
+    }
+    $('.big-title').html(games[gameId]);
+
+	/* 初始化默认时间段 */
+	var dateArr15 = new Array();
+	for(var d=0;d<=14;d++)
+	{
+		dateArr15.push(getDateStr(d-14));
+	}
+
+    //Keypage页面跳转
+    $('.keypage').click(function(e){
+        e.preventDefault();
+        var dataKey = $(this).attr("data");
+        window.location.href = 'keypage.html?gameId='+gameId+'&gpzsId='+gpzsId+'&dataKey='+encodeURI(dataKey);
+    });
+
+    //留存页面跳转
+    $('.retention').click(function(e){
+        e.preventDefault();
+        var dataKey = $(this).attr("data");
+        window.location.href = 'retention.html?gameId='+gameId+'&gpzsId='+gpzsId+'&dataKey='+encodeURI(dataKey);
+    });
+
+    //付费渗透页面跳转
+    $('.penetration').click(function(e){
+        e.preventDefault();
+        var dataKey = $(this).attr("data");
+        window.location.href = 'penetration.html?gameId='+gameId+'&gpzsId='+gpzsId+'&dataKey='+encodeURI(dataKey);
+    });
+
+    //分布页面跳转
+    $('.distribution').click(function(e){
+        e.preventDefault();
+        var dataKey = $(this).attr("data");
+        window.location.href = 'distribution.html?gameId='+gameId+'&gpzsId='+gpzsId+'&dataKey='+encodeURI(dataKey);
+    });
+
+    var APDataInfo = [
+        {"data_name" :'ACU','type':2,'task_id':91,'range':'_all_','factor':1,'precision':0,'unit':''},
+        {"data_name" :'PCU','type':2,'task_id':92,'range':'_all_','factor':1,'precision':0,'unit':''}
+    ];
+    var APExprs = [
+        {"data_name" : 'ACU','period':1,'precision':0,'unit':'','expr':"{0}"},
+        {"data_name" : 'PCU','period':1,'precision':0,'unit':'','expr':"{1}"}
+    ];
+
+    //ACU & PCU
+	$.ajax({
+		url:reqUrl,
+		type:'POST',
+		dataType:'json',
+		data:{  r:'common/data/getTimeSeries',
+				qoq:0,
+				yoy:0,
+				average:0,
+				sum:0,
+				data_info:APDataInfo,
+                exprs:APExprs,
+				period:1,
+				searchValue:'',
+				from:{0:dateArr15[0]},
+				to:{0:dateArr15[14]},
+				contrast:0,
+				gpzs_id:gpzsId,
+				game_id:gameId
+			},
+        success:function(data){
+            if(data.data !=null &&  data.data != ""){
+                $('#overview-aveonline').html(data["data"][0]["data"][0]["data"][14]);
+                $('#overview-peakonline').html(data["data"][0]["data"][1]["data"][14]);
+            }
+        },
+    });
+
+
+    //在线人数
+    var online = $('#overview-online');
+    var onlineDataInfo = [{'type':1,'stid':'_olcnt_','sstid':'_olcnt_','op_fields':'_zone_,_olcnt_','op_type':'max','period':4,'factor':1,'precision':0,'unit':''}];
+    var onlineExprs = [{"data_name" : "",'period':4,'precision':0,'unit':'','expr':"{0}"}];
+	$.ajax({
+		url:reqUrl,
+		type:'POST',
+		dataType:'json',
+		data:{  r:'common/data/getRealTimeSeries',
+				qoq:0,
+				yoy:0,
+                average:0,
+                check_all:1,
+                all_name:"总在线",
+                fill_null:1,
+                sum:0,
+				data_info:onlineDataInfo,
+                exprs:onlineExprs,
+				period:4,
+                searchValue:'',
+                server_id:-1,
+                zone_id:-1,
+                platform_id:-1,
+				from:{0:dateArr15[14]},
+				to:{0:dateArr15[14]},
+				gpzs_id:gpzsId,
+				game_id:gameId
+			},
+        success:function(data){
+            var ol     = "N/A";
+            if(data.data != null){
+                var today = new Date();
+                var h = today.getHours();
+                var m = today.getMinutes();
+                var key = h*60+m-5;
+                console.log(key);
+
+                var olcnt = data["data"][0]["data"].pop();
+                ol    = olcnt["data"][key];
+            }
+            online.html(ol);
+        }
+    });
+
+	$('.statictis-item .graph-div').each(
+	    function(e){
+            var canvasChart = $(this).children('.chart').get(0);
+            var labelText = $(this).next().children("h3").html();//标题
+            var todayNum = $(this).next().children("ul").children("li").children(".today-num");
+            var yesterdayNum = $(this).next().children("ul").children("li").children(".yesterday-num");
+
+		    /*AJAX 请求数据开始*/
+            var dataKey = $(this).attr("data");
+            if(dataKey == "新增用户数"){
+                var dataInfo = [{"data_name" :dataKey,'type':2,'task_id':14,'range':'','factor':1,'precision':0,'unit':''}];
+                var exprs = [{"data_name" : dataKey,'period':1,'precision':0,'unit':'','expr':"{0}"}];
+            }else if(dataKey == "活跃用户数"){
+                var dataInfo = [{"data_name" :dataKey,'type':1,'stid':'_lgac_','sstid':'_lgac_','op_fields':'','op_type':'ucount','range':'','period':1,'factor':1,'precision':0,'unit':''}];
+                var exprs = [{"data_name" : dataKey,'period':1,'precision':0,'unit':'','expr':"{0}"}];
+            }else if(dataKey == "付费用户数"){
+                var dataInfo = [{"data_name" :dataKey,'type':1,'stid':'_acpay_','sstid':'_acpay_','op_fields':'','op_type':'ucount','range':'','period':1,'factor':1,'precision':0,'unit':''}];
+                var exprs = [{"data_name" : dataKey,'period':1,'precision':0,'unit':'','expr':"{0}"}];
+            }else if(dataKey == "收入总额（元）"){
+                var dataInfo = [{"data_name" :dataKey,'type':1,'stid':'_acpay_','sstid':'_acpay_','op_fields':'_amt_','op_type':'sum','range':'','period':1,'factor':0.01,'precision':2,'unit':''}];
+                var exprs = [{"data_name" : dataKey,'period':1,'precision':2,'unit':'','expr':"{0}"}];
+            }else if(dataKey == "新增设备数"){
+                var dataInfo = [{"data_name" :dataKey,'type':2,'task_id':2,'range':'','factor':1,'precision':0,'unit':''}];
+                var exprs = [{"data_name" : dataKey,'period':1,'precision':0,'unit':'','expr':"{0}"}];
+            }else if(dataKey == "登录设备数"){
+                var dataInfo = [{"data_name" :dataKey,'type':1,'stid':'_startdev_','sstid':'_startdev_','op_fields':'','op_type':'ucount','range':'','factor':1,'precision':0,'unit':''}];
+                var exprs = [{"data_name" : dataKey,'period':1,'precision':0,'unit':'','expr':"{0}"}];
+            }else{
+            
+            }
+		
+			$.ajax({
+				url:reqUrl,
+				type:'POST',
+				dataType:'json',
+				data:{  r:'common/data/getTimeSeries',
+						qoq:0,
+						yoy:0,
+						average:0,
+						sum:0,
+						data_info:dataInfo,
+                        exprs:exprs,
+						period:1,
+						searchValue:'',
+						from:{0:dateArr15[0]},
+						to:{0:dateArr15[14]},
+						contrast:0,
+						gpzs_id:gpzsId,
+						game_id:gameId
+					},
+				success:function(data){
+                    var graphData = data["data"][0]["data"][0]["data"];
+                    if(dataKey == "新增用户数"){
+                        $('#overview-newusers').html(graphData[14]);
+                    }else if(dataKey == "活跃用户数"){
+                        $('#overview-actusers').html(graphData[14]);
+                    }else if(dataKey == "付费用户数"){
+                        $('#overview-payusers').html(graphData[14]);
+                    }else if(dataKey == "收入总额（元）"){
+                        $('#overview-todayincome').html(graphData[14]);
+                        var todaySumData = parseInt(graphData[14]);
+                        var yesterdaySumData = parseInt(graphData[13]);
+                        var cyNum = yesterdaySumData == 0 ? "N/A" : ((todaySumData-yesterdaySumData)/yesterdaySumData*100).toFixed(2)+"%";
+                        $('.increase-num').children('.cy-num').html(cyNum);
+                    }else{
+                    }
+                    graphData[14] = graphData[14] == null ? 'N/A' : graphData[14];
+                    graphData[13] = graphData[13] == null ? 'N/A' : graphData[13];
+                    todayNum.html(graphData[14]);
+                    yesterdayNum.html(graphData[13]);
+					/* 创建曲线图 */ 
+					var ctx = canvasChart.getContext("2d");
+					var color = e%2 == 0 ? colors["orange"] : colors["green"];//颜色
+					var data = {
+						labels : dateArr15,
+						datasets : [
+							{
+								label : labelText,
+								backgroundColor : color,
+								borderColor : color,
+								fill : false,
+								data : graphData
+							},
+						]
+					};
+					new Chart(ctx, {
+						type:'line',
+						data: data
+					});
+				},
+				error:function(){
+					
+				}
+			});
+			/*AJAX 请求数据结束*/
+		}
+	);
+
+	$('.statictis-item .pie').each(
+		function (e){
+            var g = $(this).children('.chart').get(0);//get canvas
+			var dataKey = $(this).attr("data");
+            var dataInfo = [{'sort_type':3,'distr_name':dataKey,'dimen_name':'平台','distr_by':1,'distr_type':1,'data':0,
+                             'period':1,'data_name' :dataKey,'type':2,'task_id':14,'range':'','factor':1,'precision':0,'unit':''}];
+		    /*AJAX 请求数据开始*/
+			$.ajax({
+				url:reqUrl,
+				type:'POST',
+				dataType:'json',
+				data:{  r:'common/data/getDistribution',
+						qoq:0,
+						yoy:0,
+						average:0,
+						data_info:dataInfo,
+						period:1,
+						searchValue:'',
+						from:{0:dateArr15[0]},
+						to:{0:dateArr15[14]},
+                        platform_id:-1,
+                        zone_id:-1,
+                        server_id:-1,
+						gpzs_id:gpzsId,
+						game_id:gameId
+					},
+				success:function(data){
+                    var graphData = null;
+                    var keyData    = null;
+                    if(data.data != null && data.data != ""){
+                        graphData = data["data"][0]["data"][0]["data"];
+                        keyData   = data["data"][0]["key"];
+                    }
+			        var ctx = g.getContext("2d");
+			        var data = {
+			        	datasets: [{
+			        		data: graphData.slice(0,5), 
+			        		backgroundColor: pieColors, 
+			        		label: dataKey
+			        	}],
+			        	labels: keyData.slice(0,5)
+			        	
+			        };
+			        new Chart(ctx, {
+			        	type:'pie',
+			        	data: data
+			        });
+
+				},
+				error:function(){
+					
+				}
+			});
+			/*AJAX 请求数据结束*/
+		}
+	);
+	
+</script>
+</body>
+</html>

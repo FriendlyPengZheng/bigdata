@@ -1,0 +1,186 @@
+package com.taomee.tms.mgr.ctl.common;
+
+import java.io.PrintWriter;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Map;
+
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.RequestMapping;
+
+import com.alibaba.dubbo.config.annotation.Reference;
+import com.alibaba.fastjson.JSON;
+import com.alibaba.fastjson.JSONArray;
+import com.alibaba.fastjson.JSONObject;
+import com.taomee.tms.mgr.api.LogMgrService;
+import com.taomee.tms.mgr.form.GameForm;
+import com.taomee.tms.mgr.module.GameService;
+import com.taomee.tms.mgr.entity.GameInfo;
+
+@Controller
+@RequestMapping("/common/game")
+
+//游戏管理页
+public class GameController {
+	private static final Logger logger = LoggerFactory
+			.getLogger(GameController.class);
+
+	@Autowired
+	private GameService gameService;
+	@Reference
+	private LogMgrService logMgrService;
+	
+	@RequestMapping(value = "/index/{id}")
+	public String index(Model model) {
+		List<GameInfo> games = new ArrayList<GameInfo>();
+		games = logMgrService.getGameInfos();
+		model.addAttribute("games", games);
+		return "conf/game";
+	}
+	
+	//保存游戏配置
+	@RequestMapping(value = "/save")
+	public void save(@ModelAttribute GameForm form, PrintWriter printWriter) {
+		System.out.println("GameController save :" + JSON.toJSONString(form));
+		GameInfo game = new GameInfo();
+		game.setGameName(form.getGame_name());
+		game.setGameType(form.getGame_type());
+		game.setAuthId(form.getAuth_id());
+		game.setMangeAuthId(form.getManage_auth_id());
+		game.setOnlineAuthId(form.getOnline_auth_id());
+		game.setFuncSlot(form.getFunc_slot());
+		game.setStatus(form.getStatus());
+		game.setIgnoreId(form.getIgnore());
+		game.setGameEmail(form.getGame_email());
+		
+		System.out.println(form.getGame_name());
+		if(form.getGame_id() == null || form.getGame_id().equals("")){
+			game.setGameId(1);
+		} else {
+			game.setGameId(Integer.parseInt(form.getGame_id()));
+		}
+		System.out.println(game.toString());
+		//Integer gameId = game.getGameId();
+		GameInfo gameInfo= logMgrService.getGameInfoById(game.getGameId());
+		if(gameInfo == null){
+			try{
+				logMgrService.insertGameInfo(game);
+			}catch(Exception e) {
+				System.out.println("my_test_mysql_error:" + e.getMessage());
+				logger.error("MySQL error" + e.getMessage());
+				printWriter.write("{\"result\":1,\"err_desc\":\"" + e.getClass().getName() + "\"}");
+				printWriter.flush();
+				printWriter.close();
+			}
+		}else{
+			try {
+				logMgrService.updateGameInfo(game);
+			} catch(Exception e){
+				logger.error("MySQL error" + e.getMessage());
+				printWriter.write("{\"result\":1,\"err_desc\":\"" + e.getClass().getName() + "\"}");
+				printWriter.flush();
+				printWriter.close();
+			}
+		}
+		
+		printWriter.write("{\"result\":0,\"data\":" + "{\"taskId\":1}" + "}");
+		printWriter.flush();
+		printWriter.close();
+	}
+	
+	//设置状态
+	@RequestMapping(value = "/updateStatus")
+	public void delete(GameForm form, PrintWriter printWriter) {
+		System.out.println("GameController delete :"
+				+ JSON.toJSONString(form));
+		
+		int result = 0;
+		String strGameId = form.getGame_id();
+		GameInfo game = new GameInfo();
+		game.setStatus(form.getStatus());
+		if(strGameId == null || Integer.parseInt(strGameId) == 0){
+			result = 1;
+		} else {
+			int gameId = Integer.parseInt(strGameId);
+			game.setGameId(gameId);
+			logMgrService.updateStatus(game);
+			result = 0;
+		}
+		
+		printWriter.write("{\"result\":" + result + "}");
+		printWriter.flush();
+		printWriter.close();
+	}
+	
+	@RequestMapping(value = "/getGameList")
+	public void getGameList(HttpServletRequest request, PrintWriter printWriter, HttpServletResponse response) {
+		response.setCharacterEncoding("UTF-8"); //设置编码格式
+		response.setContentType("text/html");   //设置数据格式
+		Map<Integer, GameInfo> aIdGrouped = (Map<Integer, GameInfo>) gameService.getGameByAuth().get("2");
+		
+		JSONArray gameInfos = new JSONArray();
+		for(GameInfo info:aIdGrouped.values()) {
+			JSONObject gameInfo = new JSONObject();
+			//gameInfo.put("auth_id", "-1");
+			//gameInfo.put("func_slot", "32");
+			gameInfo.put("game_id", info.getGameId());
+			gameInfo.put("game_name", info.getGameName());
+			//gameInfo.put("game_type", "clientgame");
+			//gameInfo.put("gpzs_id", "9597");
+			//gameInfo.put("ignore", "");
+			//gameInfo.put("manage_auth_id", "-1");
+			//gameInfo.put("status", "1");
+			gameInfos.add(gameInfo);
+		}
+		
+		/*JSONArray gameInfos = new JSONArray();
+		JSONObject gameInfo = new JSONObject();
+		gameInfo.put("auth_id", "-1");
+		gameInfo.put("func_slot", "32");
+		gameInfo.put("game_id", "35");
+		gameInfo.put("game_name", "你的星球");
+		gameInfo.put("game_type", "clientgame");
+		gameInfo.put("gpzs_id", "9597");
+		gameInfo.put("ignore", "");
+		gameInfo.put("manage_auth_id", "-1");
+		gameInfo.put("status", "1");
+		gameInfos.add(gameInfo);*/
+
+		
+		printWriter.write("{\"result\":0,\"data\":"  +JSON.toJSONString(gameInfos)+ "}");
+		printWriter.flush();
+		printWriter.close();
+	}
+	@RequestMapping(value = "/getGameType")
+	public void getGameType(PrintWriter printWriter) {
+		ArrayList<String> gameTypes = gameService.getGameType();
+		
+		printWriter.write("{\"result\":0,\"data\":" + JSON.toJSONString(gameTypes) + "}" );
+		printWriter.flush();
+		printWriter.close();
+	}
+	@RequestMapping(value = "/getStatus")
+	public void getStatus(PrintWriter printWriter) {
+		String[] gameStatus = gameService.getStatus();
+		
+		printWriter.write("{\"result\":0,\"data\":" + JSON.toJSONString(gameStatus) + "}");
+		printWriter.flush();
+		printWriter.close();
+	}
+	@RequestMapping(value = "/getFuncMask")
+	public void getFuncMask(PrintWriter printWrite) {
+		String[] funcMask = gameService.getFuncMask();
+		
+		printWrite.write("{\"result\":0,\"data\":" + JSON.toJSONString(funcMask) + "}");
+		printWrite.flush();
+		printWrite.close();
+	}
+}

@@ -1,0 +1,98 @@
+<?xml version="1.0" encoding="UTF-8" ?>  
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.taomee.tms.mgr.dao.DataInfoDao">
+	<resultMap id="DataInfoMap" type="com.taomee.tms.mgr.entity.DataInfo">
+		<id column="data_id" property="dataId" jdbcType="INTEGER" />
+		<result column="type" property="type" jdbcType="INTEGER" />
+		<result column="relate_id" property="relateId" jdbcType="INTEGER" />
+		<result column="is_leaf" property="isLeaf" jdbcType="INTEGER" />
+		<result column="parent_id" property="parentId" jdbcType="INTEGER" />
+		<result column="data_name" property="dataName" jdbcType="VARCHAR" />
+		<result column="sthash" property="sthash" jdbcType="INTEGER" />
+		<result column="add_time" property="addTime" jdbcType="TIMESTAMP"
+			javaType="java.sql.Timestamp" />
+	</resultMap>
+
+	<sql id="DataInfoColumnList">
+		data_id, type, relate_id, is_leaf, parent_id, data_name,
+		sthash, add_time
+	</sql>
+
+	<insert id="insertDataInfo" parameterType="com.taomee.tms.mgr.entity.DataInfo" 
+	 useGeneratedKeys="true" keyProperty="dataId">
+		insert into
+		t_data_info (type, relate_id, is_leaf, parent_id,
+		data_name, sthash)
+		values (#{type,jdbcType=INTEGER}, #{relateId,jdbcType=INTEGER},
+		#{isLeaf,jdbcType=INTEGER}, #{parentId,jdbcType=INTEGER},
+		#{dataName,jdbcType=VARCHAR}, #{sthash,jdbcType=INTEGER} )
+	</insert>
+
+	<select id="getDataInfo" resultMap="DataInfoMap" parameterType="java.lang.Integer">
+		select
+		<include refid="DataInfoColumnList" />
+		from t_data_info
+		where data_id = #{dataId,jdbcType=INTEGER} order by data_id ASC
+	</select>
+	
+
+	<select id="getDataInfosByParams" resultMap="DataInfoMap"
+		parameterType="com.taomee.tms.mgr.entity.DataInfoQueryParams">
+		select
+		<include refid="DataInfoColumnList" />
+		from t_data_info
+		where type = #{type,jdbcType=INTEGER} and relate_id =
+		#{relateId,jdbcType=INTEGER}
+	</select>
+
+	<select id="findDataInfo" resultMap="DataInfoMap">
+		select
+		<include refid="DataInfoColumnList" />
+		from t_data_info
+		where relate_id=#{0} and type=#{1} and data_name=#{2}
+	</select>
+
+	<update id="insertUpdataInfo">
+		insert INTO t_data_info
+		(type, relate_id, is_leaf, parent_id,
+		data_name)
+		VALUES
+		(#{type,jdbcType=INTEGER}, #{relateId,jdbcType=INTEGER},
+		#{isLeaf,jdbcType=INTEGER}, #{parentId,jdbcType=INTEGER},
+		#{dataName,jdbcType=VARCHAR} )
+		ON DUPLICATE KEY UPDATE
+		is_leaf = VALUES(is_leaf),
+		parent_id = VALUES(parent_id)
+	</update>
+
+
+   <select id="getChildDataInfoByparentId" resultMap="DataInfoMap" parameterType="java.lang.Integer">
+		select
+		<include refid="DataInfoColumnList" />
+		from t_data_info
+		where parent_id = #{parentId,jdbcType=INTEGER} 
+	</select>
+	
+	
+	<delete id="deleteDataInfo" >
+		delete from  t_data_info
+		where
+		<if test="relateId != null and relateId != -1">
+			relate_id = #{relateId}
+		</if>
+		<if test="type != null  and type != -1">
+			AND type = #{type}
+		</if>
+		<if test="dataName != null and dataName != ''">
+			AND data_name = #{dataName}
+		</if>
+	</delete>
+	
+	<select id="getDataInfoByUniqueKey" resultMap="DataInfoMap" parameterType="com.taomee.tms.mgr.entity.DataInfoUniqueKeyParams">
+		select
+		<include refid="DataInfoColumnList" />
+		from t_data_info
+		where relate_id = #{relateId,jdbcType=INTEGER}  AND type = #{type} AND data_name = #{dataName}
+	</select>
+	
+</mapper> 

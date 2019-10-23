@@ -1,0 +1,95 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.taomee.tms.mgr.dao.EmailDataInfoDao">
+	<resultMap id="EmailDataInfoMap" type="com.taomee.tms.mgr.entity.EmailDataInfo">
+		<id column="email_data_id" property="emailDataId" jdbcType="INTEGER" />
+		<result column="email_id" property="emailId" jdbcType="INTEGER" />
+		<result column="email_content_id" property="emailContentId" jdbcType="INTEGER" />
+		<result column="content_title" property="contentTitle" jdbcType="VARCHAR" />
+		<result column="data_date_type" property="dataDateType" jdbcType="VARCHAR" />
+		<result column="data_expr" property="dataExpr" jdbcType="VARCHAR" />
+		<result column="data_name" property="dataName" jdbcType="VARCHAR" />
+		<result column="server_id" property="serverId" jdbcType="INTEGER" />
+		<result column="offset" property="offset" jdbcType="INTEGER" />
+		<result column="unit" property="unit" jdbcType="VARCHAR" />
+		<result column="in_table" property="inTable" jdbcType="INTEGER" />
+		<result column="in_graph" property="inGraph" jdbcType="INTEGER" />
+		<result column="threshold" property="threshold" jdbcType="VARCHAR" />
+	</resultMap>
+	
+	<sql id="tableName">
+		t_web_email_data_maggie2
+	</sql>
+	
+	<sql id="joinTableName">
+		t_web_email_content
+	</sql>
+	
+	<sql id="allInfo">
+		email_data_id,email_id,email_content_id,content_title,data_date_type,data_expr,data_name,server_id,offset,unit,in_table,in_graph,threshold
+	</sql>
+	
+	<select id="queryByEmailId" resultMap="EmailDataInfoMap" parameterType="java.lang.Integer">
+		SELECT
+			<include refid="allInfo"/>
+		FROM
+			<include refid="tableName"/> 
+		WHERE
+			remove_flag = 0 and email_id = #{emailId,jdbcType=INTEGER}
+		ORDER BY
+			data_order DESC,email_data_id ASC
+	</select>
+	
+	<select id="getbyContentId" resultMap="EmailDataInfoMap">
+		SELECT
+			<include refid="allInfo"/>
+		FROM
+			<include refid="tableName"/> 
+		WHERE
+			remove_flag = 0 and email_id = #{emailId,jdbcType=INTEGER} and email_content_id = #{emailContentId,jdbcType=INTEGER}
+		ORDER BY
+			data_order DESC,email_data_id ASC
+	</select>
+	
+	<delete id="deleteByEmailDataId" parameterType="java.lang.Integer">
+		DELETE FROM
+			<include refid="tableName"/>
+		WHERE
+			email_data_id = #{emailDataId,jdbcType=INTEGER}
+	</delete>
+	
+	<insert id="insert" parameterType="com.taomee.tms.mgr.entity.EmailDataInfo"
+			useGeneratedKeys="true" keyProperty="email_data_id">
+		INSERT INTO
+			<include refid="tableName"/> (email_id,email_content_id,content_title,data_date_type,data_expr,data_name,server_id,offset,unit,in_table,in_graph,threshold)
+		VALUES
+			(#{emailId,jdbcType=INTEGER},#{emailContentId,jdbcType=INTEGER},#{contentTitle,jdbcType=VARCHAR},#{dataDateType,jdbcType=VARCHAR},#{dataExpr,jdbcType=VARCHAR},#{dataName,jdbcType=VARCHAR},#{serverId,jdbcType=INTEGER},#{offset,jdbcType=INTEGER},#{unit,jdbcType=VARCHAR},#{inTable,jdbcType=INTEGER},#{inGraph,jdbcType=INTEGER},#{threshold,jdbcType=VARCHAR})
+	</insert>
+	
+	<update id="setRemoveByEmailId" parameterType="java.lang.Integer">
+		UPDATE
+			<include refid="tableName"/>
+		SET
+			remove_flag = 1
+		WHERE
+			email_id = #{emailId,jdbcType=INTEGER}
+	</update>
+	
+	<update id="setRemoveByEmailDataId" parameterType="java.lang.Integer">
+		UPDATE
+			<include refid="tableName"/>
+		SET
+			remove_flag = 1
+		WHERE
+			email_data_id = #{emailDataId,jdbcType=INTEGER}
+	</update>
+	
+	<update id="setDataName" >
+		UPDATE
+			<include refid="tableName"/>
+		SET
+			data_name = #{dataName,jdbcType=VARCHAR}
+		WHERE
+			email_data_id = #{emailDataId,jdbcType=INTEGER}
+	</update>
+</mapper>

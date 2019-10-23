@@ -1,0 +1,27 @@
+log_dir         ./log/
+log_level       8
+log_size        32000000
+log_maxfiles    100
+
+proc_name       db-server
+plugin_file     ./bin/libsdkonline.so
+
+shmq_size       8192000
+
+max_connect     8000
+max_pkg_len     5242880
+
+bind_ip         10.1.1.63
+bind_port       19906
+
+work_conf       ./conf/bench_work.conf
+pid_file        ./bin/daemon.pid
+
+include         ./conf/configure.conf 
+include         ./conf/version.conf
+
+#sql缓存中最多存放的条数
+sql_cache_size 1000
+
+#缓存更新到数据库的间隔
+sql_update_interval 60

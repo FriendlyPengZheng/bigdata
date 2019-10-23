@@ -1,0 +1,32 @@
+# 指定工作目录。
+work-path           /home/ian/stat_server_data
+
+# 指定日志接收端个数
+stat-dbserver-count    1
+# 指定日志接收端ip和port，支持域名
+stat-dbserver-host0    10.1.1.64:19909
+stat-dbserver-host1    10.1.1.63:19902
+
+# 指定stat-center地址，支持域名。
+# 注意：该地址只能配置一个，即stat-center-count 1。
+stat-center-count      1
+stat-center-host0      127.0.0.1:19300
+
+# 以下三个参数可影响发送性能
+# send-block-size指定一次发送多少数据
+# max-mmap-block指定一次mmap多少数据在内存中
+# max-traffic指定自定义日志每秒发送最大日志量，该项可实现限流。
+send-block-size     8192 
+max-mmap-block      1048576
+max-traffic         256 # 单位KB
+
+# 自动重连间隔，单位秒
+reconnect-interval  30
+# 写文件时，指定切换文件的间隔（多长时间生成一个文件）。
+switch-file-interval 50
+# 写文件时，指定sync到硬盘的时间间隔
+sync-interval       10
+# 检查更新间隔，单位秒
+update-interval     600
+# 发送心跳数据间隔，单位秒
+heartbeat-interval  60

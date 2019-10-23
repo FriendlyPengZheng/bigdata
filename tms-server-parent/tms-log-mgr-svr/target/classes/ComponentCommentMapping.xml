@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.taomee.tms.mgr.dao.ComponentCommentDao">
+	<resultMap id="ComponentCommentMap"
+		type="com.taomee.tms.mgr.entity.ComponentComment">
+		<id column="component_id" property="componentId" jdbcType="INTEGER" />
+		<result column="comment_id" property="commentId" jdbcType="INTEGER" />
+		<result column="display_order" property="displayOrder"
+			jdbcType="INTEGER" />
+		<result column="hidden" property="hidden" jdbcType="INTEGER" />
+		<result column="game_id" property="gameId" jdbcType="INTEGER" />
+	</resultMap>
+
+
+	<sql id="ComponentCommentInfoList">
+		component_id, comment_id, display_order, hidden
+	</sql>
+
+	<insert id="saveComponentComments" parameterType="com.taomee.tms.mgr.entity.ComponentComment">
+		insert into
+		t_web_component_comment (component_id, comment_id)
+		values (#{0}, #{1}) 
+	</insert>
+</mapper>

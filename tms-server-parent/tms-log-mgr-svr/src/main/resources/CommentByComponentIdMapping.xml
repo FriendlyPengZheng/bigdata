@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.taomee.tms.mgr.dao.CommentByComponentDao">
+	<resultMap id="CommentByComponentIdMap"
+		type="com.taomee.tms.mgr.entity.CommentByComponentId">
+		<id column="comment_id" property="commentId" jdbcType="INTEGER" />
+		<result column="keyword" property="keyword" jdbcType="INTEGER" />
+		<result column="comment" property="comment"
+			jdbcType="INTEGER" />
+		<result column="display_order" property="displayOrder" jdbcType="INTEGER" />
+	</resultMap>
+
+
+	<sql id="CommentInfoColumnListWithTableName">
+		t_web_comment.comment_id, t_web_comment.keyword,
+		t_web_comment.comment, t_web_component_comment.display_order
+	</sql>
+
+	<select id="getCommentsByComponentId" resultMap="CommentByComponentIdMap">
+		select
+		<include refid="CommentInfoColumnListWithTableName" />
+		from t_web_comment inner join t_web_component_comment on
+		t_web_comment.comment_id=t_web_component_comment.comment_id
+		where t_web_component_comment.component_id = #{componentId,jdbcType=INTEGER}
+		order by comment_id ASC
+	</select>
+
+</mapper>

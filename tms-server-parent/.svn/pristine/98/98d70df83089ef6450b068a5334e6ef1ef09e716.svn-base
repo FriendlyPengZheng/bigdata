@@ -1,0 +1,24 @@
+#tongji系统入库文件说明
+#加工项
+$DB_UPLOAD -type 2 -date ${date} -task 144 -path ${SUM_DIR}/${date}/day_sum_vip/part*
+
+#基础统计项
+$DB_UPLOAD -type 2 -date ${date} -path ${DAY_DIR}/${date}/sum/part*
+
+
+
+
+
+#Tms系统入库文件说明
+#加工项
+$DB_UPLOAD -task ${taskid} -date ${date} -path ${SUM_DIR}/${date}/day_sum_vip/part*(说明:同时需要在查找hdfs路径的时候解析入库文件夹的artifictId,作为类属性的一部分)
+#数据格式:
+#server_id  级联字段 value
+
+#基础统计项
+$DB_UPLOAD -date ${date} -path ${DAY_DIR}/${date}/sum/part* (没有taskid的需要在解析前，判断hdfs上的文件个数，第一个为sechemaid)
+#数据格式
+#schema_id  server_id  级联字段  value
+
+
+

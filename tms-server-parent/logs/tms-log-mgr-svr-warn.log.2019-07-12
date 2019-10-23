@@ -1,0 +1,3 @@
+[WARN] [2019-07-12 14:54:14.573] org.apache.hadoop.util.NativeCodeLoader.<clinit>(NativeCodeLoader.java:62) | Unable to load native-hadoop library for your platform... using builtin-java classes where applicable
+   [WARN] [2019-07-12 14:55:40.520] com.alibaba.dubbo.remoting.transport.AbstractServer.disconnected(AbstractServer.java:197) |  [DUBBO] All clients has discontected from /10.1.4.33:20880. You can graceful shutdown now., dubbo version: 2.5.3, current host: 127.0.0.1
+   

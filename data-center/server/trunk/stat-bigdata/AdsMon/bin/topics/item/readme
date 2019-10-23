@@ -1,0 +1,5 @@
+道具专题
+统计各游戏中道具的购买人数人次数量价钱
+第一步 time zid sid gid uid vip itemid为key 得到购买次数 购买数量 购买价钱
+第二步 time zid sid gid vip itemid 得到每个道具的购买人数 人次 购买数量 购买价钱
+第三步 time zid sid gid uid 得到每个人的购买道具次数 数量和价钱

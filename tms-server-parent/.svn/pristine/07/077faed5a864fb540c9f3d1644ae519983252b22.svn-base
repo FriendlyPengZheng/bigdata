@@ -1,0 +1,86 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.taomee.tms.mgr.dao.SharedCollectInfoDao">
+	<resultMap id="SharedCollectInfoMap" type="com.taomee.tms.mgr.entity.SharedCollectInfo">
+		<result column="collect_id" property="collectId" jdbcType="INTEGER" />
+		<result column="favor_id" property="favorId" jdbcType="INTEGER" />
+		<result column="user_id" property="userId" jdbcType="INTEGER" />
+		<result column="calc_option" property="calcOption" jdbcType="VARCHAR" />
+		<result column="calculateRow_option" property="calculateRowOption" jdbcType="VARCHAR" />
+	</resultMap>
+
+	<sql id="SharedCollectInfoColumnList">
+		collect_id, favor_id, user_id, calc_option, calculateRow_option
+	</sql>
+
+	<select id="findByCollectId" resultMap="SharedCollectInfoMap"  parameterType="java.lang.Integer">
+		select
+		<include refid="SharedCollectInfoColumnList" />
+		from t_web_shared_collect
+		where collect_id = #{collectId,jdbcType=INTEGER}
+	</select>
+	
+	
+	<select id="getShareInfoByPrimaryId" resultMap="SharedCollectInfoMap">
+		select
+		<include refid="SharedCollectInfoColumnList" />
+		from t_web_shared_collect
+		<where>
+			<if test="collectId != null and collectId != 0">
+				collect_id = #{collectId} and
+			</if>
+			<if test="favorId != null and favorId != 0">
+				 favor_id = #{favorId}
+			</if>
+		</where>
+	</select>
+	
+	
+	
+	<select id="getShareInfoByFavorId" resultMap="SharedCollectInfoMap">
+		select
+		<include refid="SharedCollectInfoColumnList" />
+		from t_web_shared_collect
+		where favor_id = #{favorId} and user_id = #{userId}
+	</select>
+	
+	<delete id="deleteShareInfoByCollectId" parameterType="java.lang.Integer">
+		delete from
+		t_web_shared_collect
+		where collect_id = #{collectId,jdbcType=INTEGER}
+	</delete>
+	
+	<delete id="deleteShareInfoByFavorId" parameterType="java.lang.Integer">
+		delete from
+		t_web_shared_collect
+		where favor_id = #{favorId,jdbcType=INTEGER}
+	</delete>
+	
+	<delete id="deleteShareInfoByPrimaryId">
+		delete from
+		t_web_shared_collect
+		where favor_id = #{favorId} and collect_id=#{collectId}
+	</delete>
+	
+	<delete id="deleteShareInfoByCollectUserId">
+		delete from
+		t_web_shared_collect
+		where user_id = #{userId} and collect_id=#{collectId}
+	</delete>
+	
+	<insert id="insertShareCollectInfo" parameterType="com.taomee.tms.mgr.entity.SharedCollectInfo">
+		insert into
+		t_web_shared_collect (collect_id, favor_id, user_id)
+		values
+		(#{collectId},#{favorId}, #{userId})
+	</insert>
+	
+	<update id="updateShareCollectInfoBycollectId" >
+		update
+		t_web_shared_collect
+		set
+		favor_id=#{descFavorId}
+		where collect_id=#{collectId} and favor_id = #{srcFavorId}
+	</update>
+	
+</mapper>

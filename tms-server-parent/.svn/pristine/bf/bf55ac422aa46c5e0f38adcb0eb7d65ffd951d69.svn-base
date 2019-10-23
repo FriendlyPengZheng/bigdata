@@ -1,0 +1,17 @@
+package com.taomee.tms.mgr.dao;
+
+import java.util.List;
+
+import org.apache.ibatis.annotations.Param;
+
+import com.taomee.tms.mgr.entity.FavorInfo;
+
+public interface FavorInfoDao {
+	Integer insertFavorInfo(FavorInfo favorInfo);
+	FavorInfo getFavorByfavorId(Integer favorId);
+	//FavorInfo getFavorBycollectId(Integer collectId);
+	List<FavorInfo> getListByUserId(@Param("userId")Integer userId, @Param("favorType")Integer favorType);
+	void updateFavorByUserId(Integer userId, Integer isDefault);
+	void updateFavorByfavorId(Integer favorId, Integer isDefault);
+	void deleteFavorByfavorId(Integer favorId);
+}
